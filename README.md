@@ -11,12 +11,13 @@ My take on Bash, tmux and Vim customization.
 
 * run `initbash` function
   
-## overview
+## config overview
 ### [Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell))
 * `cd $1` has been aliased to `cd $1 && ls`
 * `iploc` outputs your public ip and ip location
 * `tx` executes `tmux attach` or `tmux new` (when there is no attachable session)
 * `initbash` updates the dotfiles and invokes tmux
+* sets `DISPLAY` variable for VcXsrv
 
 | key binding | effect        |
 | :-----------|:--------------|
