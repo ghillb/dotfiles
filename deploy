@@ -45,8 +45,8 @@ deploy_df()
     if grep -Fxq "# $check_phrase" $homepath/.bashrc; then
         echo "$(tput setaf 1)Warning: .bashrc already modified$(tput sgr0)";
     else
-        echo -e "\n# set display for VcXsrv/ConEmu (start GUI apps on Windows)" >> ~/.bashrc;
-        echo -e "export DISPLAY=:0" >> ~/.bashrc;      
+        echo -e "\n# set display for VcXsrv" >> ~/.bashrc;
+        echo "export DISPLAY=:0" >> ~/.bashrc;      
         echo -e "\n# $check_phrase" >> ~/.bashrc;
         echo "source '$homepath/dotfiles/bashrc'" >> ~/.bashrc;
         echo "$(tput setaf 2)OK: .bashrc was modified$(tput sgr0)";
