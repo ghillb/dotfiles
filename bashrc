@@ -39,9 +39,10 @@ alias v="vim -p"
 
 ## key binds
 
-bind -x '"\C-k": "cd .."'
+bind -x '"\e[21~": "sudo htop"' # bind to F10
+bind -x '"\C-b": "cd .."'
 bind -x '"\C-h": "cd ~/"'
 bind -x '"\C-t": "tx"'
-bind -x '"\C-b": "htop"'
 bind -x '"\C-e": "ranger"'
+bind -x '"\C-j": "jupyter-notebook"'
 bind '"\C-g": "git add . && git commit -m \"\" && git push"'
