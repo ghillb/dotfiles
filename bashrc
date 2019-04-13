@@ -1,3 +1,7 @@
+## settings
+
+set bell-style none
+
 ## functions
 
 cdls()
