@@ -1,4 +1,5 @@
 set nocompatible " disable vi, use vi improved
+set visualbell " turn off audible bell
 
 " syntax highlighting
 colorscheme desert " set color scheme
