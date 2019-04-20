@@ -40,6 +40,7 @@ alias cd="cdls"
 alias vim="vim -p"
 alias vi="vim -p"
 alias v="vim -p"
+alias py="python3"
 
 ## key binds
 
