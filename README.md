@@ -22,10 +22,10 @@ My take on Bash, tmux and Vim customization.
 | key binding | effect        |
 | :-----------|:--------------|
 | Ctrl-H      | runs `cd ~/`  |
-| Ctrl-K      | runs `cd ..`  |
+| Ctrl-B      | runs `cd ..`  |
 | Ctrl-T      | runs `tx`     |
 | Ctrl-E      | runs `ranger` |
-| Ctrl-B      | runs `htop`   |
+| F10         | runs `htop`   |
 | Ctrl-G      | puts `git add . && git commit -m "" && git push` into buffer |
 
 ### [tmux](https://en.wikipedia.org/wiki/Tmux)
@@ -48,6 +48,7 @@ My take on Bash, tmux and Vim customization.
 
 ### [Vim](https://en.wikipedia.org/wiki/Vim_(text_editor))
 * set nocompatible mode
+* turn off audible bell
 * enable desert color scheme
 * enable syntax highlighting
 * change encoding/decoding to utf8
