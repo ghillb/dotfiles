@@ -49,8 +49,7 @@ bind -x '"\e[21~": "sudo htop"' #bind to F10
 bind -x '"\C-b": "cd .."'
 bind -x '"\C-h": "cd ~/"'
 bind -x '"\C-t": "tx"'
-bind -x '"\C-e": "ranger"'
-bind -x '"\C-j": "jupyter-notebook"'
+bind -x '"\C-e": "sudo ranger"'
 bind '"\C-g": "git add . && git commit -m \"\" && git push"'
 
 ## scripted behaviour
