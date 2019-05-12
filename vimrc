@@ -1,15 +1,13 @@
-set nocompatible " disable vi, use vi improved
-set visualbell " turn off audible bell
-
-" syntax highlighting
+" display settings
+syntax on " enable syntax highlighting
 colorscheme desert " set color scheme
 set background=dark " dark console background
-syntax on " enable syntax highlighting
-
-" display settings
 set encoding=utf-8 " set utf8 encoding
 set showmatch " highlight matching braces
-set number " display line numbers
+"set number " display line numbers
+set relativenumber " relative line numbers
+let g:netrw_liststyle=3 " tree style dir mode
+let g:netrw_banner=0 " hide header in dir mode
 
 " write settings
 set confirm " confirm dialogue for :q
@@ -31,7 +29,29 @@ set ignorecase " case insensitive search
 set incsearch " incremental search
 set smartcase " no incremental search when capital letters are used
 
+" misc settings
+set visualbell " turn off audible bell
+set nocompatible " disable vi, use vi improved
+set shell=/bin/bash "set shell used by vim
+set hidden " allow switching buffers without writing to disc
+set wildignore=*.o,*~,*.pyc,*.pyo,__pycache__,*/venv/*
+
 " file type specific settings
 filetype on " file type detection on
 filetype plugin on " load file type specific plugins 
 filetype indent on " automatic code indentation
+
+" yank buffer to system clipboard (remote / local clipboard sync)
+" replace /dev/pts/1 with parrent tty
+function! Osc52Yank()
+    let buffer=system('base64 -w0', @0)
+    let buffer=substitute(buffer, "\n$", "", "")
+    let buffer='\e]52;c;'.buffer.'\x07'
+    silent exe "!echo -ne ".shellescape(buffer)." > ".shellescape("/dev/pts/1")
+endfunction
+
+command! Osc52CopyYank call Osc52Yank()
+augroup SyYank
+    autocmd!
+    autocmd TextYankPost * if v:event.operator ==# 'y' | call Osc52Yank() | endif
+augroup END
