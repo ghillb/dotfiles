@@ -37,7 +37,7 @@ initbash()
 
 ## aliases
 
-alias sudo='sudo '
+alias s='sudo '
 alias cd="cdls"
 alias vim="vim -p"
 alias vi="vim -p"

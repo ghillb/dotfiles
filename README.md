@@ -52,7 +52,7 @@ My take on Bash, tmux and Vim customization.
 * enable desert color scheme
 * enable syntax highlighting
 * change encoding/decoding to utf8
-* display line numbers
+* display relative line numbers
 * enable `:q` confirmation dialogue
 * highlight matching braces
 * disable swap and backup files
@@ -61,3 +61,4 @@ My take on Bash, tmux and Vim customization.
 * expand tabs into 4 space
 * highlight search results
 * case insensitive search
+* provide Osc52yank support
