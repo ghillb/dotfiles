@@ -7,7 +7,7 @@ export DISPLAY=:0 #set display for VcXsrv
 
 cdls()
 {
-    cd "$@" && ls;    
+    cd "$@" && ls;
 }
 
 iploc()
