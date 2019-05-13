@@ -56,8 +56,7 @@ deploy_df()
         ln -s ~/.vimrc ~/.config/nvim/init.vim;
         echo "$(tput setaf 2)OK: symlink to ~/.config/nvim/init.vim was created$(tput sgr0)";
     else
-        echo "$(tput setaf 1)Warning: ~/.config/nvim/init.vim already exists and
-        will be used$(tput sgr0)";
+        echo "$(tput setaf 1)Warning: ~/.config/nvim/init.vim already exists$(tput sgr0)";
     fi
 
     echo -e "\n$(tput setaf 2)Deployment finished. Relog and run initbash to proceed.$(tput sgr0)"
