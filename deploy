@@ -49,12 +49,15 @@ deploy_df()
         echo "source '$homepath/dotfiles/bashrc'" >> ~/.bashrc;
         echo "$(tput setaf 2)OK: .bashrc was modified$(tput sgr0)";
     fi
+    
+    mkdir -p ~/.config/nvim;
 
-    if [ ! -h ~/.deploy ]; then
-        ln -s ~/dotfiles/deploy ~/.deploy;
-        echo "$(tput setaf 2)OK: symlink to ~/dotfiles/deploy was created$(tput sgr0)";
+    if [ ! -h ~/.config/nvim/init.vim ]; then
+        ln -s ~/.vimrc ~/.config/nvim/init.vim;
+        echo "$(tput setaf 2)OK: symlink to ~/.config/nvim/init.vim was created$(tput sgr0)";
     else
-        echo "$(tput setaf 1)Warning: symlink to ~/dotfiles/deploy already exists$(tput sgr0)";
+        echo "$(tput setaf 1)Warning: ~/.config/nvim/init.vim already exists and
+        will be used$(tput sgr0)";
     fi
 
     echo -e "\n$(tput setaf 2)Deployment finished. Relog and run initbash to proceed.$(tput sgr0)"

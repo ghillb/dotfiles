@@ -39,9 +39,8 @@ initbash()
 
 alias s='sudo '
 alias cd="cdls"
-alias vim="vim -p"
-alias vi="vim -p"
 alias v="vim -p"
+alias nv="nvim -p"
 alias py="python3"
 
 ## key binds
