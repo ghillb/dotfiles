@@ -2,6 +2,8 @@
 
 set bell-style none
 export DISPLAY=:0 #set display for VcXsrv
+export VISUAL=vim #set vim as default editor
+export EDITOR=vim
 
 ## functions
 
