@@ -4,10 +4,17 @@ colorscheme desert " set color scheme
 set background=dark " dark console background
 set encoding=utf-8 " set utf8 encoding
 set showmatch " highlight matching braces
-"set number " display line numbers
-set relativenumber " relative line numbers
 let g:netrw_liststyle=3 " tree style dir mode
 let g:netrw_banner=0 " hide header in dir mode
+
+" line number settings
+:set number relativenumber " set hybrid line numbers
+
+:augroup numbertoggle " auto switch between modes on buffer focus
+:  autocmd!
+:  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+:  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+:augroup END
 
 " write settings
 set confirm " confirm dialogue for :q
