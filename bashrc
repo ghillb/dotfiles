@@ -42,6 +42,7 @@ alias cd="cdls"
 alias v="vim -p"
 alias nv="nvim -p"
 alias py="python3"
+alias jn="jupyter notebook"
 
 ## key binds
 
