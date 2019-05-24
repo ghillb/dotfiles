@@ -18,6 +18,7 @@ My take on Bash, tmux and Vim customization.
 * `tx` executes `tmux attach` or `tmux new` (when there is no attachable session)
 * `initbash` updates the dotfiles and invokes tmux
 * sets `DISPLAY` variable for VcXsrv
+* various aliases
 
 | key binding | effect        |
 | :-----------|:--------------|
@@ -52,7 +53,8 @@ My take on Bash, tmux and Vim customization.
 * enable desert color scheme
 * enable syntax highlighting
 * change encoding/decoding to utf8
-* display relative line numbers
+* display hybrid line numbers
+* automic toggles between line number modes
 * enable `:q` confirmation dialogue
 * highlight matching braces
 * disable swap and backup files
