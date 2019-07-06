@@ -40,6 +40,7 @@ initbash()
 ## aliases
 
 alias s='sudo '
+alias up='sudo apt update && sudo apt upgrade'
 alias cd="cdls"
 alias v="vim -p"
 alias nv="nvim -p"
