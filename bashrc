@@ -41,11 +41,11 @@ initbash()
 
 alias s='sudo '
 alias up='sudo apt update && sudo apt upgrade'
-alias cd="cdls"
-alias v="vim -p"
-alias nv="nvim -p"
-alias py="python3"
-alias jn="jupyter notebook"
+alias cd='cdls'
+alias v='vim -p'
+alias nv='nvim -p'
+alias py='python3'
+alias jn='jupyter notebook'
 
 ## key binds
 
