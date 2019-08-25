@@ -9,7 +9,7 @@ My take on Bash, tmux and Vim customization.
   
 ## automatic update and initialization
 
-* run `initbash` function
+* run `initbash` command
   
 ## config overview
 ### [Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell))
