@@ -47,7 +47,7 @@ alias v='vim -p'
 alias nv='nvim -p'
 alias py='python3'
 alias jn='jupyter notebook'
-alias tf2='sudo docker run --gpus all -it --net=host -p 8888:8888 --rm -v ~/notebooks:/tf/notebooks tensorflow/tensorflow:2.0.0-gpu-py3-jupyter'
+alias tf2='sudo docker run --gpus all -it -u $(id -u):$(id -g) -p 8888:8888 --rm -v ~/notebooks:/tf/notebooks tensorflow/tensorflow:2.0.0-gpu-py3-jupyter'
 
 ## key binds
 
