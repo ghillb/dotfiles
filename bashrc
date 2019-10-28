@@ -33,7 +33,7 @@ initbash()
     cd ~/dotfiles;
     git pull;
     echo "2. Starting tmux...";
-    sleep 1;
+    sleep .25;
     cd ~/;
     tx;
 }
