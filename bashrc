@@ -27,6 +27,16 @@ tx()
     fi
 }
 
+repeat() 
+{
+    n=$1
+    shift
+    while [ $(( n -= 1 )) -ge 0 ]
+    do
+        "$@"
+    done
+}
+
 initbash()
 {
     echo "1. Updating configuration...";
