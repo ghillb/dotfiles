@@ -57,6 +57,9 @@ alias v='vim -p'
 alias nv='nvim -p'
 alias py='python3'
 alias jn='jupyter notebook'
+alias n='nano'
+alias hist='history|grep'
+alias wget='wget --hsts-file ~/dotfiles/config/wget/wget-hsts'
 
 ## key binds
 
