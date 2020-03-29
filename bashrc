@@ -59,7 +59,7 @@ alias py='python3'
 alias jn='jupyter notebook'
 alias n='nano'
 alias hist='history|grep'
-alias wget='wget --hsts-file ~/dotfiles/config/wget/wget-hsts'
+alias wget='wget --hsts-file ~/.config/wget/wget-hsts'
 
 ## key binds
 
