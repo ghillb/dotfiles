@@ -42,6 +42,7 @@ set nocompatible " disable vi, use vi improved
 set shell=/bin/bash "set shell used by vim
 set hidden " allow switching buffers without writing to disc
 set wildignore=*.o,*~,*.pyc,*.pyo,__pycache__,*/venv/*
+set paste " turn off autoindent when pasting (set noai alternative)
 
 " file type specific settings
 filetype on " file type detection on
