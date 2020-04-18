@@ -61,13 +61,16 @@ deploy_df()
 
     echo -e "\n$(tput setaf 2)Deployment finished. Relog and run initbash to proceed.$(tput sgr0)"
 
-cd ~/
-ln -s ~/dotfiles/spectrwm.conf .spectrwm.conf
+    cd ~/
+    ln -s ~/dotfiles/spectrwm.conf .spectrwm.conf
 
-mkdir -p ~/.config/termite
-cd ~/.config/termite/
-ln -s ~/dotfiles/termite.conf config
+    mkdir -p ~/.config/termite
+    cd ~/.config/termite/
+    ln -s ~/dotfiles/termite.conf config
 
+    mkdir -p ~/.local/share/fonts
+    cd ~/.local/share/fonts
+    ln -s ~/dotfiles/assets/Cascadia.ttf Cascadia.ttf
 }
 
 deploy_df
