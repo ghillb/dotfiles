@@ -60,6 +60,14 @@ deploy_df()
     fi
 
     echo -e "\n$(tput setaf 2)Deployment finished. Relog and run initbash to proceed.$(tput sgr0)"
+
+cd ~/
+ln -s ~/dotfiles/spectrwm.conf .spectrwm.conf
+
+mkdir -p ~/.config/termite
+cd ~/.config/termite/
+ln -s ~/dotfiles/termite.conf config
+
 }
 
 deploy_df
