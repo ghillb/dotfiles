@@ -3,7 +3,7 @@
 
 ## DATE
 dte() {
-  dte="$(date +"%A, %B %d %l:%M%p")"
+  dte="$(date +"%A, %B %d %Y %H:%M")"
   echo -e "$dte"
 }
 
@@ -15,7 +15,7 @@ hdd() {
 
 ## RAM
 mem() {
-  mem=`free | awk '/Mem/ {printf "%d MiB/%d MiB\n", $3 / 1024.0, $2 / 1024.0 }'`
+  mem=`free | awk '/Mem/ {printf "%dM/%dM\n", $3 / 1024.0, $2 / 1024.0 }'`
   echo -e "$mem"
 }
 
@@ -39,6 +39,6 @@ cpu() {
 SLEEP_SEC=5
 # outputting a line every SLEEP_SEC secs
 while :; do
-    echo "+@fg=1; +@fn=1;💻+@fn=0; $(cpu) +@fg=0; | +@fg=2;  +@fn=1;💾+@fn=0; $(mem) +@fg=0; | +@fg=3; +@fn=1;💿+@fn=0; $(hdd) +@fg=0; |"
+    echo " $(cpu) | $(mem) | $(hdd) | $(dte)"
 	sleep $SLEEP_SEC
 done
