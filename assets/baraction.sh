@@ -30,15 +30,15 @@ cpu() {
   echo -e "CPU: $cpu%"
 }
 
-## VOLUME
+## VOLUME only working on systems with amixer, add to loop < +@fg=4; +@fn=1;🔈+@fn=0; $(vol) +@fg=0; |">
 # vol() {
 #     vol=`amixer get Master | awk -F'[][]' 'END{ print $4":"$2 }'`
 #     echo -e "VOL: $vol"
 # }
 
 SLEEP_SEC=5
-#loops forever outputting a line every SLEEP_SEC secs
+# outputting a line every SLEEP_SEC secs
 while :; do
-    echo "+@fg=1; +@fn=1;💻+@fn=0; $(cpu) +@fg=0; | +@fg=2;  +@fn=1;💾+@fn=0; $(mem) +@fg=0; | +@fg=3; +@fn=1;💿+@fn=0; $(hdd) +@fg=0; | +@fg=4; +@fn=1"#;🔈+@fn=0; $(vol) +@fg=0; |"
+    echo "+@fg=1; +@fn=1;💻+@fn=0; $(cpu) +@fg=0; | +@fg=2;  +@fn=1;💾+@fn=0; $(mem) +@fg=0; | +@fg=3; +@fn=1;💿+@fn=0; $(hdd) +@fg=0; |"
 	sleep $SLEEP_SEC
 done
