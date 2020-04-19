@@ -68,13 +68,15 @@ deploy_df()
     cd ~/.config/termite/
     ln -s ~/dotfiles/termite.conf config
 
-    mkdir -p ~/.config/alacritty
-    cd ~/.config/alacritty
-    ln -s ~/dotfiles/alacritty.yml alacritty.yml
+    # mkdir -p ~/.config/alacritty
+    # cd ~/.config/alacritty
+    # ln -s ~/dotfiles/alacritty.yml alacritty.yml
 
     mkdir -p ~/.local/share/fonts
     cd ~/.local/share/fonts
     ln -s ~/dotfiles/assets/Cascadia.ttf Cascadia.ttf
+    
+    sed -i 's/#force_color/force_color/g' ~/.bashrc
 }
 
 deploy_df
