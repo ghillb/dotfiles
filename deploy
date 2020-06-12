@@ -77,6 +77,11 @@ deploy_df()
     ln -s ~/dotfiles/assets/Cascadia.ttf Cascadia.ttf
     
     sed -i 's/#force_color/force_color/g' ~/.bashrc
+    echo "..."
+    sleep 1
+    echo "Starting Gogh to pick a color theme for the terminal ..."
+    sleep 2
+    bash -c  "$(wget -qO- https://git.io/vQgMr)" 
 }
 
 deploy_df
