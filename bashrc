@@ -65,6 +65,8 @@ alias un='sudo apt remove'
 alias ap='sudo apt'
 alias hist='history|grep'
 alias wget='wget --hsts-file ~/.config/wget/wget-hsts'
+alias code='codium'
+alias c='code'
 
 ## key binds
 
