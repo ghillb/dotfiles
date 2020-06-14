@@ -39,13 +39,7 @@ repeat()
 
 initbash()
 {
-    echo "1. Updating configuration...";
-    cd ~/dotfiles;
-    git pull;
-#    echo "2. Starting tmux...";
-    sleep .25;
-    cd;
-#    tx;
+    cd ~/dotfiles; git pull; cd;#tx;
 }
 
 ## aliases
