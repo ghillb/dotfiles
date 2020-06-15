@@ -33,10 +33,13 @@ set shell=/bin/bash
 set hidden " allow switching buffers without writing to disc
 set wildignore=*.o,*~,*.pyc,*.pyo,__pycache__,*/venv/*
 set paste " turn off autoindent when pasting (set noai alternative)
+set undodir=~/.vim/undodir
+set undofile
 
 " plugin manager
 call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 colorscheme gruvbox 
