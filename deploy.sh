@@ -10,6 +10,12 @@ deploy_df()
     mkdir -p ~/.config/termite; cd ~/.config/termite/; ln -s ~/dotfiles/termite.conf config
     mkdir -p ~/.config/alacritty; cd ~/.config/alacritty; ln -s ~/dotfiles/alacritty.yml alacritty.yml
     mkdir -p ~/.local/share/fonts; cd ~/.local/share/fonts; ln -s ~/dotfiles/assets/Cascadia.ttf Cascadia.ttf
+    
+	echo "Installing Vim-Plug ..."
+	sleep 2
+    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+    	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim' 
+    
     echo "Starting Gogh to pick a color theme ..."
     sleep 2
     bash -c  "$(wget -qO- https://git.io/vQgMr)" 
