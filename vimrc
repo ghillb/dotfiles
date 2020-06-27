@@ -42,6 +42,7 @@ Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
+Plug 'terryma/vim-multiple-cursors'
 call plug#end()
 
 colorscheme gruvbox 
