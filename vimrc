@@ -67,9 +67,9 @@ let g:netrw_banner = 0
 let g:netrw_winsize = 25
 
 " mappings
-map x "_x
-map X "_D
-map <C-x> "_dd
+noremap x "_x
+noremap X "_D
+noremap <C-x> "_dd
 
 autocmd FileType python map <buffer> <M-r> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 autocmd FileType python imap <buffer> <M-r> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
