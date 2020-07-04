@@ -1,3 +1,4 @@
+#!/bin/bash
 ## settings
 set bell-style none
 export DISPLAY=:0 #set display for VcXsrv
@@ -52,7 +53,7 @@ alias n='nano'
 alias g='glances'
 alias in='sudo apt install'
 alias un='sudo apt remove'
-alias a='sudo apt'
+alias gl='git log --all --graph --oneline'
 alias hist='history|grep'
 alias wget='wget --hsts-file ~/.config/wget/wget-hsts'
 alias code='codium'
