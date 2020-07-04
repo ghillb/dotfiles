@@ -1,5 +1,4 @@
 ## settings
-
 set bell-style none
 export DISPLAY=:0 #set display for VcXsrv
 export VISUAL=vim #set vim as default editor
@@ -7,7 +6,6 @@ export EDITOR=vim
 export PATH="$PATH:~/.local/bin" #add user bin to path
 
 ## functions
-
 cdls()
 {
     cd "$@" && ls;
@@ -43,7 +41,6 @@ initbash()
 }
 
 ## aliases
-
 alias s='sudo '
 alias up='sudo apt update && sudo apt upgrade'
 alias cd='cdls'
@@ -62,7 +59,6 @@ alias code='codium'
 alias c='code'
 
 ## key binds
-
 bind -x '"\e[21~": "sudo htop"' #bind to F10
 bind -x '"\C-b": "cd .."'
 bind -x '"\C-h": "cd ~/"'
@@ -71,7 +67,9 @@ bind -x '"\C-e": "sudo ranger"'
 bind '"\C-g": "git add . && git commit -m \"\" && git push"'
 
 ## scripted behaviour
-
 if [[ -z "$TMUX" && ("$SSH_CONNECTION" != "" || -n "$PS1") ]]; then
     initbash #run initbash on shell init or ssh connection
 fi
+
+## modified prompt
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " ∴ \[\033[01;31m\]%s")\[\033[00m\] → '
