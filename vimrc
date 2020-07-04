@@ -50,6 +50,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 colorscheme gruvbox 
@@ -67,9 +69,13 @@ let g:netrw_banner = 0
 let g:netrw_winsize = 25
 
 " mappings
+let mapleader = " "
 noremap x "_x
-noremap X "_D
-noremap <C-x> "_dd
+noremap X "_X
+noremap <leader>x x
+noremap <leader>X X
+noremap <leader>d "_dd
+noremap <leader>D "_D
 
 autocmd FileType python map <buffer> <M-r> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 autocmd FileType python imap <buffer> <M-r> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
