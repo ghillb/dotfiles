@@ -4,6 +4,8 @@ set background=dark
 set encoding=utf-8 
 set showmatch 
 set number relativenumber 
+set noshowmode
+"set noshowcmd
 
 " write settings
 set confirm " confirm dialogue for :q
@@ -28,7 +30,6 @@ set smartcase " no incremental search when capital letters are used
 
 " misc settings
 set visualbell " turn off audible bell
-set nocompatible " disable vi, use vi improved
 set shell=/bin/bash 
 set hidden " allow switching buffers without writing to disc
 set wildignore=*.o,*~,*.pyc,*.pyo,__pycache__,*/venv/*
