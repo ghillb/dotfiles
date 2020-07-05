@@ -1,10 +1,10 @@
 #!/bin/bash
-declare -a configs=( "vim" "tmux" "spectrwm" "alacritty" "termite" "color" "embed")
+declare -a configs=( "embed df" "vim" "tmux" "spectrwm" "alacritty" "termite" "color" )
 declare -A deploy
-for i in "${configs[@]}"; do echo "deploy $i config? (y / → n)";	read -s ans; deploy[$i]=$ans; done
+for c in "${configs[@]}"; do echo "$c config? (y / → n)"; read -s ans; deploy[$c]=$ans; done
 
 execute() {
-  if [[ ${deploy["embed"]} == "y" ]]; then embed; fi
+  if [[ ${deploy["embed df"]} == "y" ]]; then embed_df; fi
   if [[ ${deploy["vim"]} == "y" ]]; then vim; fi
   if [[ ${deploy["tmux"]} == "y" ]]; then tmux; fi
   if [[ ${deploy["spectrwm"]} == "y" ]]; then spectrwm; fi
@@ -13,7 +13,7 @@ execute() {
   if [[ ${deploy["color"]} == "y" ]]; then color; fi
 }
 
-embed() {
+embed_df() {
   echo -e "# my dotfile additions\n. '$HOME/dotfiles/bashrc'" >> ~/.bashrc
   # echo ". '$HOME/dotfiles/assets/startup.sh'" >> ~/.profile
   mkdir -p ~/.local/share/fonts; ln -s ~/dotfiles/assets/Cascadia.ttf ~/.local/share/fonts/Cascadia.ttf
