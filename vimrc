@@ -56,9 +56,9 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 call plug#end()
 
-colorscheme gruvbox
 let g:gruvbox_contrast_dark = 'hard'
-let g:gruvbox_invert_selection = '0'
+let g:gruvbox_invert_selection = '1'
+colorscheme gruvbox
 
 " behaviour
 if executable('rg')
