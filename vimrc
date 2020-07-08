@@ -96,6 +96,7 @@ noremap <leader>x x
 noremap <leader>X X
 noremap <leader>d "_dd
 noremap <leader>D "_D
+"nmap <leader>s ysiw vim surround word 
 
 autocmd FileType python map <buffer> <M-r> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 autocmd FileType python imap <buffer> <M-r> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
