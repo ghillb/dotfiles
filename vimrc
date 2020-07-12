@@ -47,7 +47,7 @@ endif
 " plugin manager
 call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
