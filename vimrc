@@ -98,6 +98,7 @@ noremap <leader>X X
 noremap <leader>d "_dd
 noremap <leader>D "_D
 xnoremap p "_dP
+nmap <leader>v <esc>ggVG<CR>
 nmap <leader>s ysiw
 
 autocmd FileType python map <buffer> <M-r> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
