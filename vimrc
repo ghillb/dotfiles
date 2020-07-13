@@ -98,7 +98,17 @@ noremap <leader>X X
 noremap <leader>d "_dd
 noremap <leader>D "_D
 xnoremap p "_dP
-nmap <leader>v <esc>ggVG<CR>
+" move lines
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+" select all
+map <A-v> <esc>ggVG<CR>
+nmap <leader>v ggVG<CR>
+" surround word
 nmap <leader>s ysiw
 
 autocmd FileType python map <buffer> <M-r> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
