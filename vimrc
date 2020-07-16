@@ -93,10 +93,10 @@ let g:multi_cursor_quit_key            = '<Esc>'
 let mapleader = " "
 noremap x "_x
 noremap X "_X
+noremap D "_D
 noremap <leader>x x
 noremap <leader>X X
-noremap <leader>d "_dd
-noremap <leader>D "_D
+noremap <leader>D D
 xnoremap p "_dP
 " move lines
 nnoremap <A-j> :m .+1<CR>==
