@@ -88,7 +88,6 @@ let g:multi_cursor_prev_key            = '<A-p>'
 let g:multi_cursor_skip_key            = '<A-x>'
 let g:multi_cursor_quit_key            = '<Esc>'
 
-
 " mappings
 let mapleader = " "
 noremap x "_x
