@@ -1,5 +1,5 @@
 #!/bin/bash
-declare -a configs=( "embed df" "vim" "tmux" "spectrwm" "alacritty" "termite" "color" )
+declare -a configs=( "embed df" "vim" "tmux" "spectrwm" "alacritty" "termite" )
 declare -A deploy
 for c in "${configs[@]}"; do echo "$c config? (y / → n)"; read -s ans; deploy[$c]=$ans; done
 
@@ -10,7 +10,6 @@ execute() {
   if [[ ${deploy["spectrwm"]} == "y" ]]; then spectrwm; fi
   if [[ ${deploy["alacritty"]} == "y" ]]; then alacritty; fi
   if [[ ${deploy["termite"]} == "y" ]]; then termite; fi
-  if [[ ${deploy["color"]} == "y" ]]; then color; fi
 }
 
 embed_df() {
@@ -22,7 +21,6 @@ embed_df() {
 vim() {
   mkdir -p ~/.config/nvim ~/.vim/undodir ; ln -s ~/dotfiles/vimrc ~/.config/nvim/init.vim
 	echo "Installing Vim-Plug ..."
-	sleep 2
   sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 }
@@ -41,12 +39,6 @@ alacritty() {
 
 termite() {
   mkdir -p ~/.config/termite; ln -s ~/dotfiles/termite.conf ~/.config/termite/config
-}
-
-color() {
-  echo "Starting Gogh to pick a color theme ..."
-  sleep 2
-  bash -c  "$(wget -qO- https://git.io/vQgMr)" 
 }
 
 execute
