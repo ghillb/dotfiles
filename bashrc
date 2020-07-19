@@ -5,6 +5,7 @@ export DISPLAY=:0 #set display for VcXsrv
 export VISUAL=vim #set vim as default editor
 export EDITOR=vim
 export PATH="$PATH:~/.local/bin" #add user bin to path
+export LC_ALL=C.UTF-8
 
 ## functions
 cdls()
