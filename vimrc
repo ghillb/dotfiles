@@ -2,7 +2,6 @@
 syntax on " enable syntax highlighting
 set background=dark 
 set encoding=utf-8 
-set showmatch 
 set number relativenumber 
 set noshowmode
 "set noshowcmd
@@ -55,30 +54,26 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
+Plug 'vimwiki/vimwiki'
 call plug#end()
+
+let g:vimwiki_list = [{'path': '~/notes/', 'syntax': 'markdown', 'ext': '.md'}]
 
 " color scheme
 let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_invert_selection = '1'
 colorscheme gruvbox
 
-" behaviour
-if executable('rg')
-    let g:rg_derive_root='true'
-endif
-
-let loaded_matchparen = 1
-let mapleader = " "
-let g:netrw_browse_split = 2
-let g:vrfr_rg = 'true'
+" layout
 let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 2
 let g:netrw_winsize = 25
 let g:airline_theme='minimalist'
 "let g:airline_statusline_ontop=1
 
+" vim surround mappings
 let g:multi_cursor_use_default_mapping=0
-
-" Default mapping
 let g:multi_cursor_start_word_key      = '<A-n>'
 let g:multi_cursor_select_all_word_key = '<C-n>'
 let g:multi_cursor_start_key           = 'g<A-n>'
@@ -115,6 +110,7 @@ noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 
+" behaviour
 autocmd FileType python map <buffer> <M-r> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 autocmd FileType python imap <buffer> <M-r> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 
