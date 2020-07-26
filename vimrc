@@ -4,6 +4,7 @@ set encoding=utf-8
 set number relativenumber 
 set noshowmode
 "set noshowcmd
+set spelllang=en_us,de_de spell
 
 set confirm " confirm dialogue for :q
 set fileencoding=utf-8 " saving file in utf8
@@ -18,7 +19,7 @@ set tabstop=4
 set shiftwidth=4 
 set softtabstop=4 
 set textwidth=80
-	
+
 set hlsearch " highlight search results
 set ignorecase " case insensitive search
 set incsearch " incremental search
