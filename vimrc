@@ -44,6 +44,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'terryma/vim-multiple-cursors'
@@ -53,7 +54,9 @@ Plug 'tpope/vim-surround'
 Plug 'vimwiki/vimwiki'
 call plug#end()
 
-let g:vimwiki_list = [{'path': '~/notes/', 'syntax': 'markdown', 'ext': '.md'}]
+let notes_md = {'path': '~/notes/md/', 'syntax': 'markdown', 'ext': '.md'}
+let notes_wiki = {'path': '~/notes/wiki/'}
+let g:vimwiki_list = [notes_wiki, notes_md]
 
 " color scheme
 let g:gruvbox_contrast_dark = 'hard'
