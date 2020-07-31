@@ -54,6 +54,20 @@ Plug 'tpope/vim-surround'
 Plug 'vimwiki/vimwiki'
 call plug#end()
 
+" gitgutter config
+set updatetime=100
+let g:gitgutter_highlight_lines = 0
+let g:gitgutter_highlight_linenrs = 1
+let g:gitgutter_signs = 1
+let g:gitgutter_sign_added = '✚'
+let g:gitgutter_sign_removed = '✘'
+let g:gitgutter_sign_modified = '❖'
+let g:gitgutter_sign_modified_removed = '⮞'
+let g:gitgutter_sign_removed_first_line = '◥'
+let g:gitgutter_sign_removed_above_and_below = '['
+call gitgutter#highlight#define_signs()
+
+" vimwiki config
 let notes_md = {'path': '~/notes/md/', 'syntax': 'markdown', 'ext': '.md'}
 let notes_wiki = {'path': '~/notes/wiki/'}
 let g:vimwiki_list = [notes_wiki, notes_md]
