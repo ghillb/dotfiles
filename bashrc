@@ -82,4 +82,4 @@ if [[ -z "$TMUX" && ("$SSH_CONNECTION" != "" || -n "$PS1") ]]; then
 fi
 
 ## modified prompt
-PS1=$'${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] : \[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " \xe2\x88\xb4 \[\033[01;31m\]%s")\[\033[00m\] \xe2\x9e\xa4 '
+PS1=$'${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] : \[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " \xe1\x9b\x98 \[\033[01;31m\]%s")\[\033[00m\] \xe2\x9e\xa4 '
