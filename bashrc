@@ -76,10 +76,12 @@ bind -x '"\C-n": "notes"'
 bind '"\C-g": "git add . && git commit -m \"\" && git push"'
 
 ## scripted behaviour
-if [[ -z "$TMUX" && ("$SSH_CONNECTION" != "" || -n "$PS1") && -z "$NOTES" ]]; then
+if [[ -z "$TMUX" && ("$SSH_CONNECTION" != "" || -n "$PS1") && -z "$NOTES" && -z "$SSHCON" ]]; then
     initbash;
 elif [ ! -z "$NOTES" ]; then
     eval "nvim -c VimwikiIndex"
+elif [ ! -z "$SSHCON" ]; then
+    source ~/.ssh_connections.sh
 fi
 
 ## modified prompt
