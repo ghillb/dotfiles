@@ -1,37 +1,33 @@
 syntax on
-set background=dark 
+set shell=/bin/bash 
 set encoding=utf-8 
-set number relativenumber 
-set noshowmode
-"set noshowcmd
-set spelllang=en_us,de_de spell
-
-set confirm
 set fileencoding=utf-8
+set spelllang=en_us,de_de spell
+set clipboard+=unnamedplus
+set backspace=indent,eol,start
+set autochdir
+set confirm
 set nobackup
 set noswapfile
-set clipboard+=unnamedplus
-
-set backspace=indent,eol,start
 set autoindent 
 set expandtab 
 set tabstop=4 
 set shiftwidth=4 
 set softtabstop=4 
 set textwidth=80
-
 set hlsearch
 set ignorecase 
 set incsearch
 set smartcase
-
+set background=dark 
+set number relativenumber 
+set noshowmode
 set visualbell
-set shell=/bin/bash 
-set hidden
-set wildignore=*.o,*~,*.pyc,*.pyo,__pycache__,*/venv/*
+set updatetime=100
 set undodir=~/.vim/undodir
 set undofile
-set updatetime=100
+set hidden
+set wildignore=*.o,*~,*.pyc,*.pyo,__pycache__,*/venv/*
 
 " autoload plug
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -87,7 +83,6 @@ let g:netrw_liststyle = 3
 let g:netrw_browse_split = 2
 let g:netrw_winsize = 25
 let g:airline_theme='minimalist'
-"let g:airline_statusline_ontop=1
 
 " vim surround mappings
 let g:multi_cursor_use_default_mapping = 0
