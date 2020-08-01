@@ -1,5 +1,5 @@
 #!/bin/bash
-## settings
+
 set bell-style none
 export DISPLAY=:0 #set display for VcXsrv
 export VISUAL=vim
@@ -7,7 +7,6 @@ export EDITOR=vim
 export PATH="$PATH:~/.local/bin"
 export LC_ALL=C.UTF-8
 
-## functions
 cdls()
 {
     cd "$@" && ls;
@@ -39,7 +38,7 @@ repeat()
 
 initbash()
 {
-    cd ~/dotfiles; git pull; cd;#tx;
+    cd ~/dotfiles; git pull; cd; tx;
 }
 
 ## aliases
@@ -77,8 +76,10 @@ bind -x '"\C-n": "notes"'
 bind '"\C-g": "git add . && git commit -m \"\" && git push"'
 
 ## scripted behaviour
-if [[ -z "$TMUX" && ("$SSH_CONNECTION" != "" || -n "$PS1") ]]; then
-    initbash #run initbash on shell init or ssh connection
+if [[ -z "$TMUX" && ("$SSH_CONNECTION" != "" || -n "$PS1") && -z "$NOTES" ]]; then
+    initbash;
+elif [ ! -z "$NOTES" ]; then
+    eval "nvim -c VimwikiIndex"
 fi
 
 ## modified prompt
