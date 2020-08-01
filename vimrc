@@ -1,4 +1,4 @@
-syntax on " enable syntax highlighting
+syntax on
 set background=dark 
 set encoding=utf-8 
 set number relativenumber 
@@ -6,31 +6,32 @@ set noshowmode
 "set noshowcmd
 set spelllang=en_us,de_de spell
 
-set confirm " confirm dialogue for :q
-set fileencoding=utf-8 " saving file in utf8
-set nobackup " no backup file policy
-set noswapfile " no swap file policy
+set confirm
+set fileencoding=utf-8
+set nobackup
+set noswapfile
 set clipboard+=unnamedplus
 
-set backspace=indent,eol,start " backspace over eol
+set backspace=indent,eol,start
 set autoindent 
-set expandtab " expand tabs into spaces
+set expandtab 
 set tabstop=4 
 set shiftwidth=4 
 set softtabstop=4 
 set textwidth=80
 
-set hlsearch " highlight search results
-set ignorecase " case insensitive search
-set incsearch " incremental search
-set smartcase " no incremental search when capital letters are used
+set hlsearch
+set ignorecase 
+set incsearch
+set smartcase
 
-set visualbell " turn off audible bell
+set visualbell
 set shell=/bin/bash 
-set hidden " allow switching buffers without writing to disc
+set hidden
 set wildignore=*.o,*~,*.pyc,*.pyo,__pycache__,*/venv/*
 set undodir=~/.vim/undodir
 set undofile
+set updatetime=100
 
 " autoload plug
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -55,7 +56,6 @@ Plug 'vimwiki/vimwiki'
 call plug#end()
 
 " gitgutter config
-set updatetime=100
 let g:gitgutter_highlight_lines = 0
 let g:gitgutter_highlight_linenrs = 1
 let g:gitgutter_signs = 1
@@ -66,6 +66,10 @@ let g:gitgutter_sign_modified_removed = '⮞'
 let g:gitgutter_sign_removed_first_line = '◥'
 let g:gitgutter_sign_removed_above_and_below = '['
 call gitgutter#highlight#define_signs()
+
+" fzf config
+let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
+let $FZF_DEFAULT_OPTS='--reverse'
 
 " vimwiki config
 let notes_md = {'path': '~/notes/md/', 'syntax': 'markdown', 'ext': '.md'}
@@ -86,7 +90,7 @@ let g:airline_theme='minimalist'
 "let g:airline_statusline_ontop=1
 
 " vim surround mappings
-let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_use_default_mapping = 0
 let g:multi_cursor_start_word_key      = '<A-n>'
 let g:multi_cursor_select_all_word_key = '<C-n>'
 let g:multi_cursor_start_key           = 'g<A-n>'
@@ -124,8 +128,10 @@ noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
+" fzf find window
+noremap <C-F> :Rg <CR>
 
-" behaviour
+" run python files wth M-r
 autocmd FileType python map <buffer> <M-r> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 autocmd FileType python imap <buffer> <M-r> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 
