@@ -104,7 +104,7 @@ noremap <leader>x x
 noremap <leader>X X
 noremap <leader>D D
 noremap ? :help<CR>
-noremap \ :so %<CR>
+noremap <C-\> :so %<CR>
 xnoremap p "_dP
 " move lines
 nnoremap <A-j> :m .+1<CR>==
@@ -123,8 +123,11 @@ noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
-" fzf find window
+" fzf mappings
 noremap <C-F> :Rg <CR>
+noremap <C-E> :Files <CR>
+noremap <C-B> :Buffers <CR>
+noremap \ :BLines <CR>
 
 " toogles cursor line in insert mode
 autocmd InsertEnter,InsertLeave * set cul!
