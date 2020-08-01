@@ -74,7 +74,7 @@ let $FZF_DEFAULT_OPTS='--reverse'
 " vimwiki config
 let notes_md = {'path': '~/notes/md/', 'syntax': 'markdown', 'ext': '.md'}
 let notes_wiki = {'path': '~/notes/wiki/'}
-let g:vimwiki_list = [notes_wiki, notes_md]
+let g:vimwiki_list = [notes_md, notes_wiki]
 
 " color scheme
 let g:gruvbox_contrast_dark = 'hard'
@@ -130,6 +130,9 @@ noremap <Left> <Nop>
 noremap <Right> <Nop>
 " fzf find window
 noremap <C-F> :Rg <CR>
+
+" toogles cursor line in insert mode
+autocmd InsertEnter,InsertLeave * set cul!
 
 " run python files wth M-r
 autocmd FileType python map <buffer> <M-r> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
