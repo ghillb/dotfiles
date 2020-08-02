@@ -19,6 +19,7 @@ embed_df() {
 }
 
 vim() {
+  if ! command -v nvim &> /dev/null; then sudo apt install -y neovim; fi
   mkdir -p ~/.config/nvim ~/.vim/undodir ; ln -s ~/dotfiles/vimrc ~/.config/nvim/init.vim
 	echo "Installing Vim-Plug ..."
   sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
@@ -26,6 +27,7 @@ vim() {
 }
 
 tmux() {
+  if ! command -v tmux &> /dev/null; then sudo apt install -y tmux; fi
   ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 }
 
