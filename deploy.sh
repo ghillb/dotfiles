@@ -1,10 +1,10 @@
 #!/bin/bash
-declare -a configs=( "embed df" "vim" "tmux" "spectrwm" "alacritty" "termite" )
+declare -a configs=( "df" "vim" "tmux" "spectrwm" "alacritty" "termite" )
 declare -A deploy
-for c in "${configs[@]}"; do echo "$c config? (y / → n)"; read -s ans; deploy[$c]=$ans; done
+for c in "${configs[@]}"; do echo "add [$c] config? (y / → n)"; read -s ans; deploy[$c]=$ans; done
 
 execute() {
-  if [[ ${deploy["embed df"]} == "y" ]]; then embed_df; fi
+  if [[ ${deploy["df"]} == "y" ]]; then df; fi
   if [[ ${deploy["vim"]} == "y" ]]; then vim; fi
   if [[ ${deploy["tmux"]} == "y" ]]; then tmux; fi
   if [[ ${deploy["spectrwm"]} == "y" ]]; then spectrwm; fi
@@ -12,7 +12,7 @@ execute() {
   if [[ ${deploy["termite"]} == "y" ]]; then termite; fi
 }
 
-embed_df() {
+df() {
   echo -e "# my dotfile additions\n. '$HOME/dotfiles/bashrc'" >> ~/.bashrc
   # echo ". '$HOME/dotfiles/assets/startup.sh'" >> ~/.profile
   mkdir -p ~/.local/share/fonts; ln -s ~/dotfiles/assets/Cascadia.ttf ~/.local/share/fonts/Cascadia.ttf
@@ -20,6 +20,7 @@ embed_df() {
 
 vim() {
   if ! command -v nvim &> /dev/null; then sudo apt install -y neovim; fi
+  if ! command -v ag &> /dev/null; then sudo apt install -y silversearcher-ag; fi
   mkdir -p ~/.config/nvim ~/.vim/undodir ; ln -s ~/dotfiles/vimrc ~/.config/nvim/init.vim
 	echo "Installing Vim-Plug ..."
   sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
