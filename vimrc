@@ -27,6 +27,8 @@ set updatetime=100
 set undodir=~/.vim/undodir
 set undofile
 set hidden
+set wildmode=longest,list,full
+set wildmenu
 set wildignore=*.o,*~,*.pyc,*.pyo,__pycache__,*/venv/*
 
 " autoload plug
@@ -68,9 +70,15 @@ let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 let $FZF_DEFAULT_OPTS='--reverse'
 
 " vimwiki config
-let notes_md = {'path': '~/notes/md/', 'syntax': 'markdown', 'ext': '.md'}
-let notes_wiki = {'path': '~/notes/wiki/'}
-let g:vimwiki_list = [notes_md, notes_wiki]
+let g:vimwiki_list = [{
+            \ 'path': '~/notes/',
+            \ 'syntax': 'markdown',
+            \ 'ext': '.md',
+            \ 'template_path': '~/notes/templates/',
+            \ 'template_default': 'default',
+            \ 'path_html': '~/notes/html/',
+            \ 'custom_wiki2html': 'vimwiki_markdown',
+	        \ 'template_ext': '.tpl'}]
 
 " color scheme
 let g:gruvbox_contrast_dark = 'hard'
@@ -104,7 +112,7 @@ noremap <leader>x x
 noremap <leader>X X
 noremap <leader>D D
 noremap ? :help<CR>
-noremap <C-\> :so %<CR>
+noremap <C-\> :w <bar> so %<CR>
 xnoremap p "_dP
 " move lines
 nnoremap <A-j> :m .+1<CR>==
@@ -114,8 +122,8 @@ inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 " select all
-map <A-v> <esc>ggVG<CR>
-nmap <leader>v ggVG<CR>
+noremap <A-v> <esc>ggVG<CR>
+noremap <leader>v ggVG<CR>
 " surround word
 nmap <leader>s ysiw
 " unbind arrow keys
@@ -128,6 +136,10 @@ noremap <C-F> :Rg <CR>
 noremap <C-E> :Files <CR>
 noremap <C-B> :Buffers <CR>
 noremap \ :BLines <CR>
+
+noremap <leader>td :read !date +\%Y-\%m-\%d <CR>
+noremap <leader>tt :read !date +\%H:\%M:\%S <CR>
+noremap <leader>tm :read !date +\%Y-\%m-\%d" / "\%H:\%M:\%S <CR>
 
 " toogles cursor line in insert mode
 autocmd InsertEnter,InsertLeave * set cul!
