@@ -131,7 +131,7 @@ noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 " fzf mappings
-noremap <C-F> :Rg <CR>
+noremap <C-F> :Ag <CR>
 noremap <C-E> :Files <CR>
 noremap <C-B> :Buffers <CR>
 noremap \ :BLines <CR>
