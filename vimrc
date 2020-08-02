@@ -27,8 +27,7 @@ set updatetime=100
 set undodir=~/.vim/undodir
 set undofile
 set hidden
-set wildmode=longest,list,full
-set wildmenu
+set wildmode=longest:full,full
 set wildignore=*.o,*~,*.pyc,*.pyo,__pycache__,*/venv/*
 
 " autoload plug
