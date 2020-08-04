@@ -49,6 +49,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
 Plug 'vimwiki/vimwiki'
 call plug#end()
 
@@ -107,12 +108,15 @@ let mapleader = " "
 noremap x "_x
 noremap X "_X
 noremap D "_D
+noremap Y y$
 noremap <leader>x x
 noremap <leader>X X
 noremap <leader>D D
 noremap ? :help<CR>
 noremap <C-\> :w <bar> so %<CR>
 xnoremap p "_dP
+" here _ is actually /
+noremap <C-_> :Commentary <CR> 
 " move lines
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
