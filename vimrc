@@ -40,6 +40,7 @@ endif
 " load plugins
 call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'
+Plug 'sainnhe/gruvbox-material'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
@@ -80,10 +81,13 @@ let g:vimwiki_list = [{
             \ 'custom_wiki2html': 'vimwiki_markdown',
 	        \ 'template_ext': '.tpl'}]
 
-" color scheme
+" color schemes
+" if has('termguicolors') | set termguicolors | endif
 let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_invert_selection = '1'
-colorscheme gruvbox
+let g:gruvbox_material_background = 'hard'
+" colorscheme gruvbox
+colorscheme gruvbox-material
 
 " layout
 let g:netrw_banner = 0
