@@ -81,7 +81,7 @@ if [[ -z "$TMUX" && ("$SSH_CONNECTION" != "" || -n "$PS1") && -z "$NOTES" && -z 
 elif [ ! -z "$NOTES" ]; then
     eval "nvim -c VimwikiIndex"
 elif [ ! -z "$SSHCON" ]; then
-    source ~/.ssh_connections.sh
+    source ~/scripts/bash/ssh_connector.sh
 fi
 
 ## modified prompt
