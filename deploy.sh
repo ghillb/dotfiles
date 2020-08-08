@@ -1,5 +1,5 @@
 #!/bin/bash
-declare -a configs=( "df" "vim" "tmux" "spectrwm" "alacritty" "termite" )
+declare -a configs=( "df" "vim" "tmux" "fzf" "spectrwm" "alacritty" "termite" )
 declare -A deploy
 for c in "${configs[@]}"; do echo "add [$c] config? (y / → n)"; read -s ans; deploy[$c]=$ans; done
 
@@ -7,6 +7,7 @@ execute() {
   if [[ ${deploy["df"]} == "y" ]]; then df; fi
   if [[ ${deploy["vim"]} == "y" ]]; then vim; fi
   if [[ ${deploy["tmux"]} == "y" ]]; then tmux; fi
+  if [[ ${deploy["fzf"]} == "y" ]]; then fzf; fi
   if [[ ${deploy["spectrwm"]} == "y" ]]; then spectrwm; fi
   if [[ ${deploy["alacritty"]} == "y" ]]; then alacritty; fi
   if [[ ${deploy["termite"]} == "y" ]]; then termite; fi
@@ -31,6 +32,10 @@ vim() {
 tmux() {
   if ! command -v tmux &> /dev/null; then sudo apt install -y tmux; fi
   ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
+}
+
+fzf() {
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf; ~/.fzf/install
 }
 
 spectrwm() {
