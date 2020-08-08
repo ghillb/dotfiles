@@ -71,11 +71,10 @@ bind -x '"\e[21~": "sudo htop"' #bind to F10
 bind -x '"\C-b": "cd .."'
 bind -x '"\C-h": "cd ~/"'
 bind -x '"\C-t": "tx"'
-bind -x '"\C-e": "sudo ranger"'
 bind -x '"\C-n": "notes"'
 bind '"\C-g": "git add . && git commit -m \"\" && git push"'
 
-## scripted behaviour
+## scripted behavior
 if [[ -z "$TMUX" && ("$SSH_CONNECTION" != "" || -n "$PS1") && -z "$NOTES" && -z "$SSHCON" ]]; then
     initbash;
 elif [ ! -z "$NOTES" ]; then
