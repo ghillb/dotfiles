@@ -82,13 +82,15 @@ let g:vimwiki_list = [{
             \ 'custom_wiki2html': 'vimwiki_markdown',
 	        \ 'template_ext': '.tpl'}]
 
+" quick-scope
+let g:qs_enable=1
 " color schemes
 " if has('termguicolors') | set termguicolors | endif
 let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_invert_selection = '1'
 let g:gruvbox_material_background = 'hard'
-" colorscheme gruvbox
-colorscheme gruvbox-material
+colorscheme gruvbox
+" colorscheme gruvbox-material
 
 " layout
 let g:netrw_banner = 0
