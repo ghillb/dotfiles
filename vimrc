@@ -52,6 +52,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'vimwiki/vimwiki'
+Plug 'unblevable/quick-scope'  
 call plug#end()
 
 " gitgutter config
@@ -116,8 +117,8 @@ noremap Y y$
 noremap <leader>x x
 noremap <leader>X X
 noremap <leader>D D
-noremap ? :help<CR>
 noremap <C-\> :w <bar> so %<CR>
+noremap \ ?
 xnoremap p "_dP
 " here _ is actually /
 noremap <C-_> :Commentary <CR> 
@@ -139,11 +140,14 @@ noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 " fzf mappings
-noremap <C-F> :Ag <CR>
-noremap <C-E> :Files <CR>
-noremap <C-B> :Buffers <CR>
-noremap \ :BLines <CR>
-
+noremap <C-p> :Ag <CR>
+noremap <C-e> :Files <CR>
+noremap <C-a> :Buffers <CR>
+noremap ? :BLines <CR>
+" movement
+noremap <C-j> <C-e>
+noremap <C-k> <C-y>
+" insert date
 noremap <leader>td :read !date +\%Y-\%m-\%d <CR>
 noremap <leader>tt :read !date +\%H:\%M:\%S <CR>
 noremap <leader>tm :read !date +\%Y-\%m-\%d" / "\%H:\%M:\%S <CR>
