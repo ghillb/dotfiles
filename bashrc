@@ -73,6 +73,7 @@ bind -x '"\C-h": "cd ~/"'
 bind -x '"\C-t": "tx"'
 bind -x '"\C-n": "notes"'
 bind '"\C-g": "git add . && git commit -m \"\" && git push"'
+bind -x '"\C-p": fzf-file-widget'
 
 ## scripted behavior
 if [[ -z "$TMUX" && ("$SSH_CONNECTION" != "" || -n "$PS1") && -z "$NOTES" && -z "$SSHCON" ]]; then
