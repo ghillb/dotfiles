@@ -97,7 +97,7 @@ let g:netrw_browse_split = 2
 let g:netrw_winsize = 25
 let g:airline_theme='minimalist'
 
-" vim surround mappings
+" vim multi cursor mappings
 let g:multi_cursor_use_default_mapping = 0
 let g:multi_cursor_start_word_key      = '<A-n>'
 let g:multi_cursor_select_all_word_key = '<C-n>'
@@ -142,20 +142,21 @@ noremap <Right> <Nop>
 " fzf mappings
 noremap <C-p> :Ag <CR>
 noremap <C-e> :Files <CR>
-noremap <C-a> :Buffers <CR>
+noremap <C-b> :Buffers <CR>
 noremap ? :BLines <CR>
 " movement
 noremap <C-j> <C-e>
 noremap <C-k> <C-y>
+noremap <C-y> <C-b>
 " insert date
 noremap <leader>td :read !date +\%Y-\%m-\%d <CR>
 noremap <leader>tt :read !date +\%H:\%M:\%S <CR>
 noremap <leader>tm :read !date +\%Y-\%m-\%d" / "\%H:\%M:\%S <CR>
 
-" toogles cursor line in insert mode
+" toggles cursor line in insert mode
 autocmd InsertEnter,InsertLeave * set cul!
 
-" run python files wth M-r
+" run python files with M-r
 autocmd FileType python map <buffer> <M-r> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 autocmd FileType python imap <buffer> <M-r> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 
