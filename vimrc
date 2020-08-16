@@ -1,6 +1,6 @@
 syntax on
-set shell=/bin/bash 
-set encoding=utf-8 
+set shell=/bin/bash
+set encoding=utf-8
 set fileencoding=utf-8
 set spelllang=en_us,de_de spell
 set clipboard+=unnamedplus
@@ -9,18 +9,18 @@ set autochdir
 set confirm
 set nobackup
 set noswapfile
-set autoindent 
-set expandtab 
-set tabstop=4 
-set shiftwidth=4 
-set softtabstop=4 
+set autoindent
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 set textwidth=80
 set hlsearch
-set ignorecase 
+set ignorecase
 set incsearch
 set smartcase
-set background=dark 
-set number relativenumber 
+set background=dark
+set number relativenumber
 set noshowmode
 set visualbell
 set updatetime=100
@@ -41,7 +41,7 @@ endif
 call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'sainnhe/gruvbox-material'
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
@@ -52,7 +52,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'vimwiki/vimwiki'
-Plug 'unblevable/quick-scope'  
+Plug 'unblevable/quick-scope'
 call plug#end()
 
 " gitgutter config
@@ -115,15 +115,18 @@ let mapleader = " "
 noremap x "_x
 noremap X "_X
 noremap D "_D
+noremap C "_C
 noremap Y y$
 noremap <leader>x x
 noremap <leader>X X
 noremap <leader>D D
+noremap <leader>C C
+inoremap kj <Esc>
 noremap <C-\> :w <bar> so %<CR>
 noremap \ ?
 xnoremap p "_dP
 " here _ is actually /
-noremap <C-_> :Commentary <CR> 
+noremap <C-_> :Commentary <CR>
 " move lines
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
@@ -137,10 +140,10 @@ noremap <leader>v ggVG<CR>
 " surround word
 nmap <leader>s ysiw
 " unbind arrow keys
-noremap <Up> <Nop>
-noremap <Down> <Nop>
-noremap <Left> <Nop>
-noremap <Right> <Nop>
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
 " fzf mappings
 noremap <C-p> :Ag <CR>
 noremap <C-e> :Files <CR>
