@@ -122,6 +122,7 @@ noremap <leader>X X
 noremap <leader>D D
 noremap <leader>C C
 inoremap kj <Esc>
+inoremap jk <Esc>
 noremap <C-\> :w <bar> so %<CR>
 noremap \ ?
 xnoremap p "_dP
