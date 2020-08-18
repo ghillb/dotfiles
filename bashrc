@@ -76,6 +76,7 @@ bind '"\C-g": "git add . && git commit -m \"\" && git push"'
 bind -x '"\C-p": fzf-file-widget'
 bind -x '"\C-e": `__fzf_cd__`'
 bind -x '"\C-r": __fzf_history__'
+bind -x '"\C-l": clear'
 
 ## scripted behavior
 if [[ -z "$TMUX" && ("$SSH_CONNECTION" != "" || -n "$PS1") && -z "$NOTES" && -z "$SSHCON" ]]; then
