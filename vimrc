@@ -15,6 +15,8 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set textwidth=100
+set colorcolumn=+1
+set formatoptions-=t
 set wrap
 set hlsearch
 set ignorecase
@@ -52,7 +54,8 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-Plug 'vimwiki/vimwiki'
+" Plug 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'unblevable/quick-scope'
 call plug#end()
 
@@ -82,6 +85,8 @@ let g:vimwiki_list = [{
             \ 'path_html': '~/notes/html/',
             \ 'custom_wiki2html': 'vimwiki_markdown',
 	        \ 'template_ext': '.tpl'}]
+
+let g:vimwiki_table_mappings = 0
 
 " quick-scope
 let g:qs_enable=1
