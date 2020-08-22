@@ -5,6 +5,7 @@ set fileencoding=utf-8
 set spelllang=en_us,de_de spell
 set clipboard+=unnamedplus
 set backspace=indent,eol,start
+set whichwrap+=<,>,h,l,[,]
 set autochdir
 set confirm
 set nobackup
