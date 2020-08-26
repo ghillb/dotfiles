@@ -55,6 +55,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+Plug 'machakann/vim-highlightedyank'
 " Plug 'vimwiki/vimwiki'
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'unblevable/quick-scope'
