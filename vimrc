@@ -124,13 +124,11 @@ let g:multi_cursor_quit_key            = '<Esc>'
 let mapleader = " "
 noremap x "_x
 noremap X "_X
-noremap D "_D
-noremap C "_C
 noremap Y y$
 noremap <leader>x x
 noremap <leader>X X
-noremap <leader>D D
-noremap <leader>C C
+noremap <leader>D "_D
+noremap <leader>C "_C
 inoremap kj <Esc>
 inoremap jk <Esc>
 noremap <C-\> :w <bar> so %<CR>
