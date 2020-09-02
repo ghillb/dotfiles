@@ -82,6 +82,8 @@ bind -x '"\C-y": "_call_navi"'
 ## scripted behavior
 if [[ -z "$TMUX" && ("$SSH_CONNECTION" != "" || -n "$PS1") && -z "$NOTES" && -z "$SSHCON" ]]; then
     initbash;
+elif [ ! -z "$START_VIM" ]; then
+    eval "nvim"
 elif [ ! -z "$NOTES" ]; then
     eval "nvim -c VimwikiIndex"
 elif [ ! -z "$SSHCON" ]; then
