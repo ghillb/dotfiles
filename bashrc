@@ -4,8 +4,9 @@ set bell-style none
 export DISPLAY=:0 #set display for VcXsrv
 export VISUAL=vim
 export EDITOR=vim
-export PATH="$PATH:~/.local/bin"
+export PATH="$PATH:~/.local/bin:~/.cargo/bin"
 export LC_ALL=C.UTF-8
+source <(echo "$(navi widget bash)")
 
 cdls()
 {
@@ -47,10 +48,9 @@ alias up='sudo apt update && sudo apt upgrade'
 alias cd='cdls'
 alias mv='mv -i'
 alias v='nvim -p'
-alias n='nano'
+alias n='navi'
 alias py='python3'
 alias jn='jupyter notebook'
-alias n='nano'
 alias g='git'
 alias in='sudo apt install'
 alias un='sudo apt remove'
@@ -77,6 +77,7 @@ bind -x '"\C-p": fzf-file-widget'
 bind -x '"\C-e": `__fzf_cd__`'
 bind -x '"\C-r": __fzf_history__'
 bind -x '"\C-l": clear'
+bind -x '"\C-y": "_call_navi"'
 
 ## scripted behavior
 if [[ -z "$TMUX" && ("$SSH_CONNECTION" != "" || -n "$PS1") && -z "$NOTES" && -z "$SSHCON" ]]; then
