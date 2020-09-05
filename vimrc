@@ -91,6 +91,7 @@ let g:vimwiki_list = [{
                                 \ 'js': 'javascript', 'html': 'html', 'css': 'css'}}]
 
 let g:vimwiki_table_mappings = 0
+let g:vimwiki_markdown_link_ext = 0
 
 " quick-scope
 let g:qs_enable=1
