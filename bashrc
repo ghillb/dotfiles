@@ -6,7 +6,6 @@ export VISUAL=nvim
 export EDITOR=nvim
 export PATH="$PATH:~/.local/bin:~/.cargo/bin"
 export LC_ALL=C.UTF-8
-source <(echo "$(navi widget bash)")
 
 cdls()
 {
@@ -42,32 +41,22 @@ initbash()
     cd ~/dotfiles; git pull; cd; tx;
 }
 
-## aliases
-alias s='sudo '
-alias up='sudo apt update && sudo apt upgrade'
-alias cd='cdls'
-alias mv='mv -i'
-alias v='nvim -p'
-alias se='sudoedit'
-alias n='navi'
-alias py='python3'
-alias jn='jupyter notebook'
-alias g='git'
-alias in='sudo apt install'
-alias un='sudo apt remove'
-alias gl='git log --all --graph --oneline'
-alias gs='git status -s'
-alias gd='git diff'
-alias gf='git fetch'
-alias gps='git push'
-alias gpl='git pull'
-alias hist='history|grep'
-alias wget='wget --hsts-file ~/.config/wget/wget-hsts'
-alias code='codium'
-alias c='code'
-alias notes='nvim -c VimwikiIndex'
+# scripted behavior
+if command -v navi &> /dev/null; then source <(echo "$(navi widget bash)"); fi
 
-## key binds
+if [ -f ~/dotfiles/assets/aliases ]; then source ~/dotfiles/assets/aliases; fi
+
+if [[ -z "$TMUX" && ("$SSH_CONNECTION" != "" || -n "$PS1") && -z "$NOTES" && -z "$SSHCON" ]]; then
+    initbash;
+elif [ ! -z "$START_VIM" ]; then
+    eval "nvim"
+elif [ ! -z "$NOTES" ]; then
+    eval "nvim -c VimwikiIndex"
+elif [ ! -z "$SSHCON" ]; then
+    source ~/scripts/bash/ssh_connector.sh
+fi
+
+# key binds
 bind -x '"\e[21~": "sudo htop"' #bind to F10
 bind -x '"\C-b": "cd .."'
 bind -x '"\C-h": "cd ~/"'
@@ -80,16 +69,7 @@ bind -x '"\C-r": __fzf_history__'
 bind -x '"\C-l": clear'
 bind -x '"\C-y": "_call_navi"'
 
-## scripted behavior
-if [[ -z "$TMUX" && ("$SSH_CONNECTION" != "" || -n "$PS1") && -z "$NOTES" && -z "$SSHCON" ]]; then
-    initbash;
-elif [ ! -z "$START_VIM" ]; then
-    eval "nvim"
-elif [ ! -z "$NOTES" ]; then
-    eval "nvim -c VimwikiIndex"
-elif [ ! -z "$SSHCON" ]; then
-    source ~/scripts/bash/ssh_connector.sh
-fi
-
-## modified prompt
-PS1=$'${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] : \[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " \xe1\x9b\x83 \[\033[01;31m\]%s")\[\033[00m\] \xe2\x9e\xa4 '
+# modified prompt
+PS1=$'${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] : \
+\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " \xe1\x9b\x83 \[\033[01;31m\]%s")\
+\[\033[00m\] \xe2\x9e\xa4 '
