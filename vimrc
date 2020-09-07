@@ -164,9 +164,9 @@ noremap <C-j> <C-e>
 noremap <C-k> <C-y>
 noremap <C-y> <C-b>
 " insert date
-noremap <leader>td :read !date +\%Y-\%m-\%d <CR>
-noremap <leader>tt :read !date +\%H:\%M:\%S <CR>
-noremap <leader>tm :read !date +\%Y-\%m-\%d" / "\%H:\%M:\%S <CR>
+noremap <leader>td "=strftime("%Y-%m-%d")<CR>P
+noremap <leader>tt "=strftime("%H:%M:%S")<CR>P
+noremap <leader>tm "=strftime("%Y-%m-%d \/ %H:%M:%S")<CR>P
 
 " toggles cursor line in insert mode
 autocmd InsertEnter,InsertLeave * set cul!
