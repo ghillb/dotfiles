@@ -45,6 +45,7 @@ endif
 call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'sainnhe/gruvbox-material'
+Plug 'habamax/vim-gruvbit'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
@@ -99,9 +100,10 @@ let g:qs_enable=1
 " if has('termguicolors') | set termguicolors | endif
 let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_invert_selection = '1'
-let g:gruvbox_material_background = 'hard'
+" let g:gruvbox_material_background = 'hard'
 colorscheme gruvbox
 " colorscheme gruvbox-material
+" colorscheme gruvbit
 
 " layout
 let g:netrw_banner = 0
