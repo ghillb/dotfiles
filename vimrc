@@ -60,6 +60,7 @@ Plug 'machakann/vim-highlightedyank'
 " Plug 'vimwiki/vimwiki'
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'unblevable/quick-scope'
+Plug 'junegunn/vim-peekaboo'
 call plug#end()
 
 " gitgutter config
@@ -128,6 +129,8 @@ let mapleader = " "
 noremap x "_x
 noremap X "_X
 noremap Y y$
+xnoremap p "_dP
+noremap <leader>p o<Esc>p
 noremap <leader>x x
 noremap <leader>X X
 noremap <leader>D "_D
@@ -136,7 +139,6 @@ inoremap kj <Esc>
 inoremap jk <Esc>
 noremap <C-\> :w <bar> so %<CR>
 noremap \ ?
-xnoremap p "_dP
 " here _ is actually /
 noremap <C-_> :Commentary <CR>
 " move lines
