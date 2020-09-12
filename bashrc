@@ -52,6 +52,8 @@ elif [ ! -z "$START_VIM" ]; then
     eval "nvim"
 elif [ ! -z "$NOTES" ]; then
     eval "nvim -c VimwikiIndex"
+elif [ ! -z "$DIARY" ]; then
+    eval "nvim -c VimwikiMakeDiaryNote"
 elif [ ! -z "$SSHCON" ]; then
     source ~/scripts/bash/ssh_connector.sh
 fi
