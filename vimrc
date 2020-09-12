@@ -61,6 +61,7 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'unblevable/quick-scope'
 Plug 'junegunn/vim-peekaboo'
+Plug 'mbbill/undotree'
 call plug#end()
 
 " gitgutter config
@@ -139,6 +140,7 @@ inoremap kj <Esc>
 inoremap jk <Esc>
 noremap <C-\> :w <bar> so %<CR>
 noremap \ ?
+noremap <leader>u :UndotreeToggle<CR>
 " here _ is actually /
 noremap <C-_> :Commentary <CR>
 " move lines
