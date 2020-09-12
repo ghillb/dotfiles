@@ -4,7 +4,7 @@ set bell-style none
 export DISPLAY=:0 #set display for VcXsrv
 export VISUAL=nvim
 export EDITOR=nvim
-export PATH="$PATH:~/.local/bin:~/.cargo/bin"
+export PATH="$PATH:$HOME/.local/bin:$HOME/.cargo/bin"
 export LC_ALL=C.UTF-8
 
 cdls()
@@ -71,5 +71,5 @@ bind -x '"\C-y": "_call_navi"'
 
 # modified prompt
 PS1=$'${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] : \
-\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " \xe1\x9b\x83 \[\033[01;31m\]%s")\
+\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " \xc2\xbb \[\033[01;31m\]%s")\
 \[\033[00m\] \xe2\x9e\xa4 '
