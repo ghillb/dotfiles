@@ -62,6 +62,8 @@ Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'unblevable/quick-scope'
 Plug 'junegunn/vim-peekaboo'
 Plug 'mbbill/undotree'
+Plug 'jiangmiao/auto-pairs'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 " gitgutter config
