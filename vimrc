@@ -142,6 +142,14 @@ inoremap jk <Esc>
 noremap <C-\> :w <bar> so %<CR>
 noremap \ ?
 noremap <leader>u :UndotreeToggle<CR>
+noremap <leader>bn :bnext<CR>
+noremap <leader>bp :bprevious<CR>
+noremap <leader>bc :enew<CR>
+noremap <leader>bd :bd<CR>
+noremap <leader>bl :buffers<CR>
+noremap <leader>bo :w<BAR>%bd<BAR>e#<BAR>bd#<CR>
+noremap <leader>to :tabo<CR>
+
 " here _ is actually /
 noremap <C-_> :Commentary <CR>
 " move lines
