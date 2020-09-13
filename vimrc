@@ -111,7 +111,7 @@ colorscheme gruvbox
 " layout
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
-let g:netrw_browse_split = 2
+let g:netrw_browse_split = 4
 let g:netrw_winsize = 25
 let g:airline_theme='minimalist'
 
@@ -142,6 +142,7 @@ inoremap jk <Esc>
 noremap <C-\> :w <bar> so %<CR>
 noremap \ ?
 noremap <leader>u :UndotreeToggle<CR>
+noremap <leader>e :Lexplore<CR>
 noremap <leader>bn :bnext<CR>
 noremap <leader>bp :bprevious<CR>
 noremap <leader>bc :enew<CR>
@@ -178,7 +179,7 @@ noremap ? :BLines <CR>
 noremap <C-j> <C-e>
 noremap <C-k> <C-y>
 noremap <C-y> <C-b>
-" insert date
+" insert time stamps
 noremap <leader>td "=strftime("%Y-%m-%d")<CR>P
 noremap <leader>tt "=strftime("%H:%M:%S")<CR>P
 noremap <leader>tm "=strftime("%Y-%m-%d \/ %H:%M:%S")<CR>P
