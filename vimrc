@@ -63,6 +63,7 @@ Plug 'unblevable/quick-scope'
 Plug 'junegunn/vim-peekaboo'
 Plug 'mbbill/undotree'
 Plug 'jiangmiao/auto-pairs'
+Plug 'kassio/neoterm'
 call plug#end()
 
 " gitgutter config
@@ -126,6 +127,11 @@ let g:multi_cursor_prev_key            = '<A-p>'
 let g:multi_cursor_skip_key            = '<A-x>'
 let g:multi_cursor_quit_key            = '<Esc>'
 
+" neoterm settings
+let g:neoterm_default_mod='belowright' " open terminal in bottom split
+let g:neoterm_size=14 " terminal split size
+let g:neoterm_autoscroll=1 " scroll to the bottom when running a command
+
 " mappings
 let mapleader = " "
 noremap x "_x
@@ -150,6 +156,10 @@ noremap <leader>bd :bd<CR>
 noremap <leader>bl :buffers<CR>
 noremap <leader>bo :w<BAR>%bd<BAR>e#<BAR>bd#<CR>
 noremap <leader>to :tabo<CR>
+nnoremap <leader>` :Ttoggle<CR><C-w>w<C-l>i
+tnoremap <leader>` <C-\><C-n>:Ttoggle<CR><C-l>
+nnoremap <leader><cr> :TREPLSendLine<CR>j
+vnoremap <leader><cr> :TREPLSendSelection<CR>
 
 " here _ is actually /
 noremap <C-_> :Commentary <CR>
