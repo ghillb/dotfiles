@@ -156,13 +156,14 @@ noremap <leader>bd :bd<CR>
 noremap <leader>bl :buffers<CR>
 noremap <leader>bo :w<BAR>%bd<BAR>e#<BAR>bd#<CR>
 noremap <leader>to :tabo<CR>
-nnoremap <leader>` :Ttoggle<CR><C-w>w<C-l>i
-tnoremap <leader>` <C-\><C-n>:Ttoggle<CR><C-l>
+nnoremap <leader>` :Ttoggle<CR>
+tnoremap <leader>` <C-\><C-n>:Ttoggle<CR>
 nnoremap <leader><cr> :TREPLSendLine<CR>j
 vnoremap <leader><cr> :TREPLSendSelection<CR>
 
 " here _ is actually /
-noremap <C-_> :Commentary <CR>
+noremap <C-_> :Commentary<CR>
+inoremap <C-_> <ESC>:Commentary<CR>a
 " move lines
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
