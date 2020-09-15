@@ -11,6 +11,7 @@ set confirm
 set nobackup
 set noswapfile
 set autoindent
+set smartindent
 set expandtab
 set tabstop=4
 set shiftwidth=4
@@ -33,6 +34,9 @@ set undofile
 set hidden
 set wildmode=longest:full,full
 set wildignore=*.o,*~,*.pyc,*.pyo,__pycache__,*/venv/*
+
+let $RTP=split(&runtimepath, ',')[0]
+let $RC="$HOME/.config/nvim/init.vim/"
 
 " autoload plug
 if empty(glob('~/.vim/autoload/plug.vim'))
