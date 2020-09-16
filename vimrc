@@ -6,7 +6,7 @@ set spelllang=en_us,de_de spell
 set clipboard+=unnamedplus
 set backspace=indent,eol,start
 set whichwrap+=<,>,h,l,[,]
-" set autochdir
+set noautochdir
 set confirm
 set nobackup
 set noswapfile
@@ -165,6 +165,7 @@ nnoremap <leader>` :Ttoggle<CR>
 tnoremap <leader>` <C-\><C-n>:Ttoggle<CR>
 nnoremap <leader><cr> :TREPLSendLine<CR>j
 vnoremap <leader><cr> :TREPLSendSelection<CR>
+nnoremap <leader>gc :G add . \| :G commit -m ""
 
 " here _ is actually /
 noremap <C-_> :Commentary<CR>
