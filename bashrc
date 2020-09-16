@@ -46,8 +46,8 @@ if command -v navi &> /dev/null; then source <(echo "$(navi widget bash)"); fi
 
 if [ -f ~/dotfiles/assets/aliases ]; then source ~/dotfiles/assets/aliases; fi
 
-if [[ -z "$TMUX" && ("$SSH_CONNECTION" != "" || -n "$PS1") && -z "$NOTES" && -z "$SSHCON"  && -z "$DIARY" ]]; then
-    initbash;
+if [[ -z "$TMUX" && ("$SSH_CONNECTION" != "" || -n "$PS1") &&\
+    -z "$NOTES" && -z "$SSHCON"  && -z "$DIARY" ]]; then initbash;
 elif [ ! -z "$START_VIM" ]; then
     eval "nvim"
 elif [ ! -z "$NOTES" ]; then
