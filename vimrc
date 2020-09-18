@@ -171,6 +171,8 @@ vnoremap <leader><CR> :TREPLSendSelection<CR>
 nnoremap <leader>gs :G<CR>
 nnoremap <leader>gd :G diff<CR>
 nnoremap <leader>gc :G add . \| G commit -m ""
+nnoremap <leader>gpl :G pull<CR>
+nnoremap <leader>gps :G push<CR>
 nnoremap <leader>r :%s///g
 " here _ is actually /
 noremap <C-_> :Commentary<CR>
