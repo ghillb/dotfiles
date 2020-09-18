@@ -68,6 +68,8 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'mbbill/undotree'
 Plug 'jiangmiao/auto-pairs'
 Plug 'kassio/neoterm'
+Plug 'lambdalisue/fern.vim'
+Plug 'lambdalisue/fern-git-status.vim'
 call plug#end()
 
 " gitgutter config
@@ -133,9 +135,9 @@ let g:multi_cursor_skip_key            = '<A-x>'
 let g:multi_cursor_quit_key            = '<Esc>'
 
 " neoterm settings
-let g:neoterm_default_mod='belowright' " open terminal in bottom split
-let g:neoterm_size=14 " terminal split size
-let g:neoterm_autoscroll=1 " scroll to the bottom when running a command
+let g:neoterm_default_mod='belowright'
+let g:neoterm_size=14
+let g:neoterm_autoscroll=1
 
 " mappings
 let mapleader = " "
@@ -150,10 +152,11 @@ noremap <leader>D "_D
 noremap <leader>C "_C
 inoremap kj <Esc>
 inoremap jk <Esc>
-noremap <C-\> :w <bar> so %<CR>
+noremap <C-\> :w <BAR> so %<CR>
 noremap \ ?
 noremap <leader>u :UndotreeToggle<CR>
-noremap <leader>e :Lexplore<CR>
+" noremap <leader>e :Lexplore<CR>
+noremap <silent><leader>e :Fern . -drawer -toggle<CR>
 noremap <leader>bn :bnext<CR>
 noremap <leader>bp :bprevious<CR>
 noremap <leader>bc :enew<CR>
@@ -161,12 +164,14 @@ noremap <leader>bd :bd<CR>
 noremap <leader>bl :buffers<CR>
 noremap <leader>bo :w<BAR>%bd<BAR>e#<BAR>bd#<CR>
 noremap <leader>to :tabo<CR>
-nnoremap <leader>` :Ttoggle<CR>
-tnoremap <leader>` <C-\><C-n>:Ttoggle<CR>
-nnoremap <leader><cr> :TREPLSendLine<CR>j
-vnoremap <leader><cr> :TREPLSendSelection<CR>
+nnoremap <silent><leader>` :Ttoggle<CR><C-w>wa
+tnoremap <silent><leader>` <C-\><C-n>:Ttoggle<CR>
+nnoremap <leader><CR> :TREPLSendLine<CR>j
+vnoremap <leader><CR> :TREPLSendSelection<CR>
+nnoremap <leader>gs :G<CR>
+nnoremap <leader>gd :G diff<CR>
 nnoremap <leader>gc :G add . \| :G commit -m ""
-
+nnoremap <leader>r :%s///g
 " here _ is actually /
 noremap <C-_> :Commentary<CR>
 inoremap <C-_> <ESC>:Commentary<CR>a
@@ -197,9 +202,9 @@ noremap <C-j> <C-e>
 noremap <C-k> <C-y>
 noremap <C-y> <C-b>
 " insert time stamps
-noremap <leader>td "=strftime("%Y-%m-%d")<CR>P
-noremap <leader>tt "=strftime("%H:%M:%S")<CR>P
-noremap <leader>tm "=strftime("%Y-%m-%d \/ %H:%M:%S")<CR>P
+noremap <leader>tsd "=strftime("%Y-%m-%d")<CR>P
+noremap <leader>tst "=strftime("%H:%M:%S")<CR>P
+noremap <leader>tsm "=strftime("%Y-%m-%d \/ %H:%M:%S")<CR>P
 
 " toggles cursor line in insert mode
 autocmd InsertEnter,InsertLeave * set cul!
@@ -208,3 +213,22 @@ autocmd InsertEnter,InsertLeave * set cul!
 autocmd FileType python map <buffer> <M-r> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 autocmd FileType python imap <buffer> <M-r> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 
+" fern customization
+function! s:init_fern() abort
+  nmap <buffer> - <Plug>(fern-action-open:split)
+  nmap <buffer> \ <Plug>(fern-action-open:vsplit)
+  nmap <buffer> r <Plug>(fern-action-rename)
+  nmap <buffer> m <Plug>(fern-action-move)
+  nmap <buffer> c <Plug>(fern-action-copy)
+  nmap <buffer> n <Plug>(fern-action-new-path)
+  nmap <buffer> f <Plug>(fern-action-new-file)
+  nmap <buffer> d <Plug>(fern-action-new-dir)
+  nmap <buffer> s <Plug>(fern-action-hidden-toggle)
+  nmap <buffer> <space> <Plug>(fern-action-mark)
+  nmap <buffer> x <Plug>(fern-action-remove)
+endfunction
+
+augroup fern-custom
+  autocmd! *
+  autocmd FileType fern call s:init_fern()
+augroup END
