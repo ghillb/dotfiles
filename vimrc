@@ -52,6 +52,7 @@ Plug 'sainnhe/gruvbox-material'
 Plug 'habamax/vim-gruvbit'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'
+Plug 'idanarye/vim-merginal'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -61,7 +62,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'machakann/vim-highlightedyank'
-" Plug 'vimwiki/vimwiki'
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'unblevable/quick-scope'
 Plug 'junegunn/vim-peekaboo'
@@ -79,7 +79,7 @@ let g:gitgutter_signs = 1
 let g:gitgutter_sign_added = '+'
 let g:gitgutter_sign_removed = '_'
 let g:gitgutter_sign_modified = '●'
-let g:gitgutter_sign_modified_removed = '➤'
+let g:gitgutter_sign_modified_removed = '⮞'
 let g:gitgutter_sign_removed_first_line = '◥'
 let g:gitgutter_sign_removed_above_and_below = '['
 call gitgutter#highlight#define_signs()
@@ -185,6 +185,7 @@ vnoremap <leader><CR> :TREPLSendSelection<CR>
 nnoremap <leader>gs :G<CR>
 nnoremap <leader>gd :G diff<CR>
 nnoremap <leader>gc :G add . \| G commit -m ""
+nnoremap <leader>gl :Gclog<CR>
 nnoremap <leader>gpl :G pull<CR>
 nnoremap <leader>gps :G push<CR>
 nnoremap <leader>r :%s///g
