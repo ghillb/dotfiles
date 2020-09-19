@@ -129,6 +129,13 @@ let g:netrw_winsize = 25
 let g:netrw_altv=1
 let g:airline_theme='minimalist'
 
+" auto-pairs config
+let g:AutoPairsFlyMode = 0
+let g:AutoPairsShortcutToggle = ''
+let g:AutoPairsShortcutFastWrap ='' 
+let g:AutoPairsShortcutJump = ''
+let g:AutoPairsShortcutBackInsert = ''
+
 " vim multi cursor mappings
 let g:multi_cursor_use_default_mapping = 0
 let g:multi_cursor_start_word_key      = '<A-n>'
@@ -152,6 +159,7 @@ noremap X "_X
 noremap Y y$
 xnoremap p "_dP
 noremap <leader>p o<Esc>p
+noremap <leader>P O<Esc>p
 noremap <leader>x x
 noremap <leader>X X
 noremap <leader>D "_D
@@ -181,8 +189,8 @@ nnoremap <leader>gpl :G pull<CR>
 nnoremap <leader>gps :G push<CR>
 nnoremap <leader>r :%s///g
 " here _ is actually /
-noremap <C-_> :Commentary<CR>
-inoremap <C-_> <ESC>:Commentary<CR>a
+noremap <C-_> :Commentary<CR>j
+inoremap <C-_> <ESC>:Commentary<CR>ja
 " move lines
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
@@ -232,8 +240,8 @@ function! s:init_fern() abort
   nmap <buffer> f <Plug>(fern-action-new-file)
   nmap <buffer> d <Plug>(fern-action-new-dir)
   nmap <buffer> s <Plug>(fern-action-hidden-toggle)
-  nmap <buffer> <space> <Plug>(fern-action-mark)
   nmap <buffer> x <Plug>(fern-action-remove)
+  nmap <buffer> <space> <Plug>(fern-action-mark)
 endfunction
 
 augroup fern-custom
