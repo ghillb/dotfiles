@@ -72,6 +72,7 @@ Plug 'voldikss/vim-floaterm'
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-git-status.vim'
 Plug 'liuchengxu/vim-which-key'
+Plug 'mhinz/vim-startify'
 call plug#end()
 
 " gitgutter config
@@ -156,6 +157,18 @@ let g:neoterm_autoscroll=1
 
 " floaterm settings
 let g:floaterm_autoclose=1
+
+" startify config
+let g:startify_session_dir = '~/.vim/session'
+let g:startify_custom_header = ''
+let g:startify_change_to_vcs_root = 1
+let g:startify_lists = [
+    \ { 'header': ['   Files:'],            'type': 'files' },
+    \ { 'header': ['   CWD, '. getcwd(). ':'],    'type': 'dir' },
+    \ { 'header': ['   Sessions:'],         'type': 'sessions' },
+    \ { 'header': ['   Bookmarks:'],        'type': 'bookmarks' },
+    \ { 'header': ['   Commands:'],         'type': 'commands' },
+    \ ]
 
 " mappings
 let mapleader = " "
