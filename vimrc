@@ -163,11 +163,11 @@ let g:startify_session_dir = '~/.vim/session'
 let g:startify_custom_header = ''
 let g:startify_change_to_vcs_root = 1
 let g:startify_lists = [
-    \ { 'header': ['   Files:'],            'type': 'files' },
+    \ { 'header': ['   Files:'],                  'type': 'files' },
     \ { 'header': ['   CWD, '. getcwd(). ':'],    'type': 'dir' },
-    \ { 'header': ['   Sessions:'],         'type': 'sessions' },
-    \ { 'header': ['   Bookmarks:'],        'type': 'bookmarks' },
-    \ { 'header': ['   Commands:'],         'type': 'commands' },
+    \ { 'header': ['   Sessions:'],               'type': 'sessions' },
+    \ { 'header': ['   Bookmarks:'],              'type': 'bookmarks' },
+    \ { 'header': ['   Commands:'],               'type': 'commands' },
     \ ]
 
 " mappings
@@ -196,8 +196,8 @@ noremap <leader>bd :bd<CR>
 noremap <leader>bl :buffers<CR>
 noremap <leader>bo :w<BAR>%bd<BAR>e#<BAR>bd#<CR>
 noremap <leader>to :tabo<CR>
-nnoremap <silent><F12> :FloatermNew --wintype=floating<CR>
-tnoremap <silent><F12> <C-\><C-n>:FloatermToggle<CR>
+nnoremap <silent><F12> :FloatermNew --wintype=normal --height=10<CR>
+tnoremap <silent><F12> <C-\><C-n>:FloatermKill<CR>
 nnoremap <silent><leader>` :Ttoggle<CR><C-w>wa
 tnoremap <silent><leader>` <C-\><C-n>:Ttoggle<CR>
 nnoremap <leader><CR> :TREPLSendLine<CR>j
