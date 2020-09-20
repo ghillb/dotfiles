@@ -68,8 +68,10 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'mbbill/undotree'
 Plug 'jiangmiao/auto-pairs'
 Plug 'kassio/neoterm'
+Plug 'voldikss/vim-floaterm'
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-git-status.vim'
+Plug 'liuchengxu/vim-which-key'
 call plug#end()
 
 " gitgutter config
@@ -152,6 +154,9 @@ let g:neoterm_default_mod='belowright'
 let g:neoterm_size=14
 let g:neoterm_autoscroll=1
 
+" floaterm settings
+let g:floaterm_autoclose=1
+
 " mappings
 let mapleader = " "
 noremap x "_x
@@ -178,6 +183,8 @@ noremap <leader>bd :bd<CR>
 noremap <leader>bl :buffers<CR>
 noremap <leader>bo :w<BAR>%bd<BAR>e#<BAR>bd#<CR>
 noremap <leader>to :tabo<CR>
+nnoremap <silent><F12> :FloatermNew --wintype=floating<CR>
+tnoremap <silent><F12> <C-\><C-n>:FloatermToggle<CR>
 nnoremap <silent><leader>` :Ttoggle<CR><C-w>wa
 tnoremap <silent><leader>` <C-\><C-n>:Ttoggle<CR>
 nnoremap <leader><CR> :TREPLSendLine<CR>j
@@ -190,8 +197,9 @@ nnoremap <leader>gpl :G pull<CR>
 nnoremap <leader>gps :G push<CR>
 nnoremap <leader>r :%s///g
 " here _ is actually /
-noremap <C-_> :Commentary<CR>j
-inoremap <C-_> <ESC>:Commentary<CR>ja
+noremap <silent> <C-_> :Commentary<CR>j
+inoremap <silent> <C-_> <ESC>:Commentary<CR>ja
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 " move lines
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
