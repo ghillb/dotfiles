@@ -20,4 +20,5 @@ source $VCP/multicursor.vim
 source $VCP/neoterm.vim
 source $VCP/floaterm.vim
 source $VCP/startify.vim
+source $VCP/fzfproject.vim
 

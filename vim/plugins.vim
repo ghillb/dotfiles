@@ -32,5 +32,6 @@ Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-git-status.vim'
 Plug 'liuchengxu/vim-which-key'
 Plug 'mhinz/vim-startify'
+Plug 'benwainwright/fzf-project'
 call plug#end()
 
