@@ -59,7 +59,7 @@ elif [ ! -z "$SSHCON" ]; then
 fi
 
 # key binds
-bind -x '"\e[21~": "sudo htop"' #bind to F10
+bind -x '"\e[21~": "htop"' #bind to F10
 bind -x '"\C-b": "cd .."'
 bind -x '"\C-h": "cd ~/"'
 bind -x '"\C-t": "tx"'
