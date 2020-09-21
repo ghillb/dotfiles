@@ -36,7 +36,7 @@ nnoremap <leader>gc :G checkout
 nnoremap <leader>gl :Gclog<cr>
 nnoremap <leader>gpl :G pull<cr>
 nnoremap <leader>gps :G push<cr>
-nnoremap <leader>r :%s///g
+nnoremap <leader>r :%s///gc
 " here _ is actually /
 noremap <silent> <C-_> :Commentary<cr>j
 inoremap <silent> <C-_> <esc>:Commentary<cr>ja
