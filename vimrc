@@ -1,24 +1,24 @@
-let $VCP=$HOME . '/dotfiles/vim'
+let $VC=$HOME . '/dotfiles/vim'
 let $RC=$HOME . '/.config/nvim/init.vim/'
 
-source $VCP/settings.vim
-source $VCP/plugins.vim
-source $VCP/theme.vim
-source $VCP/mappings.vim
-source $VCP/functions.vim
+source $VC/settings.vim
+source $VC/plugins.vim
+source $VC/theme.vim
+source $VC/mappings.vim
+source $VC/functions.vim
 
 " plugin configs
-source $VCP/gitgutter.vim
-source $VCP/fzf.vim
-source $VCP/vimwiki.vim
-source $VCP/quickscope.vim
-source $VCP/netrw.vim
-source $VCP/fern.vim
-source $VCP/airline.vim
-source $VCP/autopairs.vim
-source $VCP/multicursor.vim
-source $VCP/neoterm.vim
-source $VCP/floaterm.vim
-source $VCP/startify.vim
-source $VCP/fzfproject.vim
+source $VC/plugc/gitgutter.vim
+source $VC/plugc/fzf.vim
+source $VC/plugc/vimwiki.vim
+source $VC/plugc/quickscope.vim
+source $VC/plugc/netrw.vim
+source $VC/plugc/fern.vim
+source $VC/plugc/airline.vim
+source $VC/plugc/autopairs.vim
+source $VC/plugc/multicursor.vim
+source $VC/plugc/neoterm.vim
+source $VC/plugc/floaterm.vim
+source $VC/plugc/startify.vim
+source $VC/plugc/fzfproject.vim
 
