@@ -32,7 +32,7 @@ nnoremap <leader><cr> :TREPLSendLine<cr>j
 vnoremap <leader><cr> :TREPLSendSelection<cr>
 nnoremap <leader>gs :G<cr>
 nnoremap <leader>gd :G diff<cr>
-nnoremap <leader>gc :G add . \| G commit -m ""
+nnoremap <leader>gc :G checkout 
 nnoremap <leader>gl :Gclog<cr>
 nnoremap <leader>gpl :G pull<cr>
 nnoremap <leader>gps :G push<cr>
