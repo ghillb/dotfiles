@@ -14,7 +14,6 @@ source $VC/plugc/vimwiki.vim
 source $VC/plugc/quickscope.vim
 source $VC/plugc/netrw.vim
 source $VC/plugc/fern.vim
-source $VC/plugc/airline.vim
 source $VC/plugc/autopairs.vim
 source $VC/plugc/multicursor.vim
 source $VC/plugc/neoterm.vim
