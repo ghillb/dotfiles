@@ -24,6 +24,7 @@ noremap <leader>bl :buffers<cr>
 noremap <leader>bo :w<bar>%bd<bar>e#<bar>bd#<cr>
 noremap <leader>to :tabo<cr>
 nnoremap <leader>r :%s///gc
+noremap <silent><leader>tg :set relativenumber!<cr> :set nu!<cr> :GitGutterToggle<cr>
 noremap <leader>v ggVG<cr>
 noremap <A-v> <esc>ggVG<cr>
 nnoremap <A-j> :m .+1<cr>==
