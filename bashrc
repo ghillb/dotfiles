@@ -56,6 +56,8 @@ elif [ ! -z "$DIARY" ]; then
     eval "nvim -c VimwikiMakeDiaryNote"
 elif [ ! -z "$SSHCON" ]; then
     source ~/scripts/bash/ssh_connector.sh
+elif [ ! -z "$WORK_DIR" ]; then
+    cd "$(wslpath -a "${WORK_DIR}")"
 fi
 
 # key binds
