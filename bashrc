@@ -51,8 +51,10 @@ if [[ -z "$TMUX" && ("$SSH_CONNECTION" != "" || -n "$PS1") &&\
 elif [ ! -z "$START_VIM" ]; then
     eval "nvim"
 elif [ ! -z "$NOTES" ]; then
+    cd ~/notes
     eval "nvim -c VimwikiIndex"
 elif [ ! -z "$DIARY" ]; then
+    cd ~/notes/diary
     eval "nvim -c VimwikiMakeDiaryNote"
 elif [ ! -z "$SSHCON" ]; then
     source ~/scripts/bash/ssh_connector.sh
