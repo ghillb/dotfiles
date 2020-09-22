@@ -28,6 +28,9 @@ set background=dark
 set number relativenumber
 set noshowmode
 set visualbell
+set splitbelow
+set splitright
+set showtabline=0
 set updatetime=100
 set undodir=~/.vim/undodir
 set undofile
