@@ -1,5 +1,5 @@
-let $VC=$HOME . '/dotfiles/vim'
-let $RC=$HOME . '/.config/nvim/init.vim/'
+let $VC = $HOME . '/dotfiles/vim'
+let $NVC = $HOME . '/.config/nvim'
 
 source $VC/settings.vim
 source $VC/plugins.vim

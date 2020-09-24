@@ -32,7 +32,7 @@ set splitbelow
 set splitright
 set showtabline=0
 set updatetime=100
-set undodir=~/.vim/undodir
+set undodir=$NVC/undodir
 set undofile
 set hidden
 set wildmode=longest:full,full

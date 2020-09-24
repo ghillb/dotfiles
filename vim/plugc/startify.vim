@@ -1,4 +1,4 @@
-let g:startify_session_dir = '~/.vim/session'
+let g:startify_session_dir = $NVC .'/session'
 let g:startify_custom_header = ''
 let g:startify_change_to_vcs_root = 1
 let g:startify_lists = [
