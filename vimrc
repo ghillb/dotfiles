@@ -20,4 +20,5 @@ source $VC/plugc/neoterm.vim
 source $VC/plugc/floaterm.vim
 source $VC/plugc/startify.vim
 source $VC/plugc/fzfproject.vim
+source $VC/plugc/codi.vim
 

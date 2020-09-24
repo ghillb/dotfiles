@@ -25,8 +25,9 @@ noremap <leader>bd :bd<cr>
 noremap <leader>bl :buffers<cr>
 noremap <leader>bo :w<bar>%bd<bar>e#<bar>bd#<cr>
 noremap <leader>to :tabo<cr>
-nnoremap <leader>r :%s///gc
 noremap <silent><leader>tg :set relativenumber! \| :set nu! \| :GitGutterToggle<cr>
+noremap <silent><leader>tc :Codi!!<cr>
+nnoremap <leader>r :%s///gc
 noremap <leader>v ggVG<cr>
 noremap <A-v> <esc>ggVG<cr>
 nnoremap <A-j> :m .+1<cr>==
@@ -50,13 +51,14 @@ nnoremap <silent><leader>` :Ttoggle<cr><C-w>wa
 tnoremap <silent><leader>` <C-\><C-n>:Ttoggle<cr>
 nnoremap <leader><cr> :TREPLSendLine<cr>j
 vnoremap <leader><cr> :TREPLSendSelection<cr>
-noremap <silent> <C-_> :Commentary<cr>j
-inoremap <silent> <C-_> <esc>:Commentary<cr>ja
-nnoremap <silent> <leader> :WhichKey '<space>'<cr>
-noremap <C-p> :Ag<cr>
-noremap <C-e> :Files<cr>
-noremap <C-b> :Buffers<cr>
-noremap ? :BLines<cr>
+noremap <silent><C-_> :Commentary<cr>j
+inoremap <silent><C-_> <esc>:Commentary<cr>ja
+nnoremap <silent><leader> :WhichKey '<space>'<cr>
+noremap <silent><C-p> :Ag<cr>
+noremap <silent><C-e> :call FzfOmniFiles()<cr>
+noremap <silent><C-b> :Buffers<cr>
+noremap <silent>? :BLines<cr>
+noremap <leader><leader> :Commands<cr>
 noremap <leader><bs> :FzfSwitchProject<cr>
 noremap <leader>tsd "=strftime("%Y-%m-%d")<cr>P
 noremap <leader>tst "=strftime("%H:%M:%S")<cr>P
