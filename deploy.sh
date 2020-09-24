@@ -24,11 +24,8 @@ df() {
 vim() {
   if ! command -v nvim &> /dev/null; then sudo apt install -y neovim; fi
   if ! command -v ag &> /dev/null; then sudo apt install -y silversearcher-ag; fi
-  mkdir -p ~/.config/nvim ~/.vim/undodir ; ln -s ~/dotfiles/vimrc ~/.config/nvim/init.vim
+  mkdir -p ~/.config/nvim/undodir; ln -s ~/dotfiles/vimrc ~/.config/nvim/init.vim
   cp ~/dotfiles/assets/coc-settings.json ~/.config/nvim/
-  echo "Installing Vim-Plug ..."
-  sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 }
 
 tmux() {
