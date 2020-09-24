@@ -22,3 +22,6 @@ source $VC/plugc/startify.vim
 source $VC/plugc/fzfproject.vim
 source $VC/plugc/codi.vim
 
+source $VC/ftpc/python.vim
+source $VC/ftpc/markdown.vim
+
