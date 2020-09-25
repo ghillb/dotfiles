@@ -55,7 +55,7 @@ elif [ ! -z "$NOTES" ]; then
     eval "nvim -c VimwikiIndex"
 elif [ ! -z "$DIARY" ]; then
     cd ~/notes/diary
-    eval "nvim -c VimwikiMakeDiaryNote"
+    eval "nvim -c 'let g:startify_disable_at_vimenter = 1' +VimwikiMakeDiaryNote"
 elif [ ! -z "$SSHCON" ]; then
     source ~/scripts/bash/ssh_connector.sh
 elif [ ! -z "$WORK_DIR" ]; then
