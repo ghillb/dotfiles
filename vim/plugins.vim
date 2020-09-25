@@ -5,6 +5,10 @@ if empty(glob($NVC . '/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+if !has('nvim')
+    source $NVC/autoload/plug.vim
+end
+
 call plug#begin($NVC . '/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'sainnhe/gruvbox-material'
