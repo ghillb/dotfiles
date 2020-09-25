@@ -62,15 +62,15 @@ if exists('g:lightline')
   let s:p.replace.left = [ [ s:bg0, s:aqua, 'bold' ], [ s:fg1, s:bg2 ] ]
   let s:p.replace.right = [ [ s:bg0, s:aqua ], [ s:fg1, s:bg2 ] ]
   let s:p.replace.middle = [ [ s:fg1, s:bg2 ] ]
-  let s:p.visual.left = [ [ s:bg0, s:orange, 'bold' ], [ s:bg0, s:bg4 ] ]
-  let s:p.visual.right = [ [ s:bg0, s:orange ], [ s:bg0, s:bg4 ] ]
+  let s:p.visual.left = [ [ s:bg0, s:yellow, 'bold' ], [ s:bg0, s:bg4 ] ]
+  let s:p.visual.right = [ [ s:bg0, s:yellow ], [ s:bg0, s:bg4 ] ]
   let s:p.visual.middle = [ [ s:fg1, s:bg1 ] ]
   let s:p.tabline.left = [ [ s:fg1, s:bg2 ] ]
   let s:p.tabline.tabsel = [ [ s:bg0, s:fg1 ] ]
   let s:p.tabline.middle = [ [ s:bg0, s:bg0 ] ]
-  let s:p.tabline.right = [ [ s:bg0, s:orange ] ]
+  let s:p.tabline.right = [ [ s:bg0, s:yellow ] ]
   let s:p.normal.error = [ [ s:bg0, s:red ] ]
-  let s:p.normal.warning = [ [ s:bg2, s:yellow ] ]
+  let s:p.normal.warning = [ [ s:bg2, s:orange ] ]
 
   let g:lightline#colorscheme#gruvbox#palette = lightline#colorscheme#flatten(s:p)
 endif
