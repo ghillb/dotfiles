@@ -9,3 +9,7 @@ let g:startify_lists = [
     \ { 'header': ['   Commands:'],               'type': 'commands' },
     \ ]
 
+let g:startify_skiplist = [
+       \ '\.vimgolf',
+       \ '^/tmp',
+       \ ]
