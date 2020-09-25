@@ -51,11 +51,9 @@ if [[ -z "$TMUX" && ("$SSH_CONNECTION" != "" || -n "$PS1") &&\
 elif [ ! -z "$START_VIM" ]; then
     eval "nvim"
 elif [ ! -z "$NOTES" ]; then
-    cd ~/notes
-    eval "nvim -c VimwikiIndex"
+    eval "nvim -c VimwikiIndex +'cd %:h'"
 elif [ ! -z "$DIARY" ]; then
-    cd ~/notes/diary
-    eval "nvim -c 'let g:startify_disable_at_vimenter = 1' +VimwikiMakeDiaryNote"
+    eval "nvim -c 'let g:startify_disable_at_vimenter = 1' +VimwikiMakeDiaryNote +'cd %:h'"
 elif [ ! -z "$SSHCON" ]; then
     source ~/scripts/bash/ssh_connector.sh
 elif [ ! -z "$WORK_DIR" ]; then
