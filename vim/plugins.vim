@@ -13,6 +13,7 @@ Plug 'sainnhe/gruvbox-material'
 Plug 'habamax/vim-gruvbit'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'
+Plug 'will133/vim-dirdiff'
 Plug 'idanarye/vim-merginal'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'

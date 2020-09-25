@@ -41,6 +41,24 @@ initbash()
     cd ~/dotfiles; git pull; cd; tx;
 }
 
+vdiff () {
+    if [ "$#" -ne 2 ] ; then
+        echo "vdiff requires two arguments"
+        echo "  comparing dirs:  vdiff dir_a dir_b"
+        echo "  comparing files: vdiff file_a file_b"
+        return 1
+    fi
+
+    local left="${1}"
+    local right="${2}"
+
+    if [ -d "${left}" ] && [ -d "${right}" ]; then
+        nvim +"DirDiff ${left} ${right}"
+    else
+        nvim -d "${left}" "${right}"
+    fi
+}
+
 # scripted behavior
 if command -v navi &> /dev/null; then source <(echo "$(navi widget bash)"); fi
 
@@ -70,8 +88,8 @@ bind '"\C-g": "git add . && git commit -m \"\""'
 bind -x '"\C-p": fzf-file-widget'
 bind -x '"\C-e": `__fzf_cd__`'
 bind -x '"\C-r": __fzf_history__'
-bind -x '"\C-l": clear'
 bind -x '"\C-y": "_call_navi"'
+bind -x '"\C-l": clear'
 
 # modified prompt
 PS1=$'${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] : \
