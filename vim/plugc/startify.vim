@@ -10,6 +10,7 @@ let g:startify_lists = [
     \ ]
 
 let g:startify_skiplist = [
-       \ '\.vimgolf',
+       \ '~/notes',
        \ '^/tmp',
+       \ '\.vimgolf',
        \ ]
