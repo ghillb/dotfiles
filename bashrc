@@ -4,7 +4,7 @@ set bell-style none
 export DISPLAY=:0 #set display for VcXsrv
 export VISUAL=nvim
 export EDITOR=nvim
-export PATH="$PATH:$HOME/.local/bin:$HOME/.cargo/bin"
+export PATH="$PATH:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/go/bin"
 export LC_ALL=C.UTF-8
 
 cdls()
