@@ -4,8 +4,8 @@ let $NVC = $HOME . '/.config/nvim'
 source $VC/settings.vim
 source $VC/plugins.vim
 source $VC/theme.vim
-source $VC/mappings.vim
 source $VC/functions.vim
+source $VC/mappings.vim
 
 " plugin configs
 source $VC/plugc/gitgutter.vim
