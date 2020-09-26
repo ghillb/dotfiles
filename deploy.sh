@@ -1,10 +1,13 @@
 #!/bin/bash
-declare -a configs=( "df" "vim" "tmux" "fzf" "spectrwm" "alacritty" "termite" )
+
+git clone https://github.com/ghillb/dotfiles.git ~/dotfiles
+
+declare -a configs=( "df" "nvim" "tmux" "fzf" "spectrwm" "alacritty" "termite" )
 declare -A deploy
 for c in "${configs[@]}"; do echo "add [$c] config? (y / → n)"; read -s ans; deploy[$c]=$ans; done
 
 execute() {
-  if [[ ${deploy["vim"]} == "y" ]]; then vim; fi
+  if [[ ${deploy["nvim"]} == "y" ]]; then nvim; fi
   if [[ ${deploy["tmux"]} == "y" ]]; then tmux; fi
   if [[ ${deploy["fzf"]} == "y" ]]; then fzf; fi
   if [[ ${deploy["spectrwm"]} == "y" ]]; then spectrwm; fi
@@ -21,7 +24,7 @@ df() {
   mkdir -p ~/.local/share/fonts; ln -s ~/dotfiles/assets/Cascadia.ttf ~/.local/share/fonts/Cascadia.ttf
 }
 
-vim() {
+nvim() {
   if ! command -v nvim &> /dev/null; then sudo apt install -y neovim; fi
   if ! command -v ag &> /dev/null; then sudo apt install -y silversearcher-ag; fi
   mkdir -p ~/.config/nvim/undodir; ln -s ~/dotfiles/vimrc ~/.config/nvim/init.vim
@@ -50,3 +53,4 @@ termite() {
 }
 
 execute
+
