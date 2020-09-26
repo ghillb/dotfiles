@@ -8,3 +8,4 @@ fun! FzfOmniFiles()
         :GitFiles --exclude-standard
     endif
 endfun
+
