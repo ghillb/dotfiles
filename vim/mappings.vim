@@ -37,6 +37,8 @@ inoremap <a-j> <esc>:m .+1<cr>==gi
 inoremap <a-k> <esc>:m .-2<cr>==gi
 vnoremap <a-j> :m '>+1<cr>gv=gv
 vnoremap <a-k> :m '<-2<cr>gv=gv
+nnoremap <a-cr> :w<cr>:call RunCode()<cr>
+inoremap <a-cr> <esc>:w<cr>:call RunCode()<cr>
 nmap <leader>s ysiw " surround word
 nnoremap <leader>gs :G<cr>
 nnoremap <leader>gd :G diff<cr>

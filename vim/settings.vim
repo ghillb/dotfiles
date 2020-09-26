@@ -6,8 +6,6 @@ set spelllang=en_us,de_de spell
 set clipboard+=unnamedplus
 set backspace=indent,eol,start
 set whichwrap+=<,>,h,l,[,]
-set exrc
-set secure
 set noautochdir
 set confirm
 set nobackup
