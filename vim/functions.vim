@@ -15,7 +15,8 @@ fun! RunCode()
     let l:current_ft = &filetype
     let l:run_bin = get({
                             \ 'python': 'python3',
-                            \ 'javascript': 'node'
+                            \ 'javascript': 'node',
+                            \ 'rust': 'rustc'
                         \}, current_ft, '')
 
     if run_bin == ''
