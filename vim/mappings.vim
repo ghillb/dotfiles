@@ -27,6 +27,7 @@ noremap <leader>bl :buffers<cr>
 noremap <leader>bo :w<bar>%bd<bar>e#<bar>bd#<cr>
 noremap <leader>to :tabo<cr>
 noremap <silent><leader>tg :set relativenumber! \| :set nu! \| :GitGutterToggle<cr>
+nnoremap <silent><leader>tz :Goyo<cr>
 noremap <silent><leader>tc :Codi!!<cr>
 nnoremap <leader>r :%s///gc
 noremap <leader>v ggVG<cr>
@@ -48,10 +49,11 @@ nnoremap <leader>gpl :G pull<cr>
 nnoremap <leader>gps :G push<cr>
 noremap <leader>u :UndotreeToggle<cr>
 noremap <silent><leader>e :Fern . -drawer -toggle -reveal=%<cr>
-nnoremap <silent><F12> :FloatermNew --wintype=normal --height=10<cr>
+nnoremap <silent><F12> :FloatermNew<cr>
 tnoremap <silent><F12> <c-\><c-n>:FloatermKill<cr>
-nnoremap <silent><leader>` :Ttoggle<cr><c-w>wa
-tnoremap <silent><leader>` <c-\><c-n>:Ttoggle<cr>
+nnoremap <silent><leader>tt :Ttoggle<cr><c-w>wa
+tnoremap <silent><leader>tt <c-\><c-n>:Ttoggle<cr>
+nnoremap <silent><leader>` :T cd %:p:h <cr>:Tclear<cr><c-w>wa
 nnoremap <leader><cr> :TREPLSendLine<cr>j
 vnoremap <leader><cr> :TREPLSendSelection<cr>
 noremap <silent><c-_> :Commentary<cr>j
