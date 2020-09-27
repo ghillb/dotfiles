@@ -13,8 +13,8 @@ noremap <leader>o o<esc>
 noremap <leader>O O<esc>
 inoremap kj <esc>
 inoremap jk <esc>
-noremap <c-\> :w<bar>so %<cr>
-inoremap <c-\> <esc>:w<bar>so %<cr>
+noremap <c-\> :w<bar>so $MYVIMRC<cr>
+inoremap <c-\> <esc>:w<bar>so $MYVIMRC<cr>
 nnoremap <c-q> :x<cr>
 noremap \ ?
 nnoremap <silent><tab> :bnext<cr>
