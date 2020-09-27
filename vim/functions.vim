@@ -23,7 +23,7 @@ fun! RunCode()
         echo 'Filetype not supported: ' . current_ft
     else
         if exists("g:run_bin_local") | let l:run_bin = g:run_bin_local | endif
-        exec '!' . run_bin shellescape(@%, 1)
+        call b:ExecutorFunction(run_bin)
     endif
 endfun
 
