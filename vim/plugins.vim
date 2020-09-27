@@ -26,6 +26,7 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'unblevable/quick-scope'
 Plug 'junegunn/vim-peekaboo'
+Plug 'junegunn/goyo.vim'
 Plug 'mbbill/undotree'
 Plug 'jiangmiao/auto-pairs'
 Plug 'kassio/neoterm'
