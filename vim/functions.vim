@@ -16,7 +16,8 @@ fun! RunCode()
     let l:run_bin = get({
                             \ 'python': 'python3',
                             \ 'javascript': 'node',
-                            \ 'rust': 'rustc'
+                            \ 'rust': 'rustc',
+                            \ 'c': 'make'
                         \}, current_ft, '')
 
     if run_bin == ''
