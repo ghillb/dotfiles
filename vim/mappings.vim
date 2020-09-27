@@ -13,8 +13,10 @@ noremap <leader>o o<esc>
 noremap <leader>O O<esc>
 inoremap kj <esc>
 inoremap jk <esc>
-noremap <c-\> :w<bar>so $MYVIMRC<cr>
-inoremap <c-\> <esc>:w<bar>so $MYVIMRC<cr>
+noremap <leader>,, :e $MYVIMRC<cr>
+noremap <leader>,. :w<bar>so $MYVIMRC<cr>
+noremap <c-\> :w<cr>
+inoremap <c-\> <esc>:w<cr>
 nnoremap <c-q> :x<cr>
 noremap \ ?
 nnoremap <silent><tab> :bnext<cr>
@@ -31,7 +33,6 @@ nnoremap <silent><leader>tz :Goyo<cr>
 noremap <silent><leader>tc :Codi!!<cr>
 nnoremap <leader>r :%s///gc
 noremap <leader>v ggVG<cr>
-noremap <a-v> <esc>ggVG<cr>
 nnoremap <a-j> :m .+1<cr>==
 nnoremap <a-k> :m .-2<cr>==
 inoremap <a-j> <esc>:m .+1<cr>==gi
@@ -40,7 +41,7 @@ vnoremap <a-j> :m '>+1<cr>gv=gv
 vnoremap <a-k> :m '<-2<cr>gv=gv
 nnoremap <a-cr> :w<cr>:call RunCode()<cr>
 inoremap <a-cr> <esc>:w<cr>:call RunCode()<cr>
-nmap <leader>s ysiw " surround word
+nmap <leader>s ysiw 
 nnoremap <leader>gs :G<cr>
 nnoremap <leader>gd :G diff<cr>
 nnoremap <leader>gc :G checkout %
@@ -75,3 +76,4 @@ noremap <up> <nop>
 noremap <down> <nop>
 noremap <left> <nop>
 noremap <right> <nop>
+
