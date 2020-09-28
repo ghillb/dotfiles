@@ -63,6 +63,7 @@ nn <leader>gc :G checkout %
 nn <leader>gl :Gclog<cr>
 nn <leader>gpl :G pull<cr>
 nn <leader>gps :G push<cr>
+nn <leader>gb :MerginalToggle<cr>
 nn <leader>u :UndotreeToggle<cr>
 nn <silent><leader>e :Fern . -drawer -toggle -reveal=%<cr>
 nn <silent><leader>tt :Ttoggle<cr><c-w>wa
