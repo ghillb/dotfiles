@@ -1,3 +1,4 @@
 set editing-mode vi
 set keymap vi-command
 "\e\C-e": shell-expand-line
+
