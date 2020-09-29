@@ -1,3 +1,5 @@
+if filereadable(expand($NVC) . '/localrc.vim') | source $NVC/localrc.vim | endif
+
 autocmd InsertEnter,InsertLeave * set cul!
 autocmd BufEnter * if filereadable(expand('%:p:h') . '/.exrc') | source %:p:h/.exrc | endif
 autocmd BufLeave * if exists("g:run_bin_local") | unlet g:run_bin_local | endif
