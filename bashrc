@@ -90,8 +90,10 @@ bind -x '"\C-e": `__fzf_cd__`'
 bind -x '"\C-r": __fzf_history__'
 bind -x '"\C-y": "_call_navi"'
 bind -x '"\C-l": clear'
-bind 'TAB':menu-complete
+bind '"\t":menu-complete'
 bind "set show-all-if-ambiguous on"
+bind "set completion-ignore-case on"
+bind "set menu-complete-display-prefix on"
 
 # modified prompt
 PS1=$'${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] : \
