@@ -5,7 +5,7 @@ fun! SetRustSettings()
 endfun
 
 fun! s:RustExecuter(run_bin)
-    exec '!' . a:run_bin shellescape(@%, 1)
+    exec '!' . a:run_bin shellescape(@%, 1) '-o %:r'
     exec '!' . '%:r'
 endfun
 

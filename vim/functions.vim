@@ -19,7 +19,8 @@ fun! RunCode()
                             \ 'python': 'python3',
                             \ 'javascript': 'node',
                             \ 'rust': 'rustc',
-                            \ 'c': 'make'
+                            \ 'c': 'make',
+                            \ 'cpp': 'make',
                         \}, current_ft, '')
 
     if run_bin == ''
