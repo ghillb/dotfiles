@@ -8,6 +8,7 @@ ino jk <esc>
 no <c-\> :w<cr>
 ino <c-\> <esc>:w<cr>
 nn <c-q> :x<cr>
+ino <c-q> <esc>:x<cr>
 nn <silent><tab> :bnext<cr>
 nn <silent><s-tab> :bprevious<cr>
 nn <a-j> :m .+1<cr>==
