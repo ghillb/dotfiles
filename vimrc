@@ -27,5 +27,6 @@ source $VC/ftpc/python.vim
 source $VC/ftpc/javascript.vim
 source $VC/ftpc/rust.vim
 source $VC/ftpc/c.vim
+source $VC/ftpc/go.vim
 source $VC/ftpc/markdown.vim
 

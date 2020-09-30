@@ -21,6 +21,7 @@ fun! RunCode()
                             \ 'rust': 'rustc',
                             \ 'c': 'make',
                             \ 'cpp': 'make',
+                            \ 'go': 'go'
                         \}, current_ft, '')
 
     if run_bin == ''
