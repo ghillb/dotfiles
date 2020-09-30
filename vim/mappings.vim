@@ -59,12 +59,14 @@ nn <leader>r :%s///gc
 nn <leader>v ggVG<cr>
 nm <leader>s ysiw
 nn <leader>gs :G<cr>
-nn <leader>gd :G diff<cr>
+nn <leader>gd :Gvdiffsplit<cr>
 nn <leader>gc :G checkout %
 nn <leader>gl :Gclog<cr>
 nn <leader>gpl :G pull<cr>
 nn <leader>gps :G push<cr>
 nn <leader>gb :MerginalToggle<cr>
+nn <leader>ga :G add -p<cr>
+nn <leader>gm :Gblame<cr>
 nn <leader>u :UndotreeToggle<cr>
 nn <silent><leader>e :Fern . -drawer -toggle -reveal=%<cr>
 nn <silent><leader>tt :Ttoggle<cr><c-w>wa
