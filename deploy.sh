@@ -18,7 +18,7 @@ execute() {
 }
 
 os_up() {
-  sudo apt update && sudo apt upgrade;
+  sudo apt update && sudo apt upgrade -y;
 }
 
 df() {
