@@ -2,7 +2,7 @@
 if empty(glob($NVC . '/autoload/plug.vim'))
   silent !curl -fLo $NVC/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  " autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 if !has('nvim') | source $NVC/autoload/plug.vim | endif
