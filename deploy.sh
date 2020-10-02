@@ -2,11 +2,12 @@
 
 git clone https://github.com/ghillb/dotfiles.git ~/dotfiles
 
-declare -a configs=( "df" "nvim" "tmux" "fzf" "spectrwm" "alacritty" "termite" )
+declare -a configs=( "os_up" "df" "nvim" "tmux" "fzf" "spectrwm" "alacritty" "termite" )
 declare -A deploy
 for c in "${configs[@]}"; do echo "add [$c] config? (y / → n)"; read -s ans; deploy[$c]=$ans; done
 
 execute() {
+  if [[ ${deploy["os_up"]} == "y" ]]; then os_up; fi
   if [[ ${deploy["nvim"]} == "y" ]]; then nvim; fi
   if [[ ${deploy["tmux"]} == "y" ]]; then tmux; fi
   if [[ ${deploy["fzf"]} == "y" ]]; then fzf; fi
@@ -14,6 +15,10 @@ execute() {
   if [[ ${deploy["alacritty"]} == "y" ]]; then alacritty; fi
   if [[ ${deploy["termite"]} == "y" ]]; then termite; fi
   if [[ ${deploy["df"]} == "y" ]]; then df; fi
+}
+
+os_up() {
+  sudo apt update && sudo apt upgrade;
 }
 
 df() {
