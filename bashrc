@@ -86,7 +86,7 @@ bind -x '"\C-n": "notes"'
 bind -x '"\C-p": fzf-file-widget'
 bind -x '"\C-e": `__fzf_cd__`'
 bind -x '"\C-r": __fzf_history__'
-bind -x '"\C-v": "_call_navi"'
+bind -x '"\C-o": "_call_navi"'
 bind -x '"\C-l": clear'
 bind -x '"\C-y": fg'
 bind -x '"\e[21~": "htop"' #F10
