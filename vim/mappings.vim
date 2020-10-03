@@ -15,12 +15,12 @@ vn al :<C-U>normal 0v$h<CR>
 om al :normal val<CR>
 vn il :<C-U>normal ^vg_<CR>
 om il :normal vil<CR>
-nn <a-j> :m .+1<cr>==
-nn <a-k> :m .-2<cr>==
-vn <a-j> :m '>+1<cr>gv=gv
-vn <a-k> :m '<-2<cr>gv=gv
-ino <a-j> <esc>:m .+1<cr>==gi
-ino <a-k> <esc>:m .-2<cr>==gi
+nn <a-down> :m .+1<cr>==
+nn <a-up> :m .-2<cr>==
+vn <a-down> :m '>+1<cr>gv=gv
+vn <a-up> :m '<-2<cr>gv=gv
+ino <a-down> <esc>:m .+1<cr>==gi
+ino <a-up> <esc>:m .-2<cr>==gi
 nn <a-cr> :w<cr>:call RunCode()<cr>
 ino <a-cr> <esc>:w<cr>:call RunCode()<cr>
 nn <silent><F12> :FloatermNew<cr>

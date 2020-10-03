@@ -79,17 +79,18 @@ elif [ ! -z "$WORK_DIR" ]; then
 fi
 
 # key binds
-bind -x '"\e[21~": "htop"' #bind to F10
 bind -x '"\C-b": "cd .."'
 bind -x '"\C-h": "cd ~/"'
 bind -x '"\C-t": "tx"'
 bind -x '"\C-n": "notes"'
-bind '"\C-g": "git add . && git commit -m \"\""'
 bind -x '"\C-p": fzf-file-widget'
 bind -x '"\C-e": `__fzf_cd__`'
 bind -x '"\C-r": __fzf_history__'
-bind -x '"\C-y": "_call_navi"'
+bind -x '"\C-v": "_call_navi"'
 bind -x '"\C-l": clear'
+bind -x '"\C-y": fg'
+bind -x '"\e[21~": "htop"' #F10
+bind '"\C-g": "git add . && git commit -m \"\""'
 bind '"\t":menu-complete'
 bind "set show-all-if-ambiguous on"
 bind "set completion-ignore-case on"
