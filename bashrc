@@ -4,7 +4,7 @@ set bell-style none
 export DISPLAY=:0 #set display for VcXsrv
 export VISUAL=nvim
 export EDITOR=nvim
-export PATH="$PATH:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/go/bin"
+export PATH="$PATH:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/go/bin:$HOME/.linuxbrew/bin"
 export LC_ALL=C.UTF-8
 
 cdls()
@@ -86,7 +86,7 @@ bind -x '"\C-n": "notes"'
 bind -x '"\C-p": fzf-file-widget'
 bind -x '"\C-e": `__fzf_cd__`'
 bind -x '"\C-r": __fzf_history__'
-bind -x '"\C-o": "_call_navi"'
+bind -x '"\C-o": "navi"'
 bind -x '"\C-l": clear'
 bind -x '"\C-y": fg'
 bind -x '"\e[21~": "htop"' #F10
