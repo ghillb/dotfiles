@@ -11,6 +11,10 @@ nn <c-q> :x<cr>
 ino <c-q> <esc>:x<cr>
 nn <silent><tab> :bnext<cr>
 nn <silent><s-tab> :bprevious<cr>
+vn al :<C-U>normal 0v$h<CR>
+om al :normal val<CR>
+vn il :<C-U>normal ^vg_<CR>
+om il :normal vil<CR>
 nn <a-j> :m .+1<cr>==
 nn <a-k> :m .-2<cr>==
 vn <a-j> :m '>+1<cr>gv=gv
