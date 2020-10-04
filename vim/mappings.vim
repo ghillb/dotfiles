@@ -11,10 +11,14 @@ nn <c-q> :x<cr>
 ino <c-q> <esc>:x<cr>
 nn <silent><tab> :bnext<cr>
 nn <silent><s-tab> :bprevious<cr>
-vn al :<C-U>normal 0v$h<CR>
-om al :normal val<CR>
-vn il :<C-U>normal ^vg_<CR>
-om il :normal vil<CR>
+vn <silent>al :<c-u>normal 0v$h<CR>
+om <silent>al :normal val<CR>
+vn <silent>il :<c-u>normal ^vg_<CR>
+om <silent>il :normal vil<CR>
+vn <silent> a` :<c-u>call Ticks(0)<cr>
+vn <silent> i` :<c-u>call Ticks(1)<cr>
+ono <silent> a` :<c-u>normal va`<cr>
+ono <silent> i` :<c-u>normal vi`<cr>
 nn <a-down> :m .+1<cr>==
 nn <a-up> :m .-2<cr>==
 vn <a-down> :m '>+1<cr>gv=gv
