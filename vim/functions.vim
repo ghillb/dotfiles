@@ -4,6 +4,20 @@ autocmd InsertEnter,InsertLeave * set cul!
 autocmd BufEnter * if filereadable(expand('%:p:h') . '/.exrc') | source %:p:h/.exrc | endif
 autocmd BufLeave * if exists("g:run_bin_local") | unlet g:run_bin_local | endif
 
+function! Ticks(inner)
+    normal! gv
+    call searchpos('`', 'bW')
+    if a:inner | exe "normal! 1\<space>" | endif
+    normal! o
+    call searchpos('`', 'W')
+    if a:inner | exe "normal! \<bs>" | endif
+endfunction
+
+vnoremap <silent> a` :<c-u>call Ticks(0)<cr>
+vnoremap <silent> i` :<c-u>call Ticks(1)<cr>
+onoremap <silent> a` :<c-u>normal va`<cr>
+onoremap <silent> i` :<c-u>normal vi`<cr>
+
 fun! FzfOmniFiles()
     let is_git = system('git status')
     if v:shell_error
