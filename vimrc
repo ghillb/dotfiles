@@ -25,6 +25,7 @@ source $VC/plugc/fzfproject.vim
 source $VC/plugc/codi.vim
 
 source $VC/ftpc/bash.vim
+source $VC/ftpc/viml.vim
 source $VC/ftpc/python.vim
 source $VC/ftpc/javascript.vim
 source $VC/ftpc/rust.vim
