@@ -9,6 +9,7 @@ no <c-\> :w<cr>
 ino <c-\> <esc>:w<cr>
 nn <c-q> :x<cr>
 ino <c-q> <esc>:x<cr>
+ino <c-d> <c-r>=expand('%:p:h').'/'<cr>
 nn <silent><tab> :bnext<cr>
 nn <silent><s-tab> :bprevious<cr>
 vn <silent>al :<c-u>normal 0v$h<CR>
@@ -89,4 +90,3 @@ no <leader>tsd "=strftime("%Y-%m-%d")<cr>P
 no <leader>tst "=strftime("%H:%M:%S")<cr>P
 no <leader>tsm "=strftime("%Y-%m-%d \/ %H:%M:%S")<cr>P
 
-ino <c-d> <c-r>=expand('%:p:h').'/'<cr> 
