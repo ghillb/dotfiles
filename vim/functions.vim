@@ -25,6 +25,7 @@ endfun
 fun! RunCode()
     let l:current_ft = &filetype
     let l:run_bin = get({
+                            \ 'sh': 'bash',
                             \ 'python': 'python3',
                             \ 'javascript': 'node',
                             \ 'rust': 'rustc',
