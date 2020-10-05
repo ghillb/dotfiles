@@ -88,4 +88,5 @@ nn <silent><leader> :WhichKey '<space>'<cr>
 no <leader>tsd "=strftime("%Y-%m-%d")<cr>P
 no <leader>tst "=strftime("%H:%M:%S")<cr>P
 no <leader>tsm "=strftime("%Y-%m-%d \/ %H:%M:%S")<cr>P
-  
+
+ino <c-d> <c-r>=expand('%:p:h').'/'<cr> 
