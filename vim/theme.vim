@@ -3,27 +3,26 @@ if has('termguicolors') | set termguicolors | endif
 let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_invert_selection = '1'
 
-colorscheme gruvbox
-" colorscheme gruvbit
+if isdirectory($NVC . "/plugged/gruvbox")
+    colorscheme gruvbox
 
-let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
-      \ 'mode_map': {
-        \ 'n' : 'N',
-        \ 'i' : 'I',
-        \ 'R' : 'R',
-        \ 'v' : 'V',
-        \ 'V' : 'VL',
-        \ "\<C-v>": 'VB',
-        \ 'c' : 'C',
-        \ 's' : 'S',
-        \ 'S' : 'SL',
-        \ "\<C-s>": 'SB',
-        \ 't': 'T',
-        \ },
-      \ }
+    let g:lightline = {
+          \ 'colorscheme': 'gruvbox',
+          \ 'mode_map': {
+            \ 'n' : 'N',
+            \ 'i' : 'I',
+            \ 'R' : 'R',
+            \ 'v' : 'V',
+            \ 'V' : 'VL',
+            \ "\<C-v>": 'VB',
+            \ 'c' : 'C',
+            \ 's' : 'S',
+            \ 'S' : 'SL',
+            \ "\<C-s>": 'SB',
+            \ 't': 'T',
+            \ },
+          \ }
 
-if exists('g:lightline')
     fun! s:getGruvColor(group)
         let guiColor = synIDattr(hlID(a:group), "fg", "gui")
         let termColor = synIDattr(hlID(a:group), "fg", "cterm")
