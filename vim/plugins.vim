@@ -13,9 +13,6 @@ Plug 'sainnhe/gruvbox-material'
 Plug 'habamax/vim-gruvbit'
 Plug 'itchyny/lightline.vim'
 Plug 'mhinz/vim-startify'
-Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
-Plug 'nvim-lua/diagnostic-nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'idanarye/vim-merginal'
 Plug 'airblade/vim-gitgutter'
@@ -39,5 +36,11 @@ Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-git-status.vim'
 Plug 'liuchengxu/vim-which-key'
 Plug 'metakirby5/codi.vim'
+
+if has('nvim-0.5')
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'nvim-lua/completion-nvim'
+    Plug 'nvim-lua/diagnostic-nvim'
+endif
 call plug#end()
 
