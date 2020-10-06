@@ -38,7 +38,7 @@ repeat()
 
 initbash()
 {
-    cd ~/dotfiles; git pull; cd; tx;
+    if : >/dev/tcp/1.1.1.1/53; then cd ~/dotfiles; git pull; cd; fi; tx
 }
 
 vdiff () {
@@ -60,8 +60,6 @@ vdiff () {
 }
 
 # scripted behavior
-if command -v navi &> /dev/null; then source <(echo "$(navi widget bash)"); fi
-
 if [ -f ~/dotfiles/assets/aliases ]; then source ~/dotfiles/assets/aliases; fi
 
 if [[ -z "$TMUX" && ("$SSH_CONNECTION" != "" || -n "$PS1") &&\
