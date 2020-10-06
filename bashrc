@@ -7,18 +7,15 @@ export EDITOR=nvim
 export PATH="$PATH:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/go/bin:$HOME/.linuxbrew/bin"
 export LC_ALL=C.UTF-8
 
-cdls()
-{
+cdls() {
     cd "$@" && ls;
 }
 
-iploc()
-{
+iploc() {
     curl ipinfo.io/"$1" ; echo
 }
 
-tx()
-{
+tx() {
     if [ -z "$*" ] ; then
         tmux -2 attach -t $USER || tmux -2 new -s $USER;
     else
@@ -26,8 +23,11 @@ tx()
     fi
 }
 
-repeat() 
-{
+include () {
+    [[ -f "$1" ]] && source "$1"
+}
+
+repeat() {
     n=$1
     shift
     while [ $(( n -= 1 )) -ge 0 ]
@@ -36,8 +36,7 @@ repeat()
     done
 }
 
-initbash()
-{
+initbash() {
     if : >/dev/tcp/1.1.1.1/53; then cd ~/dotfiles; git pull; cd; fi; tx
 }
 
@@ -60,7 +59,8 @@ vdiff () {
 }
 
 # scripted behavior
-if [ -f ~/dotfiles/assets/aliases ]; then source ~/dotfiles/assets/aliases; fi
+include ~/dotfiles/assets/aliases
+include ~/scripts/bash/ssh_connector.sh
 
 if [[ -z "$TMUX" && ("$SSH_CONNECTION" != "" || -n "$PS1") &&\
     -z "$NOTES" && -z "$SSHCON"  && -z "$DIARY" ]]; then initbash;
@@ -71,7 +71,7 @@ elif [ ! -z "$NOTES" ]; then
 elif [ ! -z "$DIARY" ]; then
     eval "nvim -c 'let g:startify_disable_at_vimenter = 1' +VimwikiMakeDiaryNote +'cd %:h'"
 elif [ ! -z "$SSHCON" ]; then
-    source ~/scripts/bash/ssh_connector.sh
+    sshc
 elif [ ! -z "$WORK_DIR" ]; then
     cd "$(wslpath -a "${WORK_DIR}")"
 fi
