@@ -30,7 +30,7 @@ df() {
 }
 
 nvim() {
-  if ! command -v nvim &> /dev/null; then sudo apt install -y neovim; fi
+  sudo snap install nvim --classic --edge
   if ! command -v ag &> /dev/null; then sudo apt install -y silversearcher-ag; fi
   mkdir -p ~/.config/nvim; ln -s ~/dotfiles/vimrc ~/.config/nvim/init.vim
   cp ~/dotfiles/assets/coc-settings.json ~/.config/nvim/
