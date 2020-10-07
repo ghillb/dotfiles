@@ -35,6 +35,7 @@ Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-git-status.vim'
 Plug 'liuchengxu/vim-which-key'
 Plug 'metakirby5/codi.vim'
+Plug 'hashivim/vim-terraform'
 
 if has('nvim-0.5')
     Plug 'neovim/nvim-lspconfig'
