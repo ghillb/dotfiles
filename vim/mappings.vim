@@ -53,7 +53,7 @@ no <leader>C "_C
 nn <leader>o o<esc>
 nn <leader>O O<esc>
 nn <leader>,, :e $MYVIMRC<cr>
-nn <leader>,. :w<bar>so $MYVIMRC<cr>
+nn <leader>,. :so $MYVIMRC<cr>
 nn <leader>bn :bnext<cr>
 nn <leader>bp :bprevious<cr>
 nn <leader>bc :enew<cr>
