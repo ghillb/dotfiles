@@ -16,7 +16,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'idanarye/vim-merginal'
 Plug 'airblade/vim-gitgutter'
 Plug 'will133/vim-dirdiff'
-Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'benwainwright/fzf-project'
