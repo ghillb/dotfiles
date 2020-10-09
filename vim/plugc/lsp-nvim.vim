@@ -9,8 +9,8 @@ lua <<EOF
             require'completion'.on_attach(client)
             require'diagnostic'.on_attach(client)
         end
-        nvim_lsp.bashls.setup{on_attach=on_attach_lsp}
-        nvim_lsp.vimls.setup{on_attach=on_attach_lsp}
+        if nvim_lsp.bashls~=nil then nvim_lsp.bashls.setup{on_attach=on_attach_lsp} end
+        if nvim_lsp.bashls~=nil then nvim_lsp.vimls.setup{on_attach=on_attach_lsp} end
     end
 EOF
 
