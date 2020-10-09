@@ -5,11 +5,12 @@ no Y y$
 xn p "_dP
 ino kj <esc>
 ino jk <esc>
-no <c-\> :w<cr>
-ino <c-\> <esc>:w<cr>
+no <c-s> :w<cr>
+" ino <c-s> <esc>:w<cr>
 nn <c-q> :x<cr>
 ino <c-q> <esc>:x<cr>
 ino <c-d> <c-r>=expand('%:p:h').'/'<cr>
+no <c-\> :%s/\s\+$//e<cr>
 nn <silent><tab> :bnext<cr>
 nn <silent><s-tab> :bprevious<cr>
 vn <silent>al :<c-u>normal 0v$h<CR>
