@@ -23,7 +23,7 @@ os_up() {
 
 df() {
   echo -e "# my dotfile additions\n. '$HOME/dotfiles/bashrc'" >> ~/.bashrc
-  ln -s dotfiles/inputrc .inputrc
+  ln -s ~/dotfiles/inputrc ~/.inputrc
   cp ~/dotfiles/assets/dircolors ~/.dircolors
   # echo ". '$HOME/dotfiles/assets/startup.sh'" >> ~/.profile
   mkdir -p ~/.local/share/fonts; ln -s ~/dotfiles/assets/Cascadia.ttf ~/.local/share/fonts/Cascadia.ttf
