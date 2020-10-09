@@ -6,7 +6,7 @@ xn p "_dP
 ino kj <esc>
 ino jk <esc>
 no <c-s> :w<cr>
-" ino <c-s> <esc>:w<cr>
+ino <c-s> <esc>:w<cr>
 nn <c-q> :x<cr>
 ino <c-q> <esc>:x<cr>
 ino <c-d> <c-r>=expand('%:p:h').'/'<cr>
