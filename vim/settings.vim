@@ -2,7 +2,7 @@ syntax on
 set shell=/bin/bash
 set encoding=utf-8
 set fileencoding=utf-8
-set spelllang=en_us,de_de spell
+set spelllang=en_us spell
 set clipboard+=unnamedplus
 set backspace=indent,eol,start
 set whichwrap+=<,>,h,l,[,]
