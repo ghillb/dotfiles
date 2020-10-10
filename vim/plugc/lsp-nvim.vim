@@ -11,6 +11,7 @@ lua <<EOF
         end
         nvim_lsp.bashls.setup{on_attach=on_attach_lsp}
         nvim_lsp.vimls.setup{on_attach=on_attach_lsp}
+        nvim_lsp.rust_analyzer.setup{on_attach=on_attach_lsp}
     end
 EOF
 
