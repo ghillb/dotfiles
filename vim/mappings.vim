@@ -65,6 +65,7 @@ nn <leader>to :tabo<cr>
 nn <silent><leader>tg :set rnu! \| :set nu! \| :GitGutterToggle<cr>
 nn <leader>tz :Goyo<cr>
 nn <leader>tc :Codi!!<cr>
+nn <leader>ty :Startify<cr>
 nn <leader>r :%s///gc
 nn <leader>v ggVG<cr>
 nm <leader>s ysiw
