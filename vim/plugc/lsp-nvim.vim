@@ -11,6 +11,15 @@ lua <<EOF
         end
         nvim_lsp.bashls.setup{on_attach=on_attach_lsp}
         nvim_lsp.vimls.setup{on_attach=on_attach_lsp}
+        nvim_lsp.jsonls.setup{on_attach=on_attach_lsp}
+        nvim_lsp.yamlls.setup{on_attach=on_attach_lsp}
+        nvim_lsp.dockerls.setup{on_attach=on_attach_lsp}
+        nvim_lsp.html.setup{on_attach=on_attach_lsp}
+        nvim_lsp.cssls.setup{on_attach=on_attach_lsp}
+        nvim_lsp.tsserver.setup{on_attach=on_attach_lsp}
+        nvim_lsp.jedi_language_server.setup{on_attach=on_attach_lsp}
+        nvim_lsp.r_language_server.setup{on_attach=on_attach_lsp}
+        nvim_lsp.gopls.setup{on_attach=on_attach_lsp}
         nvim_lsp.rust_analyzer.setup{on_attach=on_attach_lsp}
     end
 EOF
