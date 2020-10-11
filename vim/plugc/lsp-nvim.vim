@@ -24,16 +24,3 @@ lua <<EOF
     end
 EOF
 
-lua <<EOF
-    local has_treesitter, configs = pcall(require, 'nvim-treesitter.configs')
-    if has_treesitter then
-        configs.setup {
-            ensure_installed = "all",
-            highlight = {
-                enable = true,
-                disable = {},
-            },
-        }
-    end
-EOF
-
