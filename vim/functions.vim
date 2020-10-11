@@ -4,6 +4,14 @@ autocmd InsertEnter,InsertLeave * set cul!
 autocmd BufEnter * if filereadable(expand('%:p:h') . '/.exrc') | source %:p:h/.exrc | endif
 autocmd BufLeave * if exists("g:run_bin_local") | unlet g:run_bin_local | endif
 
+let s:clip = '/mnt/c/Windows/System32/clip.exe'  " enables yank to windows clipboard
+if executable(s:clip)
+    augroup WSLYank
+        autocmd!
+        autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
+    augroup END
+endif
+
 fun! Ticks(inner)
     normal! gv
     call searchpos('`', 'bW')
