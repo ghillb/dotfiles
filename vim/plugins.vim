@@ -41,6 +41,7 @@ if has('nvim-0.5')
     Plug 'neovim/nvim-lspconfig'
     Plug 'nvim-lua/completion-nvim'
     Plug 'nvim-lua/diagnostic-nvim'
+    Plug 'nvim-treesitter/nvim-treesitter'
 endif
 call plug#end()
 
