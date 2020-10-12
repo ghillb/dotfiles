@@ -2,7 +2,8 @@ let mapleader = " "
 no x "_x
 no X "_X
 no Y y$
-xn p "_dP
+xn <silent> p p:let @+=@0<CR>:let @"=@0<CR>
+xn <silent> P P:let @+=@0<CR>:let @"=@0<CR>
 ino kj <esc>
 ino jk <esc>
 no <c-s> :w<cr>
