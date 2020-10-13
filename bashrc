@@ -6,6 +6,7 @@ export VISUAL=nvim
 export EDITOR=nvim
 export PATH="$PATH:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/go/bin:$HOME/.linuxbrew/bin"
 export LC_ALL=C.UTF-8
+printf "\e[?2004l"
 
 cdls() {
     cd "$@" && ls;
