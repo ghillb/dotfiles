@@ -39,5 +39,11 @@ set wildmode=longest:full,full
 set wildignore=*.o,*~,*.pyc,*.pyo,__pycache__,*/venv/*
 set completeopt=menuone,noinsert,noselect
 set shortmess+=c
-set t_BE=
+
+if &term =~ '^tmux'
+  let &t_BE="\<Esc>[?2004h"
+  let &t_BD="\<Esc>[?2004l"
+  let &t_PS="\<Esc>[200~"
+  let &t_PE="\<Esc>[201~"
+endif
 
