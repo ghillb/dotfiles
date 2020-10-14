@@ -6,7 +6,10 @@ export VISUAL=nvim
 export EDITOR=nvim
 export PATH="$PATH:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/go/bin:$HOME/.linuxbrew/bin"
 export LC_ALL=C.UTF-8
-printf "\e[?2004l"
+export FZF_DEFAULT_OPTS='
+  --color fg:#ebdbb2,bg:#282828,hl:#fe8019,fg+:#ebdbb2,bg+:#3c3836,hl+:#d65d0e
+  --color info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#fb4934,marker:#fe8019,header:#665c54
+'
 
 cdls() {
     cd "$@" && ls;
