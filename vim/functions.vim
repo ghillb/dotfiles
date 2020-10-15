@@ -13,12 +13,6 @@ fun! Ticks(inner)
     if a:inner | exe "normal! \<bs>" | endif
 endfun
 
-fun! XTermPasteBegin()
-  set pastetoggle=<Esc>[201~
-  set paste
-  return ""
-endfun
-
 fun! FzfOmniFiles()
     let is_git = system('git status')
     if v:shell_error
