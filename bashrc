@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set bell-style none
+export TERM=xterm-256color
 export DISPLAY=:0 #set display for VcXsrv
 export VISUAL=nvim
 export EDITOR=nvim
