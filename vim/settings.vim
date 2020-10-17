@@ -39,5 +39,6 @@ set wildmode=longest:full,full
 set wildignore=*.o,*~,*.pyc,*.pyo,__pycache__,*/venv/*
 set completeopt=menuone,noinsert,noselect
 set shortmess+=c
+set pastetoggle=<F3>
 set t_BE=
 
