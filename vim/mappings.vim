@@ -44,8 +44,10 @@ nn <silent><c-e> :call FzfOmniFiles()<cr>
 nn <silent><c-b> :Buffers<cr>
 nn <silent>\ :BLines<cr>
 nn <silent>\| :Lines<cr>
-nn <leader><leader> :Commands<cr>
+nn <silent><c-c> :Commands<cr>
 nn <leader><bs> :FzfSwitchProject<cr>
+nn K i<CR><Esc>
+nn <leader><leader> i<space><right><esc>
 no <leader>p o<esc>p
 no <leader>P O<esc>p
 no <leader>x x
