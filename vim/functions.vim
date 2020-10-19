@@ -1,8 +1,8 @@
-if filereadable(expand($NVC) . '/localrc.vim') | source $NVC/localrc.vim | endif
-
-autocmd InsertEnter,InsertLeave * set cul!
-autocmd BufEnter * if filereadable(expand('%:p:h') . '/.exrc') | source %:p:h/.exrc | endif
-autocmd BufLeave * if exists("g:run_bin_local") | unlet g:run_bin_local | endif
+au Vimenter * if filereadable(expand($NVC) . '/localrc.vim') | source $NVC/localrc.vim | endif
+au BufEnter * if filereadable(expand('%:p:h') . '/.exrc.vim') | source %:p:h/.exrc | endif
+au BufLeave * if exists("g:run_bin_local") | unlet g:run_bin_local | endif
+au InsertEnter,InsertLeave * set cul!
+au TermOpen * setlocal nospell
 
 fun! Ticks(inner)
     normal! gv
