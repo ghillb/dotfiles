@@ -32,6 +32,7 @@ nn <a-cr> :w<cr>:call RunCode()<cr>
 ino <a-cr> <esc>:w<cr>:call RunCode()<cr>
 nn <silent><F12> :FloatermNew<cr>
 tno <silent><F12> <c-\><c-n>:FloatermKill<cr>
+tno <esc> <c-\><c-n>
 no <c-j> <c-e>
 no <c-k> <c-y>
 no <c-y> <c-b>
