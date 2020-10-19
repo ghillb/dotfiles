@@ -46,7 +46,7 @@ nn <silent>\ :BLines<cr>
 nn <silent>\| :Lines<cr>
 nn <silent><c-c> :Commands<cr>
 nn <leader><bs> :FzfSwitchProject<cr>
-nn K i<CR><Esc>
+nn K i<cr><esc>
 nn <leader><leader> i<space><right><esc>
 no <leader>p o<esc>p
 no <leader>P O<esc>p
