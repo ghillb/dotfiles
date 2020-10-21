@@ -2,7 +2,10 @@ au VimEnter * if filereadable(expand($NVC) . '/localrc.vim') | source $NVC/local
 au BufEnter * if filereadable(expand('%:p:h') . '/.exrc.vim') | source %:p:h/.exrc | endif
 au BufLeave * if exists("g:run_bin_local") | unlet g:run_bin_local | endif
 au InsertEnter,InsertLeave * set cul!
-au TermOpen * setlocal nospell
+
+if has('nvim')
+    au TermOpen * setlocal nospell
+endif
 
 fun! Ticks(inner)
     normal! gv
