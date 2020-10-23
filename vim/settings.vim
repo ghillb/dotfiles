@@ -2,7 +2,6 @@ syntax on
 set shell=/bin/bash
 set encoding=utf-8
 set fileencoding=utf-8
-set spelllang=en_us spell
 set clipboard+=unnamedplus
 set backspace=indent,eol,start
 set whichwrap+=<,>,h,l,[,]
@@ -41,4 +40,8 @@ set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 set pastetoggle=<F3>
 set t_BE=
+
+if !exists('g:vscode')
+    set spelllang=en_us spell
+endif
 
