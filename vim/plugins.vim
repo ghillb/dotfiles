@@ -8,8 +8,8 @@ endif
 if !has('nvim') | source $NVC/autoload/plug.vim | endif
 
 call plug#begin($NVC . '/plugged')
-Plug 'morhetz/gruvbox'
 Plug 'habamax/vim-gruvbit'
+Plug 'ghillb/gruvbox'
 Plug 'itchyny/lightline.vim'
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-fugitive'
