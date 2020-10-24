@@ -1,48 +1,54 @@
 " autoload plug
-if empty(glob($NVC . '/autoload/plug.vim')) && has('unix')
-  silent !curl -fLo $NVC/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+if empty(glob($NVC . '/pack/minpac/opt/minpac/autoload/minpac.vim')) && has('unix')
+    !git clone https://github.com/k-takata/minpac.git $NVC/nvim/pack/minpac/opt/minpac
 endif
 
-if !has('nvim') | source $NVC/autoload/plug.vim | endif
+packadd minpac
+if !exists('g:loaded_minpac')
+    " echo minpac is not available.
+else
+    call minpac#init({'verbose': 3})
 
-call plug#begin($NVC . '/plugged')
-Plug 'morhetz/gruvbox'
-Plug 'habamax/vim-gruvbit'
-Plug 'itchyny/lightline.vim'
-Plug 'mhinz/vim-startify'
-Plug 'tpope/vim-fugitive'
-Plug 'idanarye/vim-merginal'
-Plug 'airblade/vim-gitgutter'
-Plug 'will133/vim-dirdiff'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'benwainwright/fzf-project'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'machakann/vim-highlightedyank'
-Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
-Plug 'unblevable/quick-scope'
-Plug 'junegunn/vim-peekaboo'
-Plug 'junegunn/goyo.vim'
-Plug 'mbbill/undotree'
-Plug 'jiangmiao/auto-pairs'
-Plug 'kassio/neoterm'
-Plug 'voldikss/vim-floaterm'
-Plug 'lambdalisue/fern.vim'
-Plug 'lambdalisue/fern-git-status.vim'
-Plug 'liuchengxu/vim-which-key'
-Plug 'metakirby5/codi.vim'
-Plug 'hashivim/vim-terraform'
-Plug 'justinmk/vim-sneak'
-Plug 'ConradIrwin/vim-bracketed-paste'
+    call minpac#add('k-takata/minpac', {'type': 'opt'})
+    call minpac#add('ghillb/gruvbox')
+    call minpac#add('habamax/vim-gruvbit')
+    call minpac#add('itchyny/lightline.vim')
+    call minpac#add('mhinz/vim-startify')
+    call minpac#add('tpope/vim-fugitive')
+    call minpac#add('idanarye/vim-merginal')
+    call minpac#add('airblade/vim-gitgutter')
+    call minpac#add('will133/vim-dirdiff')
+    call minpac#add('junegunn/fzf', { 'do': { -> fzf#install() } })
+    call minpac#add('junegunn/fzf.vim')
+    call minpac#add('benwainwright/fzf-project')
+    call minpac#add('tpope/vim-surround')
+    call minpac#add('tpope/vim-commentary')
+    call minpac#add('machakann/vim-highlightedyank')
+    call minpac#add('vimwiki/vimwiki', { 'branch': 'dev' })
+    call minpac#add('unblevable/quick-scope')
+    call minpac#add('junegunn/vim-peekaboo')
+    call minpac#add('junegunn/goyo.vim')
+    call minpac#add('mbbill/undotree')
+    call minpac#add('jiangmiao/auto-pairs')
+    call minpac#add('kassio/neoterm')
+    call minpac#add('voldikss/vim-floaterm')
+    call minpac#add('lambdalisue/fern.vim')
+    call minpac#add('lambdalisue/fern-git-status.vim')
+    call minpac#add('liuchengxu/vim-which-key')
+    call minpac#add('metakirby5/codi.vim')
+    call minpac#add('hashivim/vim-terraform')
+    call minpac#add('justinmk/vim-sneak')
+    call minpac#add('ConradIrwin/vim-bracketed-paste')
 
-if has('nvim-0.5')
-    Plug 'neovim/nvim-lspconfig'
-    Plug 'nvim-lua/completion-nvim'
-    Plug 'nvim-lua/diagnostic-nvim'
-    Plug 'nvim-treesitter/nvim-treesitter'
+    if has('nvim-0.5')
+        call minpac#add('neovim/nvim-lspconfig')
+        call minpac#add('nvim-lua/completion-nvim')
+        call minpac#add('nvim-lua/diagnostic-nvim')
+        call minpac#add('nvim-treesitter/nvim-treesitter')
+    endif
+
+    command! PackUpdate source $MYVIMRC | call minpac#update()
+    command! PackClean  source $MYVIMRC | call minpac#clean()
+    command! PackStatus packadd minpac | call minpac#status()
 endif
-call plug#end()
 
