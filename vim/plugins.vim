@@ -1,5 +1,5 @@
 " autoload plug
-if empty(glob($NVC . '/autoload/plug.vim'))
+if empty(glob($NVC . '/autoload/plug.vim')) && has('unix')
   silent !curl -fLo $NVC/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
