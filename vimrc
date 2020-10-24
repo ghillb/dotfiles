@@ -13,6 +13,7 @@ source $VC/plugc/gitgutter.vim
 source $VC/plugc/fzf.vim
 source $VC/plugc/vimwiki.vim
 source $VC/plugc/quickscope.vim
+source $VC/plugc/sneak.vim
 source $VC/plugc/netrw.vim
 source $VC/plugc/fern.vim
 source $VC/plugc/autopairs.vim
