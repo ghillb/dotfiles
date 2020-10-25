@@ -8,7 +8,3 @@ let g:gitgutter_sign_removed = '_'
 let g:gitgutter_sign_removed_first_line = '‾'
 let g:gitgutter_sign_removed_above_and_below = '['
 
-if isdirectory($NVC . "/plugged/vim-gitgutter")
-    call gitgutter#highlight#define_signs()
-end
-
