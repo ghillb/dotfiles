@@ -1,11 +1,11 @@
-" autoload plug
-if empty(glob($NVC . '/pack/minpac/opt/minpac/autoload/minpac.vim')) && has('unix')
-    !git clone https://github.com/k-takata/minpac.git $NVC/nvim/pack/minpac/opt/minpac
+if empty(glob($NVC . '/pack/minpac/opt/minpac/autoload/minpac.vim')) && has('unix') && has('nvim')
+    !git clone https://github.com/k-takata/minpac.git $NVC/pack/minpac/opt/minpac
 endif
 
-packadd minpac
+silent! packadd minpac
+
 if !exists('g:loaded_minpac')
-    " echo minpac is not available.
+    echo "minpac not available"
 else
     call minpac#init({'verbose': 3})
 
@@ -18,7 +18,7 @@ else
     call minpac#add('idanarye/vim-merginal')
     call minpac#add('airblade/vim-gitgutter')
     call minpac#add('will133/vim-dirdiff')
-    call minpac#add('junegunn/fzf', { 'do': { -> fzf#install() } })
+    call minpac#add('junegunn/fzf')
     call minpac#add('junegunn/fzf.vim')
     call minpac#add('benwainwright/fzf-project')
     call minpac#add('tpope/vim-surround')
