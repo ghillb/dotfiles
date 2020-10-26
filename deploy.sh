@@ -1,6 +1,6 @@
 #!/bin/bash
-
-git clone https://github.com/ghillb/dotfiles.git ~/dotfiles
+dfdir=$HOME/.files
+git clone https://github.com/ghillb/dotfiles.git $dfdir
 
 declare -a configs=( "os_up" "df" "nvim" "tmux" "fzf" "spectrwm" "alacritty" "termite" )
 declare -A deploy
@@ -22,23 +22,23 @@ os_up() {
 }
 
 df() {
-  echo -e "# my dotfile additions\n. '$HOME/dotfiles/bashrc'" >> ~/.bashrc
-  ln -s ~/dotfiles/inputrc ~/.inputrc
-  cp ~/dotfiles/assets/dircolors ~/.dircolors
+  echo -e "# my dotfile additions\n. '$dfdir/bashrc'" >> ~/.bashrc
+  ln -s $dfdir/inputrc ~/.inputrc
+  cp $dfdir/assets/dircolors ~/.dircolors
   # echo ". '$HOME/dotfiles/assets/startup.sh'" >> ~/.profile
-  mkdir -p ~/.local/share/fonts; ln -s ~/dotfiles/assets/Cascadia.ttf ~/.local/share/fonts/Cascadia.ttf
+  # mkdir -p ~/.local/share/fonts; ln -s $dfdir/assets/Fira.ttf ~/.local/share/fonts/Fira.ttf
 }
 
 nvim() {
   sudo snap install nvim --classic --edge
   if ! command -v ag &> /dev/null; then sudo apt install -y silversearcher-ag; fi
-  mkdir -p ~/.config/nvim; ln -s ~/dotfiles/vimrc ~/.config/nvim/init.vim
-  cp ~/dotfiles/assets/coc-settings.json ~/.config/nvim/
+  mkdir -p ~/.config/nvim; ln -s $dfdir/vimrc ~/.config/nvim/init.vim
+  cp $dfdir/assets/coc-settings.json ~/.config/nvim/
 }
 
 tmux() {
   if ! command -v tmux &> /dev/null; then sudo apt install -y tmux; fi
-  ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
+  ln -s $dfdir/tmux.conf ~/.tmux.conf
 }
 
 fzf() {
@@ -46,15 +46,15 @@ fzf() {
 }
 
 spectrwm() {
-  ln -s ~/dotfiles/spectrwm.conf ~/.spectrwm.conf
+  ln -s $dfdir/spectrwm.conf ~/.spectrwm.conf
 }
 
 alacritty() {
-  mkdir -p ~/.config/alacritty; ln -s ~/dotfiles/alacritty.yml ~/.config/alacritty/alacritty.yml
+  mkdir -p ~/.config/alacritty; ln -s $dfdir/alacritty.yml ~/.config/alacritty/alacritty.yml
 }
 
 termite() {
-  mkdir -p ~/.config/termite; ln -s ~/dotfiles/termite.conf ~/.config/termite/config
+  mkdir -p ~/.config/termite; ln -s $dfdir/termite.conf ~/.config/termite/config
 }
 
 execute

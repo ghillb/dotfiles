@@ -1,4 +1,4 @@
-let $VC = $HOME . '/dotfiles/vim'
+let $VC = $HOME . '/.files/vim'
 let $NVC = $HOME . '/.config/nvim'
 
 source $VC/settings.vim
