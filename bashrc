@@ -64,7 +64,7 @@ vdiff () {
 }
 
 # scripted behavior
-include ~/dotfiles/assets/aliases
+include ~/.files/assets/aliases
 include ~/scripts/bash/ssh_connector.sh
 
 if [[ -z "$TMUX" && ("$SSH_CONNECTION" != "" || -n "$PS1") &&\
