@@ -12,12 +12,12 @@ fun! s:init_fern() abort
     nmap <buffer> <space> <Plug>(fern-action-mark)
 endfun
 
-augroup fern-custom
+aug fern-custom
     au! *
     au FileType fern setlocal nospell
     au FileType fern call s:init_fern()
     au BufEnter * ++nested call s:hijack_directory()
-augroup END
+aug END
 
 fun! s:hijack_directory() abort
     let path = expand('%:p')
