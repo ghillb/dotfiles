@@ -42,7 +42,7 @@ repeat() {
 }
 
 initbash() {
-    if ping -q -w 1 -c 1 1.1.1.1 > /dev/null; then cd ~/dotfiles; git pull; cd; fi; tx
+    if ping -q -w 1 -c 1 1.1.1.1 > /dev/null; then cd ~/.files; git pull; cd; fi; tx
 }
 
 vdiff () {
