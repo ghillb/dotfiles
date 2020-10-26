@@ -1,3 +1,5 @@
+key_bindings:
+  - { key: Space, mods: Control, chars: "\x00" }
 # Colors (Gruvbox dark)
 colors:
   # Default colors
