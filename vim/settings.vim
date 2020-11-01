@@ -39,8 +39,6 @@ set wildignore=*.o,*~,*.pyc,*.pyo,__pycache__,*/venv/*
 set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 set pastetoggle=<F3>
-set t_BE=
-
 if !exists('g:vscode')
     set spelllang=en_us spell
 endif
