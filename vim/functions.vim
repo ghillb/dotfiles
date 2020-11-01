@@ -31,7 +31,7 @@ fun! RunCode()
                             \ 'sh': 'bash',
                             \ 'python': 'python3',
                             \ 'javascript': 'node',
-                            \ 'rust': 'rustc',
+                            \ 'rust': 'cargo run',
                             \ 'c': 'make',
                             \ 'cpp': 'make',
                             \ 'go': 'go'
