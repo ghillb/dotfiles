@@ -1,11 +1,15 @@
+shell:
+   program: "bash"
 key_bindings:
   - { key: Space, mods: Control, chars: "\x00" }
+  - { key: Return, mods: Alt, chars: "\x1b\x0d"}
+  - { key: Return, mods: Control|Alt, action: ToggleFullscreen }
 # Colors (Gruvbox dark)
 colors:
   # Default colors
   primary:
     # hard contrast: background = '#1d2021'
-    background: '#282828'
+    background: '#1d2021'
     # soft contrast: background = '#32302f'
     foreground: '#ebdbb2'
 
@@ -34,6 +38,7 @@ colors:
 font:
   # The normal (roman) font face to use.
   normal:
-    family: Cascadia Code
+    family: Fira Code Retina
     # Style can be specified to pick a specific face.
     style: Regular
+
