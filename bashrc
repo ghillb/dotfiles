@@ -32,6 +32,18 @@ include () {
     [[ -f "$1" ]] && source "$1"
 }
 
+initbash() {
+    if ping -q -w 1 -c 1 1.1.1.1 > /dev/null; then cd ~/.files; git pull; cd; fi; tx
+}
+
+notes() {
+    eval "nvim -c VimwikiIndex +'cd %:h'"
+}
+
+diary() {
+    eval "nvim -c 'let g:startify_disable_at_vimenter = 1' +VimwikiMakeDiaryNote +'cd %:h'"
+}
+
 repeat() {
     n=$1
     shift
@@ -39,10 +51,6 @@ repeat() {
     do
         "$@"
     done
-}
-
-initbash() {
-    if ping -q -w 1 -c 1 1.1.1.1 > /dev/null; then cd ~/.files; git pull; cd; fi; tx
 }
 
 vdiff () {
@@ -66,7 +74,6 @@ vdiff () {
 # scripted behavior
 include ~/.files/assets/aliases
 include ~/scripts/bash/ssh_connector.sh
-include ~/scripts/bash/initializers.sh
 
 if [[ -z "$TMUX" && "$SSH_CONNECTION" != "" ]]; then initbash;
 elif [ ! -z "$WORK_DIR" ]; then
