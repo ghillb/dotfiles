@@ -1,5 +1,4 @@
 syntax on
-set shell=/bin/bash
 set encoding=utf-8
 set fileencoding=utf-8
 set clipboard+=unnamedplus
@@ -41,5 +40,8 @@ set shortmess+=c
 set pastetoggle=<F3>
 if !exists('g:vscode')
     set spelllang=en_us spell
+endif
+if has('unix')
+    set shell=/bin/bash
 endif
 
