@@ -66,17 +66,9 @@ vdiff () {
 # scripted behavior
 include ~/.files/assets/aliases
 include ~/scripts/bash/ssh_connector.sh
+include ~/scripts/bash/initializers.sh
 
-if [[ -z "$TMUX" && ("$SSH_CONNECTION" != "" || -n "$PS1") &&\
-    -z "$NOTES" && -z "$SSHCON"  && -z "$DIARY" ]]; then initbash;
-elif [ ! -z "$START_VIM" ]; then
-    eval "nvim"
-elif [ ! -z "$NOTES" ]; then
-    eval "nvim -c VimwikiIndex +'cd %:h'"
-elif [ ! -z "$DIARY" ]; then
-    eval "nvim -c 'let g:startify_disable_at_vimenter = 1' +VimwikiMakeDiaryNote +'cd %:h'"
-elif [ ! -z "$SSHCON" ]; then
-    sshc
+if [[ "$SSH_CONNECTION" != "" ]]; then initbash;
 elif [ ! -z "$WORK_DIR" ]; then
     cd "$(wslpath -a "${WORK_DIR}")"
 fi
