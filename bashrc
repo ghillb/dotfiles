@@ -32,6 +32,18 @@ include () {
     [[ -f "$1" ]] && source "$1"
 }
 
+initbash() {
+    if ping -q -w 1 -c 1 1.1.1.1 > /dev/null; then cd ~/.files; git pull; cd; fi; tx
+}
+
+notes() {
+    eval "nvim -c VimwikiIndex +'cd %:h'"
+}
+
+diary() {
+    eval "nvim -c 'let g:startify_disable_at_vimenter = 1' +VimwikiMakeDiaryNote +'cd %:h'"
+}
+
 repeat() {
     n=$1
     shift
@@ -39,10 +51,6 @@ repeat() {
     do
         "$@"
     done
-}
-
-initbash() {
-    if ping -q -w 1 -c 1 1.1.1.1 > /dev/null; then cd ~/.files; git pull; cd; fi; tx
 }
 
 vdiff () {
@@ -67,16 +75,7 @@ vdiff () {
 include ~/.files/assets/aliases
 include ~/scripts/bash/ssh_connector.sh
 
-if [[ -z "$TMUX" && ("$SSH_CONNECTION" != "" || -n "$PS1") &&\
-    -z "$NOTES" && -z "$SSHCON"  && -z "$DIARY" ]]; then initbash;
-elif [ ! -z "$START_VIM" ]; then
-    eval "nvim"
-elif [ ! -z "$NOTES" ]; then
-    eval "nvim -c VimwikiIndex +'cd %:h'"
-elif [ ! -z "$DIARY" ]; then
-    eval "nvim -c 'let g:startify_disable_at_vimenter = 1' +VimwikiMakeDiaryNote +'cd %:h'"
-elif [ ! -z "$SSHCON" ]; then
-    sshc
+if [[ -z "$TMUX" && "$SSH_CONNECTION" != "" ]]; then initbash;
 elif [ ! -z "$WORK_DIR" ]; then
     cd "$(wslpath -a "${WORK_DIR}")"
 fi

@@ -2,6 +2,7 @@ shell:
    program: "bash"
 key_bindings:
   - { key: Space, mods: Control, chars: "\x00" }
+  - { key: Slash, mods: Control, chars: "\x1f" }
   - { key: Return, mods: Alt, chars: "\x1b\x0d"}
   - { key: Return, mods: Control|Alt, action: ToggleFullscreen }
 # Colors (Gruvbox dark)
@@ -9,7 +10,7 @@ colors:
   # Default colors
   primary:
     # hard contrast: background = '#1d2021'
-    background: '#1d2021'
+    background: '#1c1c1c'
     # soft contrast: background = '#32302f'
     foreground: '#ebdbb2'
 
