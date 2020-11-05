@@ -12,6 +12,7 @@ nn <c-q> :x<cr>
 ino <c-q> <esc>:x<cr>
 ino <c-d> <c-r>=expand('%:p:h').'/'<cr>
 no <c-\> :%s/\s\+$//e<cr>
+vn / y/\V<C-R>=escape(@",'/\')<CR><CR>N
 nn <silent><tab> :bnext<cr>
 nn <silent><s-tab> :bprevious<cr>
 vn <silent>al :<c-u>normal 0v$h<CR>
