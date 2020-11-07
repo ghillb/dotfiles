@@ -1,7 +1,9 @@
 let mapleader = " "
 no x "_x
 no X "_X
-no Y y$
+no Y yg_
+no vv V
+no V vg_
 xn <silent> p p:let @+=@0<CR>:let @"=@0<CR>
 xn <silent> P P:let @+=@0<CR>:let @"=@0<CR>
 ino kj <esc>
@@ -71,7 +73,7 @@ nn <leader>tz :Goyo<cr>
 nn <leader>tc :Codi!!<cr>
 nn <leader>ty :Startify<cr>
 nn <leader>r :%s///gc
-nn <leader>v ggVG<cr>
+nn <leader>v ggVG
 nm <leader>s ysiw
 nn <leader>gs :G<cr>
 nn <leader>gd :Gvdiffsplit<cr>
