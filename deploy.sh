@@ -32,7 +32,6 @@ df() {
 nvim() {
   sudo snap install nvim --classic --edge
   if ! command -v ag &> /dev/null; then sudo apt install -y silversearcher-ag; fi
-  python3 -m pip install pynvim;
   mkdir -p ~/.config/nvim; ln -s $dfdir/vimrc ~/.config/nvim/init.vim
   cp $dfdir/assets/coc-settings.json ~/.config/nvim/
 }

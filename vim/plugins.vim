@@ -39,7 +39,7 @@ else
     call minpac#add('hashivim/vim-terraform')
     call minpac#add('justinmk/vim-sneak')
     call minpac#add('ConradIrwin/vim-bracketed-paste')
-    call minpac#add('sirver/ultisnips')
+    if has('python3') | call minpac#add('sirver/ultisnips') | endif
 
     if has('nvim-0.5')
         call minpac#add('neovim/nvim-lspconfig')
