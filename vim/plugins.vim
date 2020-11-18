@@ -25,7 +25,6 @@ else
     call minpac#add('tpope/vim-commentary')
     call minpac#add('machakann/vim-highlightedyank')
     call minpac#add('vimwiki/vimwiki', { 'branch': 'dev' })
-    call minpac#add('unblevable/quick-scope')
     call minpac#add('junegunn/vim-peekaboo')
     call minpac#add('junegunn/goyo.vim')
     call minpac#add('mbbill/undotree')
