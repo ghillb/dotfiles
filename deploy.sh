@@ -26,14 +26,12 @@ df() {
   ln -s $dfdir/inputrc ~/.inputrc
   cp $dfdir/assets/dircolors ~/.dircolors
   # echo ". '$HOME/dotfiles/assets/startup.sh'" >> ~/.profile
-  # mkdir -p ~/.local/share/fonts; ln -s $dfdir/assets/Fira.ttf ~/.local/share/fonts/Fira.ttf
+  sudo apt install -y fonts-firacode
 }
 
 nvim() {
   sudo snap install nvim --classic --edge
-  if ! command -v ag &> /dev/null; then sudo apt install -y silversearcher-ag; fi
   mkdir -p ~/.config/nvim; ln -s $dfdir/vimrc ~/.config/nvim/init.vim
-  cp $dfdir/assets/coc-settings.json ~/.config/nvim/
 }
 
 tmux() {
@@ -42,6 +40,7 @@ tmux() {
 }
 
 fzf() {
+  if ! command -v ag &> /dev/null; then sudo apt install -y silversearcher-ag; fi
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf; ~/.fzf/install
 }
 
