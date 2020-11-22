@@ -1,0 +1,23 @@
+#!/usr/bin/env bash    
+
+if [[ ! -d ~/.bash_completion.d  ]]; then
+    mkdir ~/.bash_completion.d
+    curl https://raw.githubusercontent.com/cykerway/complete-alias/master/complete_alias \
+        > ~/.bash_completion.d/complete_alias
+fi
+
+source ~/.bash_completion.d/complete_alias
+
+if command -v minikube &>/dev/null; then
+    eval "$(minikube completion bash)"
+fi
+
+if command -v kubectl &>/dev/null; then
+    eval "$(kubectl completion bash)"
+    complete -F __start_kubectl k
+fi
+
+if command -v docker &>/dev/null; then
+    complete -F _complete_alias d
+fi
+

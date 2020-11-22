@@ -2,7 +2,7 @@
 dfdir=$HOME/.files
 git clone https://github.com/ghillb/dotfiles.git $dfdir
 
-declare -a configs=( "os_up" "df" "nvim" "tmux" "fzf" "spectrwm" "alacritty" "termite" )
+declare -a configs=( "os_up" "df" "completion" "nvim" "tmux" "fzf" "spectrwm" "alacritty" "termite" )
 declare -A deploy
 for c in "${configs[@]}"; do echo "add [$c] config? (y / → n)"; read -s ans; deploy[$c]=$ans; done
 
@@ -15,6 +15,7 @@ execute() {
   if [[ ${deploy["alacritty"]} == "y" ]]; then alacritty; fi
   if [[ ${deploy["termite"]} == "y" ]]; then termite; fi
   if [[ ${deploy["df"]} == "y" ]]; then df; fi
+  if [[ ${deploy["completion"]} == "y" ]]; then completion; fi
 }
 
 os_up() {
@@ -27,6 +28,10 @@ df() {
   cp $dfdir/assets/dircolors ~/.dircolors
   # echo ". '$HOME/dotfiles/assets/startup.sh'" >> ~/.profile
   sudo apt install -y fonts-firacode
+}
+
+completion() {
+  echo -e "# additional completions\n. '$dfdir/assets/completion.sh'" >> ~/.bashrc
 }
 
 nvim() {
