@@ -2,7 +2,7 @@
 
 if [[ ! -d ~/.bash_completion.d  ]]; then
     mkdir ~/.bash_completion.d
-    curl https://raw.githubusercontent.com/cykerway/complete-alias/master/complete_alias \
+    curl https://raw.githubusercontent.com/ghillb/complete-alias/master/complete_alias \
         > ~/.bash_completion.d/complete_alias
 fi
 
