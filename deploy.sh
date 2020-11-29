@@ -1,5 +1,6 @@
 #!/bin/bash
 dfdir=$HOME/.files
+if ! command -v git &> /dev/null; then sudo apt install -y git; fi
 git clone https://github.com/ghillb/dotfiles.git $dfdir
 
 declare -a configs=( "os_up" "df" "completion" "nvim" "tmux" "fzf" "spectrwm" "alacritty" "termite" )
@@ -27,7 +28,7 @@ df() {
   ln -s $dfdir/inputrc ~/.inputrc
   cp $dfdir/assets/dircolors ~/.dircolors
   # echo ". '$HOME/dotfiles/assets/startup.sh'" >> ~/.profile
-  sudo apt install -y fonts-firacode
+  sudo apt install -y fonts-firacode ttf-ancient-fonts
 }
 
 completion() {
