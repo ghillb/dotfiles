@@ -44,7 +44,7 @@ else
         call minpac#add('neovim/nvim-lspconfig')
         call minpac#add('nvim-lua/completion-nvim')
         call minpac#add('nvim-lua/diagnostic-nvim')
-        call minpac#add('nvim-treesitter/nvim-treesitter')
+        " call minpac#add('nvim-treesitter/nvim-treesitter')
     endif
 
     command! PackUpdate source $MYVIMRC | call minpac#update()
