@@ -3,7 +3,7 @@ dfdir=$HOME/.files
 if ! command -v git &> /dev/null; then sudo apt install -y git; fi
 git clone https://github.com/ghillb/dotfiles.git $dfdir
 
-declare -a configs=( "os_up" "df" "completion" "nvim" "tmux" "fzf" "spectrwm" "alacritty" "termite" )
+declare -a configs=( "os_up" "df" "completion" "nvim" "tmux" "fzf" "spectrwm" "alacritty" "kitty" )
 declare -A deploy
 for c in "${configs[@]}"; do echo "add [$c] config? (y / → n)"; read -s ans; deploy[$c]=$ans; done
 
@@ -14,7 +14,7 @@ execute() {
   if [[ ${deploy["fzf"]} == "y" ]]; then fzf; fi
   if [[ ${deploy["spectrwm"]} == "y" ]]; then spectrwm; fi
   if [[ ${deploy["alacritty"]} == "y" ]]; then alacritty; fi
-  if [[ ${deploy["termite"]} == "y" ]]; then termite; fi
+  if [[ ${deploy["kitty"]} == "y" ]]; then kitty; fi
   if [[ ${deploy["df"]} == "y" ]]; then df; fi
   if [[ ${deploy["completion"]} == "y" ]]; then completion; fi
 }
@@ -58,8 +58,8 @@ alacritty() {
   mkdir -p ~/.config/alacritty; ln -s $dfdir/alacritty.yml ~/.config/alacritty/alacritty.yml
 }
 
-termite() {
-  mkdir -p ~/.config/termite; ln -s $dfdir/termite.conf ~/.config/termite/config
+kitty() {
+  mkdir -p ~/.config/kitty; ln -s $dfdir/kitty.conf ~/.config/kitty/kitty.conf
 }
 
 execute
