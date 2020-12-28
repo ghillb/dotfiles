@@ -3,6 +3,7 @@ xkb_symbols "basic" {
 
     name[Group1]= "English (US)";
     key <ESC>  {    [   Escape, grave, asciitilde                       ]   };
+    key <INS>  {    [   Insert, Insert, Caps_Lock                       ]   };
     key <TAB>  {    [   Tab, ISO_Left_Tab, Menu                         ]   };
     key <TLDE> {    [   grave, asciitilde                               ]   };
     key <AE01> {    [   1, exclam, F1                                   ]   };
@@ -27,7 +28,7 @@ xkb_symbols "basic" {
     key <AD07> {    [   u, U, Prior                                     ]   };
     key <AD08> {    [   i, I, Next                                      ]   };
     key <AD09> {    [   o, O, End                                       ]   };
-    key <AD10> {    [   p, P                                            ]   };
+    key <AD10> {    [   p, P, Print                                     ]   };
     key <AD11> {    [   bracketleft,  braceleft, XF86AudioLowerVolume   ]   };
     key <AD12> {    [   bracketright, braceright, XF86AudioRaiseVolume  ]   };
 

@@ -24,14 +24,12 @@ os_up() {
 }
 
 df() {
-  echo -e "# my dotfile additions\n. '$dfdir/bashrc'" >> ~/.bashrc
-  ln -s $dfdir/inputrc ~/.inputrc
-  cp $dfdir/assets/dircolors ~/.dircolors
   sudo apt install -y fonts-firacode ttf-ancient-fonts
-  ln -s $dfdir/assets/Xmodmap ~/.Xmodmap
+  echo -e "# my dotfile additions\n. '$dfdir/bashrc'\n" >> ~/.bashrc
+  cp $dfdir/assets/dircolors ~/.dircolors
+  ln -s $dfdir/inputrc ~/.inputrc
   ln -s $dfdir/assets/us_keys_caps_mod /usr/share/X11/xkb/symbols/us_keys_caps_mod
-  echo "setxkbmap -layout us_keys_caps_mod" >> ~/.profile
-  echo "xmodmap ~/.Xmodmap" >> ~/.profile
+  echo "setxkbmap -layout us_keys_caps_mod -option lv3:caps_switch" >> ~/.profile
   # echo ". '$dfdir/assets/startup.sh'" >> ~/.profile
 }
 
