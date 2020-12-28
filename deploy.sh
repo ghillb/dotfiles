@@ -27,8 +27,12 @@ df() {
   echo -e "# my dotfile additions\n. '$dfdir/bashrc'" >> ~/.bashrc
   ln -s $dfdir/inputrc ~/.inputrc
   cp $dfdir/assets/dircolors ~/.dircolors
-  # echo ". '$HOME/dotfiles/assets/startup.sh'" >> ~/.profile
   sudo apt install -y fonts-firacode ttf-ancient-fonts
+  ln -s $dfdir/assets/Xmodmap ~/.Xmodmap
+  ln -s $dfdir/assets/us_keys_caps_mod /usr/share/X11/xkb/symbols/us_keys_caps_mod
+  echo "setxkbmap -layout us_keys_caps_mod" >> ~/.profile
+  echo "xmodmap ~/.Xmodmap" >> ~/.profile
+  # echo ". '$dfdir/assets/startup.sh'" >> ~/.profile
 }
 
 completion() {
