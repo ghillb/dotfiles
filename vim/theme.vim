@@ -22,3 +22,5 @@ let g:lightline = {
         \ },
       \ }
 
+hi Normal guibg=NONE ctermbg=NONE
+

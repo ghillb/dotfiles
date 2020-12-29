@@ -32,4 +32,5 @@ alias ld='lazydocker'
 alias py='python3'
 alias jn='jupyter notebook'
 alias hist='history|grep'
+alias setwp='feh --bg-scale'
 

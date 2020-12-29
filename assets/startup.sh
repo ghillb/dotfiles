@@ -1,5 +1,5 @@
 #!/bin/sh
 
-# grey background color
 xsetroot -solid "#282828"
+picom -b
 
