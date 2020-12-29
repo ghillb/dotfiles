@@ -3,7 +3,7 @@ dfdir=$HOME/.files
 if ! command -v git &> /dev/null; then sudo apt install -y git; fi
 git clone https://github.com/ghillb/dotfiles.git $dfdir
 
-declare -a configs=( "os_up" "df" "completion" "nvim" "tmux" "fzf" "spectrwm" "alacritty" "kitty" )
+declare -a configs=( "os_up" "df" "completion" "nvim" "tmux" "fzf" "desktop" "alacritty" "kitty" )
 declare -A deploy
 for c in "${configs[@]}"; do echo "add [$c] config? (y / → n)"; read -s ans; deploy[$c]=$ans; done
 
@@ -12,7 +12,7 @@ execute() {
   if [[ ${deploy["nvim"]} == "y" ]]; then nvim; fi
   if [[ ${deploy["tmux"]} == "y" ]]; then tmux; fi
   if [[ ${deploy["fzf"]} == "y" ]]; then fzf; fi
-  if [[ ${deploy["spectrwm"]} == "y" ]]; then spectrwm; fi
+  if [[ ${deploy["desktop"]} == "y" ]]; then desktop; fi
   if [[ ${deploy["alacritty"]} == "y" ]]; then alacritty; fi
   if [[ ${deploy["kitty"]} == "y" ]]; then kitty; fi
   if [[ ${deploy["df"]} == "y" ]]; then df; fi
@@ -24,13 +24,9 @@ os_up() {
 }
 
 df() {
-  sudo apt install -y fonts-firacode ttf-ancient-fonts
   echo -e "# my dotfile additions\n. '$dfdir/bashrc'\n" >> ~/.bashrc
   cp $dfdir/assets/dircolors ~/.dircolors
   ln -s $dfdir/inputrc ~/.inputrc
-  ln -s $dfdir/assets/us_keys_caps_mod /usr/share/X11/xkb/symbols/us_keys_caps_mod
-  echo "setxkbmap -layout us_keys_caps_mod -option lv3:caps_switch" >> ~/.profile
-  # echo ". '$dfdir/assets/startup.sh'" >> ~/.profile
 }
 
 completion() {
@@ -52,8 +48,11 @@ fzf() {
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf; ~/.fzf/install
 }
 
-spectrwm() {
+desktop() {
+  sudo apt install -y spectrwm fonts-firacode ttf-ancient-fonts
   ln -s $dfdir/spectrwm.conf ~/.spectrwm.conf
+  ln -s $dfdir/assets/us_keys_caps_mod /usr/share/X11/xkb/symbols/us_keys_caps_mod
+  echo ". '$dfdir/assets/startup.sh'" >> ~/.profile
 }
 
 alacritty() {
