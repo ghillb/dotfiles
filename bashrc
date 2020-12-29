@@ -75,6 +75,7 @@ vdiff () {
 # scripted behavior
 include ~/.files/assets/aliases
 include ~/scripts/bash/ssh_connector.sh
+include ~/scripts/bash/utils.sh
 
 if [[ -z "$TMUX" && "$SSH_CONNECTION" != "" ]]; then initbash;
 elif [ ! -z "$WORK_DIR" ]; then
