@@ -49,7 +49,7 @@ fzf() {
 }
 
 desktop() {
-  sudo apt install -y spectrwm fonts-firacode ttf-ancient-fonts
+  sudo apt install -y spectrwm fonts-firacode ttf-ancient-fonts picom feh
   ln -s $dfdir/spectrwm.conf ~/.spectrwm.conf
   ln -s $dfdir/assets/us_keys_caps_mod /usr/share/X11/xkb/symbols/us_keys_caps_mod
   echo ". '$dfdir/assets/startup.sh'" >> ~/.profile
