@@ -2,7 +2,7 @@ syntax on
 set encoding=utf-8
 set fileencoding=utf-8
 set clipboard+=unnamedplus
-set mouse=r
+set mouse=n
 set backspace=indent,eol,start
 set whichwrap+=<,>,h,l,[,]
 set noautochdir
