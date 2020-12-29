@@ -1,25 +1,21 @@
 #!/bin/bash
 # baraction.sh for spectrwm status bar
 
-## DATE
 dte() {
-  dte="$(date +"%A, %B %d %Y %H:%M")"
+  dte="$(date +"%d-%m-%Y, %H:%M")"
   echo -e "$dte"
 }
 
-## DISK
 hdd() {
-  hdd="$(df -h | awk 'NR==4{print $3, $5}')"
+  hdd="$(df -h | awk 'NR==3{print $5}')"
   echo -e "HDD: $hdd"
 }
 
-## RAM
 mem() {
-  mem=`free | awk '/Mem/ {printf "%dM/%dM\n", $3 / 1024.0, $2 / 1024.0 }'`
-  echo -e "$mem"
+  mem=`free | awk '/Mem/ {printf "%.2f%\n", $3/$2*100 }'`
+  echo -e "RAM: $mem"
 }
 
-## CPU
 cpu() {
   read cpu a b c previdle rest < /proc/stat
   prevtotal=$((a+b+c+previdle))
@@ -37,8 +33,8 @@ cpu() {
 # }
 
 SLEEP_SEC=5
-# outputting a line every SLEEP_SEC secs
 while :; do
     echo " $(cpu) | $(mem) | $(hdd) | $(dte)"
 	sleep $SLEEP_SEC
 done
+
