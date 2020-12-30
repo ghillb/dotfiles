@@ -25,8 +25,8 @@ os_up() {
 
 df() {
   echo -e "# my dotfile additions\n. '$dfdir/bashrc'\n" >> ~/.bashrc
-  cp $dfdir/assets/dircolors ~/.dircolors
-  ln -s $dfdir/inputrc ~/.inputrc
+  ln -s $dfdir/assets/dircolors ~/.dircolors
+  ln -s $dfdir/assets/inputrc ~/.inputrc
 }
 
 completion() {
