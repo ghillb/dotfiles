@@ -2,7 +2,7 @@ default  partial alphanumeric_keys modifier_keys
 xkb_symbols "basic" {
 
     name[Group1]= "English (US)";
-    key <ESC>  {    [   Escape, grave, asciitilde                       ]   };
+    key <ESC>  {    [   Escape, asciitilde, grave                       ]   };
     key <INS>  {    [   Insert, Insert, Caps_Lock                       ]   };
     key <TAB>  {    [   Tab, ISO_Left_Tab, Menu                         ]   };
     key <TLDE> {    [   grave, asciitilde                               ]   };
