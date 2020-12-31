@@ -41,7 +41,7 @@ set complete+=kspell
 set shortmess+=c
 set pastetoggle=<F3>
 if !exists('g:vscode')
-    set spelllang=en_us spell
+    set spelllang=en_us nospell
 endif
 if has('unix')
     set shell=/bin/bash
