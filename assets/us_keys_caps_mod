@@ -1,7 +1,6 @@
-default  partial alphanumeric_keys modifier_keys
-xkb_symbols "basic" {
+xkb_symbols {
 
-    name[Group1]= "English (US)";
+    name[Group1]= "English (US) with Caps mod";
     key <ESC>  {    [   Escape, asciitilde, grave                       ]   };
     key <INS>  {    [   Insert, Insert, Caps_Lock                       ]   };
     key <TAB>  {    [   Tab, ISO_Left_Tab, Menu                         ]   };

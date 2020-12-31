@@ -21,3 +21,7 @@ if command -v docker &>/dev/null; then
     complete -F _complete_alias d
 fi
 
+if command -v kitty &>/dev/null; then
+    source <(kitty + complete setup bash)
+fi
+
