@@ -36,7 +36,8 @@ set undofile
 set hidden
 set wildmode=longest:full,full
 set wildignore=*.o,*~,*.pyc,*.pyo,__pycache__,*/venv/*
-set completeopt=menuone,noinsert,noselect
+set completeopt=menuone,noinsert
+set complete+=kspell
 set shortmess+=c
 set pastetoggle=<F3>
 if !exists('g:vscode')
