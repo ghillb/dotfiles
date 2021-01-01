@@ -26,6 +26,7 @@ source $VC/plugc/ultisnips.vim
 
 source $VC/ftpc/bash.vim
 source $VC/ftpc/python.vim
+source $VC/ftpc/julia.vim
 source $VC/ftpc/javascript.vim
 source $VC/ftpc/rust.vim
 source $VC/ftpc/c.vim

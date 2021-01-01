@@ -35,7 +35,8 @@ fun! RunCode()
                             \ 'rust': 'cargo run',
                             \ 'c': 'make',
                             \ 'cpp': 'make',
-                            \ 'go': 'go'
+                            \ 'go': 'go',
+                            \ 'jl': 'julia'
                         \}, current_ft, '')
 
     if run_bin == ''
