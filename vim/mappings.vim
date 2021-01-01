@@ -38,6 +38,10 @@ tno <silent><F12> <c-\><c-n>:FloatermKill<cr>
 no <c-j> <c-e>
 no <c-k> <c-y>
 no <c-y> <c-b>
+" nm <c-h> <c-w>h
+" nm <c-j> <c-w>j
+" nm <c-k> <c-w>k
+" nm <c-l> <c-w>l
 no <up> <nop>
 no <down> <nop>
 no <left> <nop>
