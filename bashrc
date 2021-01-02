@@ -77,7 +77,7 @@ include ~/.files/assets/aliases
 include ~/scripts/bash/ssh_connector.sh
 include ~/scripts/bash/utils.sh
 
-if [[ -z "$TMUX" && "$SSH_CONNECTION" != "" ]]; then initbash;
+if [[ -z "$TMUX" && "$SSH_CONNECTION" != "" || -z "$TMUX" ]]; then initbash;
 elif [ ! -z "$WORK_DIR" ]; then
     cd "$(wslpath -a "${WORK_DIR}")"
 fi
