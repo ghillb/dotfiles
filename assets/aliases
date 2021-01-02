@@ -31,5 +31,6 @@ alias lg='lazygit'
 alias ld='lazydocker'
 alias py='python3'
 alias jn='jupyter notebook'
+alias fu='curl -F"file=@$(find $HOME -type f | fzf)" 0x0.st | xclip -selection c'
 alias hist='history|grep'
 
