@@ -73,6 +73,7 @@ vdiff () {
 }
 
 # scripted behavior
+include /usr/lib/git-core/git-sh-prompt
 include ~/.files/assets/aliases
 include ~/scripts/bash/ssh_connector.sh
 include ~/scripts/bash/utils.sh
