@@ -34,7 +34,7 @@ completion() {
 }
 
 nvim() {
-  sudo snap install nvim --classic --edge
+  if ! command -v nvim &> /dev/null; then sudo apt install -y neovim; fi
   mkdir -p ~/.config/nvim; ln -s $dfdir/vimrc ~/.config/nvim/init.vim
 }
 
