@@ -31,8 +31,8 @@ partial modifier_keys xkb_symbols "caps_layer" {
 
     key <LatY> { Overlay1 = <HOME> };
     key <LatO> { Overlay1 = <END>  };
-    key <LatU> { Overlay1 = <PGUP> };
-    key <LatI> { Overlay1 = <PGDN> };
+    key <LatU> { Overlay1 = <PGDN> };
+    key <LatI> { Overlay1 = <PGUP> };
 
     key <LatA> { Overlay1 = <ESC>  };
     key <LatE> { Overlay1 = <RTRN> };
