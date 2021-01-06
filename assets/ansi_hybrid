@@ -37,6 +37,7 @@ partial modifier_keys xkb_symbols "caps_layer" {
     key <LatA> { Overlay1 = <ESC>  };
     key <LatE> { Overlay1 = <RTRN> };
     key <LatB> { Overlay1 = <BKSP> };
+    key <LatN> { Overlay1 = <INS>  };
     key <LatM> { Overlay1 = <DELE> };
     key <LatP> { Overlay1 = <PRNT> };
 
