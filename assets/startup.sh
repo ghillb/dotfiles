@@ -1,6 +1,6 @@
 #!/bin/sh
 
-setxkbmap -layout us_keys_caps_mod -option lv3:caps_switch
+setxkbmap -layout ansi_hybrid -variant 5layer
 xsetroot -solid "#282828"
 feh --bg-scale ~/.wallpaper
 picom -b
