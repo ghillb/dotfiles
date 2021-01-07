@@ -43,7 +43,6 @@ partial modifier_keys xkb_symbols "caps_layer" {
 
     key <ESC>  { Overlay1 = <TLDE> };
     key <TAB>  { Overlay1 = <MENU> };
-    key <SPCE> { Overlay1 = <RTRN> };
 
     key <AE01> { Overlay1 = <FK01> };
     key <AE02> { Overlay1 = <FK02> };
