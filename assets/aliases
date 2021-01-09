@@ -21,7 +21,6 @@ alias c='cat'
 alias icat="kitty +kitten icat"
 alias n='nnn'
 alias tree='tree --du -h'
-alias b="zathura \"\$(find $BD ! -name '*.jpg' ! -name '*.opf' | fzf)\""
 alias z='zathura'
 alias gl='git log --all --graph --oneline'
 alias gls='git log --all --graph --oneline --stat'
