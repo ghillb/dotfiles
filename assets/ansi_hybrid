@@ -57,6 +57,13 @@ partial modifier_keys xkb_symbols "caps_layer" {
     key <AE11> { Overlay1 = <FK11> };
     key <AE12> { Overlay1 = <FK12> };
 
+    key <AB08> { Overlay1 = <I173> };
+    key <AB09> { Overlay1 = <I171> };
+    key <AB10> { Overlay1 = <I172> };
+    key <AC12> { Overlay1 = <MUTE> };
+    key <AD11> { Overlay1 = <VOL-> };
+    key <AD12> { Overlay1 = <VOL+> };
+
 };
 
 partial modifier_keys xkb_symbols "ralt_layers" {
