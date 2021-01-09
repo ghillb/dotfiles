@@ -34,7 +34,7 @@ include () {
 }
 
 initbash() {
-    if ping -q -w 1 -c 1 1.1.1.1 > /dev/null; then git -C $HOME/.files/ pull; cd; fi; tx
+    if ping -q -w 1 -c 1 1.1.1.1 > /dev/null; then git -C $HOME/.files/ pull; fi; tx
 }
 
 notes() {
@@ -78,9 +78,10 @@ include ~/.files/assets/aliases
 include ~/scripts/bash/ssh_connector.sh
 include ~/scripts/bash/utils.sh
 
-if [[ -z "$TMUX" && "$SSH_CONNECTION" != "" ]]; then initbash;
-elif [ ! -z "$WORK_DIR" ]; then
-    cd "$(wslpath -a "${WORK_DIR}")"
+if [[ -z "$TMUX" && "$SSH_CONNECTION" != "" ]] || [[ -z "$TMUX" ]] && [[ -z $TERMINAL_EMULATOR ]];
+  then initbash;
+elif [ ! -z "$WORK_DIR" ];
+  then cd "$(wslpath -a "${WORK_DIR}")"
 fi
 
 # key binds

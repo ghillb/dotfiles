@@ -18,6 +18,7 @@ alias d='docker'
 alias dc='docker-compose'
 alias dstop='docker stop $(docker ps -a -q)'
 alias c='cat'
+alias icat="kitty +kitten icat"
 alias n='nnn'
 alias tree='tree --du -h'
 alias z='zathura'
