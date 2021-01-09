@@ -78,11 +78,8 @@ include ~/.files/assets/aliases
 include ~/scripts/bash/ssh_connector.sh
 include ~/scripts/bash/utils.sh
 
-if [[ -z "$TMUX" && "$SSH_CONNECTION" != "" ]] || [[ -z "$TMUX" ]] && [[ -z $TERMINAL_EMULATOR ]];
-  then initbash;
-elif [ ! -z "$WORK_DIR" ];
-  then cd "$(wslpath -a "${WORK_DIR}")"
-fi
+if [[ -z "$TMUX" && "$SSH_CONNECTION" != "" ]]; then initbash;
+elif [ ! -z "$WORK_DIR" ]; then cd "$(wslpath -a "${WORK_DIR}")"; fi
 
 # key binds
 bind -x '"\C-b": "cd .."'
