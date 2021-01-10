@@ -2,4 +2,12 @@ set guioptions none
 set font "FiraCode Retina 14"
 set default-bg "#1d2021"
 set inputbar-fg "#ebdbb2"
+set notification-bg "#ebdbb2"
+
+set adjust-open "best-fit"
+set selection-clipboard clipboard
+
+map = zoom in
+map - zoom out
+map 0 zoom 0
 
