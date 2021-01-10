@@ -1,6 +1,6 @@
 set guioptions none
 set font "FiraCode Retina 14"
-set default-bg rgba(29,32,33,0.9)
+set default-bg rgba(28,28,28,0.9)
 set inputbar-fg "#ebdbb2"
 set notification-bg "#ebdbb2"
 
