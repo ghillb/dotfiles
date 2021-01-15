@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=NVim Text Editor
+Comment=Edit text files
+Exec=kitty -e nvim %U
+Terminal=false
+Type=Application
+Icon=terminal
+Categories=Utility;TextEditor;
+StartupNotify=true
+MimeType=text/plain;
+

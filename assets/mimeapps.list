@@ -1,0 +1,11 @@
+[Default Applications]
+application/pdf=org.pwmt.zathura.desktop
+application/x-pdf=zathura.desktop
+application/fdf=zathura.desktop
+application/xdp=zathura.desktop
+application/xfdf=zathura.desktop
+application/pdx=zathura.desktop
+application/xml=drawio.desktop
+text/plain=nvim-terminal.desktop
+text/markdown=nvim-terminal.desktop
+
