@@ -6,6 +6,9 @@ application/xdp=zathura.desktop
 application/xfdf=zathura.desktop
 application/pdx=zathura.desktop
 application/xml=drawio.desktop
+application/x-shellscript=nvim-terminal.desktop
+application/x-yaml=nvim-terminal.desktop
 text/plain=nvim-terminal.desktop
 text/markdown=nvim-terminal.desktop
+inode/directory=nnn-terminal.desktop
 
