@@ -26,6 +26,11 @@ cpu() {
   echo -e "CPU: $cpu%"
 }
 
+bat() {
+  bat="$(cat /sys/class/power_supply/BAT0/capacity)"
+  echo -e "ACC: $bat%"
+}
+
 ## VOLUME only working on systems with amixer, add to loop < +@fg=4; +@fn=1;🔈+@fn=0; $(vol) +@fg=0; |">
 # vol() {
 #     vol=`amixer get Master | awk -F'[][]' 'END{ print $4":"$2 }'`
@@ -34,7 +39,7 @@ cpu() {
 
 SLEEP_SEC=5
 while :; do
-    echo " $(cpu) | $(mem) | $(hdd) | $(dte)"
+  echo " $(cpu) | $(mem) | $(hdd) | $(bat) | $(dte)"
 	sleep $SLEEP_SEC
 done
 
