@@ -1,4 +1,4 @@
 #!/bin/bash
 # invokes nnn in login shell
-kitty bash -ic "nnn -eC $1"
+kitty bash -ic "nnn -eC -P p $1"
 
