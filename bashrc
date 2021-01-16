@@ -14,6 +14,7 @@ export FZF_DEFAULT_OPTS='
 '
 export NNN_PLUG='o:fzopen;p:preview-tui'
 export NNN_FIFO='/tmp/nnn.fifo'
+export NNN_FCOLORS='c1e21f70006048f7c6d6abc4' 
 
 cdls() {
     cd "$@" && ls;
