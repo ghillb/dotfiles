@@ -51,7 +51,7 @@ fzf() {
 desktop() {
   sudo apt install -y spectrwm fonts-firacode ttf-ancient-fonts picom feh
   ln -s $dfdir/spectrwm.conf ~/.spectrwm.conf
-  sudo ln -s $dfdir/invnnn /usr/bin/invnnn
+  sudo ln -s $dfdir/invnnn /usr/local/bin/invnnn
   sudo ln -s $dfdir/assets/ansi_hybrid /usr/share/X11/xkb/symbols/ansi_hybrid
   sudo ln -s $dfdir/assets/nvim-terminal.desktop /usr/share/applications/nvim-terminal.desktop
   sudo ln -s $dfdir/assets/nnn-terminal.desktop /usr/share/applications/nnn-terminal.desktop
