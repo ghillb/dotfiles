@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=nnn File Explorer
 Comment=Browse files
-Exec=kitty -e nnn -eC %U
+Exec=invnnn %U
 Terminal=false
 Type=Application
 Icon=terminal
