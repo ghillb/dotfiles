@@ -11,5 +11,6 @@ application/x-yaml=nvim-terminal.desktop
 application/x-desktop=nvim-terminal.desktop
 text/plain=nvim-terminal.desktop
 text/markdown=nvim-terminal.desktop
+text/x-csrc=nvim-terminal.desktop
 inode/directory=nnn-terminal.desktop
 
