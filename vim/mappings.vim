@@ -93,6 +93,7 @@ nn <silent><leader>e :Fern . -drawer -toggle -reveal=%<cr>
 nn <silent><leader>tt :Ttoggle<cr><c-w>wa
 tno <silent><leader>tt <c-\><c-n>:Ttoggle<cr>
 nn <silent><leader>` :T cd %:p:h <cr>:Tclear<cr><c-w>wa
+nn <silent><leader><esc> :T cd %:p:h <cr>:Tclear<cr><c-w>wa
 nn <leader><cr> :TREPLSendLine<cr>j
 vn <leader><cr> :TREPLSendSelection<cr>
 no <silent><c-_> :Commentary<cr>j
