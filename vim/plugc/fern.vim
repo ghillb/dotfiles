@@ -7,9 +7,10 @@ fun! s:init_fern() abort
     nmap <buffer> n <Plug>(fern-action-new-path)
     nmap <buffer> f <Plug>(fern-action-new-file)
     nmap <buffer> d <Plug>(fern-action-new-dir)
-    nmap <buffer> s <Plug>(fern-action-hidden-toggle)
+    nmap <buffer> . <Plug>(fern-action-hidden-toggle)
     nmap <buffer> x <Plug>(fern-action-remove)
     nmap <buffer> <space> <Plug>(fern-action-mark)
+    nmap <silent><buffer> <CR> <Plug>(fern-action-open)<ESC>:FernDo close<CR>
 endfun
 
 aug fern-custom
