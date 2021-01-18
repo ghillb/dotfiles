@@ -33,6 +33,7 @@ alias gd='git diff'
 alias gf='git fetch'
 alias gps='git push'
 alias gpl='git pull'
+alias sadd="eval $(ssh-agent) ssh-add"
 alias lg='lazygit'
 alias ld='lazydocker'
 alias py='python3'
