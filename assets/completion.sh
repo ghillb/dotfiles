@@ -17,11 +17,15 @@ if command -v kubectl &>/dev/null; then
     complete -F __start_kubectl k
 fi
 
+if command -v kitty &>/dev/null; then
+    source <(kitty + complete setup bash)
+fi
+
 if command -v docker &>/dev/null; then
     complete -F _complete_alias d
 fi
 
-if command -v kitty &>/dev/null; then
-    source <(kitty + complete setup bash)
+if command -v docker-compose &>/dev/null; then
+    complete -F _complete_alias dc
 fi
 
