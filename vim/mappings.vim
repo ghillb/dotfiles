@@ -33,8 +33,6 @@ ino <a-down> <esc>:m .+1<cr>==gi
 ino <a-up> <esc>:m .-2<cr>==gi
 nn <a-cr> :w<cr>:call RunCode()<cr>
 ino <a-cr> <esc>:w<cr>:call RunCode()<cr>
-nn <silent><F12> :FloatermNew<cr>
-tno <silent><F12> <c-\><c-n>:FloatermKill<cr>
 no <c-j> <c-e>
 no <c-k> <c-y>
 no <c-y> <c-b>
@@ -90,10 +88,12 @@ nn <leader>ga :G add -p<cr>
 nn <leader>gm :Gblame<cr>
 nn <leader>u :UndotreeToggle<cr>
 nn <silent><leader>e :Fern . -drawer -toggle -reveal=%<cr>
-nn <silent><leader>tt :Ttoggle<cr><c-w>wa
-tno <silent><leader>tt <c-\><c-n>:Ttoggle<cr>
-nn <silent><leader>` :T cd %:p:h <cr>:Tclear<cr><c-w>wa
-nn <silent><leader><esc> :T cd %:p:h <cr>:Tclear<cr><c-w>wa
+nn <silent><leader>` :Ttoggle<cr><c-w>wa
+nn <silent><leader><esc> :Ttoggle<cr><c-w>wa
+tno <silent><leader>` <c-\><c-n>:Ttoggle<cr>
+tno <silent><leader><esc> <c-\><c-n>:Ttoggle<cr>
+nn <silent><leader>tt :FloatermNew --title=T<cr>
+tno <silent><leader>tt <c-\><c-n>:FloatermKill<cr>
 nn <leader><cr> :TREPLSendLine<cr>j
 vn <leader><cr> :TREPLSendSelection<cr>
 no <silent><c-_> :Commentary<cr>j
