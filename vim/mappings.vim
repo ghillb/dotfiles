@@ -40,6 +40,10 @@ no <c-y> <c-b>
 " nm <c-j> <c-w>j
 " nm <c-k> <c-w>k
 " nm <c-l> <c-w>l
+map - <c-w>-
+map = <c-w>+
+im <c-w> <c-o><c-w>
+tno <c-w> <c-\><c-n><c-w>
 no <up> <nop>
 no <down> <nop>
 no <left> <nop>
