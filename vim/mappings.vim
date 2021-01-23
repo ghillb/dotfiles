@@ -36,10 +36,10 @@ ino <a-cr> <esc>:w<cr>:call RunCode()<cr>
 no <c-j> <c-e>
 no <c-k> <c-y>
 no <c-y> <c-b>
-" nm <c-h> <c-w>h
-" nm <c-j> <c-w>j
-" nm <c-k> <c-w>k
-" nm <c-l> <c-w>l
+nn <silent> <a-h> :call TmuxMove('h')<cr>
+nn <silent> <a-j> :call TmuxMove('j')<cr>
+nn <silent> <a-k> :call TmuxMove('k')<cr>
+nn <silent> <a-l> :call TmuxMove('l')<cr>
 map - <c-w>-
 map = <c-w>+
 im <c-w> <c-o><c-w>
