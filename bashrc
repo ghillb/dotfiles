@@ -98,7 +98,7 @@ bind -x '"\C-o": "navi"'
 bind -x '"\C-l": clear'
 bind -x '"\C-y": fg'
 bind -x '"\e[21~": "htop"' #F10
-bind '"\C-g": "git add . && git commit -m \"\""'
+bind '"\C-g": "git commit -am \"\""'
 bind '"\t":menu-complete'
 bind "set show-all-if-ambiguous on"
 bind "set completion-ignore-case on"
