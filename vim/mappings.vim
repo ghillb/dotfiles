@@ -56,7 +56,7 @@ nn <silent>\| :Lines<cr>
 nn <silent><c-c> :Commands<cr>
 nn <leader><bs> :FzfSwitchProject<cr>
 nn K i<cr><esc>
-nn <leader><leader> i<space><right><esc>
+nn <leader><leader> a<space><right><esc>
 no <leader>p o<esc>p
 no <leader>P O<esc>p
 no <leader>x x
@@ -96,6 +96,7 @@ nn <silent><leader>` :Ttoggle<cr><c-w>wa
 nn <silent><leader><esc> :Ttoggle<cr><c-w>wa
 tno <silent><leader>` <c-\><c-n>:Ttoggle<cr>
 tno <silent><leader><esc> <c-\><c-n>:Ttoggle<cr>
+tno <silent><a-esc> <esc>
 nn <silent><leader>tt :FloatermNew --title=T<cr>
 tno <silent><leader>tt <c-\><c-n>:FloatermKill<cr>
 nn <leader><cr> :TREPLSendLine<cr>j
