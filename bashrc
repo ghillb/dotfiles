@@ -107,5 +107,5 @@ bind "set menu-complete-display-prefix on"
 # modified prompt
 PS1=$'${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] : \
 \[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " : \[\033[01;31m\]%s")\
-\[\033[00m\]\n\xe2\xae\x9e '
+\[\033[38;5;207m\]\n\xe2\xae\x9e\[\033[00m\] '
 
