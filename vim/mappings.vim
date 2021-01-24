@@ -1,4 +1,6 @@
 let mapleader = " "
+let localleader = "\\"
+nn K i<cr><esc>
 no x "_x
 no X "_X
 no Y yg_
@@ -14,7 +16,6 @@ nn <c-q> :x<cr>
 ino <c-q> <esc>:x<cr>
 ino <c-d> <c-r>=expand('%:p:h').'/'<cr>
 no <c-\> :%s/\s\+$//e<cr>
-vn / y/\V<C-R>=escape(@",'/\')<CR><CR>N
 nn <silent><tab> :bnext<cr>
 nn <silent><s-tab> :bprevious<cr>
 vn <silent>al :<c-u>normal 0v$h<CR>
@@ -43,11 +44,12 @@ nn <silent> <a-l> :call TmuxMove('l')<cr>
 map - <c-w>-
 map = <c-w>+
 im <c-w> <c-o><c-w>
-tno <c-w> <c-\><c-n><c-w>
 no <up> <nop>
 no <down> <nop>
 no <left> <nop>
 no <right> <nop>
+no <silent><c-_> :Commentary<cr>j
+ino <silent><c-_> <esc>:Commentary<cr>ja
 nn <silent><c-p> :Ag<cr>
 nn <silent><c-e> :call FzfOmniFiles()<cr>
 nn <silent><c-a-e> :Files<cr>
@@ -56,7 +58,7 @@ nn <silent>\ :BLines<cr>
 nn <silent>\| :Lines<cr>
 nn <silent><c-c> :Commands<cr>
 nn <leader><bs> :FzfSwitchProject<cr>
-nn K i<cr><esc>
+vn / y/\V<C-R>=escape(@",'/\')<CR><CR>N
 nn <leader><leader> a<space><right><esc>
 no <leader>p o<esc>p
 no <leader>P O<esc>p
@@ -66,6 +68,7 @@ no <leader>D "_D
 no <leader>C "_C
 nn <leader>o o<esc>
 nn <leader>O O<esc>
+nn <leader>/ viwy/\V<C-R>=escape(@",'/\')<CR><CR>N
 nn <leader>,, :e $MYVIMRC<cr>
 nn <leader>,. :so $MYVIMRC<cr>
 nn <leader>bn :bnext<cr>
@@ -76,6 +79,7 @@ nn <leader>bl :buffers<cr>
 nn <leader>bo :w<bar>%bd<bar>e#<bar>bd#<cr>
 nn <leader>to :tabo<cr>
 nn <silent><leader>tg :set rnu! \| :set nu! \| :GitGutterToggle<cr>
+nn <silent><leader>tt :FloatermNew --title=T<cr>
 nn <silent><leader>tz :Goyo<cr>
 nn <leader>tc :Codi!!<cr>
 nn <leader>ty :Startify<cr>
@@ -91,21 +95,19 @@ nn <leader>gps :G push<cr>
 nn <leader>gb :MerginalToggle<cr>
 nn <leader>ga :G add -p<cr>
 nn <leader>gm :Gblame<cr>
+no<leader>id i<c-r>=expand('%:p:h').'/'<cr><esc>
+no <leader>itd "=strftime("%Y-%m-%d")<cr>P
+no <leader>itt "=strftime("%H:%M:%S")<cr>P
+no <leader>itm "=strftime("%Y-%m-%d \/ %H:%M:%S")<cr>P
 nn <leader>u :UndotreeToggle<cr>
 nn <silent><leader>e :Fern . -drawer -toggle -reveal=%<cr>
-nn <silent><leader>` :Ttoggle<cr><c-w>wa
-nn <silent><leader><esc> :Ttoggle<cr><c-w>wa
-tno <silent><leader>` <c-\><c-n>:Ttoggle<cr>
-tno <silent><leader><esc> <c-\><c-n>:Ttoggle<cr>
-tno <silent><a-esc> <esc>
-nn <silent><leader>tt :FloatermNew --title=T<cr>
-tno <silent><leader>tt <c-\><c-n>:FloatermKill<cr>
 nn <leader><cr> :TREPLSendLine<cr>j
 vn <leader><cr> :TREPLSendSelection<cr>
-no <silent><c-_> :Commentary<cr>j
-ino <silent><c-_> <esc>:Commentary<cr>ja
 nn <silent><leader> :WhichKey '<space>'<cr>
-no <leader>tsd "=strftime("%Y-%m-%d")<cr>P
-no <leader>tst "=strftime("%H:%M:%S")<cr>P
-no <leader>tsm "=strftime("%Y-%m-%d \/ %H:%M:%S")<cr>P
+nn <silent><a-esc> :Ttoggle<cr><c-w>wa
+tno <silent><a-esc> <c-\><c-n>:Ttoggle<cr>
+tno <c-w> <c-\><c-n><c-w>
+tno <esc> <c-\><c-n>
+tno <localleader><esc> <esc>
+tno <localleader>v <esc>v
 
