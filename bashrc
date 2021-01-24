@@ -104,10 +104,15 @@ bind "set show-all-if-ambiguous on"
 bind "set completion-ignore-case on"
 bind "set menu-complete-display-prefix on"
 
-# modified prompt
+# prompt modifications
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+  prompt_color=207
+else
+  prompt_color=202
+fi
+
 PS1=$'${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] : \
 \[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " : \[\033[01;31m\]%s")\
-\[\033[38;5;202m\]\n\xe2\xae\x9e\[\033[00m\] '
-# \[\033[38;5;207m\]\n\xe2\xae\x9e\[\033[00m\] '
+\[\033[38;5;${prompt_color}m\]\n\xe2\xae\x9e\[\033[00m\] '
 # \[\033[95m\]\n\xe2\xae\x9e\[\033[00m\] '
 
