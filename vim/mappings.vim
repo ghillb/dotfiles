@@ -50,6 +50,7 @@ no <left> <nop>
 no <right> <nop>
 nn <silent><c-p> :Ag<cr>
 nn <silent><c-e> :call FzfOmniFiles()<cr>
+nn <silent><c-a-e> :Files<cr>
 nn <silent><c-b> :Buffers<cr>
 nn <silent>\ :BLines<cr>
 nn <silent>\| :Lines<cr>

@@ -19,7 +19,7 @@ endfun
 
 fun! FzfOmniFiles()
     let is_git = system('git status')
-    if v:shell_error
+    if v:shell_error || system('git submodule status') != ""
         :Files
     else
         :GitFiles --exclude-standard
