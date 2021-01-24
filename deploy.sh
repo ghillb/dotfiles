@@ -51,6 +51,8 @@ fzf() {
 desktop() {
   sudo apt install -y spectrwm fonts-firacode ttf-ancient-fonts picom feh
   ln -s $dfdir/spectrwm.conf ~/.spectrwm.conf
+  ln -s $dfdir/rofi.conf ~/.config/rofi/config
+  sudo ln -s $dfdir/assets/xopener /usr/local/bin/xopener
   sudo ln -s $dfdir/assets/executer /usr/local/bin/executer
   sudo ln -s $dfdir/invnnn /usr/local/bin/invnnn
   sudo ln -s $dfdir/assets/dopen /usr/local/bin/dopen
