@@ -14,7 +14,6 @@ no <c-s> :w<cr>
 ino <c-s> <esc>:w<cr>
 nn <c-q> :x<cr>
 ino <c-q> <esc>:x<cr>
-ino <c-d> <c-r>=expand('%:p:h').'/'<cr>
 no <c-\> :%s/\s\+$//e<cr>
 nn <silent><tab> :bnext<cr>
 nn <silent><s-tab> :bprevious<cr>
@@ -95,7 +94,7 @@ nn <leader>gps :G push<cr>
 nn <leader>gb :MerginalToggle<cr>
 nn <leader>ga :G add -p<cr>
 nn <leader>gm :Gblame<cr>
-no<leader>id i<c-r>=expand('%:p:h').'/'<cr><esc>
+no <leader>id i<c-r>=expand('%:p:h').'/'<cr><esc>
 no <leader>itd "=strftime("%Y-%m-%d")<cr>P
 no <leader>itt "=strftime("%H:%M:%S")<cr>P
 no <leader>itm "=strftime("%Y-%m-%d \/ %H:%M:%S")<cr>P
