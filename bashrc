@@ -107,6 +107,8 @@ bind "set menu-complete-display-prefix on"
 # prompt modifications
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
   prompt_color=207
+elif [ $(grep :/docker /proc/self/cgroup | wc -l) -gt 0 ]; then
+  prompt_color=81
 else
   prompt_color=202
 fi
