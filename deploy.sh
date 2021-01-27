@@ -59,7 +59,7 @@ desktop() {
   sudo ln -s $dfdir/assets/ansi_hybrid /usr/share/X11/xkb/symbols/ansi_hybrid
   sudo ln -s $dfdir/assets/nvim-terminal.desktop /usr/share/applications/nvim-terminal.desktop
   sudo ln -s $dfdir/assets/nnn-terminal.desktop /usr/share/applications/nnn-terminal.desktop
-  echo "setxkbmap -layout ansi_hybrid -variant 5layer" >> ~/.profile
+  echo "setxkbmap -layout ansi_hybrid -variant 5layer; exec spectrwm" >> ~/.xprofile
 }
 
 alacritty() {
