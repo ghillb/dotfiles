@@ -49,7 +49,7 @@ fzf() {
 }
 
 desktop() {
-  sudo apt install -y spectrwm fonts-firacode ttf-ancient-fonts picom feh
+  sudo apt install -y spectrwm fonts-firacode ttf-ancient-fonts picom feh xdotool
   ln -s $dfdir/spectrwm.conf ~/.spectrwm.conf
   ln -s $dfdir/rofi.conf ~/.config/rofi/config
   sudo ln -s $dfdir/assets/xopener /usr/local/bin/xopener
