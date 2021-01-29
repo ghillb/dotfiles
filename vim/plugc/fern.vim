@@ -11,6 +11,7 @@ fun! s:init_fern() abort
     nmap <buffer> .. <Plug>(fern-action-hidden-toggle)
     nmap <buffer> <space> <Plug>(fern-action-mark)
     nmap <buffer> <tab> <nop>
+    nmap <buffer><silent> <a-esc> <c-w>l:Ttoggle<cr><c-w>ja
     nmap <silent><buffer> <cr> <Plug>(fern-action-open)<esc>:FernDo close<CR>
 endfun
 

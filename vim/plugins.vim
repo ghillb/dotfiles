@@ -30,7 +30,6 @@ else
     call minpac#add('mbbill/undotree')
     call minpac#add('jiangmiao/auto-pairs')
     call minpac#add('kassio/neoterm')
-    call minpac#add('voldikss/vim-floaterm')
     call minpac#add('lambdalisue/fern.vim')
     call minpac#add('lambdalisue/fern-git-status.vim')
     call minpac#add('liuchengxu/vim-which-key')

@@ -78,7 +78,6 @@ nn <leader>bl :buffers<cr>
 nn <leader>bo :w<bar>%bd<bar>e#<bar>bd#<cr>
 nn <leader>to :tabo<cr>
 nn <silent><leader>tg :set rnu! \| :set nu! \| :GitGutterToggle<cr>
-nn <silent><leader>tt :FloatermNew --title=T<cr>
 nn <silent><leader>tz :Goyo<cr>
 nn <leader>tc :Codi!!<cr>
 nn <leader>ty :Startify<cr>
@@ -86,6 +85,7 @@ nn <leader>r :%s///gc
 nn <leader>v ggVG
 nm <leader>s ysiw
 nn <leader>gs :G<cr>
+nn <a-g> :G<cr>
 nn <leader>gd :Gvdiffsplit<cr>
 nn <leader>gc :G checkout %
 nn <leader>gl :Gclog<cr>
@@ -100,6 +100,7 @@ no <leader>itt "=strftime("%H:%M:%S")<cr>P
 no <leader>itm "=strftime("%Y-%m-%d \/ %H:%M:%S")<cr>P
 nn <leader>u :UndotreeToggle<cr>
 nn <silent><leader>e :Fern . -drawer -toggle -reveal=%<cr>
+nn <silent><a-1> :Fern . -drawer -toggle -reveal=%<cr>
 nn <leader><cr> :TREPLSendLine<cr>j
 vn <leader><cr> :TREPLSendSelection<cr>
 nn <silent><leader> :WhichKey '<space>'<cr>
