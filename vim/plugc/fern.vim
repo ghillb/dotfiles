@@ -10,7 +10,8 @@ fun! s:init_fern() abort
     nmap <buffer> x <Plug>(fern-action-remove)
     nmap <buffer> .. <Plug>(fern-action-hidden-toggle)
     nmap <buffer> <space> <Plug>(fern-action-mark)
-    nmap <silent><buffer> <CR> <Plug>(fern-action-open)<ESC>:FernDo close<CR>
+    nmap <buffer> <tab> <nop>
+    nmap <silent><buffer> <cr> <Plug>(fern-action-open)<esc>:FernDo close<CR>
 endfun
 
 aug fern-custom

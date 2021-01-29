@@ -6,6 +6,7 @@ au TextChanged,TextChangedI * if &readonly == 0 && filereadable(bufname('%')) | 
 
 if has('nvim')
     au TermOpen * setlocal nospell
+    au TermEnter * setlocal nobuflisted
 endif
 
 fun! Ticks(inner)
