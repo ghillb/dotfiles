@@ -4,7 +4,10 @@ kitty_win_id=$(wmctrl -l | awk '/kitty-float/ {print $1}')
 active=$(xdotool getactivewindow getwindowname)
 
 if [ -z $kitty_win_id ]; then
-  kitty --title kitty-float --override background_opacity=0.9  
+  kitty --title kitty-float \
+    -o background_opacity=0.9 \
+    -o initial_window_width=1500 \
+    -o initial_window_height=800
 elif [ $active == "kitty-float" ]; then
   wmctrl -r $active -b toggle,hidden
 else
