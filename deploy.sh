@@ -1,6 +1,6 @@
 #!/bin/bash
 dfdir=$HOME/.files
-if ! command -v git &> /dev/null; then sudo apt install -y git; fi
+sudo apt install -y git
 git clone https://github.com/ghillb/dotfiles.git $dfdir
 
 declare -a configs=( "os_up" "df" "completion" "nvim" "tmux" "fzf" "desktop" "alacritty" "kitty" )
