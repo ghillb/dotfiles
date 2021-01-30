@@ -46,4 +46,7 @@ alias jn='jupyter notebook'
 alias fu='curl -F"file=@$(find $HOME -type f | fzf)" 0x0.st | xclip -selection c'
 alias hist='history|grep'
 alias stx='mop -profile ~/.config/mop/default'
+alias ci='tokei'
+
+if ! command -v exa &> /dev/null; then alias ll='ls -alF'; else alias ll='exa -alFg'; fi
 

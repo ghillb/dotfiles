@@ -106,15 +106,16 @@ bind "set menu-complete-display-prefix on"
 
 # prompt modifications
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-  prompt_color=207
+  prompt_color=200
 elif [ $(grep :/docker /proc/self/cgroup | wc -l) -gt 0 ]; then
   prompt_color=81
+elif [ $(awk -F= '/^NAME/{print $2}' /etc/os-release) == '"SLES"' ]; then
+  prompt_color=47
 else
-  prompt_color=202
+  prompt_color=9
 fi
 
-PS1=$'${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] : \
-\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " : \[\033[01;31m\]%s")\
+PS1=$'${debian_chroot:+($debian_chroot)}\[\033[01;36m\]\u@\h\[\033[00m\] : \
+\[\033[01;33m\]\w\[\033[00m\]$(__git_ps1 " : \[\033[01;35m\]%s")\
 \[\033[38;5;${prompt_color}m\]\n\xe2\xae\x9e\[\033[00m\] '
-# \[\033[95m\]\n\xe2\xae\x9e\[\033[00m\] '
 
