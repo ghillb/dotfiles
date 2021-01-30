@@ -18,8 +18,8 @@ $status\
 $character"""
 
 [character]
-success_symbol = "[⮞](bold 9) "
-error_symbol = "[✗](bold red) "
+success_symbol = "[⮞](bold 9)"
+error_symbol = "[✗](bold red)"
 
 [directory]
 style = "bold yellow"
