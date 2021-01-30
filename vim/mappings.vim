@@ -47,8 +47,8 @@ no <up> <nop>
 no <down> <nop>
 no <left> <nop>
 no <right> <nop>
-nm s ys
-vm s <plug>VSurround
+nm <leader>s ys
+vm <leader>s <plug>VSurround
 no <silent><c-_> :Commentary<cr>j
 ino <silent><c-_> <esc>:Commentary<cr>ja
 nn <silent><c-p> :Ag<cr>
