@@ -21,7 +21,7 @@ source $VC/plugc/startify.vim
 source $VC/plugc/whichkey.vim
 source $VC/plugc/fzfproject.vim
 source $VC/plugc/codi.vim
-source $VC/plugc/ultisnips.vim
+source $VC/plugc/vsnip.vim
 
 source $VC/ftpc/bash.vim
 source $VC/ftpc/python.vim

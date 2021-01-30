@@ -22,7 +22,6 @@ else
     call minpac#add('junegunn/fzf.vim')
     call minpac#add('benwainwright/fzf-project')
     call minpac#add('tpope/vim-surround')
-    " call minpac#add('machakann/vim-sandwich')
     call minpac#add('tpope/vim-commentary')
     call minpac#add('machakann/vim-highlightedyank')
     call minpac#add('vimwiki/vimwiki', { 'branch': 'dev' })
@@ -35,10 +34,8 @@ else
     call minpac#add('lambdalisue/fern-git-status.vim')
     call minpac#add('liuchengxu/vim-which-key')
     call minpac#add('metakirby5/codi.vim')
-    call minpac#add('hashivim/vim-terraform')
     call minpac#add('justinmk/vim-sneak')
-    call minpac#add('ConradIrwin/vim-bracketed-paste')
-    if has('python3') | call minpac#add('sirver/ultisnips') | endif
+    call minpac#add('hrsh7th/vim-vsnip')
 
     if has('nvim-0.5')
         call minpac#add('neovim/nvim-lspconfig')
@@ -46,8 +43,8 @@ else
         " call minpac#add('nvim-treesitter/nvim-treesitter')
     endif
 
-    command! PackUpdate source $MYVIMRC | call minpac#update()
-    command! PackClean source $MYVIMRC | call minpac#clean()
-    command! PackStatus call minpac#status()
+    command! PUpdate source $MYVIMRC | call minpac#update()
+    command! PClean source $MYVIMRC | call minpac#clean()
+    command! PStatus call minpac#status()
 endif
 
