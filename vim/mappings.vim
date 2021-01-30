@@ -47,6 +47,8 @@ no <up> <nop>
 no <down> <nop>
 no <left> <nop>
 no <right> <nop>
+nm s ys
+vm s <plug>VSurround
 no <silent><c-_> :Commentary<cr>j
 ino <silent><c-_> <esc>:Commentary<cr>ja
 nn <silent><c-p> :Ag<cr>
@@ -83,7 +85,6 @@ nn <leader>tc :Codi!!<cr>
 nn <leader>ty :Startify<cr>
 nn <leader>r :%s///gc
 nn <leader>v ggVG
-nm <leader>s ysiw
 nn <leader>gs :G<cr>
 nn <a-g> :G<cr>
 nn <leader>gd :Gvdiffsplit<cr>

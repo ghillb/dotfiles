@@ -22,6 +22,7 @@ else
     call minpac#add('junegunn/fzf.vim')
     call minpac#add('benwainwright/fzf-project')
     call minpac#add('tpope/vim-surround')
+    " call minpac#add('machakann/vim-sandwich')
     call minpac#add('tpope/vim-commentary')
     call minpac#add('machakann/vim-highlightedyank')
     call minpac#add('vimwiki/vimwiki', { 'branch': 'dev' })
