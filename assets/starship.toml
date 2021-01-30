@@ -1,0 +1,10 @@
+add_newline =	true
+
+[character]
+success_symbol = "[⮞](bold 9) "
+error_symbol = "[✗](bold red) "
+
+[git_branch]
+symbol = " "
+format = ": [$symbol$branch]($style) "
+
