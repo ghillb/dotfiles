@@ -9,6 +9,11 @@ if has('nvim')
     au TermEnter * setlocal nobuflisted
 endif
 
+fun! LightlineGit()
+    let l:branch = fugitive#head()
+    return l:branch ==# '' ? '' : ' ' . l:branch
+endfun
+
 fun! Ticks(inner)
     normal! gv
     call searchpos('`', 'bW')

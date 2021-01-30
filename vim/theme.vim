@@ -19,8 +19,17 @@ let g:lightline = {
         \ 'S' : 'SL',
         \ "\<C-s>": 'SB',
         \ 't': 'T',
-        \ },
-      \ }
+      \ },
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'LightlineGit'
+      \ },
+      \ 'separator': {'left': "", 'right': ''},
+      \ 'subseparator': { 'left': '', 'right': ''}
+    \ }
 
 hi Normal guibg=NONE ctermbg=NONE
 
