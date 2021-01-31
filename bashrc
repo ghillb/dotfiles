@@ -1,5 +1,6 @@
 #!/bin/bash
 
+stty -ixon # forces control sequences to reach the terminal application (e.g. vi)
 set bell-style none
 export TERM=xterm-256color
 export DISPLAY=:0 #set display for VcXsrv
