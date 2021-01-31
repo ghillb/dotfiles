@@ -1,5 +1,7 @@
 if empty(glob($NVC . '/pack/minpac/opt/minpac/autoload/minpac.vim')) && has('unix') && has('nvim')
     !git clone https://github.com/k-takata/minpac.git $NVC/pack/minpac/opt/minpac
+elseif empty(glob('~/.vim/pack/minpac/opt/minpac')) && has('unix') && !has('nvim')
+    !git clone https://github.com/k-takata/minpac.git ~/.vim/pack/minpac/opt/minpac
 endif
 
 silent! packadd minpac
