@@ -37,6 +37,7 @@ alias gf='git fetch'
 alias gps='git push'
 alias gpl='git pull'
 alias gsub='git submodule foreach --recursive git pull origin master'
+alias gr='gitlab-runner exec docker'
 alias gi='onefetch'
 alias sadd="eval $(ssh-agent) ssh-add"
 alias lg='lazygit'
