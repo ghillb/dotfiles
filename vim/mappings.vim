@@ -14,6 +14,7 @@ no <c-s> :w<cr>
 ino <c-s> <esc>:w<cr>
 nn <c-q> :x<cr>
 ino <c-q> <esc>:x<cr>
+cm w!! w !sudo tee > /dev/null %
 no <c-\> :%s/\s\+$//e<cr>
 nn <silent><tab> :bnext<cr>
 nn <silent><s-tab> :bprevious<cr>
