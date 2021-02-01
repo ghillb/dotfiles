@@ -19,11 +19,11 @@ $status\
 $character"""
 
 [character]
-success_symbol = "[⮞](bold 9)"
+success_symbol = "[⮞](9)"
 error_symbol = "[✗](bold red)"
 
 [directory]
-style = "bold yellow"
+style = "yellow"
 read_only = ":ro"
 read_only_style = "yellow"
 truncate_to_repo = false
@@ -31,6 +31,7 @@ truncation_length = 4
 truncation_symbol = "…/"
 
 [git_branch]
+style = "purple"
 symbol = " "
 format = ": [$symbol$branch]($style) "
 
