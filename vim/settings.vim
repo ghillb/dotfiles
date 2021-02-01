@@ -42,6 +42,7 @@ set completeopt=menuone,noinsert
 set complete+=kspell
 set shortmess+=c
 set pastetoggle=<F3>
+set laststatus=2
 if !exists('g:vscode')
     set spelllang=en_us nospell
 endif
