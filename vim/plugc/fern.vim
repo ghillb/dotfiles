@@ -19,15 +19,5 @@ aug fern-custom
     au! *
     au FileType fern setlocal nospell
     au FileType fern call s:init_fern()
-    au BufEnter * ++nested call s:hijack_directory()
 aug END
-
-fun! s:hijack_directory() abort
-    let path = expand('%:p')
-    if !isdirectory(path)
-      return
-    endif
-    bwipeout %
-    execute printf('Fern %s', fnameescape(path))
-endfun
 

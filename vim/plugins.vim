@@ -33,6 +33,7 @@ else
     call minpac#add('jiangmiao/auto-pairs')
     call minpac#add('kassio/neoterm')
     call minpac#add('lambdalisue/fern.vim')
+    call minpac#add('lambdalisue/fern-hijack.vim')
     call minpac#add('lambdalisue/fern-git-status.vim')
     call minpac#add('liuchengxu/vim-which-key')
     call minpac#add('metakirby5/codi.vim')
