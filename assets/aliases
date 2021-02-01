@@ -51,5 +51,5 @@ alias stx='mop -profile ~/.config/mop/default'
 alias tcr='ticker --config ~/.config/ticker.yaml --show-separator'
 
 if ! command -v exa &> /dev/null; then alias ll='ls -alF'; else alias ll='exa -alFg'; fi
-if ! command -v nvim &> /dev/null; then alias v='nvim -p'; else alias v='vi -p'; fi
+if command -v nvim &> /dev/null; then alias v='nvim -p'; else alias v='vi -p'; fi
 
