@@ -1,7 +1,7 @@
 #!/bin/bash
 # bash <(curl -s https://raw.githubusercontent.com/ghillb/dotfiles/master/assets/ubuntu.sh)
 
-apt-get install -y vim neovim tmux
+sudo apt-get install -y vim neovim tmux
 mkdir -p $HOME/.config/nvim
 dfdir=$HOME/.files
 ln -sf $dfdir/assets/dircolors ~/.dircolors
