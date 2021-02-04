@@ -84,6 +84,7 @@ nn <silent><leader>tg :set rnu! \| :set nu! \| :GitGutterToggle<cr>
 nn <silent><leader>tz :Goyo<cr>
 nn <leader>tc :Codi!!<cr>
 nn <leader>ty :Startify<cr>
+nn <leader>ti :IndentLinesToggle<cr>
 nn <leader>r :%s///gc
 nn <leader>v ggVG
 nn <leader>gs :G<cr>
