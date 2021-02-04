@@ -29,3 +29,7 @@ if command -v docker-compose &>/dev/null; then
     complete -F _complete_alias dc
 fi
 
+if command -v sudo &>/dev/null; then
+    complete -F _complete_alias s
+fi
+
