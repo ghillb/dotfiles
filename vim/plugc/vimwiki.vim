@@ -13,5 +13,4 @@ let g:vimwiki_list = [{
 let g:vimwiki_table_mappings = 0
 let g:vimwiki_markdown_link_ext = 0
 let g:vimwiki_global_ext = 0
-let g:indentLine_enabled = 0 "indentLines Plugin interferes with vimwiki
 

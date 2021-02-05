@@ -12,6 +12,7 @@ source $VC/plugc/lsp-nvim.vim
 source $VC/plugc/gitgutter.vim
 source $VC/plugc/fzf.vim
 source $VC/plugc/vimwiki.vim
+source $VC/plugc/indentline.vim
 source $VC/plugc/sneak.vim
 source $VC/plugc/netrw.vim
 source $VC/plugc/fern.vim
