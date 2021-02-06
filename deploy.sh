@@ -57,6 +57,7 @@ desktop() {
   sudo ln -s $dfdir/invnnn /usr/local/bin/invnnn
   sudo ln -s $dfdir/assets/dopen /usr/local/bin/dopen
   sudo ln -s $dfdir/assets/ansi_hybrid /usr/share/X11/xkb/symbols/ansi_hybrid
+  sudo ln -f $dfdir/assets/gtk-settings.ini $HOME/.config/gtk-3.0/settings.ini
   sudo ln -s $dfdir/assets/nvim-terminal.desktop /usr/share/applications/nvim-terminal.desktop
   sudo ln -s $dfdir/assets/nnn-terminal.desktop /usr/share/applications/nnn-terminal.desktop
   echo "setxkbmap -layout ansi_hybrid -variant 5layer; exec spectrwm" >> ~/.xprofile
