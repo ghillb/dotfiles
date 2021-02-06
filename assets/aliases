@@ -48,6 +48,7 @@ alias py='python3'
 alias jn='jupyter notebook'
 alias fu='curl -F"file=@$(find $HOME -type f | fzf)" 0x0.st | xclip -selection c'
 alias hist='history|grep'
+alias hx='hexyl'
 alias stx='mop -profile ~/.config/mop/default'
 alias tcr='ticker --config ~/.config/ticker.yaml --show-separator'
 
