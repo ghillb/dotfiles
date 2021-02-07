@@ -22,6 +22,17 @@ $character"""
 success_symbol = "[⮞](9)"
 error_symbol = "[✗](bold red)"
 
+[username]
+style_user = "#1affc6"
+style_root = "white"
+format = "[$user@]($style)"
+disabled = true
+show_always = true
+
+[hostname]
+ssh_only = true
+format =  "[$hostname ](#1affc6): "
+
 [directory]
 style = "yellow"
 read_only = ":ro"
