@@ -61,7 +61,7 @@ nn <silent>\| :Lines<cr>
 nn <silent><c-c> :Commands<cr>
 nn <leader><bs> :FzfSwitchProject<cr>
 vn / y/\V<C-R>=escape(@",'/\')<CR><CR>N
-nn <leader><leader> a<space><right><esc>
+nn <leader><leader> a<space><esc>
 no <leader>p o<esc>p
 no <leader>P O<esc>p
 no <leader>x x
