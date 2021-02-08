@@ -20,12 +20,6 @@ export NNN_BMS=$NNN_BMS_LOCAL'h:~/;c:~/code/;d:~/dl/;n:~/notes/;p:~/projects/;'
 export NNN_OPENER='dopen'
 
 # scripted behavior
-include /usr/lib/git-core/git-sh-prompt
-include ~/.files/assets/functions
-include ~/.files/assets/aliases
-include ~/scripts/bash/ssh_connector.sh
-include ~/scripts/bash/utils.sh
-
 if [[ -z "$TMUX" && "$SSH_CONNECTION" != "" ]]; then initbash;
 elif [ ! -z "$WORK_DIR" ]; then cd "$(wslpath -a "${WORK_DIR}")"; fi
 
