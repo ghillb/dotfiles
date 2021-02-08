@@ -1,5 +1,10 @@
 #!/bin/bash
 
+source ~/.files/assets/functions
+source ~/.files/assets/aliases
+include /usr/lib/git-core/git-sh-prompt
+include ~/scripts/bash/utils.sh
+
 stty -ixon # forces control sequences to reach the terminal application (e.g. vi)
 set bell-style none
 export TERM=xterm-256color
