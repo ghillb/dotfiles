@@ -19,72 +19,9 @@ export NNN_FCOLORS='c1e21f70006048f7c6d6abc4'
 export NNN_BMS=$NNN_BMS_LOCAL'h:~/;c:~/code/;d:~/dl/;n:~/notes/;p:~/projects/;'
 export NNN_OPENER='dopen'
 
-cdls() {
-    cd "$@" && ls;
-}
-
-iploc() {
-    curl ipinfo.io/"$1" ; echo
-}
-
-tx() {
-    if [ -z "$*" ] ; then
-        tmux -2 attach -t $USER || tmux -2 new -s $USER;
-    else
-        tmux -2 "$1";
-    fi
-}
-
-include () {
-    [[ -f "$1" ]] && source "$1"
-}
-
-initbash() {
-    if ping -q -w 1 -c 1 1.1.1.1 > /dev/null; then git -C $HOME/.files/ pull; fi; tx
-}
-
-
-gsubrm() {
-    git submodule deinit -f -- "$1" && git rm -f "$1" && rm -rf .git/modules/"$1"
-}
-
-notes() {
-    eval "nvim -c VimwikiIndex +'cd %:h'"
-}
-
-diary() {
-    eval "nvim -c 'let g:startify_disable_at_vimenter = 1' +VimwikiMakeDiaryNote +'cd %:h'"
-}
-
-repeat() {
-    n=$1
-    shift
-    while [ $(( n -= 1 )) -ge 0 ]
-    do
-        "$@"
-    done
-}
-
-vdiff () {
-    if [ "$#" -ne 2 ] ; then
-        echo "vdiff requires two arguments"
-        echo "  comparing dirs:  vdiff dir_a dir_b"
-        echo "  comparing files: vdiff file_a file_b"
-        return 1
-    fi
-
-    local left="${1}"
-    local right="${2}"
-
-    if [ -d "${left}" ] && [ -d "${right}" ]; then
-        nvim +"DirDiff ${left} ${right}"
-    else
-        nvim -d "${left}" "${right}"
-    fi
-}
-
 # scripted behavior
 include /usr/lib/git-core/git-sh-prompt
+include ~/.files/assets/functions
 include ~/.files/assets/aliases
 include ~/scripts/bash/ssh_connector.sh
 include ~/scripts/bash/utils.sh
