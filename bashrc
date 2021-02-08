@@ -43,6 +43,11 @@ initbash() {
     if ping -q -w 1 -c 1 1.1.1.1 > /dev/null; then git -C $HOME/.files/ pull; fi; tx
 }
 
+
+gsubrm() {
+    git submodule deinit -f -- "$1" && git rm -f "$1" && rm -rf .git/modules/"$1"
+}
+
 notes() {
     eval "nvim -c VimwikiIndex +'cd %:h'"
 }
