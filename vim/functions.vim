@@ -62,3 +62,10 @@ fun! RunCode()
     endif
 endfun
 
+fun! KittyCursor()
+  let l:cursor_pos = system('echo $KITTY_PIPE_DATA | cut -d":" -f2')
+  let l:y = split(l:cursor_pos,",")[1]
+  let l:x = split(l:cursor_pos,",")[0] + 1
+  call cursor(l:y,l:x)
+endfun
+
