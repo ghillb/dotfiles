@@ -1,0 +1,49 @@
+set clipboard+=unnamedplus
+set relativenumber number
+
+set ideajoin
+set surround
+set highlightedyank
+set sneak
+set textobj-entire
+set argtextobj
+
+let mapleader = " "
+nn K i<cr><esc>
+no x "_x
+no X "_X
+no Y yg_
+no vv V
+no V vg_
+xn p "_dP
+nn yil ^vg_y
+nn vil ^vg_
+ino kj <esc>
+ino jk <esc>
+nn <a-down> :m .+1<cr>==
+nn <a-up> :m .-2<cr>==
+ino <a-down> <esc>:m .+1<cr>==gi
+ino <a-up> <esc>:m .-2<cr>==gi
+nn <c-q> :x<cr>
+ino <c-q> <esc>:x<cr>
+no <c-j> <c-e>
+no <c-k> <c-y>
+no <c-y> <c-b>
+no <up> <nop>
+no <down> <nop>
+no <left> <nop>
+no <right> <nop>
+no <leader>p o<esc>p
+no <leader>P O<esc>p
+no <leader>x x
+no <leader>X X
+no <leader>D "_D
+no <leader>C "_C
+nn <leader>o o<esc>
+nn <leader>O O<esc>
+nn <leader>r :%s///gc
+nn <leader>v ggVG
+nn <leader><leader> a<space><right><esc>
+nm <leader>s ys
+vm <leader>s <plug>VSurround
+
