@@ -49,3 +49,7 @@ format = ": [$symbol$branch]($style) "
 [line_break]
 disabled = false
 
+[jobs]
+symbol = "◇"
+threshold = 1
+
