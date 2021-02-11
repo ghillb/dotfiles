@@ -64,3 +64,11 @@ vdiff () {
     fi
 }
 
+m() {
+  vi <(/usr/bin/man $*) -Rm \
+    -c 'set filetype=man' \
+    -c 'set laststatus=0' \
+    -c 'set rnu! nu!' \
+    -c 'nmap q :q<cr>'
+}
+
