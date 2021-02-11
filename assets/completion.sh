@@ -33,3 +33,5 @@ if command -v sudo &>/dev/null; then
     complete -F _complete_alias s
 fi
 
+complete  -F _command m
+
