@@ -1,10 +1,5 @@
 #!/bin/bash
 
-source ~/.files/assets/functions
-source ~/.files/assets/aliases
-include /usr/lib/git-core/git-sh-prompt
-include ~/scripts/bash/utils.sh
-
 stty -ixon # forces control sequences to reach the terminal application (e.g. vi)
 set bell-style none
 export TERM=xterm-256color
@@ -23,6 +18,11 @@ export NNN_FIFO='/tmp/nnn.fifo'
 export NNN_FCOLORS='c1e21f70006048f7c6d6abc4' 
 export NNN_BMS=$NNN_BMS_LOCAL'h:~/;c:~/code/;d:~/dl/;n:~/notes/;p:~/projects/;'
 export NNN_OPENER='dopen'
+
+source ~/.files/assets/functions
+source ~/.files/assets/aliases
+include /usr/lib/git-core/git-sh-prompt
+include ~/scripts/bash/utils.sh
 
 # scripted behavior
 if [[ -z "$TMUX" && "$SSH_CONNECTION" != "" ]]; then initbash;

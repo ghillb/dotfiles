@@ -20,7 +20,7 @@ $character"""
 
 [character]
 success_symbol = "[⮞](9)"
-error_symbol = "[✗](bold red)"
+error_symbol = "[◯](bold red)"
 
 [username]
 style_user = "#1affc6"
