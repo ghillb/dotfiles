@@ -69,6 +69,7 @@ m() {
     -c 'set filetype=man' \
     -c 'set laststatus=0' \
     -c 'set rnu! nu!' \
+    -c 'set cc=' \
     -c 'nmap q :q<cr>'
 }
 
