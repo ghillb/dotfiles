@@ -32,8 +32,10 @@ vn <a-down> :m '>+1<cr>gv=gv
 vn <a-up> :m '<-2<cr>gv=gv
 ino <a-down> <esc>:m .+1<cr>==gi
 ino <a-up> <esc>:m .-2<cr>==gi
-nn <a-cr> :w<cr>:call RunCode()<cr>
-ino <a-cr> <esc>:w<cr>:call RunCode()<cr>
+nn <a-s-r> :w<cr>:call RunCode()<cr>
+ino <a-s-r> <esc>:w<cr>:call RunCode()<cr>
+nn <a-r> :TREPLSendLine<cr>j
+vn <a-r> :TREPLSendSelection<cr>
 no <c-j> <c-e>
 no <c-k> <c-y>
 no <c-y> <c-b>
@@ -104,8 +106,6 @@ no <leader>itm "=strftime("%Y-%m-%d \/ %H:%M:%S")<cr>P
 nn <leader>u :UndotreeToggle<cr>
 nn <silent><leader>e :Fern . -drawer -toggle -reveal=%<cr>
 nn <silent><a-1> :Fern . -drawer -toggle -reveal=%<cr>
-nn <leader><cr> :TREPLSendLine<cr>j
-vn <leader><cr> :TREPLSendSelection<cr>
 nn <silent><leader> :WhichKey '<space>'<cr>
 nn <silent><a-esc> :Ttoggle<cr><c-w>wa
 tno <silent><a-esc> <c-\><c-n>:Ttoggle<cr>
