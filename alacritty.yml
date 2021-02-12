@@ -1,9 +1,10 @@
 key_bindings:
   - { key: Space, mods: Control, chars: "\x00" }
-  - { key: Return, mods: Control|Alt, action: ToggleFullscreen }
+  - { key: Z, mods: Alt|Shift, action: ToggleFullscreen }
   - { key: Return, mods: Alt, chars: "\x1b\x0d" }
   - { key: Slash, mods: Control, chars: "\x1f" }
   - { key: Tab, mods: Shift, chars: "^[[Z" }
+
   # Vi Mode
   - { key: Space,  mods: Shift|Control, mode: Vi, action: ScrollToBottom          }
   - { key: Space,  mods: Shift|Control,           action: ToggleViMode            }
