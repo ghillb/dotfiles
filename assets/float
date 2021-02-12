@@ -7,9 +7,11 @@ if [ -z $kitty_win_id ]; then
   kitty --title kitty-float \
     -o background_opacity=0.9 \
     -o initial_window_width=1500 \
-    -o initial_window_height=800
+    -o initial_window_height=800 \
+    -e bash -ic "tmux -2 attach -t kitty-float-tx || tmux -2 new -s kitty-float-tx"
 elif [ $active == "kitty-float" ]; then
   wmctrl -r $active -b toggle,hidden
 else
   echo $kitty_win_id | xargs wmctrl -iR
 fi
+
