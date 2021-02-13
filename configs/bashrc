@@ -19,8 +19,9 @@ export NNN_FCOLORS='c1e21f70006048f7c6d6abc4'
 export NNN_BMS=$NNN_BMS_LOCAL'h:~/;c:~/code/;d:~/dl/;n:~/notes/;p:~/projects/;'
 export NNN_OPENER='dopen'
 
-source ~/.files/assets/functions
-source ~/.files/assets/aliases
+source ~/.files/shell/functions.sh
+source ~/.files/shell/aliases.sh
+source ~/.files/shell/completion.sh
 include /usr/lib/git-core/git-sh-prompt
 include ~/scripts/bash/utils.sh
 
