@@ -51,8 +51,8 @@ alias fu='curl -F"file=@$(find $HOME -type f | fzf)" 0x0.st | xsel --input --cli
 alias hist='history|grep'
 alias hx='hexyl'
 alias vr='nvr -r'
-alias stx='mop -profile ~/.config/mop/default'
-alias tcr='ticker --config ~/.config/ticker.yaml --show-separator'
+alias stx='mop -profile ~/.config/mop/default-moprc.json'
+alias tcr='ticker --config ~/.config/default-ticker.yaml --show-separator'
 
 if ! command -v exa &> /dev/null; then alias ll='ls -alF'; else alias ll='exa -alFg'; fi
 if ! command -v nvim &> /dev/null; then alias v='vi -p'; else alias v='nvim -p'; fi
