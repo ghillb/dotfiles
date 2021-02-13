@@ -1,4 +1,4 @@
-au VimEnter * if filereadable(expand($NVC) . '/localrc.vim') | source $NVC/localrc.vim | endif
+if filereadable(expand($NVC) . '/localrc.vim') | source $NVC/localrc.vim | endif
 au BufEnter * if filereadable(expand('%:p:h') . '/.exrc.vim') | source %:p:h/.exrc.vim | endif
 au BufLeave * if exists("g:run_bin_local") | unlet g:run_bin_local | endif
 au InsertEnter,InsertLeave * set cul!
