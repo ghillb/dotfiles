@@ -44,7 +44,7 @@ else
   if has('nvim-0.5')
     call minpac#add('neovim/nvim-lspconfig')
     call minpac#add('nvim-lua/completion-nvim')
-    " call minpac#add('nvim-treesitter/nvim-treesitter')
+    call minpac#add('nvim-treesitter/nvim-treesitter')
   endif
 
   command! PUpdate source $MYVIMRC | call minpac#update()
