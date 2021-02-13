@@ -1,6 +1,6 @@
 let mapleader = " "
 let localleader = "\\"
-nn K i<cr><esc>
+nn K a<cr><esc>
 no x "_x
 no X "_X
 no Y yg_
