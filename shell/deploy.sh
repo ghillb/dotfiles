@@ -29,7 +29,7 @@ df() {
 
 nvim() {
   if ! command -v nvim &> /dev/null; then sudo apt install -y neovim; fi
-  mkdir -p ~/.config/nvim; ln -s $dfdir/vim/vimrc $confdir/nvim/init.vim
+  mkdir -p ~/.config/nvim; ln -sf $dfdir/vim/vimrc $confdir/nvim/init.vim
   ln -sf $dfdir/vim/vimrc $HOME/.vimrc
 }
 
