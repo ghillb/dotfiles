@@ -71,12 +71,11 @@ vdiff () {
 }
 
 m() {
-  vi <(/usr/bin/man $*) -Rm \
+  nvim <(/usr/bin/man $*) -Rm \
     -c 'set filetype=man' \
     -c 'set laststatus=0' \
-    -c 'set rnu! nu!' \
     -c 'set cc=' \
-    -c 'nmap q :q<cr>'
+    -c 'map q :q!<cr>'
 }
 
 epoch2utc () {
