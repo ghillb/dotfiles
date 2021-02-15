@@ -72,8 +72,8 @@ vdiff () {
 
 m() {
   nvim <(/usr/bin/man $*) -Rm \
-    -c 'set filetype=man' \
-    -c 'set laststatus=0' \
+    -c 'set ft=man' \
+    -c 'set ls=0' \
     -c 'set cc=' \
     -c 'map q :q!<cr>'
 }
