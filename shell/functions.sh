@@ -72,6 +72,7 @@ vdiff () {
 
 m() {
   nvim <(/usr/bin/man $*) -Rm \
+    --cmd 'filetype plugin on' \
     -c 'set ft=man' \
     -c 'set ls=0' \
     -c 'set cc=' \
