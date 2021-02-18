@@ -9,6 +9,7 @@ if [ -z $kitty_float ]; then
     -o background_opacity=0.9 \
     -o initial_window_width=1500 \
     -o initial_window_height=800 \
+    -o font_size=12.0 \
     -e bash -ic "tx $identifier"
 elif [ $active == $kitty_float ]; then
   wmctrl -ir $active -b toggle,hidden
