@@ -9,7 +9,7 @@ export EDITOR=nvim
 export PATH="$PATH:$HOME/scripts/bash:$HOME/.cargo/bin:$HOME/.go/bin:$HOME/.linuxbrew/bin"
 export LC_ALL=C.UTF-8
 export HISTIGNORE="pwd:df:du:cd:ls:ll:gpl:gps:gd:gdu:gds:gl:gls:glu"
-export PROMPT_COMMAND='history -a;history -r;'
+export PROMPT_COMMAND='history -a;history -r;hasjobs=$(jobs -p)'
 export GIT_PS1_SHOWDIRTYSTATE=true
 export FZF_DEFAULT_OPTS='
   --color fg:#ebdbb2,bg:#282828,hl:#fe8019,fg+:#ebdbb2,bg+:#3c3836,hl+:#d65d0e
@@ -62,7 +62,7 @@ fi
 
 PS1=$'\n${debian_chroot:+($debian_chroot)}\[\033[01;36m\]\u@\h\[\033[00m\] : \
 \[\033[01;33m\]\w\[\033[00m\]$(__git_ps1 " : \[\033[01;35m\]%s")\
-\[\033[38;5;${prompt_color}m\]\n\xe2\xae\x9e\[\033[00m\] '
+\[\033[38;5;${prompt_color}m\]\n${hasjobs:+\j }\xe2\xae\x9e\[\033[00m\] '
 
 if command -v starship &> /dev/null; then eval "$(starship init bash)"; fi
 
