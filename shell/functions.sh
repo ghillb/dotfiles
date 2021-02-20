@@ -71,7 +71,9 @@ vdiff () {
 }
 
 m() {
-  if command -v nvim &> /dev/null; then
+  if [ $# -eq 0 ]; then 
+    echo "What manual page do you want?"
+  elif command -v nvim &> /dev/null; then
     nvim <(/usr/bin/man $*) -Rm \
       --cmd 'filetype plugin on' \
       -c 'set ft=man' \
