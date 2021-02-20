@@ -71,15 +71,14 @@ vdiff () {
 }
 
 m() {
-  nvim <(/usr/bin/man $*) -Rm \
-    --cmd 'filetype plugin on' \
-    -c 'set ft=man' \
-    -c 'set ls=0' \
-    -c 'set cc=' \
-    -c 'map q :q!<cr>'
-}
-
-man() {
+  if command -v nvim &> /dev/null; then
+    nvim <(/usr/bin/man $*) -Rm \
+      --cmd 'filetype plugin on' \
+      -c 'set ft=man' \
+      -c 'set ls=0' \
+      -c 'set cc=' \
+      -c 'map q :q!<cr>'
+  else
     LESS_TERMCAP_md=$'\e[01;36m' \
     LESS_TERMCAP_me=$'\e[0m' \
     LESS_TERMCAP_se=$'\e[0m' \
@@ -87,6 +86,7 @@ man() {
     LESS_TERMCAP_ue=$'\e[0m' \
     LESS_TERMCAP_us=$'\e[01;33m' \
     command man "$@"
+  fi    
 }
 
 epoch2utc () {
