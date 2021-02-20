@@ -8,6 +8,7 @@ export VISUAL=nvim
 export EDITOR=nvim
 export PATH="$PATH:$HOME/scripts/bash:$HOME/.cargo/bin:$HOME/.go/bin:$HOME/.linuxbrew/bin"
 export LC_ALL=C.UTF-8
+export HISTIGNORE="pwd:df:du:cd:ls:ll:gpl:gps:gd:gdu:gds:gl:gls:glu"
 export GIT_PS1_SHOWDIRTYSTATE=true
 export FZF_DEFAULT_OPTS='
   --color fg:#ebdbb2,bg:#282828,hl:#fe8019,fg+:#ebdbb2,bg+:#3c3836,hl+:#d65d0e
