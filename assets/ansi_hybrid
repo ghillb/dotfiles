@@ -41,6 +41,9 @@ partial modifier_keys xkb_symbols "caps_layer" {
     key <LatM> { Overlay1 = <DELE> };
     key <LatP> { Overlay1 = <PRNT> };
 
+    key <LatQ> { Overlay1 = <KATA> };
+    key <LatW> { Overlay1 = <HIRA> };
+
     key <ESC>  { Overlay1 = <TLDE> };
     key <TAB>  { Overlay1 = <MENU> };
 
