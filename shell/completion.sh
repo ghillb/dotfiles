@@ -17,6 +17,11 @@ if command -v kubectl &>/dev/null; then
   complete -F __start_kubectl k
 fi
 
+if command -v glab &>/dev/null; then
+  eval "$(glab completion -s bash)"
+  complete -F _complete_alias gl
+fi
+
 if command -v kitty &>/dev/null; then
   source <(kitty + complete setup bash)
 fi
