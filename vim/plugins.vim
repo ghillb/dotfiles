@@ -29,6 +29,7 @@ else
   call minpac#add('vimwiki/vimwiki', { 'branch': 'dev' })
   call minpac#add('junegunn/vim-peekaboo')
   call minpac#add('junegunn/goyo.vim')
+  call minpac#add('junegunn/limelight.vim')
   call minpac#add('mbbill/undotree')
   call minpac#add('jiangmiao/auto-pairs')
   call minpac#add('kassio/neoterm')

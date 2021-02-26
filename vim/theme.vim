@@ -32,4 +32,5 @@ let g:lightline = {
     \ }
 
 hi Normal guibg=NONE ctermbg=NONE
+let g:limelight_conceal_guifg = '#697A69'
 
