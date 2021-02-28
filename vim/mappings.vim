@@ -91,7 +91,6 @@ nn <leader>ti :IndentLinesToggle<cr>
 nn <leader>r :%s///gc
 nn <leader>v ggVG
 nn <leader>gs :G<cr>
-nn <a-g> :G<cr>
 nn <leader>gd :Gvdiffsplit<cr>
 nn <leader>gc :G checkout %
 nn <leader>gl :Gclog<cr>
@@ -105,13 +104,14 @@ no <leader>itd "=strftime("%Y-%m-%d")<cr>P
 no <leader>itt "=strftime("%H:%M:%S")<cr>P
 no <leader>itm "=strftime("%Y-%m-%d \/ %H:%M:%S")<cr>P
 nn <leader>u :UndotreeToggle<cr>
-nn <silent><leader>e :Fern . -drawer -toggle -reveal=%<cr>
-nn <silent><a-1> :Fern . -drawer -toggle -reveal=%<cr>
 nn <silent><leader> :WhichKey '<space>'<cr>
+nn <silent><a-1> :Fern . -drawer -toggle -reveal=%<cr>
 nn <silent><a-t> :Ttoggle<cr><c-w>wa
+nn <silent><a-g> :G<cr>
 tno <silent><a-t> <c-\><c-n>:Ttoggle<cr>
 tno <c-w> <c-\><c-n><c-w>
 tno <esc> <c-\><c-n>
+tno kj <esc>
+tno jk <esc>
 tno <localleader><esc> <esc>
-tno <localleader>v <esc>v
 
