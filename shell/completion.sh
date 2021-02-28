@@ -22,6 +22,10 @@ if command -v glab &>/dev/null; then
   complete -F _complete_alias gl
 fi
 
+if command -v gh &>/dev/null; then
+  eval "$(gh completion -s bash)"
+fi
+
 if command -v kitty &>/dev/null; then
   source <(kitty + complete setup bash)
 fi

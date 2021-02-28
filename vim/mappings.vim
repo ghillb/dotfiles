@@ -108,8 +108,8 @@ nn <leader>u :UndotreeToggle<cr>
 nn <silent><leader>e :Fern . -drawer -toggle -reveal=%<cr>
 nn <silent><a-1> :Fern . -drawer -toggle -reveal=%<cr>
 nn <silent><leader> :WhichKey '<space>'<cr>
-nn <silent><a-esc> :Ttoggle<cr><c-w>wa
-tno <silent><a-esc> <c-\><c-n>:Ttoggle<cr>
+nn <silent><a-t> :Ttoggle<cr><c-w>wa
+tno <silent><a-t> <c-\><c-n>:Ttoggle<cr>
 tno <c-w> <c-\><c-n><c-w>
 tno <esc> <c-\><c-n>
 tno <localleader><esc> <esc>
