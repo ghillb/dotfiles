@@ -2,6 +2,8 @@
 
 alias s='sudo '
 alias se='sudoedit'
+alias sc='systemctl'
+alias jc='journalctl -xe'
 alias up='sudo apt update && sudo apt upgrade'
 alias in='sudo apt install'
 alias un='sudo apt remove'
