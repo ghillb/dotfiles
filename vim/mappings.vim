@@ -61,6 +61,7 @@ nn <silent><c-b> :Buffers<cr>
 nn <silent>\ :BLines<cr>
 nn <silent>\| :Lines<cr>
 nn <silent><c-c> :Commands<cr>
+nn <silent><c-g> :GBranches<cr>
 nn <leader><bs> :FzfSwitchProject<cr>
 vn / y/\V<C-R>=escape(@",'/\')<CR><CR>N
 nn <leader><leader> a<space><esc>
@@ -96,7 +97,6 @@ nn <leader>gc :G checkout %
 nn <leader>gl :Gclog<cr>
 nn <leader>gpl :G pull<cr>
 nn <leader>gps :G push<cr>
-nn <leader>gb :MerginalToggle<cr>
 nn <leader>ga :G add -p<cr>
 nn <leader>gm :Gblame<cr>
 no <leader>id i<c-r>=expand('%:p:h').'/'<cr><esc>
