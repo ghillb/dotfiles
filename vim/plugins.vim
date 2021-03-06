@@ -20,6 +20,7 @@ else
   call minpac#add('idanarye/vim-merginal')
   call minpac#add('airblade/vim-gitgutter')
   call minpac#add('will133/vim-dirdiff')
+  call minpac#add('junegunn/gv.vim')
   call minpac#add('junegunn/fzf')
   call minpac#add('junegunn/fzf.vim')
   call minpac#add('benwainwright/fzf-project')

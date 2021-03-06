@@ -94,7 +94,8 @@ nn <leader>v ggVG
 nn <leader>gs :G<cr>
 nn <leader>gd :Gvdiffsplit<cr>
 nn <leader>gc :G checkout %
-nn <leader>gl :Gclog<cr>
+nn <leader>glo :GV<cr>
+nn <leader>gll :GV!<cr>
 nn <leader>gpl :G pull<cr>
 nn <leader>gps :G push<cr>
 nn <leader>ga :G add -p<cr>
