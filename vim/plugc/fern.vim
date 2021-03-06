@@ -22,3 +22,6 @@ aug fern-custom
     au FileType fern call s:init_fern()
 aug END
 
+let g:fern#default_hidden = 1
+let g:fern#default_exclude = '^\%(\.git\|\.idea\)$'
+
