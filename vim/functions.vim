@@ -62,6 +62,17 @@ fun! RunCode()
     endif
 endfun
 
+fun! ToggleFern()
+  if (&ft=='fern')
+    :Fern . -drawer -toggle
+  else
+    :FernDo :
+    if (&ft!='fern')
+      :Fern . -drawer -toggle -reveal=%
+    endif
+  endif 
+endfun
+
 fun! KittyCursor()
   let l:cursor_pos = system('echo $KITTY_PIPE_DATA | cut -d":" -f2')
   let l:y = split(l:cursor_pos,",")[1]

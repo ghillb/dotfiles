@@ -107,7 +107,7 @@ no <leader>itt "=strftime("%H:%M:%S")<cr>P
 no <leader>itm "=strftime("%Y-%m-%d \/ %H:%M:%S")<cr>P
 nn <leader>u :UndotreeToggle<cr>
 nn <silent><leader> :WhichKey '<space>'<cr>
-nn <silent><a-1> :Fern . -drawer -toggle -reveal=%<cr>
+nn <silent><a-1> :call ToggleFern()<cr>
 nn <silent><a-t> :Ttoggle<cr><c-w>wa
 nn <silent><a-g> :G<cr>
 tno <silent><a-t> <c-\><c-n>:Ttoggle<cr>

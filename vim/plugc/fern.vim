@@ -18,7 +18,7 @@ endfun
 
 aug fern-custom
     au! *
-    au FileType fern setlocal nospell
+    au FileType fern setlocal nospell nonumber norelativenumber
     au FileType fern call s:init_fern()
 aug END
 
