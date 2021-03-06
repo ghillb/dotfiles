@@ -6,6 +6,7 @@ source $VC/plugins.vim
 source $VC/functions.vim
 source $VC/theme.vim
 source $VC/mappings.vim
+source $VC/filetypes.vim
 
 " plugin configs
 source $VC/plugc/lsp-nvim.vim
@@ -24,13 +25,4 @@ source $VC/plugc/fzfproject.vim
 source $VC/plugc/fzfcheckout.vim
 source $VC/plugc/codi.vim
 source $VC/plugc/vsnip.vim
-
-source $VC/ftpc/bash.vim
-source $VC/ftpc/python.vim
-source $VC/ftpc/julia.vim
-source $VC/ftpc/javascript.vim
-source $VC/ftpc/rust.vim
-source $VC/ftpc/c.vim
-source $VC/ftpc/go.vim
-source $VC/ftpc/markdown.vim
 
