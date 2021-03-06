@@ -34,6 +34,7 @@ ino <a-down> <esc>:m .+1<cr>==gi
 ino <a-up> <esc>:m .-2<cr>==gi
 nn <a-s-r> :w<cr>:call RunCode()<cr>
 ino <a-s-r> <esc>:w<cr>:call RunCode()<cr>
+ino <a-cr> <c-x><c-p>
 nn <a-r> :TREPLSendLine<cr>j
 vn <a-r> :TREPLSendSelection<cr>
 no <c-j> <c-e>
