@@ -59,6 +59,7 @@ alias vt='nvim -c term -c "norm i" -c "setlocal ls=0 cc= rnu! nu!" -c "tno <c-d>
 alias ss='shellcheck'
 alias stx='mop -profile ~/.config/mop/default-moprc.json'
 alias tcr='ticker --config ~/.config/default-ticker.yaml --show-separator'
+alias reloadwp='feh --bg-scale ~/.wallpaper'
 
 if ! command -v exa &> /dev/null; then alias ll='ls -alF'; else alias ll='exa -alFg'; fi
 if ! command -v nvim &> /dev/null; then alias v='vi -p'; else alias v='nvim -p'; fi
