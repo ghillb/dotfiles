@@ -100,7 +100,7 @@ nn <leader>gll :GV!<cr>
 nn <leader>gpl :G pull<cr>
 nn <leader>gps :G push<cr>
 nn <leader>ga :G add -p<cr>
-nn <leader>gm :Gblame<cr>
+nn <leader>gb :Gblame<cr>
 no <leader>id i<c-r>=expand('%:p:h').'/'<cr><esc>
 no <leader>itd "=strftime("%Y-%m-%d")<cr>P
 no <leader>itt "=strftime("%H:%M:%S")<cr>P
