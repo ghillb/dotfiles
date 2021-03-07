@@ -64,7 +64,9 @@ nn <silent>\| :Lines<cr>
 nn <silent><c-c> :Commands<cr>
 nn <silent><c-g> :GBranches<cr>
 nn <leader><bs> :FzfSwitchProject<cr>
-vn / y/\V<C-R>=escape(@",'/\')<CR><CR>N
+vn / y/\V<c-r>=escape(@",'/\')<cr><cr>N
+nn <c-l> :let @/=""<cr><c-l>
+nn <leader>/ viwy/\V<c-r>=escape(@",'/\')<cr><cr>N
 nn <leader><leader> a<space><esc>
 no <leader>p o<esc>p
 no <leader>P O<esc>p
@@ -74,7 +76,6 @@ no <leader>D "_D
 no <leader>C "_C
 nn <leader>o o<esc>
 nn <leader>O O<esc>
-nn <leader>/ viwy/\V<C-R>=escape(@",'/\')<CR><CR>N
 nn <leader>,, :e $MYVIMRC<cr>
 nn <leader>,. :so $MYVIMRC<cr>
 nn <leader>bn :bnext<cr>
