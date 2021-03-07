@@ -1,6 +1,5 @@
 if filereadable(expand($NVC) . '/localrc.vim') | source $NVC/localrc.vim | endif
 au BufEnter * if filereadable(expand('%:p:h') . '/.exrc.vim') | source %:p:h/.exrc.vim | endif
-au BufLeave * if exists("g:run_bin_local") | unlet g:run_bin_local | endif
 au InsertEnter,InsertLeave * set cul!
 au TextChanged,TextChangedI * if &readonly == 0 && filereadable(bufname('%')) | silent write | endif
 
@@ -39,27 +38,6 @@ fun! TmuxMove(direction)
         if wnr == winnr()
                 call system('tmux select-pane -' . tr(a:direction, 'phjkl', 'lLDUR'))
         end
-endfun
-
-fun! RunCode()
-    let l:current_ft = &filetype
-    let l:run_bin = get({
-                            \ 'sh': 'bash',
-                            \ 'python': 'python3',
-                            \ 'javascript': 'node',
-                            \ 'rust': 'cargo run',
-                            \ 'c': 'make',
-                            \ 'cpp': 'make',
-                            \ 'go': 'go',
-                            \ 'jl': 'julia'
-                        \}, current_ft, '')
-
-    if run_bin == ''
-        echo 'Filetype not supported: ' . current_ft
-    else
-        if exists("g:run_bin_local") | let l:run_bin = g:run_bin_local | endif
-        call b:ExecutorFunction(run_bin)
-    endif
 endfun
 
 fun! ToggleFern()

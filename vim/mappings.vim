@@ -32,8 +32,8 @@ vn <a-down> :m '>+1<cr>gv=gv
 vn <a-up> :m '<-2<cr>gv=gv
 ino <a-down> <esc>:m .+1<cr>==gi
 ino <a-up> <esc>:m .-2<cr>==gi
-nn <a-s-r> :w<cr>:call RunCode()<cr>
-ino <a-s-r> <esc>:w<cr>:call RunCode()<cr>
+nn <a-s-r> :w<cr>:!cr %<cr>
+ino <a-s-r> <esc>:w<cr>:!cr %<cr>
 ino <a-cr> <c-x><c-p>
 nn <a-r> :TREPLSendLine<cr>j
 vn <a-r> :TREPLSendSelection<cr>
