@@ -58,7 +58,7 @@ no <left> <nop>
 no <right> <nop>
 no <silent><c-_> :Commentary<cr>j
 ino <silent><c-_> <esc>:Commentary<cr>ja
-nn <silent><c-p> :Ag<cr>
+nn <silent><c-p> :Rg<cr>
 nn <silent><c-e> :call FzfOmniFiles()<cr>
 nn <silent><c-a-e> :Files<cr>
 nn <silent><c-b> :Buffers<cr>
