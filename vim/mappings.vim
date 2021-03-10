@@ -7,6 +7,7 @@ no Y yg_
 no vv V
 no V vg_
 cm w!! w !sudo tee > /dev/null %
+cm :g !git -C %:p:h commit -am "--wip--" && git -C %:p:h push
 xn <silent> p p:let @+=@0<CR>:let @"=@0<CR>
 xn <silent> P P:let @+=@0<CR>:let @"=@0<CR>
 ino kj <esc>
