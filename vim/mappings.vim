@@ -21,7 +21,8 @@ no <c-s> :w<cr>
 ino <c-s> <esc>:w<cr>
 nn <c-q> :x<cr>
 ino <c-q> <esc>:x<cr>
-no <localleader>/ :chdir %:p:h<cr>
+no <localleader>/ :let $VIM_ROOT=expand('%:p:h')<cr> \| :chdir $VIM_ROOT<cr> \| :echo "rooted: " . $VIM_ROOT<cr>
+no <localleader>\ :chdir $VIM_ROOT<cr> \| :echo "back to root: " . $VIM_ROOT<cr>
 nn <localleader>r :%s///gc
 no <localleader>w :%s/\s\+$//e<cr>
 nn <localleader>, :e $MYVIMRC<cr>
@@ -66,7 +67,7 @@ nn <silent><c-b> :Buffers<cr>
 nn <silent><a-\> :BLines<cr>
 nn <silent><c-\> :Lines<cr>
 nn <silent><c-c> :Commands<cr>
-nn <silent><c-g> :GBranches<cr>
+nn <silent><c-g> :chdir %:p:h \| :GBranches <cr>
 nn <leader><bs> :FzfSwitchProject<cr>
 vn / y/\V<c-r>=escape(@",'/\')<cr><cr>N
 nn <leader>/ viwy/\V<c-r>=escape(@",'/\')<cr><cr>N

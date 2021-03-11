@@ -1,5 +1,6 @@
 if filereadable(expand($NVC) . '/localrc.vim') | source $NVC/localrc.vim | endif
 au BufEnter * if filereadable(expand('%:p:h') . '/.exrc.vim') | source %:p:h/.exrc.vim | endif
+au VimEnter * let $VIM_ROOT = getcwd()
 au InsertEnter,InsertLeave * set cul!
 au TextChanged,TextChangedI * if &readonly == 0 && filereadable(bufname('%')) | silent write | endif
 
