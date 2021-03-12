@@ -1,4 +1,4 @@
-if !empty(glob($NVC . '/plugged/fern.vim'))
+if !empty(glob($NVC . '/pack/minpac/start/fern.vim'))
     " disable netrw
     let g:loaded_netrw  = 1
     let g:loaded_netrwPlugin = 1
