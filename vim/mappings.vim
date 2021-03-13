@@ -108,9 +108,8 @@ no <leader>itt "=strftime("%H:%M:%S")<cr>P
 no <leader>itm "=strftime("%Y-%m-%d \/ %H:%M:%S")<cr>P
 nn <silent><leader> :WhichKey '<space>'<cr>
 nn <silent><a-1> :call ToggleFern()<cr>
-nn <silent><a-t> :Ttoggle<cr><c-w>wa
-nn <silent><a-g> :G<cr>
-tno <silent><a-t> <c-\><c-n>:Ttoggle<cr>
+nn <silent><a-esc> :Ttoggle<cr><c-w>wa
+tno <silent><a-esc> <c-\><c-n>:Ttoggle<cr>
 tno <esc> <c-\><c-n>
-tno <a-esc> <esc>
+tno <a-s-esc> <esc>
 
