@@ -42,8 +42,8 @@ if command -v sudo &>/dev/null; then
   complete -F _complete_alias s
 fi
 
-if command -v git &>/dev/null;
-  then complete -F _complete_alias g
+if command -v git &>/dev/null; then
+  _xfunc git __git_complete g _git
 fi
 
 function_exists m && complete -F _command m
