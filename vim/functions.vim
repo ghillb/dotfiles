@@ -52,6 +52,20 @@ fun! ToggleFern()
   endif 
 endfun
 
+fun! SetRoot(new_root)
+  if (a:new_root=='git_root')
+    let $VIM_ROOT=fugitive#repo().tree()
+  endif
+  if (a:new_root=='parent_dir')
+    let $VIM_ROOT=fnamemodify($VIM_ROOT, ':h')   
+  endif
+  if (a:new_root=='current_dir')
+    let $VIM_ROOT=expand('%:p:h')  
+  endif
+  echo "rooted " . substitute(a:new_root, "_", " ", "") . ": " . $VIM_ROOT
+  chdir $VIM_ROOT
+endfun
+
 fun! KittyCursor()
   let l:cursor_pos = system('echo $KITTY_PIPE_DATA | cut -d":" -f2')
   let l:y = split(l:cursor_pos,",")[1]

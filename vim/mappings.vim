@@ -20,8 +20,9 @@ no <c-s> :w<cr>
 ino <c-s> <c-o>:w<cr>
 nn <c-q> :x<cr>
 ino <c-q> <esc>:x<cr>
-no <localleader><bs> :let $VIM_ROOT=fugitive#repo().tree()<cr> \| :chdir $VIM_ROOT<cr> \| :echo "back to git root: " . $VIM_ROOT<cr>
-no <localleader>/ :let $VIM_ROOT=expand('%:p:h')<cr> \| :chdir $VIM_ROOT<cr> \| :echo "rooted: " . $VIM_ROOT<cr>
+no <localleader><cr> :call SetRoot('git_root')<cr>  
+no <localleader><bs> :call SetRoot('parent_dir')<cr>  
+no <localleader>/ :call SetRoot('current_dir')<cr>  
 no <localleader>\ :chdir $VIM_ROOT<cr> \| :echo "back to root: " . $VIM_ROOT<cr>
 nn <localleader>r :%s///gc
 no <localleader>w :%s/\s\+$//e<cr>
