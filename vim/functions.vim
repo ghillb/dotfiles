@@ -9,9 +9,14 @@ if has('nvim')
     au TermEnter * setlocal nobuflisted
 endif
 
-fun! LightlineGit()
+fun! LightlineGitBranch()
     let l:branch = fugitive#head()
     return l:branch ==# '' ? '' : ' ' . l:branch
+endfun
+
+fun! LightlineGitModified()
+  let l:modified_count = system('git diff --numstat | wc -l | tr -d "\n" ')
+  return l:modified_count =~ '\D' ? "" : l:modified_count
 endfun
 
 fun! Ticks(inner)
@@ -53,13 +58,18 @@ fun! ToggleFern()
 endfun
 
 fun! SetRoot(new_root)
-  if (a:new_root=='git_root')
-    let $VIM_ROOT=fugitive#repo().tree()
+  if (a:new_root == 'git_root') 
+    if fugitive#head() != ''
+      let $VIM_ROOT=fugitive#repo().tree()
+    else 
+      echo "not a git repo"
+      return
+    endif
   endif
-  if (a:new_root=='parent_dir')
+  if (a:new_root == 'parent_dir')
     let $VIM_ROOT=fnamemodify($VIM_ROOT, ':h')   
   endif
-  if (a:new_root=='current_dir')
+  if (a:new_root == 'current_dir')
     let $VIM_ROOT=expand('%:p:h')  
   endif
   echo "rooted " . substitute(a:new_root, "_", " ", "") . ": " . $VIM_ROOT

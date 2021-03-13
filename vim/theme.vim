@@ -22,10 +22,13 @@ let g:lightline = {
       \ },
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'gitbranch', 'gitdiffcount', 'readonly', 'filename', 'modified' ] ]
       \ },
       \ 'component_function': {
-      \   'gitbranch': 'LightlineGit'
+      \   'gitbranch': 'LightlineGitBranch'
+      \ },
+      \ 'component_expand': {
+      \   'gitdiffcount': 'LightlineGitModified',
       \ },
       \ 'separator': {'left': "", 'right': ''},
       \ 'subseparator': { 'left': '', 'right': ''}
