@@ -15,10 +15,9 @@ ino jk <esc>
 no <c-j> <c-e>
 no <c-k> <c-y>
 no <c-y> <c-b>
-im <c-w> <c-o><c-w>
 nn <c-l> :let @/=""<cr><c-l>
 no <c-s> :w<cr>
-ino <c-s> <esc>:w<cr>
+ino <c-s> <c-o>:w<cr>
 nn <c-q> :x<cr>
 ino <c-q> <esc>:x<cr>
 no <localleader><bs> :let $VIM_ROOT=fugitive#repo().tree()<cr> \| :chdir $VIM_ROOT<cr> \| :echo "back to git root: " . $VIM_ROOT<cr>
@@ -94,7 +93,7 @@ nn <leader>ty :Startify<cr>
 nn <leader>ti :IndentLinesToggle<cr>
 nn <leader>tu :UndotreeToggle<cr>
 nn <leader>v ggVG
-nn <leader>gs :G<cr>
+nn <leader>gg :G<cr>
 nn <leader>gd :Gvdiffsplit<cr>
 nn <leader>gc :G checkout %
 nn <leader>glo :GV<cr>
@@ -112,9 +111,7 @@ nn <silent><a-1> :call ToggleFern()<cr>
 nn <silent><a-t> :Ttoggle<cr><c-w>wa
 nn <silent><a-g> :G<cr>
 tno <silent><a-t> <c-\><c-n>:Ttoggle<cr>
-tno <c-w> <c-\><c-n><c-w>
 tno <esc> <c-\><c-n>
 tno kj <esc>
 tno jk <esc>
-tno <localleader><esc> <esc>
 
