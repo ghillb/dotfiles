@@ -5,13 +5,13 @@ au InsertEnter,InsertLeave * set cul!
 au TextChanged,TextChangedI * if &readonly == 0 && filereadable(bufname('%')) | silent write | endif
 
 if has('nvim')
-    au TermOpen * setlocal nospell
-    au TermEnter * setlocal nobuflisted
+  au TermOpen * setlocal nospell
+  au TermEnter * setlocal nobuflisted
 endif
 
 fun! LightlineGitBranch()
-    let l:branch = fugitive#head()
-    return l:branch ==# '' ? '' : ' ' . l:branch
+  let l:branch = fugitive#head()
+  return l:branch ==# '' ? '' : ' ' . l:branch
 endfun
 
 fun! LightlineGitModified()
@@ -20,30 +20,30 @@ fun! LightlineGitModified()
 endfun
 
 fun! Ticks(inner)
-    normal! gv
-    call searchpos('`', 'bW')
-    if a:inner | exe "normal! 1\<space>" | endif
-    normal! o
-    call searchpos('`', 'W')
-    if a:inner | exe "normal! \<bs>" | endif
+  normal! gv
+  call searchpos('`', 'bW')
+  if a:inner | exe "normal! 1\<space>" | endif
+  normal! o
+  call searchpos('`', 'W')
+  if a:inner | exe "normal! \<bs>" | endif
 endfun
 
 fun! FzfOmniFiles()
-    let is_git = system('git status')
-    if v:shell_error || system('git submodule status') != ""
-        :Files
-    else
-        :GitFiles --exclude-standard
-    endif
+  let is_git = system('git status')
+  if v:shell_error || system('git submodule status') != ""
+    :Files
+  else
+    :GitFiles --exclude-standard
+  endif
 endfun
 
 fun! TmuxMove(direction)
-        let wnr = winnr()
-        silent! execute 'wincmd ' . a:direction
-        " If the winnr is still the same after we moved, it is the last pane
-        if wnr == winnr()
-                call system('tmux select-pane -' . tr(a:direction, 'phjkl', 'lLDUR'))
-        end
+  let wnr = winnr()
+  silent! execute 'wincmd ' . a:direction
+  " If the winnr is still the same after we moved, it is the last pane
+  if wnr == winnr()
+    call system('tmux select-pane -' . tr(a:direction, 'phjkl', 'lLDUR'))
+  end
 endfun
 
 fun! ToggleFern()
