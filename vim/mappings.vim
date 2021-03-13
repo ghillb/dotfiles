@@ -68,7 +68,7 @@ nn <silent><a-\> :BLines<cr>
 nn <silent><c-\> :Lines<cr>
 nn <silent><c-c> :Commands<cr>
 nn <silent><c-g> :chdir %:p:h \| :GBranches <cr>
-nn <leader><bs> :FzfSwitchProject<cr>
+nn <esc><esc> :FzfSwitchProject<cr>
 vn / y/\V<c-r>=escape(@",'/\')<cr><cr>N
 nn <leader>/ viwy/\V<c-r>=escape(@",'/\')<cr><cr>N
 nn <leader><leader> a<space><esc>
@@ -112,6 +112,5 @@ nn <silent><a-t> :Ttoggle<cr><c-w>wa
 nn <silent><a-g> :G<cr>
 tno <silent><a-t> <c-\><c-n>:Ttoggle<cr>
 tno <esc> <c-\><c-n>
-tno kj <esc>
-tno jk <esc>
+tno <a-esc> <esc>
 
