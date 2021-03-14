@@ -83,3 +83,12 @@ fun! KittyCursor()
   call cursor(l:y,l:x)
 endfun
 
+fun! RemoveQFItem()
+  let curqfidx = line('.') - 1
+  let qfall = getqflist()
+  call remove(qfall, curqfidx)
+  call setqflist(qfall, 'r')
+  execute curqfidx + 1 . "cfirst"
+  :copen
+endfun
+

@@ -7,4 +7,5 @@ endfun
 
 au FileType git normal zR
 au FileType fugitive no <buffer><silent> q :x<cr>
+au FileType qf map <buffer> dd :call RemoveQFItem()<cr>
 
