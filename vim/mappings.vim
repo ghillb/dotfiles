@@ -55,6 +55,8 @@ nn <silent> <a-k> :call TmuxMove('k')<cr>
 nn <silent> <a-l> :call TmuxMove('l')<cr>
 map - <c-w>-
 map = <c-w>+
+map + <c-w>>
+map _ <c-w><
 no <up> <nop>
 no <down> <nop>
 no <left> <nop>
