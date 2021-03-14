@@ -20,6 +20,7 @@ alias d='docker'
 alias dc='docker-compose'
 alias dstop='docker stop $(docker ps -a -q)'
 alias dmrm='docker-machine rm $(docker-machine ls -q)'
+alias ark='arkade'
 alias c='cat'
 alias icat="kitty +kitten icat"
 alias n='nnn -e -P p'

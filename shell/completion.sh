@@ -46,5 +46,10 @@ if command -v git &>/dev/null; then
   _xfunc git __git_complete g _git
 fi
 
+if command -v arkade &>/dev/null; then
+  eval "$(arkade completion bash)"
+  complete -F _complete_alias ark
+fi
+
 function_exists m && complete -F _command m
 
