@@ -8,7 +8,7 @@ export VISUAL=nvim
 export EDITOR=nvim
 export PATH="$PATH:$HOME/scripts/bash:$HOME/.cargo/bin:$HOME/.go/bin:$HOME/.linuxbrew/bin"
 export LC_ALL=C.UTF-8
-export HISTIGNORE="pwd:df:du:cd:ls:ll:gpl:gps:gd:gdu:gds:gl:gls:glu"
+export HISTIGNORE="pwd:df:du:cd:ls:ll:gpl:gps:gs:gd:gdu:gds:gl:glo:gls:glu:v"
 export PROMPT_COMMAND='history -a;history -r;hasjobs=$(jobs -p)'
 export GIT_PS1_SHOWDIRTYSTATE=true
 export FZF_DEFAULT_OPTS='
