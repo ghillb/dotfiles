@@ -26,6 +26,7 @@ no <localleader>/ :call SetRoot('current_dir')<cr>
 no <localleader>\ :chdir $VIM_ROOT<cr> \| :echo "back to root: " . $VIM_ROOT<cr>
 nn <localleader>r :%s///gc
 nn <localleader>p :vim// */*
+nn <localleader>l :lv// %
 no <localleader>w :%s/\s\+$//e<cr>
 nn <localleader>, :e $MYVIMRC<cr>
 nn <localleader>. :so $MYVIMRC<cr>

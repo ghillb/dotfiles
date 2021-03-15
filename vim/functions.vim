@@ -89,8 +89,10 @@ fun! RemoveQFItem()
   if qf_win_info['loclist'] == 1
     let loclist_win_nr = qf_win_info['winnr']
     let loclist_all = getloclist(loclist_win_nr)
+    let cur_pos = getcurpos()
     call remove(loclist_all, cur_qf_idx)
     call setloclist(loclist_win_nr, loclist_all, 'r')
+    execute cur_pos[1] . "lfirst"
     :lopen
   else
     let qf_all = getqflist()
