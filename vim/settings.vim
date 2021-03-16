@@ -1,6 +1,7 @@
 syntax on
 set encoding=utf-8
 set fileencoding=utf-8
+set spelllang=en_us,de_de nospell
 set clipboard+=unnamedplus
 set mouse=n
 set backspace=indent,eol,start
@@ -43,9 +44,7 @@ set complete+=kspell
 set shortmess+=c
 set pastetoggle=<F3>
 set laststatus=2
-if !exists('g:vscode')
-    set spelllang=en_us nospell
-endif
+
 if has('unix')
     set shell=/bin/bash
 endif
