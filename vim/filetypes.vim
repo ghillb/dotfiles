@@ -11,6 +11,7 @@ au FileType fugitive no <buffer><silent> q :x<cr>
 aug quickfix
   au! *
   au FileType qf map <buffer> dd :call RemoveQFItem()<cr>
+  au FileType qf map <buffer> <localleader>r :cdo s///
   au FileType qf map <buffer> <tab> <nop>
   au FileType qf map <buffer> <s-tab> <nop>
   au FileType qf map <buffer> <c-p> <c-w>k<c-p>

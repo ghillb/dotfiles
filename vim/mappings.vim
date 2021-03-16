@@ -6,6 +6,7 @@ no X "_X
 no Y yg_
 no vv V
 no V vg_
+vm s <plug>VSurround
 cm w!! w !sudo tee > /dev/null %
 cm :g !git -C %:p:h commit -am "--wip--" && git -C %:p:h push
 xn <silent> p p:let @+=@0<CR>:let @"=@0<CR>
@@ -81,8 +82,6 @@ no <leader>p o<esc>p
 no <leader>P O<esc>p
 nn <leader>o o<esc>
 nn <leader>O O<esc>
-nm <leader>s ys
-vm <leader>s <plug>VSurround
 nn <leader>bn :bnext<cr>
 nn <leader>bp :bprevious<cr>
 nn <leader>bc :enew<cr>

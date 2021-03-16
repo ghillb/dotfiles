@@ -4,7 +4,7 @@ set relativenumber number
 set ideajoin
 set surround
 set highlightedyank
-set sneak
+" set sneak
 set textobj-entire
 set argtextobj
 
@@ -16,7 +16,8 @@ no Y yg_
 no vv V
 no V vg_
 xn p "_dP
-vn p "_dP
+vn p "_dp
+vm s <plug>VSurround
 nn yil ^vg_y
 nn vil ^vg_
 ino kj <esc>
@@ -45,6 +46,4 @@ nn <leader>O O<esc>
 nn <leader>r :%s///gc
 nn <leader>v ggVG
 nn <leader><leader> a<space><right><esc>
-nm <leader>s ys
-vm <leader>s <plug>VSurround
 
