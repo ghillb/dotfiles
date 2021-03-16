@@ -19,7 +19,7 @@ set softtabstop=2
 set textwidth=100
 set colorcolumn=+1
 set formatoptions-=t
-set wrap
+set wrap linebreak
 set foldmethod=syntax
 set foldnestmax=1
 set hlsearch
