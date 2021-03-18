@@ -25,5 +25,6 @@ source $VC/plugc/fzfproject.vim
 source $VC/plugc/fzfcheckout.vim
 source $VC/plugc/codi.vim
 source $VC/plugc/vsnip.vim
-source $VC/plugc/vim-qf.vim
+source $VC/plugc/vimqf.vim
+source $VC/plugc/nvim-compe.vim
 

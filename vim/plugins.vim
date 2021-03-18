@@ -49,6 +49,7 @@ else
     call minpac#add('neovim/nvim-lspconfig')
     call minpac#add('nvim-lua/completion-nvim')
     call minpac#add('nvim-treesitter/nvim-treesitter')
+    call minpac#add('hrsh7th/nvim-compe')
   endif
 
   command! PUpdate source $MYVIMRC | call minpac#update()
