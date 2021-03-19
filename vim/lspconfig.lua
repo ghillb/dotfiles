@@ -1,7 +1,7 @@
 local yaml_ls_settings = {
   yaml = {
     schemas = {
-      ['https://json.schemastore.org/ansible-playbook'] = '*playbook.{yml,yaml}',
+      ['https://json.schemastore.org/ansible-playbook'] = '*-pb.{yml,yaml}',
       ['http://json.schemastore.org/gitlab-ci'] = '.gitlab-ci.{yml,yaml}',
     },
     validate = true,
