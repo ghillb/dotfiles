@@ -9,7 +9,8 @@ source $VC/mappings.vim
 source $VC/filetypes.vim
 
 " plugin configs
-source $VC/plugc/lsp-nvim.vim
+source $VC/plugc/nvim-lsp.vim
+source $VC/plugc/nvim-compe.vim
 source $VC/plugc/gitgutter.vim
 source $VC/plugc/fzf.vim
 source $VC/plugc/vimwiki.vim
@@ -26,5 +27,4 @@ source $VC/plugc/fzfcheckout.vim
 source $VC/plugc/codi.vim
 source $VC/plugc/vsnip.vim
 source $VC/plugc/vimqf.vim
-source $VC/plugc/nvim-compe.vim
 
