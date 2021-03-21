@@ -11,6 +11,7 @@ cm w!! w !sudo tee > /dev/null %
 cm :g !git -C %:p:h commit -am "--wip--" && git -C %:p:h push
 xn <silent> p p:let @+=@0<CR>:let @"=@0<CR>
 xn <silent> P P:let @+=@0<CR>:let @"=@0<CR>
+vn / y/\V<c-r>=escape(@",'/\')<cr><cr>N
 ino kj <esc>
 ino jk <esc>
 no <c-j> <c-e>
@@ -25,9 +26,9 @@ no <localleader><cr> :call SetRoot('git_root')<cr>
 no <localleader><bs> :call SetRoot('parent_dir')<cr>  
 no <localleader>/ :call SetRoot('current_dir')<cr>  
 no <localleader>\ :chdir $VIM_ROOT<cr> \| :echo "back to root: " . $VIM_ROOT<cr>
-nn <localleader>r :%s///gc
-nn <localleader>p :vim// **/*
-nn <localleader>l :lv// %
+nn <localleader>r :%s///gc<left><left><left><left>
+nn <localleader>q :vim// **/*<left><left><left><left><left><left>
+nn <localleader>l :lv// %<left><left><left>
 no <localleader>w :%s/\s\+$//e<cr>
 nn <localleader>, :e $MYVIMRC<cr>
 nn <localleader>. :so $MYVIMRC<cr>
@@ -75,8 +76,6 @@ nn <silent><c-\> :Lines<cr>
 nn <silent><c-c> :Commands<cr>
 nn <silent><c-g> :chdir %:p:h \| :GBranches <cr>
 nn <esc><esc> :FzfSwitchProject<cr>
-vn / y/\V<c-r>=escape(@",'/\')<cr><cr>N
-nn <leader>/ viwy/\V<c-r>=escape(@",'/\')<cr><cr>N
 nn <leader><leader> a<space><esc>
 no <leader>p o<esc>p
 no <leader>P O<esc>p
