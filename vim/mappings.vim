@@ -12,6 +12,7 @@ cm :g !git -C %:p:h commit -am "--wip--" && git -C %:p:h push
 xn <silent> p p:let @+=@0<CR>:let @"=@0<CR>
 xn <silent> P P:let @+=@0<CR>:let @"=@0<CR>
 vn / y/\V<c-r>=escape(@",'/\')<cr><cr>N
+nm cg* *N"ccgn
 ino kj <esc>
 ino jk <esc>
 no <c-j> <c-e>
