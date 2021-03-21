@@ -42,7 +42,6 @@ set wildignore=*.o,*~,*.pyc,*.pyo,__pycache__,*/venv/*
 set completeopt=menuone,noselect
 set complete+=kspell
 set shortmess+=c
-set pastetoggle=<F3>
 set laststatus=2
 
 if has('unix')

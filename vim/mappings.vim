@@ -6,11 +6,13 @@ no X "_X
 no Y yg_
 no vv V
 no V vg_
+nn Q @q
+vn Q :norm @q<cr>
 vm s <plug>VSurround
 cm w!! w !sudo tee > /dev/null %
 cm :g !git -C %:p:h commit -am "--wip--" && git -C %:p:h push
-xn <silent> p p:let @+=@0<CR>:let @"=@0<CR>
-xn <silent> P P:let @+=@0<CR>:let @"=@0<CR>
+xn <silent> p p:let @+=@0<cr>:let @"=@0<cr>
+xn <silent> P P:let @+=@0<cr>:let @"=@0<cr>
 vn / y/\V<c-r>=escape(@",'/\')<cr><cr>N
 nm cg* *N"ccgn
 ino kj <esc>
@@ -23,9 +25,9 @@ no <c-s> :w<cr>
 ino <c-s> <c-o>:w<cr>
 nn <c-q> :x<cr>
 ino <c-q> <esc>:x<cr>
-no <localleader><cr> :call SetRoot('git_root')<cr>  
-no <localleader><bs> :call SetRoot('parent_dir')<cr>  
-no <localleader>/ :call SetRoot('current_dir')<cr>  
+no <localleader><cr> :call SetRoot('git_root')<cr>
+no <localleader><bs> :call SetRoot('parent_dir')<cr>
+no <localleader>/ :call SetRoot('current_dir')<cr>
 no <localleader>\ :chdir $VIM_ROOT<cr> \| :echo "back to root: " . $VIM_ROOT<cr>
 nn <localleader>r :%s///gc<left><left><left><left>
 nn <localleader>q :vim// **/*<left><left><left><left><left><left>
@@ -35,10 +37,10 @@ nn <localleader>, :e $MYVIMRC<cr>
 nn <localleader>. :so $MYVIMRC<cr>
 nn <silent><tab> :bnext<cr>
 nn <silent><s-tab> :bprevious<cr>
-vn <silent>al :<c-u>normal 0v$h<CR>
-om <silent>al :normal val<CR>
-vn <silent>il :<c-u>normal ^vg_<CR>
-om <silent>il :normal vil<CR>
+vn <silent>al :<c-u>normal 0v$h<cr>
+om <silent>al :normal val<cr>
+vn <silent>il :<c-u>normal ^vg_<cr>
+om <silent>il :normal vil<cr>
 vn <silent> a` :<c-u>call Ticks(0)<cr>
 vn <silent> i` :<c-u>call Ticks(1)<cr>
 ono <silent> a` :<c-u>normal va`<cr>
@@ -54,6 +56,11 @@ nn <a-s-r> :w<cr>:!cr %<cr>
 ino <a-s-r> <esc>:w<cr>:!cr %<cr>
 nn <a-r> :TREPLSendLine<cr>j
 vn <a-r> :TREPLSendSelection<cr>
+nn <silent><a-1> :call ToggleFern()<cr>
+nn <silent><a-esc> :Ttoggle<cr><c-w>wa
+tno <silent><a-esc> <c-\><c-n>:Ttoggle<cr>
+tno <esc> <c-\><c-n>
+tno <a-s-esc> <esc>
 nn <silent> <a-h> :call TmuxMove('h')<cr>
 nn <silent> <a-j> :call TmuxMove('j')<cr>
 nn <silent> <a-k> :call TmuxMove('k')<cr>
@@ -96,6 +103,7 @@ nn <leader>tc :Codi!!<cr>
 nn <leader>ty :Startify<cr>
 nn <leader>ti :IndentLinesToggle<cr>
 nn <leader>tu :UndotreeToggle<cr>
+nn <leader>tp :set paste!<cr>
 nn <leader>v ggVG
 nn <leader>gg :G<cr>
 nn <leader>gd :Gvdiffsplit<cr>
@@ -110,10 +118,6 @@ no <leader>id i<c-r>=expand('%:p:h').'/'<cr><esc>
 no <leader>itd "=strftime("%Y-%m-%d")<cr>P
 no <leader>itt "=strftime("%H:%M:%S")<cr>P
 no <leader>itm "=strftime("%Y-%m-%d \/ %H:%M:%S")<cr>P
+no <leader>cp yap<S-}>p
 nn <silent><leader> :WhichKey '<space>'<cr>
-nn <silent><a-1> :call ToggleFern()<cr>
-nn <silent><a-esc> :Ttoggle<cr><c-w>wa
-tno <silent><a-esc> <c-\><c-n>:Ttoggle<cr>
-tno <esc> <c-\><c-n>
-tno <a-s-esc> <esc>
 
