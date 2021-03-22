@@ -35,5 +35,10 @@ let g:lightline = {
     \ }
 
 hi Normal guibg=NONE ctermbg=NONE
-let g:limelight_conceal_guifg = '#697A69'
+hi CursorLineNR guibg=NONE ctermbg=NONE
+hi SignColumn guibg=NONE ctermbg=NONE
+hi GitGutterAdd guibg=NONE ctermbg=NONE guifg=LightGreen
+hi GitGutterChange guibg=NONE ctermbg=NONE guifg=LightBlue
+hi GitGutterDelete guibg=NONE ctermbg=NONE guifg=Red
+hi GitGutterChangeDelete guibg=NONE ctermbg=NONE guifg=Red
 
