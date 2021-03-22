@@ -1,4 +1,5 @@
-syntax on
+filetype plugin indent on
+syntax enable
 set encoding=utf-8
 set fileencoding=utf-8
 set spelllang=en_us,de_de nospell
