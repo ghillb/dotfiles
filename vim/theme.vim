@@ -35,10 +35,12 @@ let g:lightline = {
     \ }
 
 hi Normal guibg=NONE ctermbg=NONE
+hi LineNr guibg=NONE ctermbg=NONE
 hi CursorLineNR guibg=NONE ctermbg=NONE
 hi SignColumn guibg=NONE ctermbg=NONE
-hi GitGutterAdd guibg=NONE ctermbg=NONE guifg=LightGreen
-hi GitGutterChange guibg=NONE ctermbg=NONE guifg=LightBlue
-hi GitGutterDelete guibg=NONE ctermbg=NONE guifg=Red
-hi GitGutterChangeDelete guibg=NONE ctermbg=NONE guifg=Red
+hi WarningMsg guibg=NONE ctermbg=NONE guifg=#fb4934
+hi GitGutterAdd guibg=NONE ctermbg=NONE guifg=#689d6a
+hi GitGutterChange guibg=NONE ctermbg=NONE guifg=#458588
+hi GitGutterDelete guibg=NONE ctermbg=NONE guifg=#fb4934
+hi GitGutterChangeDelete guibg=NONE ctermbg=NONE guifg=#fb4934
 
