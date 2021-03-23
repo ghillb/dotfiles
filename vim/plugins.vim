@@ -23,7 +23,7 @@ else
   call minpac#add('junegunn/gv.vim')
   call minpac#add('junegunn/fzf')
   call minpac#add('junegunn/fzf.vim')
-  call minpac#add('benwainwright/fzf-project')
+  call minpac#add('ghillb/fzf-project')
   call minpac#add('stsewd/fzf-checkout.vim')
   call minpac#add('tpope/vim-surround')
   call minpac#add('tpope/vim-commentary')
