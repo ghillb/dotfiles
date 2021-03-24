@@ -38,6 +38,7 @@ hi Normal guibg=NONE ctermbg=NONE
 hi LineNr guibg=NONE ctermbg=NONE
 hi CursorLineNR guibg=NONE ctermbg=NONE
 hi SignColumn guibg=NONE ctermbg=NONE
+hi VertSplit guibg=NONE ctermbg=NONE
 hi WarningMsg guibg=NONE ctermbg=NONE guifg=#fb4934
 hi GitGutterAdd guibg=NONE ctermbg=NONE guifg=#689d6a
 hi GitGutterChange guibg=NONE ctermbg=NONE guifg=#458588
