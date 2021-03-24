@@ -15,5 +15,5 @@ let g:startify_skiplist = [
        \ '\.vimgolf',
        \ ]
 
-au User StartifyBufferOpened let $VIM_ROOT = getcwd()
+au User StartifyBufferOpened call SetRoot('git_dir')
 

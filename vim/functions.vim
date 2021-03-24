@@ -1,6 +1,6 @@
 if filereadable(expand($NVC) . '/localrc.vim') | source $NVC/localrc.vim | endif
 au BufEnter * if filereadable(expand('%:p:h') . '/.exrc.vim') | source %:p:h/.exrc.vim | endif
-au VimEnter * let $VIM_ROOT = getcwd()
+au VimEnter * call SetRoot('start_dir')
 au InsertEnter,InsertLeave * set cul!
 au TextChanged,TextChangedI * if &readonly == 0 && filereadable(bufname('%')) | silent write | endif
 
@@ -64,19 +64,23 @@ fun! ToggleFern()
 endfun
 
 fun! SetRoot(new_root)
+  let $VIM_ROOT = getcwd()
   if (a:new_root == 'git_root') 
     if fugitive#head() != ''
-      let $VIM_ROOT=fugitive#repo().tree()
+      let $VIM_ROOT = fugitive#repo().tree()
     else 
       echo "not a git repo"
       return
     endif
   endif
   if (a:new_root == 'parent_dir')
-    let $VIM_ROOT=fnamemodify($VIM_ROOT, ':h')   
+    let $VIM_ROOT = fnamemodify($VIM_ROOT, ':h')
   endif
   if (a:new_root == 'current_dir')
-    let $VIM_ROOT=expand('%:p:h')  
+    let $VIM_ROOT = expand('%:p:h')
+  endif
+  if (a:new_root == 'start_dir') && len(argv()) > 0
+    let $VIM_ROOT = fnamemodify(argv()[0], ':p:h')
   endif
   echo "rooted " . substitute(a:new_root, "_", " ", "") . ": " . $VIM_ROOT
   chdir $VIM_ROOT
