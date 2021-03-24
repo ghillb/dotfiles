@@ -82,7 +82,7 @@ nn <silent><c-b> :Buffers<cr>
 nn <silent><a-\> :BLines<cr>
 nn <silent><c-\> :Lines<cr>
 nn <silent><c-c> :Commands<cr>
-nn <silent><c-g> :chdir %:p:h \| :GBranches <cr>
+nn <silent><c-g> :call OpenFzfCheckout()<cr>
 nn <esc><esc> :FzfSwitchProject<cr>
 nn <leader><leader> a<space><esc>
 no <leader>p o<esc>p

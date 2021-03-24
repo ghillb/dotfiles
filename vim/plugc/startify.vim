@@ -14,3 +14,6 @@ let g:startify_skiplist = [
        \ '^/tmp',
        \ '\.vimgolf',
        \ ]
+
+au User StartifyBufferOpened let $VIM_ROOT = getcwd()
+

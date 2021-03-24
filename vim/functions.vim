@@ -19,6 +19,12 @@ fun! LightlineGitModified()
   return l:modified_count =~ '\D' ? "" : l:modified_count
 endfun
 
+fun! OpenFzfCheckout()
+  :chdir %:p:h
+  :GBranches
+  :chdir $VIM_ROOT
+endfun
+
 fun! Ticks(inner)
   normal! gv
   call searchpos('`', 'bW')
