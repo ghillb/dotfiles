@@ -10,7 +10,7 @@ nn Q @q
 vn Q :norm @q<cr>
 vm s <plug>VSurround
 cm w!! w !sudo tee > /dev/null %
-cm :g !git -C %:p:h commit -am "--wip--" && git -C %:p:h push
+cm :G !git -C %:p:h commit -am "--wip--" && git -C %:p:h push
 xn <silent> p p:let @+=@0<cr>:let @"=@0<cr>
 xn <silent> P P:let @+=@0<cr>:let @"=@0<cr>
 vn / y/\V<c-r>=escape(@",'/\')<cr><cr>N
