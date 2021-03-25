@@ -113,7 +113,7 @@ nn <leader>gll :GV!<cr>
 nn <leader>gpl :G pull<cr>
 nn <leader>gps :G push<cr>
 nn <leader>gss :G stash<cr>
-nn <leader>gsp :G stash pop<cr>
+nn <leader>gsp :G stash pop -q<cr>
 nn <leader>ga :G add -p<cr>
 nn <leader>gb :Gblame<cr>
 no <leader>id i<c-r>=expand('%:p:h').'/'<cr><esc>

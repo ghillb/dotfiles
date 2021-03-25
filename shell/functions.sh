@@ -79,7 +79,8 @@ m() {
       -c 'set ft=man' \
       -c 'set ls=0' \
       -c 'set cc=' \
-      -c 'map q :q!<cr>'
+      -c 'map q :q!<cr>' \
+      -c 'autocmd!'
   else
     LESS_TERMCAP_md=$'\e[01;36m' \
     LESS_TERMCAP_me=$'\e[0m' \
