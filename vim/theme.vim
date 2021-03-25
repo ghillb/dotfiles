@@ -34,6 +34,16 @@ let g:lightline = {
       \ 'subseparator': { 'left': '', 'right': ''}
     \ }
 
+call cyclist#add_listchar_option_set('default', {
+      \ 'eol': '↲',
+      \ 'tab': '» ',
+      \ 'trail': '░',
+      \ 'extends': '<',
+      \ 'precedes': '>',
+      \ 'conceal': '┊',
+      \ 'nbsp': '␣',
+      \ })
+
 hi Normal guibg=NONE ctermbg=NONE
 hi LineNr guibg=NONE ctermbg=NONE
 hi CursorLineNR guibg=NONE ctermbg=NONE
