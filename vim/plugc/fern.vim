@@ -15,6 +15,7 @@ fun! s:init_fern() abort
     nmap <buffer> <c-e> <c-w>l<c-e>
     nmap <buffer> <c-p> <c-w>l<c-p>
     nmap <buffer> <c-b> <c-w>l<c-b>
+    nmap <buffer> <c-g> <c-w>l<c-g>
     nmap <buffer> <c-\> <c-w>l<c-\>
     nmap <buffer> <a-\> <c-w>l<a-\>
     nmap <buffer> <leader><bs> <c-w>l<leader><bs>
