@@ -55,5 +55,9 @@ if command -v arkade &>/dev/null; then
   complete -F _complete_alias ark
 fi
 
+if command -v kind &>/dev/null; then
+  eval "$(kind completion bash)"
+fi
+
 function_exists m && complete -F _command m
 
