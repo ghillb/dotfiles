@@ -17,6 +17,10 @@ if command -v kubectl &>/dev/null; then
   complete -F __start_kubectl k
 fi
 
+if command -v helm &>/dev/null; then
+  eval "$(helm completion bash)"
+fi
+
 if command -v glab &>/dev/null; then
   eval "$(glab completion -s bash)"
   complete -F _complete_alias gl
