@@ -8,6 +8,8 @@ endfun
 
 au FileType git normal zR
 au FileType fugitive no <buffer><silent> q :x<cr>
+au FileType neoterm map <buffer> <tab> <nop>
+
 
 aug quickfix
   au! *
@@ -18,6 +20,7 @@ aug quickfix
   au FileType qf map <buffer> <c-p> <c-w>k<c-p>
   au FileType qf map <buffer> <c-e> <c-w>k<c-e>
   au FileType qf map <buffer> <c-b> <c-w>k<c-b>
+  au FileType qf map <buffer> <c-g> <c-w>k<c-g>
   au FileType qf map <buffer> <c-\> <c-w>k<c-\>
   au FileType qf map <buffer> <a-\> <c-w>k<a-\>
 aug END
