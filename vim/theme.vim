@@ -25,7 +25,8 @@ let g:lightline = {
       \             [ 'gitbranch', 'gitdiffcount', 'readonly', 'filename', 'modified' ] ]
       \ },
       \ 'component_function': {
-      \   'gitbranch': 'LightlineGitBranch'
+      \   'gitbranch': 'LightlineGitBranch',
+      \   'filename': 'LightlineFilePath'
       \ },
       \ 'component_expand': {
       \   'gitdiffcount': 'LightlineGitModified',

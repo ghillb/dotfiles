@@ -19,6 +19,10 @@ fun! LightlineGitModified()
   return l:modified_count =~ '\D' ? "" : l:modified_count
 endfun
 
+fun! LightlineFilePath()
+    return expand('%')
+endfun
+
 fun! OpenFzfCheckout()
   :chdir %:p:h
   :GBranches
