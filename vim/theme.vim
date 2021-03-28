@@ -36,7 +36,7 @@ let g:lightline = {
     \ }
 
 call cyclist#add_listchar_option_set('default', {
-      \ 'eol': '↲',
+      \ 'eol': '',
       \ 'tab': '» ',
       \ 'trail': '░',
       \ 'extends': '<',

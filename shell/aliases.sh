@@ -58,7 +58,7 @@ alias fu='curl -F"file=@$(find $HOME -type f | fzf)" 0x0.st | xsel --input --cli
 alias hist='history|grep'
 alias hx='hexyl'
 alias vr='nvr -r'
-alias vt='nvim -c term -c "norm i" -c "setlocal ls=0 cc= rnu! nu!" -c "tno <c-d> <c-\><c-n>:q!<cr>"'
+alias vt='nvim -c term -c "norm i" -c "setlocal ls=0 cc= rnu! nu!" -c "au!" -c "au TermClose * :q!"'
 alias ss='shellcheck'
 alias stx='mop -profile ~/.config/mop/default-moprc.json'
 alias tcr='ticker --config ~/.config/default-ticker.yaml --show-separator'
