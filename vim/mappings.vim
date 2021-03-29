@@ -59,7 +59,7 @@ vn <a-r> :TREPLSendSelection<cr>
 nn <silent><a-1> :call ToggleFern()<cr>
 nn <silent><a-esc> :Ttoggle<cr><c-w>wa
 tno <silent><a-esc> <c-\><c-n>:Ttoggle<cr>
-tno <a-space> <c-\><c-n>
+tno ` <c-\><c-n>
 nn <silent> <a-h> :call TmuxMove('h')<cr>
 nn <silent> <a-j> :call TmuxMove('j')<cr>
 nn <silent> <a-k> :call TmuxMove('k')<cr>
