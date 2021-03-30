@@ -22,9 +22,11 @@ let g:compe.source.nvim_lua = v:true
 let g:compe.source.vsnip = v:true
 let g:compe.source.nvim_treesitter = v:true
 
-inoremap <silent><expr> <a-space> compe#complete()
-inoremap <silent><expr> <cr>      compe#confirm('<cr>')
-inoremap <silent><expr> <c-e>     compe#close('<c-e>')
-inoremap <silent><expr> <c-f>     compe#scroll({ 'delta': +4 })
-inoremap <silent><expr> <c-d>     compe#scroll({ 'delta': -4 })
+if exists('*compe#complete')
+  inoremap <silent><expr> <a-space> compe#complete()
+  inoremap <silent><expr> <cr>      compe#confirm('<cr>')
+  inoremap <silent><expr> <c-e>     compe#close('<c-e>')
+  inoremap <silent><expr> <c-f>     compe#scroll({ 'delta': +4 })
+  inoremap <silent><expr> <c-d>     compe#scroll({ 'delta': -4 })
+endif
 

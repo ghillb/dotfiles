@@ -44,7 +44,6 @@ else
   call minpac#add('justinmk/vim-sneak')
   call minpac#add('hrsh7th/vim-vsnip')
   call minpac#add('Yggdroot/indentLine')
-  call minpac#add('tjdevries/cyclist.vim')
 
   if has('nvim-0.5')
     call minpac#add('neovim/nvim-lspconfig')
