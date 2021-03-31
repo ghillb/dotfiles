@@ -1,6 +1,6 @@
 fun! s:init_fern() abort
-    nmap <buffer> - <Plug>(fern-action-open:split)
-    nmap <buffer> \ <Plug>(fern-action-open:vsplit)
+    nmap <buffer> s <Plug>(fern-action-open:split)
+    nmap <buffer> v <Plug>(fern-action-open:vsplit)
     nmap <buffer> r <Plug>(fern-action-rename)
     nmap <buffer> m <Plug>(fern-action-move)
     nmap <buffer> c <Plug>(fern-action-copy)
