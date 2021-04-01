@@ -110,7 +110,7 @@ nn <leader>gc :G checkout %
 nn <leader>glo :GV<cr>
 nn <leader>gll :GV!<cr>
 nn <leader>gpl :G pull<cr>
-nn <leader>gps :G push<cr>
+no <leader>gps :G -c push.default=current push<cr>
 nn <leader>gss :G stash<cr>
 nn <leader>gsp :G stash pop -q<cr>
 nn <leader>ga :G add -p<cr>
