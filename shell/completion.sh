@@ -21,6 +21,10 @@ if command -v helm &>/dev/null; then
   eval "$(helm completion bash)"
 fi
 
+if command -v terraform &>/dev/null; then
+  complete -C /usr/bin/terraform terraform -F _complete_alias tf
+fi
+
 if command -v glab &>/dev/null; then
   eval "$(glab completion -s bash)"
   complete -F _complete_alias gl
