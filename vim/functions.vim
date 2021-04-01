@@ -87,7 +87,11 @@ fun! SetRoot(new_root)
     let $VIM_ROOT = fnamemodify(argv()[0], ':p:h')
   endif
   echo "rooted " . substitute(a:new_root, "_", " ", "") . ": " . $VIM_ROOT
-  chdir $VIM_ROOT
+  if isdirectory($VIM_ROOT)
+    chdir $VIM_ROOT
+  else
+    echo "directory doesn't exist"
+  endif
 endfun
 
 fun! KittyCursor()
