@@ -63,5 +63,9 @@ if command -v kind &>/dev/null; then
   eval "$(kind completion bash)"
 fi
 
+if command -v kompose &>/dev/null; then
+  source <(kompose completion bash)
+fi
+
 function_exists m && complete -F _command m
 
