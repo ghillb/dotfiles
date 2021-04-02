@@ -103,6 +103,8 @@ nn <leader>ty :Startify<cr>
 nn <leader>ti :IndentLinesToggle<cr>
 nn <leader>tu :UndotreeToggle<cr>
 nn <leader>tp :set paste!<cr>
+nn <leader>zi <c-w>_<bar><c-w>\|
+nn <leader>zo <c-w>=
 nn <leader>v ggVG
 nn <leader>gg :G<cr>
 nn <leader>gd :Gvdiffsplit<cr>
