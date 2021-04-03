@@ -51,7 +51,7 @@ if command -v sudo &>/dev/null; then
 fi
 
 if command -v git &>/dev/null; then
-  _xfunc git __git_complete g _git
+  complete -F _complete_alias g
 fi
 
 if command -v arkade &>/dev/null; then
