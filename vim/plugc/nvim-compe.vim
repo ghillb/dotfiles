@@ -22,7 +22,8 @@ let g:compe.source.nvim_lua = v:true
 let g:compe.source.vsnip = v:true
 let g:compe.source.nvim_treesitter = v:true
 
-if exists('*compe#complete')
+if has('nvim-0.5')
+  inoremap <silent><expr> <cr>      compe#confirm('<cr>')
   inoremap <silent><expr> <a-space> compe#complete()
   inoremap <silent><expr> <cr>      compe#confirm('<cr>')
   inoremap <silent><expr> <c-e>     compe#close('<c-e>')
