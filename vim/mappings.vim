@@ -60,6 +60,7 @@ nn <silent><a-1> :call ToggleFern()<cr>
 nn <silent><a-esc> :Ttoggle<cr><c-w>wa
 tno <silent><a-esc> <c-\><c-n>:Ttoggle<cr>
 tno ` <c-\><c-n>
+tno <a-`> <c-\><c-n><c-w>k
 nn <silent> <a-h> :call TmuxMove('h')<cr>
 nn <silent> <a-j> :call TmuxMove('j')<cr>
 nn <silent> <a-k> :call TmuxMove('k')<cr>
@@ -98,6 +99,7 @@ nn <leader>to :tabo<cr>
 nn <silent><leader>tg :set rnu! \| :set nu! \| :GitGutterToggle<cr>
 nn <silent><leader>tz :Goyo<cr>
 nn <leader>tl :Limelight!!<cr>
+nn <leader>tt :<c-u>exec v:count.'Tclear'<cr>
 nn <leader>tc :Codi!!<cr>
 nn <leader>ty :Startify<cr>
 nn <leader>ti :IndentLinesToggle<cr>

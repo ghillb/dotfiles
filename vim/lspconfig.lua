@@ -15,6 +15,17 @@ local yamlls_settings = {
   }
 }
 
+local rust_analyzer_settings = {
+    ["rust-analyzer"] = {
+        server = {
+            path = "~/.local/bin/rust-analyzer"
+        };
+        cargo = {
+            allFeatures = true
+        };
+    }
+}
+
 -- lsp attaching
 local has_lsp, nvim_lsp = pcall(require, 'lspconfig')
 if has_lsp then
@@ -30,7 +41,7 @@ if has_lsp then
   nvim_lsp.pyright.setup{}
   nvim_lsp.r_language_server.setup{}
   nvim_lsp.gopls.setup{}
-  nvim_lsp.rust_analyzer.setup{}
+  nvim_lsp.rust_analyzer.setup{settings = rust_analyzer_settings}
   nvim_lsp.jdtls.setup{}
 end
 
