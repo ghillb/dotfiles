@@ -52,8 +52,8 @@ vn <a-up> :m '<-2<cr>gv=gv
 ino <a-down> <esc>:m .+1<cr>==gi
 ino <a-up> <esc>:m .-2<cr>==gi
 ino <a-cr> <c-x><c-p>
-nn <a-s-r> :w<cr>:!cr %<cr>
-ino <a-s-r> <esc>:w<cr>:!cr %<cr>
+nn <a-s-r> :w<cr>:T cr %<cr>
+ino <a-s-r> <esc>:w<cr>:T cr %<cr>
 nn <a-r> :TREPLSendLine<cr>j
 vn <a-r> :TREPLSendSelection<cr>
 nn <silent><a-1> :call ToggleFern()<cr>
@@ -99,7 +99,7 @@ nn <leader>to :tabo<cr>
 nn <silent><leader>tg :set rnu! \| :set nu! \| :GitGutterToggle<cr>
 nn <silent><leader>tz :Goyo<cr>
 nn <leader>tl :Limelight!!<cr>
-nn <leader>tt :<c-u>exec v:count.'Tclear'<cr>
+nn <silent><leader>tt :<c-u>exec v:count.'Tclear'<cr>
 nn <leader>tc :Codi!!<cr>
 nn <leader>ty :Startify<cr>
 nn <leader>ti :IndentLinesToggle<cr>

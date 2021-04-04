@@ -9,7 +9,7 @@ endfun
 au FileType git normal zR
 au FileType fugitive no <buffer><silent> q :x<cr>
 au FileType neoterm map <buffer> <tab> <nop>
-au FileType rust map <a-s-t> :T cd %:p:h; cargo test<cr>
+au FileType rust map <a-s-t> :T cd %:p:h; cargo test --all-targets<cr>
 
 aug quickfix
   au! *

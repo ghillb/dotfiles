@@ -67,5 +67,9 @@ if command -v kompose &>/dev/null; then
   source <(kompose completion bash)
 fi
 
+if command -v rustc &>/dev/null; then
+  source $(rustc --print sysroot)/etc/bash_completion.d/cargo
+fi
+
 function_exists m && complete -F _command m
 
