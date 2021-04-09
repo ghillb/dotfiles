@@ -104,3 +104,7 @@ hash_docker_image() {
   }
 }
 
+fzkill() {
+  ps -ef | fzf --height=40% | awk '{print $2}' | xargs kill -9
+}
+

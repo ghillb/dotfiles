@@ -46,6 +46,7 @@ alias gss='git stash'
 alias gsp='git stash pop'
 alias gsubin='git submodule update --init --recursive'
 alias gsubpl='git submodule foreach --recursive git pull origin HEAD'
+alias gbin="grep -Fvxf <(git grep -Il '') <(git grep -al '')"
 alias gl='glab'
 alias gr='gitlab-runner exec docker'
 alias gi='onefetch'
