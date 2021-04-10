@@ -26,7 +26,22 @@ local rust_analyzer_settings = {
     }
 }
 
--- lsp attaching
+-- rust-tools
+local opts = {
+    autoSetHints = true,
+    hover_with_actions = true,
+    runnables = {
+        use_telescope = false
+    },
+    inlay_hints = {
+        show_parameter_hints = true,
+    },
+    lsp_opts = {},
+}
+
+require('rust-tools').setup(opts)
+
+-- lsp setups
 local has_lsp, nvim_lsp = pcall(require, 'lspconfig')
 if has_lsp then
   nvim_lsp.bashls.setup{}
