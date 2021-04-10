@@ -57,7 +57,6 @@ if has_lsp then
   nvim_lsp.r_language_server.setup{}
   nvim_lsp.gopls.setup{}
   nvim_lsp.rust_analyzer.setup{settings = rust_analyzer_settings}
-  nvim_lsp.jdtls.setup{}
 end
 
 -- treesitter settings

@@ -50,6 +50,7 @@ else
     call minpac#add('nvim-treesitter/nvim-treesitter')
     call minpac#add('hrsh7th/nvim-compe')
     call minpac#add('simrat39/rust-tools.nvim')
+    call minpac#add('mfussenegger/nvim-jdtls')
   endif
 
   command! PUpdate source $MYVIMRC | call minpac#update()
