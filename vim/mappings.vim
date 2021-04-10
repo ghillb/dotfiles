@@ -79,8 +79,8 @@ nn <silent><c-p> :Rg<cr>
 nn <silent><c-e> :call FzfOmniFiles()<cr>
 nn <silent><c-a-e> :Files<cr>
 nn <silent><c-b> :Buffers<cr>
-nn <silent><a-\> :BLines<cr>
-nn <silent><c-\> :Lines<cr>
+nn <silent><c-\> :BLines<cr>
+nn <silent><a-\> :Lines<cr>
 nn <silent><c-c> :Commands<cr>
 nn <silent><c-g> :call OpenFzfCheckout()<cr>
 nn <esc><esc> :FzfSwitchProject<cr>
