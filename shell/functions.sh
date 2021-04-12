@@ -108,3 +108,11 @@ fzkill() {
   ps -ef | fzf --height=40% | awk '{print $2}' | xargs kill -9
 }
 
+kubemerge() {
+ DATE=$(date +"%Y%m%d%H%M")
+ KUBECONFIG=~/.kube/config:$1
+ kubectl config view --flatten > ~/.kube/mergedkubeconfig \
+   && mv ~/.kube/config ~/.kube/config-$DATE \
+   && mv ~/.kube/mergedkubeconfig ~/.kube/config
+}
+
