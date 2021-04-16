@@ -8,7 +8,7 @@ nn <silent> gp <cmd>lua vim.lsp.diagnostic.goto_prev()<cr>
 nn <silent> gn <cmd>lua vim.lsp.diagnostic.goto_next()<cr>
 nn <silent> gF <cmd>lua vim.lsp.buf.formatting()<CR>
 
-if has ('nvim-0.5')
+if has('nvim-0.5') && lsp_enabled
   luafile $VC/lspconfig.lua
 endif
 
