@@ -37,14 +37,6 @@ nn <localleader>, :e $MYVIMRC<cr>
 nn <localleader>. :so $MYVIMRC<cr>
 nn <silent><tab> :bnext<cr>
 nn <silent><s-tab> :bprevious<cr>
-vn <silent>al :<c-u>normal 0v$h<cr>
-om <silent>al :normal val<cr>
-vn <silent>il :<c-u>normal ^vg_<cr>
-om <silent>il :normal vil<cr>
-vn <silent> a` :<c-u>call Ticks(0)<cr>
-vn <silent> i` :<c-u>call Ticks(1)<cr>
-ono <silent> a` :<c-u>normal va`<cr>
-ono <silent> i` :<c-u>normal vi`<cr>
 nn <a-down> :m .+1<cr>==
 nn <a-up> :m .-2<cr>==
 vn <a-down> :m '>+1<cr>gv=gv

@@ -29,15 +29,6 @@ fun! OpenFzfCheckout()
   :chdir $VIM_ROOT
 endfun
 
-fun! Ticks(inner)
-  normal! gv
-  call searchpos('`', 'bW')
-  if a:inner | exe "normal! 1\<space>" | endif
-  normal! o
-  call searchpos('`', 'W')
-  if a:inner | exe "normal! \<bs>" | endif
-endfun
-
 fun! FzfOmniFiles()
   let is_git = system('git status')
   if v:shell_error || system('git submodule status') != ""
