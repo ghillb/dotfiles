@@ -26,7 +26,6 @@ initbash() {
   if ping -q -w 1 -c 1 1.1.1.1 > /dev/null; then git -C $HOME/.files/ pull; fi; tx
 }
 
-
 gsubrm() {
   git submodule deinit -f -- "$1" && git rm -f "$1" && rm -rf .git/modules/"$1"
 }
@@ -110,9 +109,10 @@ fzkill() {
 
 kubemerge() {
  DATE=$(date +"%Y%m%d%H%M")
- KUBECONFIG=~/.kube/config:$1
- kubectl config view --flatten > ~/.kube/mergedkubeconfig \
+ KUBECONFIG=~/.kube/config:$1 \
+   kubectl config view --flatten > ~/.kube/merged \
    && mv ~/.kube/config ~/.kube/config-$DATE \
-   && mv ~/.kube/mergedkubeconfig ~/.kube/config
+   && mv ~/.kube/merged ~/.kube/config \
+   && chmod 600 ~/.kube/config
 }
 
