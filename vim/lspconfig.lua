@@ -1,4 +1,4 @@
--- settings for various lsp
+-- yaml-ls settings
 local yamlls_settings = {
   yaml = {
     schemas = {
@@ -15,28 +15,32 @@ local yamlls_settings = {
   }
 }
 
+-- rust-ls settings
 local rust_analyzer_settings = {
-    ["rust-analyzer"] = {
-        server = {
-            path = "~/.local/bin/rust-analyzer"
-        };
-        cargo = {
-            allFeatures = true
-        };
-    }
+  ["rust-analyzer"] = {
+    server = {
+      path = "~/.local/bin/rust-analyzer"
+    };
+    cargo = {
+      allFeatures = true
+    };
+  }
 }
 
--- rust-tools
 local opts = {
+  tools = {
     autoSetHints = true,
     hover_with_actions = true,
     runnables = {
-        use_telescope = false
+      use_telescope = false
     },
     inlay_hints = {
-        show_parameter_hints = true,
+      show_parameter_hints = true,
+      parameter_hints_prefix = "<-",
+      other_hints_prefix  = "=>",
     },
-    lsp_opts = {},
+  },
+  server = {settings = rust_analyzer_settings},
 }
 
 require('rust-tools').setup(opts)
@@ -56,7 +60,6 @@ if has_lsp then
   nvim_lsp.pyright.setup{}
   nvim_lsp.r_language_server.setup{}
   nvim_lsp.gopls.setup{}
-  nvim_lsp.rust_analyzer.setup{settings = rust_analyzer_settings}
 end
 
 -- treesitter settings
