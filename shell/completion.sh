@@ -67,6 +67,11 @@ if command -v kompose &>/dev/null; then
   source <(kompose completion bash)
 fi
 
+if command -v ansible &>/dev/null; then
+  source ~/.bash_completion.d/ansible-completion.bash
+  complete -F _complete_alias a
+fi
+
 if command -v rustc &>/dev/null; then
   source $(rustc --print sysroot)/etc/bash_completion.d/cargo
 fi
