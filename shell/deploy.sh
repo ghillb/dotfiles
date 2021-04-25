@@ -41,7 +41,7 @@ tmux() {
 
 fzf() {
   if ! command -v ag &> /dev/null; then sudo apt install -y silversearcher-ag; fi
-  git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf; $HOME/.fzf/install
+  git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf; $HOME/.fzf/install --all
 }
 
 desktop() {
