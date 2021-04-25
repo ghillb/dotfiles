@@ -2,9 +2,9 @@
 local yamlls_settings = {
   yaml = {
     schemas = {
-      ['https://json.schemastore.org/ansible-playbook'] = '*-pb.{yml,yaml}',
+      ['https://json.schemastore.org/ansible-playbook'] = '*.pb.{yml,yaml}',
       ['http://json.schemastore.org/gitlab-ci'] = '*.gitlab-ci.{yml,yaml}',
-      ['https://raw.githubusercontent.com/docker/cli/master/cli/compose/schema/data/config_schema_v3.9.json'] = '*docker-compose.yml',
+      ['https://raw.githubusercontent.com/docker/cli/master/cli/compose/schema/data/config_schema_v3.9.json'] = '*.docker-compose.yml',
     },
     validate = true,
     hover = true,
