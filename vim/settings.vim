@@ -19,7 +19,6 @@ set shiftwidth=2
 set softtabstop=2
 set textwidth=100
 set colorcolumn=
-set formatoptions-=t
 set wrap linebreak
 set foldmethod=syntax
 set foldnestmax=1
