@@ -2,6 +2,7 @@ au FileType markdown call SetMarkdownSettings()
 " custom surroundings for vim-surround
 fun! SetMarkdownSettings()
   set spell
+  set formatoptions-=tc
   let b:surround_{char2nr('c')} = "```\r```"
   let b:surround_{char2nr('b')} = "**\r**"
 endfun
