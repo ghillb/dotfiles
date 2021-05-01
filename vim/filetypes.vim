@@ -3,7 +3,8 @@ au FileType markdown call SetMarkdownSettings()
 fun! SetMarkdownSettings()
   set spell
   set formatoptions-=tc
-  let b:surround_{char2nr('c')} = "```\r```"
+  let b:surround_{char2nr('c')} = "```\n\r\n```"
+  let b:surround_{char2nr('i')} = "*\r*"
   let b:surround_{char2nr('b')} = "**\r**"
 endfun
 
