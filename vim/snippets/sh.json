@@ -1,6 +1,6 @@
 {
-  "Class": {
-    "prefix": ["cuser"],
+  "snip_create_user_debian": {
+    "prefix": ["snip_create_user_debian"],
     "body": [
       "#!/bin/sh",
       "user=$1",
@@ -10,7 +10,28 @@
       "sudo -u \\$user vi /home/\\$user/.ssh/authorized_keys",
       "sudo -u \\$user chmod -R go= /home/\\$user/.ssh",
       "sudo passwd --delete \\$user"
-    ],
-    "description": "Create new user."
+    ]
+  },
+  "snip_create_user_sles": {
+    "prefix": ["snip_create_user_sles"],
+    "body": [
+      "#!/bin/sh",
+      "user=$1",
+      "sudo useradd -m \\$user",
+      "sudo -u \\$user mkdir -p /home/\\$user/.ssh",
+      "sudo -u \\$user vi /home/\\$user/.ssh/authorized_keys",
+      "sudo -u \\$user chmod -R go= /home/\\$user/.ssh",
+      "sudo passwd --delete \\$user",
+      "sudo visudo",
+      "# $1 ALL=(ALL) ALL"
+    ]
+  },
+  "bash_skeleton": {
+    "prefix": ["snip_skeleton"],
+    "body": [
+      "#!/usr/bin/env bash",
+      "set -euxo pipefail"
+    ]
   }
 }
+
