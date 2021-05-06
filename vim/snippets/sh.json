@@ -1,6 +1,6 @@
 {
-  "snip_create_user_debian": {
-    "prefix": ["snip_create_user_debian"],
+  "vs_create_user_debian": {
+    "prefix": ["vs_create_user_debian"],
     "body": [
       "#!/bin/sh",
       "user=$1",
@@ -12,8 +12,8 @@
       "sudo passwd --delete \\$user"
     ]
   },
-  "snip_create_user_sles": {
-    "prefix": ["snip_create_user_sles"],
+  "vs_create_user_sles": {
+    "prefix": ["vs_create_user_sles"],
     "body": [
       "#!/bin/sh",
       "user=$1",
@@ -26,8 +26,8 @@
       "# $1 ALL=(ALL) ALL"
     ]
   },
-  "bash_skeleton": {
-    "prefix": ["snip_skeleton"],
+  "vs_bash_skeleton": {
+    "prefix": ["vs_bash_skeleton"],
     "body": [
       "#!/usr/bin/env bash",
       "set -euxo pipefail"

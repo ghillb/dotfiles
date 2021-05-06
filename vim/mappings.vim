@@ -98,7 +98,7 @@ nn <leader>ti :IndentLinesToggle<cr>
 nn <leader>tu :UndotreeToggle<cr>
 nn <leader>tp :set paste!<cr>
 nn <leader>se :VsnipOpen<cr>
-vn <leader>se :VsnipYank  <bar> VsnipOpenVsplit
+vn <leader>se :VsnipYank vs_ <bar> VsnipOpenVsplit
 vn <leader>sy :VsnipYank 
 nn <leader>zi <c-w>_<bar><c-w>\|
 nn <leader>zo <c-w>=
