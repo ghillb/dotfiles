@@ -45,7 +45,7 @@ fzf() {
 }
 
 desktop() {
-  sudo apt install -y spectrwm fonts-firacode ttf-ancient-fonts picom feh xdotool
+  sudo apt install -y spectrwm fonts-firacode ttf-ancient-fonts picom feh xdotool wmctrl xsel rofi
   cd $confdir; mkdir -p spectrwm rofi gtk-3.0 alacritty kitty
   ln -sf $dfdir/configs/spectrwm.conf $confdir/spectrwm/spectrwm.conf
   ln -sf $dfdir/configs/rofi.conf $confdir/rofi/config
