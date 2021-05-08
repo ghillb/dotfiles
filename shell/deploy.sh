@@ -1,7 +1,8 @@
 #!/bin/bash
+
 dfdir=$HOME/.files
 confdir=$HOME/.config
-sudo apt install -y git
+sudo apt install -y git build-essential
 git clone https://github.com/ghillb/dotfiles.git $dfdir
 
 declare -a configs=( "os_up" "df" "nvim" "tmux" "fzf" "desktop" )
@@ -46,6 +47,7 @@ fzf() {
 
 desktop() {
   sudo apt install -y spectrwm fonts-firacode ttf-ancient-fonts picom feh xdotool wmctrl xsel rofi
+  git clone https://github.com/bardisty/gruvbox-rofi ~/.config/rofi/themes/gruvbox
   cd $confdir; mkdir -p spectrwm rofi gtk-3.0 alacritty kitty
   ln -sf $dfdir/configs/spectrwm.conf $confdir/spectrwm/spectrwm.conf
   ln -sf $dfdir/configs/rofi.conf $confdir/rofi/config
