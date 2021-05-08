@@ -12,8 +12,8 @@ hdd() {
 }
 
 mem() {
-  mem=`free | awk '/Mem/ {printf "%.2f%\n", $3/$2*100 }'`
-  echo -e "RAM: $mem"
+  mem=$(free | grep Mem | awk '{print $3/$2 * 100.0}' | xargs printf "%.0f")
+  echo -e "RAM: $mem%"
 }
 
 cpu() {
