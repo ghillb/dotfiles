@@ -56,6 +56,7 @@ desktop() {
   ln -sf $dfdir/configs/kitty.conf $confdir/kitty/kitty.conf
   ln -sf $dfdir/assets/mimeapps.list $confdir/mimeapps.list
   sudo ln -sf $dfdir/shell/dopen.sh /usr/local/bin/dopen
+  sudo ln -sf $dfdir/shell/float_term.sh /usr/local/bin/float_term
   sudo ln -sf $dfdir/assets/ansi_hybrid /usr/share/X11/xkb/symbols/ansi_hybrid
   sudo ln -sf $dfdir/assets/nvim-terminal.desktop /usr/share/applications/nvim-terminal.desktop
   sudo ln -sf $dfdir/assets/nnn-terminal.desktop /usr/share/applications/nnn-terminal.desktop

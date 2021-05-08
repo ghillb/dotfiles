@@ -3,7 +3,7 @@
 identifier=kitty-float
 active=$(xdotool getactivewindow)
 kitty_float=$(xdotool search --class $identifier)
-if [ $# -gt 0 ]; then kitty_args="bash -ic $@"; else "bash"; fi
+if [ $# -gt 0 ]; then kitty_args="$@"; else "bash"; fi
 
 if [ -z $kitty_float ]; then
   kitty --class $identifier \
