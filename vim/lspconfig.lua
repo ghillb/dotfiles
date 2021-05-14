@@ -57,7 +57,7 @@ if has_lsp then
   nvim_lsp.html.setup{}
   nvim_lsp.cssls.setup{}
   nvim_lsp.tsserver.setup{}
-  nvim_lsp.pyright.setup{}
+  nvim_lsp.pyls.setup{}
   nvim_lsp.r_language_server.setup{}
   nvim_lsp.gopls.setup{}
 end
@@ -69,5 +69,36 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
     disable = {},
   },
+}
+
+-- trouble list settings
+require("trouble").setup {
+  use_lsp_diagnostic_signs = false
+}
+
+-- todo comments settings
+require("todo-comments").setup {
+  signs = false,
+  keywords = {
+    FIX  = { color = "error", alt = { "FIXME", "BUG", "FIXIT", "FIX", "ISSUE" } },
+    TODO = { color = "info" },
+    HACK = { color = "warning" },
+    WARN = { color = "warning", alt = { "WARNING", "XXX" } },
+    PERF = { alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+    NOTE = { color = "hint", alt = { "INFO" } },
+  },
+  highlight = {
+    before = "",
+    keyword = "wide",
+    after = "fg",
+  },
+  colors = {
+    error = { "LspDiagnosticsDefaultError", "ErrorMsg", "#DC2626" },
+    warning = { "LspDiagnosticsDefaultWarning", "WarningMsg", "#FBBF24" },
+    info = { "LspDiagnosticsDefaultInformation", "#2563EB" },
+    hint = { "LspDiagnosticsDefaultHint", "#10B981" },
+    default = { "Identifier", "#7C3AED" },
+  },
+  pattern = "(KEYWORDS):",
 }
 

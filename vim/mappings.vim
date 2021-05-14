@@ -85,12 +85,17 @@ nn <leader>to :tabo<cr>
 nn <silent><leader>tg :set rnu! \| :set nu! \| :GitGutterToggle<cr>
 nn <silent><leader>tz :Goyo<cr>
 nn <leader>tl :Limelight!!<cr>
-nn <silent><leader>tt :<c-u>exec v:count.'Tclear'<cr>
 nn <leader>tc :Codi!!<cr>
 nn <leader>ty :Startify<cr>
 nn <leader>ti :IndentLinesToggle<cr>
 nn <leader>tu :UndotreeToggle<cr>
 nn <leader>tp :set paste!<cr>
+nn <leader>ttx <cmd>TroubleToggle<cr>
+nn <leader>ttw <cmd>TroubleToggle lsp_workspace_diagnostics<cr>
+nn <leader>ttd <cmd>TroubleToggle lsp_document_diagnostics<cr>
+nn <leader>ttq <cmd>TroubleToggle quickfix<cr>
+nn <leader>ttl <cmd>TroubleToggle loclist<cr>
+nn <leader>ttt <cmd>TodoTrouble<cr>
 nn <leader>se :VsnipOpen<cr>
 vn <leader>se :VsnipYank vs_ <bar> VsnipOpenVsplit
 vn <leader>sy :VsnipYank 
