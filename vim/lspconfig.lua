@@ -57,7 +57,7 @@ if has_lsp then
   nvim_lsp.html.setup{}
   nvim_lsp.cssls.setup{}
   nvim_lsp.tsserver.setup{}
-  nvim_lsp.pyls.setup{}
+  nvim_lsp.pyright.setup{}
   nvim_lsp.r_language_server.setup{}
   nvim_lsp.gopls.setup{}
 end
@@ -73,7 +73,8 @@ require'nvim-treesitter.configs'.setup {
 
 -- trouble list settings
 require("trouble").setup {
-  use_lsp_diagnostic_signs = false
+  use_lsp_diagnostic_signs = false,
+  icons=false
 }
 
 -- todo comments settings
