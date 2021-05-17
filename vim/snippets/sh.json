@@ -32,6 +32,17 @@
       "#!/usr/bin/env bash",
       "set -euxo pipefail"
     ]
+  },
+  "vs_if_else": {
+    "prefix": ["vs_if_else"],
+    "body": [
+      "if [ $1 ]",
+      "then",
+      "  $2",
+      "else",
+      "  $3",
+      "fi"
+    ]
   }
 }
 
