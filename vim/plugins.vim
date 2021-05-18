@@ -50,6 +50,7 @@ else
     call minpac#add('neovim/nvim-lspconfig')
     call minpac#add('nvim-treesitter/nvim-treesitter')
     call minpac#add('hrsh7th/nvim-compe')
+    call minpac#add('mhartington/formatter.nvim') 
     call minpac#add('folke/trouble.nvim')
     call minpac#add('folke/todo-comments.nvim')
     call minpac#add('simrat39/rust-tools.nvim')

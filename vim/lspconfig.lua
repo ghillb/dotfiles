@@ -71,6 +71,52 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
+-- formatter settings
+require('formatter').setup {
+  logging = false,
+  filetype = {
+    python = {
+      function()
+        return {
+          exe = "black",
+          args = {"-"},
+          stdin = true
+        }
+      end
+    },
+    javascript = {
+      -- prettier
+      function()
+        return {
+          exe = "prettier",
+          args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0), '--single-quote'},
+          stdin = true
+         }
+       end
+    },
+    rust = {
+      -- Rustfmt
+      function()
+        return {
+          exe = "rustfmt",
+          args = {"--emit=stdout"},
+          stdin = true
+        }
+      end
+    },
+    lua = {
+        -- luafmt
+        function()
+          return {
+            exe = "luafmt",
+            args = {"--indent-count", 2, "--stdin"},
+            stdin = true
+          }
+        end
+      }
+  }
+}
+
 -- trouble list settings
 require("trouble").setup {
   use_lsp_diagnostic_signs = false,
@@ -92,6 +138,8 @@ require("todo-comments").setup {
     before = "",
     keyword = "wide",
     after = "fg",
+    pattern = [[.*<(KEYWORDS)\s*:]],
+    comments_only = true,
   },
   colors = {
     error = { "LspDiagnosticsDefaultError", "ErrorMsg", "#DC2626" },
@@ -100,6 +148,16 @@ require("todo-comments").setup {
     hint = { "LspDiagnosticsDefaultHint", "#10B981" },
     default = { "Identifier", "#7C3AED" },
   },
-  pattern = "(KEYWORDS):",
+  search = {
+    command = "rg",
+    args = {
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+    },
+    pattern = [[\b(KEYWORDS):]],
+  },
 }
 
