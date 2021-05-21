@@ -11,6 +11,7 @@ export LC_ALL=C.UTF-8
 export HISTSIZE=HISTFILESIZE='INFINITY'
 export HISTIGNORE="pwd:df:du:cd:ls:ll:gpl:gps:gs:gd:gdu:gds:gl:glo:gls:glu:v"
 export PROMPT_COMMAND='history -a;history -r;hasjobs=$(jobs -p)'
+export GPG_TTY=$(tty)
 export GIT_PS1_SHOWDIRTYSTATE=true
 export FZF_DEFAULT_OPTS='
   --color fg:#ebdbb2,bg:#282828,hl:#fe8019,fg+:#ebdbb2,bg+:#3c3836,hl+:#d65d0e
