@@ -105,15 +105,15 @@ require('formatter').setup {
       end
     },
     lua = {
-        -- luafmt
-        function()
-          return {
-            exe = "luafmt",
-            args = {"--indent-count", 2, "--stdin"},
-            stdin = true
-          }
-        end
-      }
+      -- luafmt
+      function()
+        return {
+          exe = "luafmt",
+          args = {"--indent-count", 2, "--stdin"},
+          stdin = true
+        }
+      end
+    }
   }
 }
 
@@ -161,3 +161,9 @@ require("todo-comments").setup {
   },
 }
 
+require "lspconfig".efm.setup {
+    init_options = {documentFormatting = true},
+    settings = {
+        rootMarkers = {".git/"},
+    }
+}
