@@ -1,5 +1,7 @@
 let mapleader = " "
 let localleader = "\\"
+nnoremap j jzz
+nnoremap k kzz
 nn K a<cr><esc>
 no x "_x
 no X "_X
