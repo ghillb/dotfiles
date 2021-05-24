@@ -1,5 +1,10 @@
 #!/bin/bash
 
+case $- in
+    *i*) ;;
+      *) return;; # If not running interactively, don't do anything
+esac
+
 stty -ixon # forces control sequences to reach the terminal application (e.g. vi)
 set bell-style none
 export TERM=xterm-256color
