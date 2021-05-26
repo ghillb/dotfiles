@@ -40,8 +40,8 @@ nn <localleader>. :so $MYVIMRC<cr>
 nn <silent><tab> :bnext<cr>
 nn <silent><s-tab> :bprevious<cr>
 ino <a-cr> <c-x><c-p>
-nn <a-s-r> :w<cr>:T cr %<cr>
-ino <a-s-r> <esc>:w<cr>:T cr %<cr>
+nn <a-s-r> :w<cr>:call SetRoot('current_dir')<cr>:T cr %<cr>
+ino <a-s-r> <esc>:w<cr>:call SetRoot('current_dir')<cr>:T cr %<cr>
 nn <a-r> :TREPLSendLine<cr>j
 vn <a-r> :TREPLSendSelection<cr>
 nn <silent><a-1> :call ToggleFern()<cr>
