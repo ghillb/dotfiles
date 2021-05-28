@@ -49,10 +49,12 @@ nn <silent><a-esc> :Ttoggle<cr><c-w>wa
 tno <silent><a-esc> <c-\><c-n>:Ttoggle<cr>
 tno <a-.> <c-\><c-n>:Tnext<cr>i
 tno <a-,> <c-\><c-n>:Tprevious<cr>i
-nn <a-.> <c-\><c-n>:Tnext<cr>
-nn <a-,> <c-\><c-n>:Tprevious<cr>
-tno ` <c-\><c-n>
-tno <a-`> <c-\><c-n><c-w>k
+nn <a-.> :Tnext<cr>
+nn <a-,> :Tprevious<cr>
+nn <silent><a-/> :call TerminalToggleNew()<cr>
+tno <silent><a-/> <c-\><c-n>:call TerminalToggleNew()<cr>
+tno ` <esc>
+tno <esc> <c-\><c-n>
 nn <silent> <a-h> :call TmuxMove('h')<cr>
 nn <silent> <a-j> :call TmuxMove('j')<cr>
 nn <silent> <a-k> :call TmuxMove('k')<cr>
