@@ -10,7 +10,7 @@ if [ -z $kitty_float ]; then
     -o background_opacity=0.95 \
     -o initial_window_width=1500 \
     -o initial_window_height=800 \
-    -o font_size=14.0 \
+    -o font_size=12.0 \
     -e $kitty_args
 elif [ $active == $kitty_float ]; then
   wmctrl -ir $active -b toggle,hidden
