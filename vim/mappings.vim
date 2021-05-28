@@ -40,13 +40,17 @@ nn <localleader>. :so $MYVIMRC<cr>
 nn <silent><tab> :bnext<cr>
 nn <silent><s-tab> :bprevious<cr>
 ino <a-cr> <c-x><c-p>
-nn <a-s-r> :w<cr>:call SetRoot('current_dir')<cr>:T cr %<cr>
-ino <a-s-r> <esc>:w<cr>:call SetRoot('current_dir')<cr>:T cr %<cr>
+nn <a-s-r> :w<cr>:T cr %<cr>
+ino <a-s-r> <esc>:w<cr>:T cr %<cr>
 nn <a-r> :TREPLSendLine<cr>j
 vn <a-r> :TREPLSendSelection<cr>
 nn <silent><a-1> :call ToggleFern()<cr>
 nn <silent><a-esc> :Ttoggle<cr><c-w>wa
 tno <silent><a-esc> <c-\><c-n>:Ttoggle<cr>
+tno <a-.> <c-\><c-n>:Tnext<cr>i
+tno <a-,> <c-\><c-n>:Tprevious<cr>i
+nn <a-.> <c-\><c-n>:Tnext<cr>
+nn <a-,> <c-\><c-n>:Tprevious<cr>
 tno ` <c-\><c-n>
 tno <a-`> <c-\><c-n><c-w>k
 nn <silent> <a-h> :call TmuxMove('h')<cr>
