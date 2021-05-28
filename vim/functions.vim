@@ -5,8 +5,7 @@ au InsertEnter,InsertLeave * set cul!
 au TextChanged,TextChangedI * if &readonly == 0 && filereadable(bufname('%')) | silent write | endif
 
 if has('nvim')
-  au TermOpen * setlocal nospell
-  au TermEnter * setlocal nobuflisted
+  au TermEnter,TermOpen * setlocal nospell nobuflisted
 endif
 
 fun! LightlineGitBranch()
