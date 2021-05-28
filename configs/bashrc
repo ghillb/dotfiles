@@ -32,7 +32,7 @@ export NNN_OPENER='dopen'
 source ~/.files/shell/functions.sh
 source ~/.files/shell/aliases.sh
 source ~/.files/shell/completion.sh
-include /usr/lib/git-core/git-sh-prompt
+include /usr/lib/git-core/git-sh-prompt; include /usr/lib/git/git-sh-prompt
 include ~/scripts/bash/utils.sh
 
 # scripted behavior
