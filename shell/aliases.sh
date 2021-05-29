@@ -29,6 +29,7 @@ alias c='cat'
 alias icat="kitty +kitten icat"
 alias n='nnn -e -P p'
 alias N='sudo -E nnn -deCH -P p'
+alias e='xplr'
 alias tree='tree --du -h'
 alias open='dopen'
 alias z='zathura'
