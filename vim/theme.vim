@@ -1,5 +1,5 @@
-if has('termguicolors') | set termguicolors | endif
-set fcs=eob:·
+if has('termguicolors') && has('nvim') | set termguicolors | endif
+if has('fcs') | set fcs=eob:· | endif
 
 let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_invert_selection = '1'
@@ -37,6 +37,7 @@ let g:lightline = {
     \ }
 
 hi Normal guibg=NONE ctermbg=NONE
+hi Terminal guibg=NONE ctermbg=NONE
 hi LineNr guibg=NONE ctermbg=NONE
 hi CursorLineNR guibg=NONE ctermbg=NONE
 hi SignColumn guibg=NONE ctermbg=NONE
