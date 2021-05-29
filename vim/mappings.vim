@@ -51,8 +51,8 @@ tno <a-.> <c-\><c-n>:Tnext<cr>i
 tno <a-,> <c-\><c-n>:Tprevious<cr>i
 nn <a-.> :Tnext<cr>
 nn <a-,> :Tprevious<cr>
-nn <silent><a-/> :call TerminalToggleNew()<cr>
-tno <silent><a-/> <c-\><c-n>:call TerminalToggleNew()<cr>
+nn <silent><a-/> :call NewTerminalToggle()<cr>
+tno <silent><a-/> <c-\><c-n>:call NewTerminalToggle()<cr>
 tno ` <esc>
 tno <esc> <c-\><c-n>
 nn <silent> <a-h> :call TmuxMove('h')<cr>

@@ -124,7 +124,7 @@ fun! GetActiveBuffers()
   return l:result
 endfun
 
-fun! TerminalToggleNew()
+fun! NewTerminalToggle()
   let l:blist = GetActiveBuffers()
   for buftitle in l:blist
     if buftitle =~? 'term://'
@@ -133,6 +133,6 @@ fun! TerminalToggleNew()
     endif
   endfor
   :Tnew
-  execute "normal \<c-w>j"
+  execute "normal \<c-w>ji"
 endfun
 
