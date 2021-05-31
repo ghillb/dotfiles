@@ -1,4 +1,4 @@
-if has('nvim-0.5') && !empty($LSP_ENABLED)
+if has('nvim-0.5') && !empty($LSP_ENABLED) && !exists('g:vscode')
   nn <silent> gd <cmd>lua vim.lsp.buf.definition()<cr>
   nn <silent> gD <cmd>lua vim.lsp.buf.declaration()<cr>
   nn <silent> gr <cmd>lua vim.lsp.buf.references()<cr>
