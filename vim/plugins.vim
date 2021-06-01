@@ -55,6 +55,7 @@ else
     call minpac#add('folke/todo-comments.nvim')
     call minpac#add('simrat39/rust-tools.nvim')
     call minpac#add('mfussenegger/nvim-jdtls')
+    call minpac#add('milisims/nvim-luaref')
   endif
 
   command! PUpdate source $MYVIMRC | call minpac#update()
