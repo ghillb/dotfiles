@@ -30,7 +30,6 @@ df() {
 }
 
 nvim() {
-  if ! command -v nvim &> /dev/null; then sudo apt install -y neovim; fi
   mkdir -p ~/.config/nvim; ln -sf $dfdir/vim/vimrc $confdir/nvim/init.vim
   ln -sf $dfdir/vim/vimrc $HOME/.vimrc
 }
@@ -46,7 +45,7 @@ fzf() {
 }
 
 desktop() {
-  sudo apt install -y spectrwm fonts-firacode ttf-ancient-fonts picom feh xdotool wmctrl xsel rofi
+  sudo apt install -y spectrwm fonts-firacode ttf-ancient-fonts picom feh xdotool wmctrl xsel rofi kitty
   git clone https://github.com/bardisty/gruvbox-rofi ~/.config/rofi/themes/gruvbox
   cd $confdir; mkdir -p spectrwm rofi gtk-3.0 alacritty kitty
   ln -sf $dfdir/configs/spectrwm.conf $confdir/spectrwm/spectrwm.conf
