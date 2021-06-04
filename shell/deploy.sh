@@ -2,28 +2,25 @@
 
 dfdir=$HOME/.files
 confdir=$HOME/.config
+sudo apt update && sudo apt upgrade -y;
 sudo apt install -y git build-essential
 git clone https://github.com/ghillb/dotfiles.git $dfdir
 
-declare -a configs=( "os_up" "df" "nvim" "tmux" "fzf" "desktop" )
+declare -a configs=( "df" "nvim" "tmux" "fzf" "utils" "desktop" )
 declare -A deploy
 for c in "${configs[@]}"; do echo "add [$c] config? (y / → n)"; read -s ans; deploy[$c]=$ans; done
 
 execute() {
-  if [[ ${deploy["os_up"]} == "y" ]]; then os_up; fi
   if [[ ${deploy["nvim"]} == "y" ]]; then nvim; fi
   if [[ ${deploy["tmux"]} == "y" ]]; then tmux; fi
   if [[ ${deploy["fzf"]} == "y" ]]; then fzf; fi
-  if [[ ${deploy["desktop"]} == "y" ]]; then desktop; fi
   if [[ ${deploy["df"]} == "y" ]]; then df; fi
-}
-
-os_up() {
-  sudo apt update && sudo apt upgrade -y;
+  if [[ ${deploy["utils"]} == "y" ]]; then utils; fi
+  if [[ ${deploy["desktop"]} == "y" ]]; then desktop; fi
 }
 
 df() {
-  echo -e "# my dotfile additions\n. '$dfdir/configs/bashrc'\n" >> $HOME/.bashrc
+  echo -e "source '$dfdir/configs/bashrc'\n" >> $HOME/.bashrc
   ln -sf $dfdir/assets/dircolors $HOME/.dircolors
   ln -sf $dfdir/assets/inputrc $HOME/.inputrc
   sudo ln -sf $dfdir/shell/coderun.sh /usr/local/bin/cr
@@ -42,6 +39,10 @@ tmux() {
 fzf() {
   if ! command -v ag &> /dev/null; then sudo apt install -y silversearcher-ag; fi
   git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf; $HOME/.fzf/install --all
+}
+
+utils() {
+  sudo apt install -y jq curl shellcheck ncdu gcc make perl
 }
 
 desktop() {
