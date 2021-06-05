@@ -41,7 +41,7 @@ set undodir=$NVC/undodir
 set undofile
 set hidden
 set title
-set titlestring=%t\ %m\ (%{substitute(expand('%:p:h'),\ $HOME,\ '~',\ '')})
+set titlestring=%t\ %m\ (%{substitute(expand('%:p:h:t'),\ $HOME,\ '~',\ '')})
 set wildmode=longest:full,full
 set wildignore=*.o,*~,*.pyc,*.pyo,__pycache__,*/venv/*
 set completeopt=menuone,noselect
