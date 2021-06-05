@@ -23,7 +23,14 @@ require('bufferline').setup {
     enforce_regular_tabs = true,
     always_show_bufferline = false,
     sort_by = 'extension',
-    offsets = {{filetype = "fern", text = "tree", text_align = "center"}},
+    custom_filter = function(buf_number)
+       if vim.bo[buf_number].filetype ~= "vimwiki" then
+         return true
+       end
+       if vim.fn.bufname(buf_number) ~= ".git/index" then
+         return true
+       end
+     end,   offsets = {{filetype = "fern", text = "tree", text_align = "center"}},
   }
 }
 

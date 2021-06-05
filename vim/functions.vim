@@ -19,7 +19,7 @@ fun! LightlineGitModified()
 endfun
 
 fun! LightlineFilePath()
-    return expand('%')
+  return &filetype =~# '\v^(neoterm|vimwiki)' ? expand('%:t') : ''
 endfun
 
 fun! OpenFzfCheckout()

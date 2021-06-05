@@ -28,10 +28,11 @@ let g:lightline = {
       \ },
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'gitdiffcount', 'readonly', 'modified' ] ]
+      \             [ 'gitbranch', 'gitdiffcount', 'readonly', 'filename', 'modified' ] ]
       \ },
       \ 'component_function': {
       \   'gitbranch': 'LightlineGitBranch',
+      \   'filename': 'LightlineFilePath',
       \ },
       \ 'component_expand': {
       \   'gitdiffcount': 'LightlineGitModified',
