@@ -1,9 +1,3 @@
--- efm-langserver settings
-local efm_settings = {
-  init_options = {documentFormatting = true},
-  settings = {rootMarkers = {".git/"}}
-}
-
 -- yaml-ls settings
 local yamlls_settings = {
   yaml = {
@@ -66,7 +60,6 @@ if has_lsp then
   nvim_lsp.pyright.setup{}
   nvim_lsp.r_language_server.setup{}
   nvim_lsp.gopls.setup{}
-  nvim_lsp.efm.setup {settings = efm_settings}
 end
 
 -- treesitter settings
