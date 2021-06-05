@@ -1,7 +1,6 @@
-let mapleader = " "
-let localleader = "\\"
-nnoremap j jzz
-nnoremap k kzz
+" various
+nn j jzz
+nn k kzz
 nn K a<cr><esc>
 no x "_x
 no X "_X
@@ -11,14 +10,12 @@ no V vg_
 nn Q @q
 vn Q :norm @q<cr>
 vm s <plug>VSurround
-cm w!! w !sudo tee > /dev/null %
-cm :G !git -C %:p:h commit -am "--wip--" && git -C %:p:h push
+ino kj <esc>
+ino jk <esc>
 xn <silent> p p:let @+=@0<cr>:let @"=@0<cr>
 xn <silent> P P:let @+=@0<cr>:let @"=@0<cr>
 vn / y/\V<c-r>=escape(@",'/\')<cr><cr>N
 nm cg* *N"ccgn
-ino kj <esc>
-ino jk <esc>
 no <c-j> <c-e>
 no <c-k> <c-y>
 no <c-y> <c-b>
@@ -27,34 +24,33 @@ no <c-s> :w<cr>
 ino <c-s> <c-o>:w<cr>
 nn <c-q> :x<cr>
 ino <c-q> <esc>:x<cr>
-no <localleader><cr> :call SetRoot('git_root')<cr>
-no <localleader><bs> :call SetRoot('parent_dir')<cr>
-no <localleader>/ :call SetRoot('current_dir')<cr>
-no <localleader>\ :chdir $VIM_ROOT<cr> \| :echo "back to root: " . $VIM_ROOT<cr>
-nn <localleader>r :%s///gc<left><left><left><left>
-nn <localleader>q :vim// **/*<left><left><left><left><left><left>
-nn <localleader>l :lv// %<left><left><left>
-no <localleader>w :%s/\s\+$//e<cr>
-nn <localleader>, :e $MYVIMRC<cr>
-nn <localleader>. :so $MYVIMRC<cr>
-nn <silent><tab> :bnext<cr>
-nn <silent><s-tab> :bprevious<cr>
-ino <a-cr> <c-x><c-p>
+no <up> <nop>
+no <down> <nop>
+no <left> <nop>
+no <right> <nop>
+
+" commands
+cm w!! w !sudo tee > /dev/null %
+cm :G !git -C %:p:h commit -am "--wip--" && git -C %:p:h push
+
+" terminal mappings
 nn <a-s-r> :w<cr>:T cr %<cr>
 ino <a-s-r> <esc>:w<cr>:T cr %<cr>
 nn <a-r> :TREPLSendLine<cr>j
 vn <a-r> :TREPLSendSelection<cr>
 nn <silent><a-e> :call ToggleFern()<cr>
 nn <silent><a-esc> :Ttoggle<cr><c-w>wa
-tno <silent><a-esc> <c-\><c-n>:Ttoggle<cr>
-tno <a-.> <c-\><c-n>:Tnext<cr>i
-tno <a-,> <c-\><c-n>:Tprevious<cr>i
 nn <a-.> :Tnext<cr>
 nn <a-,> :Tprevious<cr>
 nn <silent><a-/> :call NewTerminalToggle()<cr>
+tno <a-.> <c-\><c-n>:Tnext<cr>i
+tno <a-,> <c-\><c-n>:Tprevious<cr>i
 tno <silent><a-/> <c-\><c-n>:call NewTerminalToggle()<cr>
+tno <silent><a-esc> <c-\><c-n>:Ttoggle<cr>
 tno ` <esc>
 tno <esc> <c-\><c-n>
+
+" split mappings
 nn <silent> <a-h> :call TmuxMove('h')<cr>
 nn <silent> <a-j> :call TmuxMove('j')<cr>
 nn <silent> <a-k> :call TmuxMove('k')<cr>
@@ -63,10 +59,8 @@ map - <c-w>-
 map = <c-w>+
 map + <c-w>>
 map _ <c-w><
-no <up> <nop>
-no <down> <nop>
-no <left> <nop>
-no <right> <nop>
+
+" fzf mapping
 no <silent><c-_> :Commentary<cr>j
 ino <silent><c-_> <esc>:Commentary<cr>ja
 nn <silent><c-p> :Rg<cr>
@@ -78,6 +72,10 @@ nn <silent><a-\> :Lines<cr>
 nn <silent><c-c> :Commands<cr>
 nn <silent><c-g> :call OpenFzfCheckout()<cr>
 nn <esc><esc> :FzfSwitchProject<cr>
+
+" leader mappings 
+let mapleader = " "
+nn <leader><silent> :WhichKey '<space>'<cr>
 nn <leader><leader> a<space><esc>
 no <leader>p o<esc>p
 no <leader>P O<esc>p
@@ -126,10 +124,21 @@ no <leader>itd "=strftime("%Y-%m-%d")<cr>P
 no <leader>itt "=strftime("%H:%M:%S")<cr>P
 no <leader>itm "=strftime("%Y-%m-%d \/ %H:%M:%S")<cr>P
 no <leader>cp yap<S-}>p
-nn <leader> :WhichKey '<space>'<cr>
+
+" localleader mappings
+let localleader = "\\"
+no <localleader><cr> :call SetRoot('git_root')<cr>
+no <localleader><bs> :call SetRoot('parent_dir')<cr>
+no <localleader>/ :call SetRoot('current_dir')<cr>
+no <localleader>\ :chdir $VIM_ROOT<cr> \| :echo "back to root: " . $VIM_ROOT<cr>
+nn <localleader>r :%s///gc<left><left><left><left>
+nn <localleader>q :vim// **/*<left><left><left><left><left><left>
+nn <localleader>l :lv// %<left><left><left>
+no <localleader>w :%s/\s\+$//e<cr>
+nn <localleader>, :e $MYVIMRC<cr>
+nn <localleader>. :so $MYVIMRC<cr>
 
 if has('nvim-0.5')
-
 " nvim lsp
   nn <silent> gd <cmd>lua vim.lsp.buf.definition()<cr>
   nn <silent> gD <cmd>lua vim.lsp.buf.declaration()<cr>
