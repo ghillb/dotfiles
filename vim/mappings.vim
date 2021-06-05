@@ -1,6 +1,4 @@
 " various
-nn j jzz
-nn k kzz
 nn K a<cr><esc>
 no x "_x
 no X "_X
@@ -148,17 +146,27 @@ if has('nvim-0.5')
   nn <silent> gs <cmd>lua vim.lsp.buf.signature_help()<cr>
   nn <silent> gp <cmd>lua vim.lsp.diagnostic.goto_prev()<cr>
   nn <silent> gn <cmd>lua vim.lsp.diagnostic.goto_next()<cr>
-  " nn <silent> gF <cmd>Format<CR>
-  nn <silent> gF <cmd>lua vim.lsp.buf.formatting()<CR>
+  nn <silent> gF <cmd>Format<CR>
+  " nn <silent> gF <cmd>lua vim.lsp.buf.formatting()<CR>
   nn <silent> gR <cmd>TroubleToggle lsp_references<cr>
 
 " nvim compe
-  inoremap <silent><expr> <cr>      compe#confirm('<cr>')
-  inoremap <silent><expr> <a-space> compe#complete()
-  inoremap <silent><expr> <cr>      compe#confirm('<cr>')
-  inoremap <silent><expr> <c-e>     compe#close('<c-e>')
-  inoremap <silent><expr> <c-f>     compe#scroll({ 'delta': +4 })
-  inoremap <silent><expr> <c-d>     compe#scroll({ 'delta': -4 })
+  ino <silent><expr> <cr>      compe#confirm('<cr>')
+  ino <silent><expr> <a-space> compe#complete()
+  ino <silent><expr> <cr>      compe#confirm('<cr>')
+  ino <silent><expr> <c-e>     compe#close('<c-e>')
+  ino <silent><expr> <c-f>     compe#scroll({ 'delta': +4 })
+  ino <silent><expr> <c-d>     compe#scroll({ 'delta': -4 })
+  
+" vsnip vim
+  imap <expr> <c-e>   vsnip#expandable()  ? '<plug>(vsnip-expand)'         : '<c-e>'
+  smap <expr> <c-e>   vsnip#expandable()  ? '<plug>(vsnip-expand)'         : '<c-e>'
+  imap <expr> <c-l>   vsnip#available(1)  ? '<plug>(vsnip-expand-or-jump)' : '<c-l>'
+  smap <expr> <c-l>   vsnip#available(1)  ? '<plug>(vsnip-expand-or-jump)' : '<c-l>'
+  imap <expr> <tab>   vsnip#jumpable(1)   ? '<plug>(vsnip-jump-next)'      : '<tab>'
+  smap <expr> <tab>   vsnip#jumpable(1)   ? '<plug>(vsnip-jump-next)'      : '<tab>'
+  imap <expr> <s-tab> vsnip#jumpable(-1)  ? '<plug>(vsnip-jump-prev)'      : '<s-Tab>'
+  smap <expr> <s-tab> vsnip#jumpable(-1)  ? '<plug>(vsnip-jump-prev)'      : '<s-Tab>'
 
 " bufferline
   nn <silent><left> :BufferLineCyclePrev<cr>

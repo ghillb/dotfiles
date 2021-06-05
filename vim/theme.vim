@@ -52,6 +52,7 @@ hi NonText guibg=NONE ctermbg=NONE
 hi SpecialKey guibg=NONE ctermbg=NONE
 hi EndOfBuffer guibg=NONE ctermbg=NONE guifg=#504945
 hi WarningMsg guibg=NONE ctermbg=NONE guifg=#fb4934
+hi LspDiagnosticsDefaultError guifg=#fb4934
 hi GitGutterAdd guibg=NONE ctermbg=NONE guifg=#689d6a
 hi GitGutterChange guibg=NONE ctermbg=NONE guifg=#458588
 hi GitGutterDelete guibg=NONE ctermbg=NONE guifg=#fb4934

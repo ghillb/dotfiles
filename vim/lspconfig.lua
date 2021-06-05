@@ -1,3 +1,11 @@
+-- general settings
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    signs = true,
+    virtual_text = false,
+  }
+)
+  --
 -- yaml-ls settings
 local yamlls_settings = {
   yaml = {
@@ -44,22 +52,27 @@ local opts = {
 }
 
 require('rust-tools').setup(opts)
+local nvim_command = vim.api.nvim_command
+
+local on_attach = function(client, bufnr)
+  nvim_command('autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()')
+end
 
 -- lsp setups
 local has_lsp, nvim_lsp = pcall(require, 'lspconfig')
 if has_lsp then
-  nvim_lsp.bashls.setup{}
-  nvim_lsp.vimls.setup{}
-  nvim_lsp.jsonls.setup{}
-  nvim_lsp.yamlls.setup{settings = yamlls_settings}
-  nvim_lsp.dockerls.setup{}
-  nvim_lsp.terraformls.setup{filetypes = {"tf"}}
-  nvim_lsp.html.setup{}
-  nvim_lsp.cssls.setup{}
-  nvim_lsp.tsserver.setup{}
-  nvim_lsp.pyright.setup{}
-  nvim_lsp.r_language_server.setup{}
-  nvim_lsp.gopls.setup{}
+  nvim_lsp.bashls.setup{on_attach = on_attach}
+  nvim_lsp.vimls.setup{on_attach = on_attach}
+  nvim_lsp.jsonls.setup{on_attach = on_attach}
+  nvim_lsp.yamlls.setup{on_attach = on_attach, settings = yamlls_settings}
+  nvim_lsp.dockerls.setup{on_attach = on_attach}
+  nvim_lsp.terraformls.setup{on_attach = on_attach, filetypes = {"tf"}}
+  nvim_lsp.html.setup{on_attach = on_attach}
+  nvim_lsp.cssls.setup{on_attach = on_attach}
+  nvim_lsp.tsserver.setup{on_attach = on_attach}
+  nvim_lsp.pyright.setup{on_attach = on_attach}
+  nvim_lsp.r_language_server.setup{on_attach = on_attach}
+  nvim_lsp.gopls.setup{on_attach = on_attach}
 end
 
 -- treesitter settings
