@@ -46,7 +46,7 @@ utils() {
 }
 
 desktop() {
-  sudo apt install -y spectrwm fonts-firacode ttf-ancient-fonts picom feh xdotool wmctrl xsel rofi kitty
+  sudo apt install -y spectrwm fonts-firacode ttf-ancient-fonts picom feh xdotool wmctrl xsel rofi kitty nnn zathura
   git clone https://github.com/bardisty/gruvbox-rofi ~/.config/rofi/themes/gruvbox
   cd $confdir; mkdir -p spectrwm rofi gtk-3.0 alacritty kitty
   ln -sf $dfdir/configs/spectrwm.conf $confdir/spectrwm/spectrwm.conf
@@ -56,6 +56,7 @@ desktop() {
   ln -sf $dfdir/configs/kitty.conf $confdir/kitty/kitty.conf
   ln -sf $dfdir/assets/mimeapps.list $confdir/mimeapps.list
   sudo ln -sf $dfdir/shell/dopen.sh /usr/local/bin/dopen
+  sudo ln -sf $dfdir/shell/detach.sh /usr/local/bin/detach
   sudo ln -sf $dfdir/shell/float_term.sh /usr/local/bin/float_term
   sudo ln -sf $dfdir/assets/ansi_hybrid /usr/share/X11/xkb/symbols/ansi_hybrid
   sudo ln -sf $dfdir/assets/nvim-terminal.desktop /usr/share/applications/nvim-terminal.desktop

@@ -3,6 +3,6 @@
 dirs_to_search=$(cat $HOME/.config/local/index)
 file="$(find $dirs_to_search -mindepth 0 -not -path '*/\.git/*' |\
   rofi -dmenu -i -P "open" -width 70)"
-if [[ $file != "" ]]; then detach xdg-open "$file"; fi
+if [[ $file != "" ]]; then dopen "$file"; fi
 exit 0
 
