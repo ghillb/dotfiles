@@ -126,28 +126,40 @@ no <leader>itd "=strftime("%Y-%m-%d")<cr>P
 no <leader>itt "=strftime("%H:%M:%S")<cr>P
 no <leader>itm "=strftime("%Y-%m-%d \/ %H:%M:%S")<cr>P
 no <leader>cp yap<S-}>p
-nn <silent><leader> :WhichKey '<space>'<cr>
+nn <leader> :WhichKey '<space>'<cr>
+
+if has('nvim-0.5')
 
 " nvim lsp
-nn <silent> gd <cmd>lua vim.lsp.buf.definition()<cr>
-nn <silent> gD <cmd>lua vim.lsp.buf.declaration()<cr>
-nn <silent> gr <cmd>lua vim.lsp.buf.references()<cr>
-nn <silent> gi <cmd>lua vim.lsp.buf.implementation()<cr>
-nn <silent> gh <cmd>lua vim.lsp.buf.hover()<cr>
-nn <silent> gs <cmd>lua vim.lsp.buf.signature_help()<cr>
-nn <silent> gp <cmd>lua vim.lsp.diagnostic.goto_prev()<cr>
-nn <silent> gn <cmd>lua vim.lsp.diagnostic.goto_next()<cr>
-" nn <silent> gF <cmd>Format<CR>
-nn <silent> gF <cmd>lua vim.lsp.buf.formatting()<CR>
-nn <silent> gR <cmd>TroubleToggle lsp_references<cr>
+  nn <silent> gd <cmd>lua vim.lsp.buf.definition()<cr>
+  nn <silent> gD <cmd>lua vim.lsp.buf.declaration()<cr>
+  nn <silent> gr <cmd>lua vim.lsp.buf.references()<cr>
+  nn <silent> gi <cmd>lua vim.lsp.buf.implementation()<cr>
+  nn <silent> gh <cmd>lua vim.lsp.buf.hover()<cr>
+  nn <silent> gs <cmd>lua vim.lsp.buf.signature_help()<cr>
+  nn <silent> gp <cmd>lua vim.lsp.diagnostic.goto_prev()<cr>
+  nn <silent> gn <cmd>lua vim.lsp.diagnostic.goto_next()<cr>
+  " nn <silent> gF <cmd>Format<CR>
+  nn <silent> gF <cmd>lua vim.lsp.buf.formatting()<CR>
+  nn <silent> gR <cmd>TroubleToggle lsp_references<cr>
+
+" nvim compe
+  inoremap <silent><expr> <cr>      compe#confirm('<cr>')
+  inoremap <silent><expr> <a-space> compe#complete()
+  inoremap <silent><expr> <cr>      compe#confirm('<cr>')
+  inoremap <silent><expr> <c-e>     compe#close('<c-e>')
+  inoremap <silent><expr> <c-f>     compe#scroll({ 'delta': +4 })
+  inoremap <silent><expr> <c-d>     compe#scroll({ 'delta': -4 })
 
 " bufferline
-nn <silent><left> :BufferLineCyclePrev<cr>
-nn <silent><right> :BufferLineCycleNext<cr>
-nn <silent><a-left> :BufferLineMovePrev<cr>
-nn <silent><a-right> :BufferLineMoveNext<cr>
-nn <silent><a-q> :bdelete<cr>
-nn <silent>gb :BufferLinePick<cr>
-nn <silent>be :BufferLineSortByExtension<cr>
-nn <silent>bd :BufferLineSortByDirectory<cr>
+  nn <silent><left> :BufferLineCyclePrev<cr>
+  nn <silent><right> :BufferLineCycleNext<cr>
+  nn <silent><a-left> :BufferLineMovePrev<cr>
+  nn <silent><a-right> :BufferLineMoveNext<cr>
+  nn <silent><a-q> :bdelete<cr>
+  nn <silent>gb :BufferLinePick<cr>
+  nn <silent>be :BufferLineSortByExtension<cr>
+  nn <silent>bd :BufferLineSortByDirectory<cr>
+
+endif
 

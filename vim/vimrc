@@ -9,8 +9,6 @@ source $VC/mappings.vim
 source $VC/filetypes.vim
 
 " plugin configs
-source $VC/plugc/nvim-lsp.vim
-source $VC/plugc/nvim-compe.vim
 source $VC/plugc/gitgutter.vim
 source $VC/plugc/fzf.vim
 source $VC/plugc/vimwiki.vim
@@ -30,11 +28,9 @@ source $VC/plugc/vimqf.vim
 source $VC/plugc/text-objects.vim
 source $VC/plugc/myvis.vim
 
-if has('nvim-0.5')
-  luafile $VC/plugc/bufferline.lua
-endif
-
 if has('nvim-0.5') && !empty($LSP_ENABLED) && !exists('g:vscode')
   luafile $VC/lspconfig.lua
+  luafile $VC/plugc/nvim-compe.lua
+  luafile $VC/plugc/bufferline.lua
 endif
 
