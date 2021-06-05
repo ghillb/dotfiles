@@ -45,6 +45,7 @@ else
   call minpac#add('hrsh7th/vim-vsnip')
   call minpac#add('Yggdroot/indentLine')
   call minpac#add('Jorengarenar/vim-MvVis')
+  call minpac#add('norcalli/nvim-colorizer.lua')
 
   if has('nvim-0.5')
     call minpac#add('neovim/nvim-lspconfig')
@@ -56,6 +57,7 @@ else
     call minpac#add('simrat39/rust-tools.nvim')
     call minpac#add('mfussenegger/nvim-jdtls')
     call minpac#add('milisims/nvim-luaref')
+    call minpac#add('akinsho/nvim-bufferline.lua')
   endif
 
   command! PUpdate source $MYVIMRC | call minpac#update()

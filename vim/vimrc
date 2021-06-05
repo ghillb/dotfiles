@@ -30,3 +30,11 @@ source $VC/plugc/vimqf.vim
 source $VC/plugc/text-objects.vim
 source $VC/plugc/myvis.vim
 
+if has('nvim-0.5')
+  luafile $VC/plugc/bufferline.lua
+endif
+
+if has('nvim-0.5') && !empty($LSP_ENABLED) && !exists('g:vscode')
+  luafile $VC/lspconfig.lua
+endif
+

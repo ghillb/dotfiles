@@ -44,7 +44,7 @@ nn <a-s-r> :w<cr>:T cr %<cr>
 ino <a-s-r> <esc>:w<cr>:T cr %<cr>
 nn <a-r> :TREPLSendLine<cr>j
 vn <a-r> :TREPLSendSelection<cr>
-nn <silent><a-1> :call ToggleFern()<cr>
+nn <silent><a-e> :call ToggleFern()<cr>
 nn <silent><a-esc> :Ttoggle<cr><c-w>wa
 tno <silent><a-esc> <c-\><c-n>:Ttoggle<cr>
 tno <a-.> <c-\><c-n>:Tnext<cr>i
@@ -127,4 +127,27 @@ no <leader>itt "=strftime("%H:%M:%S")<cr>P
 no <leader>itm "=strftime("%Y-%m-%d \/ %H:%M:%S")<cr>P
 no <leader>cp yap<S-}>p
 nn <silent><leader> :WhichKey '<space>'<cr>
+
+" nvim lsp
+nn <silent> gd <cmd>lua vim.lsp.buf.definition()<cr>
+nn <silent> gD <cmd>lua vim.lsp.buf.declaration()<cr>
+nn <silent> gr <cmd>lua vim.lsp.buf.references()<cr>
+nn <silent> gi <cmd>lua vim.lsp.buf.implementation()<cr>
+nn <silent> gh <cmd>lua vim.lsp.buf.hover()<cr>
+nn <silent> gs <cmd>lua vim.lsp.buf.signature_help()<cr>
+nn <silent> gp <cmd>lua vim.lsp.diagnostic.goto_prev()<cr>
+nn <silent> gn <cmd>lua vim.lsp.diagnostic.goto_next()<cr>
+" nn <silent> gF <cmd>Format<CR>
+nn <silent> gF <cmd>lua vim.lsp.buf.formatting()<CR>
+nn <silent> gR <cmd>TroubleToggle lsp_references<cr>
+
+" bufferline
+nn <silent><left> :BufferLineCyclePrev<cr>
+nn <silent><right> :BufferLineCycleNext<cr>
+nn <silent><a-left> :BufferLineMovePrev<cr>
+nn <silent><a-right> :BufferLineMoveNext<cr>
+nn <silent><a-q> :bdelete<cr>
+nn <silent>gb :BufferLinePick<cr>
+nn <silent>be :BufferLineSortByExtension<cr>
+nn <silent>bd :BufferLineSortByDirectory<cr>
 
