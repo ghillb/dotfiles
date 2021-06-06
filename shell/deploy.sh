@@ -42,7 +42,7 @@ fzf() {
 }
 
 utils() {
-  sudo apt install -y sshfs jq curl shellcheck ncdu gcc make perl
+  sudo apt install -y sshfs jq curl shellcheck ncdu direnv gcc make perl
 }
 
 desktop() {
