@@ -14,6 +14,7 @@ xn <silent> p p:let @+=@0<cr>:let @"=@0<cr>
 xn <silent> P P:let @+=@0<cr>:let @"=@0<cr>
 vn / y/\V<c-r>=escape(@",'/\')<cr><cr>N
 nm cg* *N"ccgn
+nn <a-g> :G<cr>
 no <c-j> <c-e>
 no <c-k> <c-y>
 no <c-y> <c-b>
@@ -146,8 +147,8 @@ if has('nvim-0.5')
   nn <silent> gs <cmd>lua vim.lsp.buf.signature_help()<cr>
   nn <silent> gp <cmd>lua vim.lsp.diagnostic.goto_prev()<cr>
   nn <silent> gn <cmd>lua vim.lsp.diagnostic.goto_next()<cr>
-  nn <silent> gF <cmd>Format<CR>
-  " nn <silent> gF <cmd>lua vim.lsp.buf.formatting()<CR>
+  nn <silent> gF <cmd>Format<cr>
+  " nn <silent> gF <cmd>lua vim.lsp.buf.formatting()<cr>
   nn <silent> gR <cmd>TroubleToggle lsp_references<cr>
 
 " nvim compe
