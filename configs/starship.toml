@@ -53,3 +53,6 @@ disabled = false
 symbol = "◇"
 threshold = 1
 
+[python]
+format = 'via [$virtualenv ]($style)'
+
