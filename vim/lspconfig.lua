@@ -55,7 +55,7 @@ require('rust-tools').setup(opts)
 local nvim_command = vim.api.nvim_command
 
 local on_attach = function(client, bufnr)
-  nvim_command('autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()')
+  nvim_command('autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics({ focusable = false })')
 end
 
 -- lsp setups
