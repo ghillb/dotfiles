@@ -116,3 +116,7 @@ kubemerge() {
    && chmod 600 ~/.kube/config
 }
 
+xed() {
+  nvim $(which $1)
+}
+
