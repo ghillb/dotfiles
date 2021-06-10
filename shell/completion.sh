@@ -77,4 +77,5 @@ if command -v rustc &>/dev/null; then
 fi
 
 function_exists m && complete -F _command m
+function_exists ped && complete -F _command ped
 
