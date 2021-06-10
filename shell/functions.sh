@@ -116,7 +116,16 @@ kubemerge() {
    && chmod 600 ~/.kube/config
 }
 
+find_function()( shopt -s extdebug; declare -F "$@"; )
+
 ped() {
-  nvim $(which $1)
+  if $(function_exists $1) || false ; then
+    FILE_PATH=$(find_function $1 | awk '{print $3}')
+    LINE_POS=$(find_function $1 | awk '{print $2}')
+  else
+    echo TEST
+    FILE_PATH=$(which $1)
+  fi
+  nvim +$LINE_POS $FILE_PATH
 }
 
