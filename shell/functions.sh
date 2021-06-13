@@ -129,3 +129,7 @@ ped() {
   nvim +$LINE_POS $FILE_PATH
 }
 
+ns () {
+  grep -C 5 "$*" ~/.notes/* -r --exclude-dir={html,resources};
+}
+

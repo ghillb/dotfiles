@@ -1,10 +1,10 @@
 let g:vimwiki_list = [{
-            \ 'path': '~/notes/',
+            \ 'path': '~/.notes/',
             \ 'syntax': 'markdown',
             \ 'ext': '.md',
-            \ 'template_path': '~/notes/templates/',
+            \ 'template_path': '~/.notes/templates/',
             \ 'template_default': 'default',
-            \ 'path_html': '~/notes/html/',
+            \ 'path_html': '~/.notes/html/',
             \ 'custom_wiki2html': 'vimwiki_markdown',
             \ 'template_ext': '.tpl',
             \ 'nested_syntaxes': {'cpp': 'cpp', 'python': 'python', 'java': 'java',
