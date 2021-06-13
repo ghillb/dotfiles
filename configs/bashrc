@@ -44,7 +44,7 @@ elif [ ! -z "$WORK_DIR" ]; then cd "$(wslpath -a "${WORK_DIR}")"; fi
 bind -x '"\C-b": "cd .."'
 bind -x '"\C-h": "cd ~/"'
 bind -x '"\C-t": "tx"'
-bind -x '"\C-n": "navi"'
+bind -x '"\C-n": "nb"'
 bind -x '"\C-p": fzf-file-widget'
 bind -x '"\C-e": `__fzf_cd__`'
 bind -x '"\C-r": __fzf_history__'
