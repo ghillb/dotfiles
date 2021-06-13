@@ -37,8 +37,7 @@ include /usr/lib/git-core/git-sh-prompt; include /usr/lib/git/git-sh-prompt
 include ~/scripts/bash/utils.sh
 
 # scripted behavior
-if [[ -z "$TMUX" && "$SSH_CONNECTION" != "" ]]; then initbash;
-elif [ ! -z "$WORK_DIR" ]; then cd "$(wslpath -a "${WORK_DIR}")"; fi
+if [[ -z "$TMUX" && "$SSH_CONNECTION" != "" ]]; then initbash; fi
 
 # key binds
 bind -x '"\C-b": "cd .."'
