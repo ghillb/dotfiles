@@ -1,5 +1,5 @@
 " various
-nn K a<cr><esc>
+nn K xi<cr><esc>
 no x "_x
 no X "_X
 no Y yg_
