@@ -46,7 +46,7 @@ utils() {
 }
 
 desktop() {
-  sudo apt install -y spectrwm fonts-firacode ttf-ancient-fonts picom feh xdotool wmctrl xsel rofi kitty nnn zathura
+  sudo apt install -y spectrwm fonts-firacode ttf-ancient-fonts picom feh xdotool wmctrl xsel rofi kitty nnn zathura scrot
   git clone https://github.com/bardisty/gruvbox-rofi ~/.config/rofi/themes/gruvbox
   cd $confdir; mkdir -p spectrwm rofi gtk-3.0 alacritty kitty
   ln -sf $dfdir/configs/spectrwm.conf $confdir/spectrwm/spectrwm.conf
