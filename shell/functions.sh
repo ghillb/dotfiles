@@ -31,7 +31,7 @@ gsubrm() {
 }
 
 notes() {
-  eval "nvim -c VimwikiIndex +'cd %:h'"
+  eval "nvim -c VimwikiIndex +'cd %:h' -c Rg"
 }
 
 diary() {
