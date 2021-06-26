@@ -19,7 +19,6 @@ source $VC/plugc/fern.vim
 source $VC/plugc/autopairs.vim
 source $VC/plugc/neoterm.vim
 source $VC/plugc/startify.vim
-source $VC/plugc/whichkey.vim
 source $VC/plugc/fzfproject.vim
 source $VC/plugc/fzfcheckout.vim
 source $VC/plugc/codi.vim
@@ -33,5 +32,6 @@ if has('nvim-0.5') && !empty($LSP_ENABLED) && !exists('g:vscode')
   luafile $VC/plugc/nvim-compe.lua
   luafile $VC/plugc/bufferline.lua
   lua require'colorizer'.setup()
+  lua require'which-key'.setup()
 endif
 

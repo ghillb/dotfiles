@@ -74,8 +74,6 @@ nn <esc><esc> :FzfSwitchProject<cr>
 
 " leader mappings 
 let mapleader = " "
-nn <silent> <leader> :<c-u>WhichKey '<space>'<cr>
-nn <silent> <localleader> :<c-u>WhichKey  '\'<CR>
 nn <leader><leader> a<space><esc>
 no <leader>p o<esc>p
 no <leader>P O<esc>p
