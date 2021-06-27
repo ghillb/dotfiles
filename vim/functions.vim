@@ -6,6 +6,8 @@ au TextChanged,TextChangedI * if &readonly == 0 && filereadable(bufname('%')) | 
 
 if has('nvim')
   au TermEnter,TermOpen * setlocal nospell nobuflisted nonumber nornu
+  au TermEnter,TermOpen * nnoremap <buffer> <C-c> i<C-c>
+  au TermEnter,TermOpen * nnoremap <buffer> <C-d> i<C-d>
 endif
 
 fun! LightlineGitBranch()
