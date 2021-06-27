@@ -174,7 +174,7 @@ require("todo-comments").setup {
   },
 }
 
-require("lsp_signature").on_attach {
+config = {
   bind = true,
   doc_lines = 2,
   floating_window = true,
@@ -191,4 +191,6 @@ require("lsp_signature").on_attach {
   },
   extra_trigger_chars = {}
 }
+
+require("lsp_signature").on_attach(config)
 
