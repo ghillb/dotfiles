@@ -67,7 +67,7 @@ alias 0xf='curl -F"file=@$(find $HOME -type f | fzf)" 0x0.st | xsel --input --cl
 alias 0xs="curl -F\'shorten=\' https://0x0.st"
 alias hist='history|grep'
 alias hx='hexyl'
-alias vr='nvr -r'
+alias vr='nvr'
 alias vt='nvim -c term -c "norm i" -c "setlocal ls=0 cc= rnu! nu!" -c "au!" -c "au TermClose * :q!"'
 alias ss='shellcheck'
 alias stx='mop -profile ~/.config/mop/default-moprc.json'
