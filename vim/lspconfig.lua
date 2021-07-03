@@ -126,6 +126,16 @@ require('formatter').setup {
           stdin = true
         }
       end
+    },
+    tf = {
+      -- terraform fmt
+      function()
+        return {
+          exe = "terraform",
+          args = {"fmt"},
+          stdin = false
+        }
+      end
     }
   }
 }
@@ -174,6 +184,7 @@ require("todo-comments").setup {
   },
 }
 
+-- lsp-signature
 config = {
   bind = true,
   doc_lines = 2,
