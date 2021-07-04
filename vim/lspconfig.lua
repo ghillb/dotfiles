@@ -127,7 +127,7 @@ require('formatter').setup {
         }
       end
     },
-    tf = {
+    hcl = {
       -- terraform fmt
       function()
         return {
