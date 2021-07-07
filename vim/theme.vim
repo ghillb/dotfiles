@@ -44,6 +44,7 @@ hi Terminal guibg=NONE ctermbg=NONE
 hi LineNr guibg=NONE ctermbg=NONE
 hi CursorLineNR guibg=NONE ctermbg=NONE
 hi SignColumn guibg=NONE ctermbg=NONE
+hi FoldColumn guibg=NONE ctermbg=NONE
 hi VertSplit guibg=NONE ctermbg=NONE
 hi Folded guibg=NONE ctermbg=NONE
 hi NonText guibg=NONE ctermbg=NONE
