@@ -47,7 +47,7 @@ hi SignColumn guibg=NONE ctermbg=NONE
 hi FoldColumn guibg=NONE ctermbg=NONE
 hi VertSplit guibg=NONE ctermbg=NONE
 hi Folded guibg=NONE ctermbg=NONE
-hi NonText guibg=NONE ctermbg=NONE
+hi NonText guibg=NONE ctermbg=NONE guifg=#83a598
 hi SpecialKey guibg=NONE ctermbg=NONE
 hi EndOfBuffer guibg=NONE ctermbg=NONE guifg=#504945
 hi WarningMsg guibg=NONE ctermbg=NONE guifg=#fb4934
