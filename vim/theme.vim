@@ -2,7 +2,7 @@ if has('termguicolors') && has('nvim') | set termguicolors | endif
 if has('nvim') | set fcs=eob:· | endif
 
 let g:gruvbox_contrast_dark = 'hard'
-let g:gruvbox_invert_selection = '1'
+let g:gruvbox_invert_selection = '0'
 
 silent! colorscheme gruvbox
 
