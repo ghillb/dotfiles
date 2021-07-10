@@ -31,7 +31,7 @@ gsubrm() {
 }
 
 notes() {
-  eval "nvim -c VimwikiIndex +'cd %:h' -c Rg"
+  eval "nvim -c VimwikiIndex +'cd %:h' +\"call timer_start(5, { tid -> execute('Telescope live_grep')})\""
 }
 
 diary() {

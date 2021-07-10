@@ -5,9 +5,8 @@ au VimEnter * call SetRoot('start_dir')
 au TextChanged,TextChangedI * if &readonly == 0 && filereadable(bufname('%')) | silent write | endif
 
 if has('nvim')
+  au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=500}
   au TermEnter,TermOpen * setlocal nospell nobuflisted nonumber nornu
-  au TermEnter,TermOpen * nnoremap <buffer> <C-c> i<C-c>
-  au TermEnter,TermOpen * nnoremap <buffer> <C-d> i<C-d>
 endif
 
 fun! SetCurrentGitBranch()

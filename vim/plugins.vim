@@ -22,7 +22,6 @@ else
   call minpac#add('tpope/vim-surround')
   call minpac#add('tpope/vim-commentary')
   call minpac#add('romainl/vim-qf')
-  call minpac#add('machakann/vim-highlightedyank')
   call minpac#add('vimwiki/vimwiki', { 'branch': 'dev' })
   call minpac#add('junegunn/goyo.vim')
   call minpac#add('junegunn/limelight.vim')
