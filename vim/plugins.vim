@@ -12,7 +12,7 @@ else
   call minpac#init({'verbose': 3})
 
   call minpac#add('k-takata/minpac', {'type': 'opt'})
-  call minpac#add('ghillb/gruvbox')
+  call minpac#add('morhetz/gruvbox')
   call minpac#add('habamax/vim-gruvbit')
   call minpac#add('mhinz/vim-startify')
   call minpac#add('tpope/vim-fugitive')
