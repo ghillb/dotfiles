@@ -24,14 +24,14 @@ hi GitGutterChange guibg=NONE ctermbg=NONE guifg=#458588
 hi GitGutterDelete guibg=NONE ctermbg=NONE guifg=#fb4934
 hi GitGutterChangeDelete guibg=NONE ctermbg=NONE guifg=#fb4934
 
-if $SSH_TTY
-  call SetCurrentGitBranch()
+if !empty($SSH_TTY)
   let g:currentmode={    
     \ 'n'  : 'NORMAL ',    
     \ 'v'  : 'VISUAL ',    
     \ 'V'  : 'V·LINE ',    
     \ "\<C-V>" : 'V·BLOCK ',    
     \ 'i'  : 'INSERT ',    
+    \ 't'  : 'TERMINAL ',    
     \ 'R'  : 'REPLACE ',    
     \ 'Rv' : 'V·REPLACE ',    
     \ 'c'  : 'COMMAND ',    
@@ -41,7 +41,7 @@ if $SSH_TTY
   set statusline+=\ %{g:currentmode[mode()]}    
   set statusline+=%#LineNr#    
   set statusline+=\ %{g:current_git_branch}    
-  set statusline+=\ %f    
+  set statusline+=\ %t
   set statusline+=%m    
   set statusline+=%=    
   set statusline+=%#CursorColumn#    
