@@ -24,9 +24,11 @@ source $VC/plugc/vimqf.vim
 source $VC/plugc/text-objects.vim
 source $VC/plugc/myvis.vim
 
-if has('nvim-0.5') && !empty($LSP_ENABLED) && !exists('g:vscode')
-  luafile $VC/lspconfig.lua
-  luafile $VC/plugc/nvim-compe.lua
+if has('nvim-0.5') && !exists('g:vscode')
+  if !empty($LSP_ENABLED)
+    luafile $VC/lspconfig.lua
+    luafile $VC/plugc/nvim-compe.lua
+  endif
   luafile $VC/plugc/bufferline.lua
   luafile $VC/plugc/telescope.lua
   luafile $VC/plugc/lualine.lua
