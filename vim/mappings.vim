@@ -8,6 +8,8 @@ no V vg_
 nn Q @q
 vn Q :norm @q<cr>
 vm s <plug>VSurround
+no <silent><c-_> :Commentary<cr>j
+ino <silent><c-_> <esc>:Commentary<cr>ja
 ino kj <esc>
 ino jk <esc>
 xn <silent> p p:let @+=@0<cr>:let @"=@0<cr>
@@ -58,19 +60,6 @@ map - <c-w>-
 map = <c-w>+
 map + <c-w>>
 map _ <c-w><
-
-" fzf mapping
-no <silent><c-_> :Commentary<cr>j
-ino <silent><c-_> <esc>:Commentary<cr>ja
-nn <silent><c-p> :Rg<cr>
-nn <silent><c-e> :call FzfOmniFiles()<cr>
-nn <silent><c-a-e> :Files<cr>
-nn <silent><c-b> :Buffers<cr>
-nn <silent><c-\> :BLines<cr>
-nn <silent><a-\> :Lines<cr>
-nn <silent><c-c> :Commands<cr>
-nn <silent><c-g> :call OpenFzfCheckout()<cr>
-nn <esc><esc> :FzfSwitchProject<cr>
 
 " leader mappings 
 let mapleader = " "
@@ -149,6 +138,16 @@ if has('nvim-0.5')
   nn <silent> gF <cmd>Format<cr>
   " nn <silent> gF <cmd>lua vim.lsp.buf.formatting()<cr>
   nn <silent> gR <cmd>TroubleToggle lsp_references<cr>
+
+  "nvim telescope
+  nn <c-e> <cmd>call TelescopeOmniFiles()<cr>
+  nn <c-a-e> <cmd>Telescope find_files<cr>
+  nn <c-p> <cmd>Telescope live_grep<cr>
+  nn <c-b> <cmd>Telescope buffers<cr>
+  nn <c-\> <cmd>Telescope current_buffer_fuzzy_find<cr>
+  nn <c-g> <cmd>Telescope git_branches<cr>
+  nn <c-c> <cmd>Telescope commands<cr>
+  nn <esc><esc> <cmd>Telescope project display_type=full<cr>
 
 " nvim compe
   ino <silent><expr> <cr>      compe#confirm('<cr>')

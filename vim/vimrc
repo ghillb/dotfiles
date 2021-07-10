@@ -10,7 +10,6 @@ source $VC/filetypes.vim
 
 " plugin configs
 source $VC/plugc/gitgutter.vim
-source $VC/plugc/fzf.vim
 source $VC/plugc/vimwiki.vim
 source $VC/plugc/indentline.vim
 source $VC/plugc/sneak.vim
@@ -19,8 +18,6 @@ source $VC/plugc/fern.vim
 source $VC/plugc/autopairs.vim
 source $VC/plugc/neoterm.vim
 source $VC/plugc/startify.vim
-source $VC/plugc/fzfproject.vim
-source $VC/plugc/fzfcheckout.vim
 source $VC/plugc/codi.vim
 source $VC/plugc/vsnip.vim
 source $VC/plugc/vimqf.vim
@@ -31,6 +28,7 @@ if has('nvim-0.5') && !empty($LSP_ENABLED) && !exists('g:vscode')
   luafile $VC/lspconfig.lua
   luafile $VC/plugc/nvim-compe.lua
   luafile $VC/plugc/bufferline.lua
+  luafile $VC/plugc/telescope.lua
   luafile $VC/plugc/lualine.lua
   lua require'colorizer'.setup()
   lua require'which-key'.setup()

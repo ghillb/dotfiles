@@ -2,7 +2,6 @@ if filereadable(expand($NVC) . '/localrc.vim') | source $NVC/localrc.vim | endif
 au BufEnter * if filereadable(expand('%:p:h') . '/.exrc.vim') | source %:p:h/.exrc.vim | endif
 au BufEnter * call SetGitModifiedCount() | call SetSelectiveFilename()
 au VimEnter * call SetRoot('start_dir')
-au InsertEnter,InsertLeave * set cul!
 au TextChanged,TextChangedI * if &readonly == 0 && filereadable(bufname('%')) | silent write | endif
 
 if has('nvim')
@@ -29,18 +28,11 @@ fun! LinePercent()
     return line('.') * 100 / line('$') . '%%'
 endfun
 
-fun! OpenFzfCheckout()
-  :chdir %:p:h
-  :GBranches
-  :chdir $VIM_ROOT
-endfun
-
-fun! FzfOmniFiles()
-  let is_git = system('git status')
+fun! TelescopeOmniFiles()
   if v:shell_error || system('git submodule status') != ""
-    :Files
+    :Telescope find_files
   else
-    :GitFiles --exclude-standard
+    :Telescope git_files
   endif
 endfun
 
