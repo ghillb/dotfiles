@@ -1,8 +1,18 @@
 require("telescope").setup {
   defaults = {
+    layout_config = {
+      horizontal = { 
+        preview_width = 0.6
+      },
+      center = { 
+      },
+      vertical = {
+      }
+    },
     mappings = {
       i = {
         ["<c-s>"] = require("telescope.actions").file_split,
+        ["<esc>"] = require("telescope.actions").close,
       },
       n = {
         ["<c-s>"] = require("telescope.actions").file_split,
@@ -22,9 +32,6 @@ require("telescope").setup {
           ["<c-d>"] = require("telescope.actions").delete_buffer,
         }
       }
-    },
-    git_files = {
-      theme = "dropdown"
     }
   },
   extensions = {
