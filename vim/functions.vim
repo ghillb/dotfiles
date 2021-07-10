@@ -10,8 +10,8 @@ if has('nvim')
 endif
 
 fun! SetCurrentGitBranch()
-  let l:branch = fugitive#head()
-  let g:current_git_branch = l:branch ==# '' ? '' : ' ' . l:branch
+  let l:branch_name = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+  let g:current_git_branch = l:branch_name ==# '' ? '' : ' ' . l:branch_name
 endfun
 
 fun! SetGitModifiedCount()
