@@ -10,18 +10,23 @@ if has('nvim')
   au TermEnter,TermOpen * nnoremap <buffer> <C-d> i<C-d>
 endif
 
-fun! LightlineGitBranch()
+fun! CurrentGitBranch()
   let l:branch = fugitive#head()
   return l:branch ==# '' ? '' : ' ' . l:branch
 endfun
 
-fun! LightlineGitModified()
+fun! GitModifiedCount()
+  " causes cursor jittering
   let l:modified_count = system('git diff --numstat | wc -l | tr -d "\n" ')
   return l:modified_count =~ '\D' ? "" : l:modified_count
 endfun
 
-fun! LightlineFilePath()
+fun! SelectiveFilePath()
   return &filetype =~# '\v^(neoterm|vimwiki)' ? expand('%:t') : ''
+endfun
+
+fun! LinePercent()
+    return line('.') * 100 / line('$') . '%%'
 endfun
 
 fun! OpenFzfCheckout()

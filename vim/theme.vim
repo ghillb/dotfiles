@@ -6,39 +6,6 @@ let g:gruvbox_invert_selection = '0'
 
 silent! colorscheme gruvbox
 
-let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
-      \ 'enable': { 
-      \   'tabline': 0
-      \  },
-      \ 'mode_map': {
-        \ 'n' : 'N',
-        \ 'i' : 'I',
-        \ 'R' : 'R',
-        \ 'v' : 'V',
-        \ 'V' : 'VL',
-        \ "\<C-v>": 'VB',
-        \ 'c' : 'C',
-        \ 's' : 'S',
-        \ 'S' : 'SL',
-        \ "\<C-s>": 'SB',
-        \ 't': 'T',
-      \ },
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'gitdiffcount', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'LightlineGitBranch',
-      \   'filename': 'LightlineFilePath',
-      \ },
-      \ 'component_expand': {
-      \   'gitdiffcount': 'LightlineGitModified',
-      \ },
-      \ 'separator': {'left': "", 'right': ''},
-      \ 'subseparator': { 'left': '', 'right': ''}
-    \ }
-
 hi Normal guibg=NONE ctermbg=NONE
 hi Terminal guibg=NONE ctermbg=NONE
 hi LineNr guibg=NONE ctermbg=NONE

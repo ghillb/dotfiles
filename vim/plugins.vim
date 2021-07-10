@@ -58,6 +58,8 @@ else
     call minpac#add('mfussenegger/nvim-jdtls')
     call minpac#add('milisims/nvim-luaref')
     call minpac#add('akinsho/nvim-bufferline.lua')
+    call minpac#add('hoob3rt/lualine.nvim')
+    call minpac#add('kyazdani42/nvim-web-devicons')
   endif
 
   command! PUpdate source $MYVIMRC | call minpac#update()

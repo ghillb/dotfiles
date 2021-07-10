@@ -31,6 +31,7 @@ if has('nvim-0.5') && !empty($LSP_ENABLED) && !exists('g:vscode')
   luafile $VC/lspconfig.lua
   luafile $VC/plugc/nvim-compe.lua
   luafile $VC/plugc/bufferline.lua
+  luafile $VC/plugc/lualine.lua
   lua require'colorizer'.setup()
   lua require'which-key'.setup()
 endif
