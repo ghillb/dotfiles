@@ -1,5 +1,6 @@
 if filereadable(expand($NVC) . '/localrc.vim') | source $NVC/localrc.vim | endif
 au BufEnter * if filereadable(expand('%:p:h') . '/.exrc.vim') | source %:p:h/.exrc.vim | endif
+au BufEnter * call SetGitModifiedCount() | call SetSelectiveFilename()
 au VimEnter * call SetRoot('start_dir')
 au InsertEnter,InsertLeave * set cul!
 au TextChanged,TextChangedI * if &readonly == 0 && filereadable(bufname('%')) | silent write | endif
@@ -10,19 +11,18 @@ if has('nvim')
   au TermEnter,TermOpen * nnoremap <buffer> <C-d> i<C-d>
 endif
 
-fun! CurrentGitBranch()
+fun! SetCurrentGitBranch()
   let l:branch = fugitive#head()
-  return l:branch ==# '' ? '' : ' ' . l:branch
+  let g:current_git_branch = l:branch ==# '' ? '' : ' ' . l:branch
 endfun
 
-fun! GitModifiedCount()
-  " causes cursor jittering
+fun! SetGitModifiedCount()
   let l:modified_count = system('git diff --numstat | wc -l | tr -d "\n" ')
-  return l:modified_count =~ '\D' ? "" : l:modified_count
+  let g:git_modified_count = l:modified_count =~ '\D' ? "" : l:modified_count
 endfun
 
-fun! SelectiveFilePath()
-  return &filetype =~# '\v^(neoterm|vimwiki)' ? expand('%:t') : ''
+fun! SetSelectiveFilename()
+  let g:selective_filename = &filetype =~# '\v^(neoterm|vimwiki)' ? expand('%:t') : ''
 endfun
 
 fun! LinePercent()

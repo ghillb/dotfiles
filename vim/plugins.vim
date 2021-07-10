@@ -14,7 +14,6 @@ else
   call minpac#add('k-takata/minpac', {'type': 'opt'})
   call minpac#add('ghillb/gruvbox')
   call minpac#add('habamax/vim-gruvbit')
-  call minpac#add('itchyny/lightline.vim')
   call minpac#add('mhinz/vim-startify')
   call minpac#add('tpope/vim-fugitive')
   call minpac#add('idanarye/vim-merginal')
