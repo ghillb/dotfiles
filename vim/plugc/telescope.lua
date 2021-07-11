@@ -1,3 +1,5 @@
+local actions = require('telescope.actions')
+
 require("telescope").setup {
   defaults = {
     layout_config = {
@@ -11,11 +13,11 @@ require("telescope").setup {
     },
     mappings = {
       i = {
-        ["<c-s>"] = require("telescope.actions").file_split,
-        ["<esc>"] = require("telescope.actions").close,
+        ["<c-s>"] = actions.file_split,
+        ["<esc>"] = actions.close,
       },
       n = {
-        ["<c-s>"] = require("telescope.actions").file_split,
+        ["<c-s>"] = actions.file_split,
       }
     }
   },
@@ -26,10 +28,10 @@ require("telescope").setup {
       previewer = false,
       mappings = {
         i = {
-          ["<c-d>"] = require("telescope.actions").delete_buffer,
+          ["<c-d>"] = actions.delete_buffer,
         },
         n = {
-          ["<c-d>"] = require("telescope.actions").delete_buffer,
+          ["<c-d>"] = actions.delete_buffer,
         }
       }
     }
