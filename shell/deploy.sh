@@ -8,7 +8,15 @@ git clone https://github.com/ghillb/dotfiles.git $dfdir
 
 declare -a configs=( "df" "nvim" "tmux" "fzf" "utils" "desktop" )
 declare -A deploy
-for c in "${configs[@]}"; do echo "add [$c] config? (y / → n)"; read -s ans; deploy[$c]=$ans; done
+
+if [[ $non_interactive == true ]] ;then
+  deploy["nvim"]="y"
+  deploy["tmux"]="y"
+  deploy["fzf"]="y"
+  deploy["df"]="y"
+else
+  for c in "${configs[@]}"; do echo "add [$c] config? (y / → n)"; read -s ans; deploy[$c]=$ans; done
+fi
 
 execute() {
   if [[ ${deploy["nvim"]} == "y" ]]; then nvim; fi
@@ -28,7 +36,8 @@ df() {
 
 nvim() {
   mkdir -p ~/.config/nvim; ln -sf $dfdir/vim/vimrc $confdir/nvim/init.vim
-  ln -sf $dfdir/vim/vimrc $HOME/.vimrc
+  sudo add-apt-repository ppa:neovim-ppa/unstable -y
+  sudo apt install neovim -y
 }
 
 tmux() {
