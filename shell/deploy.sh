@@ -1,21 +1,25 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euxo pipefail
 
 dfdir=$HOME/.files
 confdir=$HOME/.config
-sudo apt update && sudo apt upgrade -y;
-sudo apt install -y git build-essential
-git clone https://github.com/ghillb/dotfiles.git $dfdir
 
 declare -a configs=( "df" "nvim" "tmux" "fzf" "utils" "desktop" )
 declare -A deploy
 
-if [[ $non_interactive == true ]] ;then
+sudo apt-get update && sudo apt-get upgrade -y;
+sudo apt-get install -y build-essential git curl wget inetutils-ping
+
+if $noninteractive == true ;then
   deploy["nvim"]="y"
   deploy["tmux"]="y"
   deploy["fzf"]="y"
   deploy["df"]="y"
+  deploy["utils"]="n"
+  deploy["desktop"]="n"
 else
   for c in "${configs[@]}"; do echo "add [$c] config? (y / → n)"; read -s ans; deploy[$c]=$ans; done
+  git clone https://github.com/ghillb/dotfiles.git $dfdir
 fi
 
 execute() {
@@ -35,9 +39,13 @@ df() {
 }
 
 nvim() {
+  release=nvim-linux64
   mkdir -p ~/.config/nvim; ln -sf $dfdir/vim/vimrc $confdir/nvim/init.vim
-  sudo add-apt-repository ppa:neovim-ppa/unstable -y
-  sudo apt install neovim -y
+  wget -nc https://github.com/neovim/neovim/releases/download/v0.5.0/${release}.tar.gz -O - > ${release}
+  sudo tar -xf ${release} -C /tmp
+  sudo cp -r /tmp/${release}/* /usr/local
+  sudo rm -rf ${release} /tmp/${release}
+  $(which nvim) --headless -u .files/vim/plugins.vim +PUpdateAndQuit
 }
 
 tmux() {

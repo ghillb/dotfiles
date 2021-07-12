@@ -1,7 +1,6 @@
+let $NVC = $HOME . '/.config/nvim'
 if empty(glob($NVC . '/pack/minpac/opt/minpac/autoload/minpac.vim')) && has('unix') && has('nvim')
-  !git clone https://github.com/k-takata/minpac.git $NVC/pack/minpac/opt/minpac
-elseif empty(glob('~/.vim/pack/minpac/opt/minpac')) && has('unix') && !has('nvim')
-  !git clone https://github.com/k-takata/minpac.git ~/.vim/pack/minpac/opt/minpac
+  silent !git clone https://github.com/k-takata/minpac.git $NVC/pack/minpac/opt/minpac
 endif
 
 silent! packadd minpac
@@ -62,5 +61,6 @@ else
   command! PUpdate source $MYVIMRC | call minpac#update()
   command! PClean source $MYVIMRC | call minpac#clean()
   command! PStatus call minpac#status()
+  command! PUpdateAndQuit  call minpac#update('', {'do': 'call timer_start(20000, { tid -> execute("quit | quit")})'})
 endif
 
