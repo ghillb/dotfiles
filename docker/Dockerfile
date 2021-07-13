@@ -11,4 +11,5 @@ ENV USER=dv
 WORKDIR /home/dv
 RUN git -C ./ clone https://github.com/ghillb/dotfiles.git .files
 RUN noninteractive=true ./.files/shell/deploy.sh
+ENV LSP_ENABLED=1
 
