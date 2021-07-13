@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 'master'
+      - 'docker_build_action'
 
 jobs:
   docker:
