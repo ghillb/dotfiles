@@ -1,6 +1,6 @@
 if filereadable(expand($NVC) . '/localrc.vim') | source $NVC/localrc.vim | endif
 au BufEnter * if filereadable(expand('%:p:h') . '/.exrc.vim') | source %:p:h/.exrc.vim | endif
-au BufEnter * call SetGitModifiedCount() | call SetSelectiveFilename() | call SetCurrentGitBranch()
+au BufEnter * call SetGitModifiedCount() | call SetSelectiveFilename() | call SetSelectiveFiletype() | call SetCurrentGitBranch()
 au VimEnter * call SetRoot('start_dir')
 au TextChanged,TextChangedI * if &readonly == 0 && filereadable(bufname('%')) | silent write | endif
 
@@ -21,6 +21,10 @@ endfun
 
 fun! SetSelectiveFilename()
   let g:selective_filename = &filetype =~# '\v^(neoterm|vimwiki)' ? expand('%:t') : ''
+endfun
+
+fun! SetSelectiveFiletype()
+  let g:selective_filetype = &filetype =~# '\v^(neoterm)' ? '' : &filetype
 endfun
 
 fun! LinePercent()

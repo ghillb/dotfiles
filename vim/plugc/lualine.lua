@@ -10,7 +10,7 @@ require'lualine'.setup {
     lualine_a = {'mode'},
     lualine_b = {'branch','g:git_modified_count' ,'diff'},
     lualine_c = {'g:selective_filename'},
-    lualine_x = {'encoding', 'filetype'},
+    lualine_x = {'encoding', 'g:selective_filetype'},
     lualine_y = {'LinePercent'},
     lualine_z = {'location'}
   },
