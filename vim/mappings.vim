@@ -16,7 +16,7 @@ xn <silent> p p:let @+=@0<cr>:let @"=@0<cr>
 xn <silent> P P:let @+=@0<cr>:let @"=@0<cr>
 vn / y/\V<c-r>=escape(@",'/\')<cr><cr>N
 nm cg* *N"ccgn
-nn <a-g> :G<cr>
+nn <a-g> :G<cr>\|<c-w>T
 no <c-j> <c-e>
 no <c-k> <c-y>
 no <c-y> <c-b>
