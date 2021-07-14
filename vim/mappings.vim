@@ -97,7 +97,8 @@ nn <leader>zo <c-w>=
 nn <leader>v ggVG
 nn <leader>gg :G<cr>
 nn <leader>gd :Gvdiffsplit<cr>
-nn <leader>gc :G checkout %
+nn <leader>gcc :G checkout %
+nn <leader>gcb :G checkout -b 
 nn <leader>glo :GV<cr>
 nn <leader>gll :GV!<cr>
 nn <leader>gpl :G -c pull.default=current pull<cr>
