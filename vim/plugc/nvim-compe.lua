@@ -1,4 +1,9 @@
-require'compe'.setup {
+local status_ok, compe = pcall(require, 'compe')
+if not status_ok then
+  return
+end
+
+local config = {
   enabled = true;
   autocomplete = true;
   debug = false;
@@ -22,4 +27,6 @@ require'compe'.setup {
     ultisnips = true;
   };
 }
+
+compe.setup(config)
 

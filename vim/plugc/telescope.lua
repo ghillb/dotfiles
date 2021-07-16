@@ -1,6 +1,11 @@
+local status_ok, telescope = pcall(require, 'telescope')
+if not status_ok then
+  return
+end
+
 local actions = require('telescope.actions')
 
-require("telescope").setup {
+local config = {
   defaults = {
     layout_config = {
       horizontal = { 
@@ -45,4 +50,6 @@ require("telescope").setup {
   }
 }
 
-require'telescope'.load_extension('project')
+telescope.setup(config)
+telescope.load_extension('project')
+

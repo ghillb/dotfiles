@@ -1,4 +1,9 @@
-require'lualine'.setup {
+local status_ok, lualine = pcall(require, 'lualine')
+if not status_ok then
+  return
+end
+
+local config = {
   options = {
     icons_enabled = true,
     theme = gruvbox_custom,
@@ -25,6 +30,8 @@ require'lualine'.setup {
   tabline = {},
   extensions = {}
 }
+
+lualine.setup(config)
 
 local colors = {
   black        = '#282828',
