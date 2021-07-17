@@ -139,13 +139,13 @@ fun! NewTerminalToggle()
 endfun
 
 fun! CreateOrGoToFile()
-  let l:file = expand(expand('<cfile>'))
-  if ! filereadable(l:file)
-    let choice = confirm("Create new file: " . l:file . "?", "&Yes\n&No", 1)
+  let l:node_path = expand(expand('<cfile>'))
+  if ! (filereadable(l:node_path) || isdirectory(l:node_path))
+    let choice = confirm("Create new file: " . l:node_path . "?", "&Yes\n&No", 1)
     if choice != 1
       return
     endif
   endif
-  execute "vsplit " . l:file
+  execute "vsplit " . l:node_path
 endfun
 
