@@ -1,5 +1,5 @@
-local status_ok, rust_tools = pcall(require, 'rust-tools')
-if not status_ok then
+local ok, rust_tools = pcall(require, 'rust-tools')
+if not ok then
   return
 end
 

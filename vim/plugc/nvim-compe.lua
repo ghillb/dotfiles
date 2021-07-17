@@ -1,5 +1,5 @@
-local status_ok, compe = pcall(require, 'compe')
-if not status_ok then
+local ok, compe = pcall(require, 'compe')
+if not ok then
   return
 end
 
