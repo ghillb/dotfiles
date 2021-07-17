@@ -146,6 +146,6 @@ fun! CreateOrGoToFile()
       return
     endif
   endif
-  execute "e " . l:file
+  execute "vsplit " . l:file
 endfun
 
