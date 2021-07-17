@@ -19,9 +19,8 @@ hi SpecialKey guibg=NONE ctermbg=NONE
 hi EndOfBuffer guibg=NONE ctermbg=NONE guifg=#504945
 hi WarningMsg guibg=NONE ctermbg=NONE guifg=#fb4934
 hi LspDiagnosticsDefaultError guifg=#fb4934
-hi GitGutterAdd guibg=NONE ctermbg=NONE guifg=#689d6a
-hi GitGutterChange guibg=NONE ctermbg=NONE guifg=#458588
-hi GitGutterDelete guibg=NONE ctermbg=NONE guifg=#fb4934
-hi GitGutterChangeDelete guibg=NONE ctermbg=NONE guifg=#fb4934
+hi GitSignsAdd guibg=NONE ctermbg=NONE guifg=#b8bb26
+hi GitSignsChange guibg=NONE ctermbg=NONE guifg=#076678
+hi GitSignsDelete guibg=NONE ctermbg=NONE guifg=#fb4934
 hi StatusLine guifg=#3c3836
 

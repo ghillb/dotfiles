@@ -9,7 +9,6 @@ source $VC/mappings.vim
 source $VC/file_types.vim
 
 " plugin configs
-source $VC/plugc/gitgutter.vim
 source $VC/plugc/vimwiki.vim
 source $VC/plugc/indentline.vim
 source $VC/plugc/sneak.vim
@@ -36,6 +35,7 @@ if has('nvim-0.5') && !exists('g:vscode')
   luafile $VC/plugc/telescope.lua
   luafile $VC/plugc/bufferline.lua
   luafile $VC/plugc/lualine.lua
+  luafile $VC/plugc/gitsigns.lua
   lua local ok, cz = pcall(require, 'colorizer') if ok then cz.setup() end
   lua local ok, wk = pcall(require, 'which-key') if ok then wk.setup() end
 endif

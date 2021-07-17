@@ -15,7 +15,6 @@ else
   call minpac#add('habamax/vim-gruvbit')
   call minpac#add('mhinz/vim-startify')
   call minpac#add('tpope/vim-fugitive')
-  call minpac#add('airblade/vim-gitgutter')
   call minpac#add('will133/vim-dirdiff')
   call minpac#add('junegunn/gv.vim')
   call minpac#add('tpope/vim-surround')
@@ -56,6 +55,7 @@ else
     call minpac#add('nvim-lua/plenary.nvim')
     call minpac#add('nvim-telescope/telescope.nvim')
     call minpac#add('nvim-telescope/telescope-project.nvim')
+    call minpac#add('lewis6991/gitsigns.nvim')
   endif
 
   command! PUpdate source $MYVIMRC | call minpac#update()
