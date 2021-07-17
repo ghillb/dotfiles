@@ -59,6 +59,11 @@ fun! ToggleFern()
   endif 
 endfun
 
+fun! ToggleGutter()
+  if &scl == 'yes' | set scl=no | else | set scl=yes | endif
+  set rnu! nu!
+endfun
+
 fun! SetRoot(new_root)
   let $VIM_ROOT = getcwd()
   if (a:new_root == 'git_root') 
