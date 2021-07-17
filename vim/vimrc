@@ -10,7 +10,6 @@ source $VC/file_types.vim
 
 " plugin configs
 source $VC/plugc/vimwiki.vim
-source $VC/plugc/indentline.vim
 source $VC/plugc/sneak.vim
 source $VC/plugc/netrw.vim
 source $VC/plugc/fern.vim
