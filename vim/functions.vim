@@ -138,3 +138,14 @@ fun! NewTerminalToggle()
   execute "normal \<c-w>ji"
 endfun
 
+fun! CreateOrGoToFile()
+  let l:file = expand(expand('<cfile>'))
+  if ! filereadable(l:file)
+    let choice = confirm("Create new file: " . l:file . "?", "&Yes\n&No", 1)
+    if choice != 1
+      return
+    endif
+  endif
+  execute "e " . l:file
+endfun
+
