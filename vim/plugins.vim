@@ -21,8 +21,6 @@ else
   call minpac#add('tpope/vim-commentary')
   call minpac#add('romainl/vim-qf')
   call minpac#add('vimwiki/vimwiki', { 'branch': 'dev' })
-  call minpac#add('junegunn/goyo.vim')
-  call minpac#add('junegunn/limelight.vim')
   call minpac#add('mbbill/undotree')
   call minpac#add('jiangmiao/auto-pairs')
   call minpac#add('kassio/neoterm')
@@ -55,6 +53,8 @@ else
     call minpac#add('nvim-telescope/telescope.nvim')
     call minpac#add('nvim-telescope/telescope-project.nvim')
     call minpac#add('lewis6991/gitsigns.nvim')
+    call minpac#add('lukas-reineke/indent-blankline.nvim')
+    call minpac#add('Pocco81/TrueZen.nvim')
   endif
 
   command! PUpdate source $MYVIMRC | call minpac#update()
