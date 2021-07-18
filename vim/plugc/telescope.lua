@@ -44,7 +44,9 @@ local config = {
   extensions = {
     project = {
       base_dirs = {
-        {'~/code', max_depth = 1}
+        {'~/code'},
+        {'~/.files'},
+        {'~/scripts'},
       }
     }
   }

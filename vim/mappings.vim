@@ -57,10 +57,10 @@ nn <silent> <a-h> :call TmuxMove('h')<cr>
 nn <silent> <a-j> :call TmuxMove('j')<cr>
 nn <silent> <a-k> :call TmuxMove('k')<cr>
 nn <silent> <a-l> :call TmuxMove('l')<cr>
-map - <c-w>-
-map = <c-w>+
-map + <c-w>>
-map _ <c-w><
+map <a--> <c-w>-
+map <a-=> <c-w>+
+map <a-+> <c-w>>
+map <a-_> <c-w><
 
 " leader mappings 
 let mapleader = " "
