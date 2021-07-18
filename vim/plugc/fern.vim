@@ -11,16 +11,13 @@ fun! s:init_fern() abort
     nmap <buffer> q :<c-u>quit<cr>
     nmap <buffer> .. <Plug>(fern-action-hidden-toggle)
     nmap <buffer> <space> <Plug>(fern-action-mark)
-    nmap <buffer> <tab> <nop>
-    nmap <buffer> <c-e> <c-w>l<c-e>
-    nmap <buffer> <c-p> <c-w>l<c-p>
-    nmap <buffer> <c-b> <c-w>l<c-b>
-    nmap <buffer> <c-g> <c-w>l<c-g>
-    nmap <buffer> <c-\> <c-w>l<c-\>
-    nmap <buffer> <a-\> <c-w>l<a-\>
-    nmap <buffer> <leader><bs> <c-w>l<leader><bs>
-    nmap <buffer><silent> <a-esc> <c-w>l:Ttoggle<cr><c-w>ja
     nmap <silent><buffer> <cr> <Plug>(fern-action-open)<esc>:FernDo close<CR>
+    nmap <silent><buffer> <a-esc> <c-w>l:Ttoggle<cr><c-w>ja
+    nmap <buffer> <c-e> <nop>
+    nmap <buffer> <c-p> <nop>
+    nmap <buffer> <c-b> <nop>
+    nmap <buffer> <c-g> <nop>
+    nmap <buffer> <c-\> <nop>
 endfun
 
 aug fern-custom

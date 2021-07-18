@@ -19,12 +19,9 @@ aug quickfix
   au! *
   au FileType qf map <buffer> dd :call RemoveQFItem()<cr>
   au FileType qf map <buffer> <localleader>r :cdo s///
-  au FileType qf map <buffer> <tab> <nop>
-  au FileType qf map <buffer> <s-tab> <nop>
-  au FileType qf map <buffer> <c-p> <c-w>k<c-p>
-  au FileType qf map <buffer> <c-e> <c-w>k<c-e>
-  au FileType qf map <buffer> <c-b> <c-w>k<c-b>
-  au FileType qf map <buffer> <c-g> <c-w>k<c-g>
-  au FileType qf map <buffer> <c-\> <c-w>k<c-\>
-  au FileType qf map <buffer> <a-\> <c-w>k<a-\>
+  au FileType qf map <buffer> <c-p> <nop>
+  au FileType qf map <buffer> <c-e> <nop>
+  au FileType qf map <buffer> <c-b> <nop>
+  au FileType qf map <buffer> <c-g> <nop>
+  au FileType qf map <buffer> <c-\> <nop>
 aug END
