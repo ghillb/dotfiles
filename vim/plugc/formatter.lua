@@ -1,4 +1,4 @@
-local ok, formatter = pcall(require, 'formatter')
+local ok, formatter = pcall(require, "formatter")
 if not ok then
   return
 end
@@ -20,10 +20,10 @@ local config = {
       function()
         return {
           exe = "prettier",
-          args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0), '--single-quote'},
+          args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0), "--single-quote"},
           stdin = true
-         }
-       end
+        }
+      end
     },
     rust = {
       -- Rustfmt
@@ -59,4 +59,3 @@ local config = {
 }
 
 formatter.setup(config)
-

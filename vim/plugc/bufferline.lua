@@ -35,7 +35,8 @@ local config = {
        if vim.fn.bufname(buf_number) ~= ".git/index" then
          return true
        end
-     end,   offsets = {{filetype = "fern", text = "tree", text_align = "center"}},
+     end,
+    offsets = {{filetype = "fern", text = "tree", text_align = "center"}},
   }
 }
 
