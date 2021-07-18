@@ -17,7 +17,8 @@ xn <silent> P P:let @+=@0<cr>:let @"=@0<cr>
 vn / y/\V<c-r>=escape(@",'/\')<cr><cr>N
 nm cg* *N"ccgn
 nn <silent>gf :call CreateOrGoToFile()<cr>
-nn <a-g> :G<cr>\|<c-w>T
+no <c-d> <c-d>zz
+no <c-u> <c-u>zz
 no <c-j> <c-e>
 no <c-k> <c-y>
 no <c-y> <c-b>
@@ -52,7 +53,7 @@ tno <silent><a-esc> <c-\><c-n>:Ttoggle<cr>
 tno ` <esc>
 tno <esc> <c-\><c-n>
 
-" split mappings
+" window / buffer / split mappings
 nn <silent> <a-h> :call TmuxMove('h')<cr>
 nn <silent> <a-j> :call TmuxMove('j')<cr>
 nn <silent> <a-k> :call TmuxMove('k')<cr>
@@ -61,6 +62,8 @@ map <a--> <c-w>-
 map <a-=> <c-w>+
 map <a-+> <c-w>>
 map <a-_> <c-w><
+nn <a-g> :G<cr>\|<c-w>T
+nn <silent><a-q> :bdelete<cr>
 
 " leader mappings 
 let mapleader = " "
@@ -180,7 +183,6 @@ if has('nvim-0.5')
   nn <silent><right> :BufferLineCycleNext<cr>
   nn <silent><a-left> :BufferLineMovePrev<cr>
   nn <silent><a-right> :BufferLineMoveNext<cr>
-  nn <silent><a-q> :bdelete<cr>
   nn <silent>gb :BufferLinePick<cr>
   nn <silent>be :BufferLineSortByExtension<cr>
   nn <silent>bd :BufferLineSortByDirectory<cr>
