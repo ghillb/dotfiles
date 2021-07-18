@@ -9,11 +9,18 @@ let g:startify_lists = [
     \ { 'header': ['   Commands:'],               'type': 'commands' },
     \ ]
 
+    let g:startify_commands = [
+        \ {'pu': ['Plugin Update', 'PUpdate']},
+        \ {'ps': ['Plugin Status', 'PStatus']},
+        \ {'pc': ['Plugin Clean-up', 'PClean']},
+        \ {'h' : ['Vim Reference', 'h ref']},
+        \ ]
+
 let g:startify_skiplist = [
        \ '/notes/.*',
        \ '^/tmp',
        \ '\.vimgolf',
        \ ]
 
-au User StartifyBufferOpened call SetRoot('git_dir')
+au User StartifyBufferOpened silent call SetRoot('git_dir')
 

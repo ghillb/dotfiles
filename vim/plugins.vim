@@ -57,8 +57,8 @@ else
     call minpac#add('Pocco81/TrueZen.nvim')
   endif
 
-  command! PUpdate source $MYVIMRC | call minpac#update()
-  command! PClean source $MYVIMRC | call minpac#clean()
+  command! PUpdate setlocal ma | source $MYVIMRC | call minpac#update()
+  command! PClean setlocal ma | source $MYVIMRC | call minpac#clean()
   command! PStatus call minpac#status()
   command! PUpdateAndQuit  call minpac#update('', {'do': 'call timer_start(20000, { tid -> execute("quit | quit")})'})
 endif

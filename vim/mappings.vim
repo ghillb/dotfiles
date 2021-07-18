@@ -117,10 +117,10 @@ no <leader>cp yap<S-}>p
 
 " localleader mappings
 let localleader = "\\"
-no <localleader><cr> :call SetRoot('git_root')<cr>
-no <localleader><bs> :call SetRoot('parent_dir')<cr>
-no <localleader>/ :call SetRoot('current_dir')<cr>
-no <localleader>\ :chdir $VIM_ROOT<cr> \| :echo "back to root: " . $VIM_ROOT<cr>
+no <silent><localleader><cr> :call SetRoot('git_root')<cr>
+no <silent><localleader><bs> :call SetRoot('parent_dir')<cr>
+no <silent><localleader>/ :call SetRoot('current_dir')<cr>
+no <silent><localleader>\ :chdir $VIM_ROOT<cr> \| :echo "back to root: " . $VIM_ROOT<cr>
 nn <localleader>r :%s///gc<left><left><left><left>
 nn <localleader>q :vim// **/*<left><left><left><left><left><left>
 nn <localleader>l :lv// %<left><left><left>
