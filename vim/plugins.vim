@@ -22,7 +22,6 @@ else
   call minpac#add('romainl/vim-qf')
   call minpac#add('vimwiki/vimwiki', { 'branch': 'dev' })
   call minpac#add('mbbill/undotree')
-  call minpac#add('jiangmiao/auto-pairs')
   call minpac#add('kassio/neoterm')
   call minpac#add('lambdalisue/fern.vim')
   call minpac#add('lambdalisue/fern-hijack.vim')
@@ -55,11 +54,12 @@ else
     call minpac#add('lewis6991/gitsigns.nvim')
     call minpac#add('lukas-reineke/indent-blankline.nvim')
     call minpac#add('Pocco81/TrueZen.nvim')
+    call minpac#add('windwp/nvim-autopairs')
   endif
 
   command! PUpdate setlocal ma | source $MYVIMRC | call minpac#update()
   command! PClean setlocal ma | source $MYVIMRC | call minpac#clean()
   command! PStatus call minpac#status()
-  command! PUpdateAndQuit  call minpac#update('', {'do': 'call timer_start(20000, { tid -> execute("quit | quit")})'})
+  command! PUpdateAndQuit call minpac#update('', {'do': 'call timer_start(20000, { tid -> execute("quit | quit")})'})
 endif
 
