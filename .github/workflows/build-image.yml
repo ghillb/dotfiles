@@ -32,7 +32,7 @@ jobs:
           push: true
           tags: ghillb/devcon:latest
           build-args: |
-            IMAGE=ubuntu:20.04
+            IMAGE=ubuntu:21.04
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
