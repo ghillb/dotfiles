@@ -53,7 +53,8 @@ else
     call minpac#add('nvim-telescope/telescope-project.nvim')
     call minpac#add('lewis6991/gitsigns.nvim')
     call minpac#add('lukas-reineke/indent-blankline.nvim')
-    call minpac#add('Pocco81/TrueZen.nvim')
+    call minpac#add('folke/twilight.nvim')
+    call minpac#add('folke/zen-mode.nvim')
     call minpac#add('windwp/nvim-autopairs')
   endif
 

@@ -81,9 +81,8 @@ nn <leader>bl :buffers<cr>
 nn <leader>bo :w<bar>%bd<bar>e#<bar>bd#<cr>
 nn <leader>to :tabo<cr>
 nn <silent><leader>tg :call ToggleGutter()<cr>
-nn <silent><leader>tzz :TZAtaraxis<cr>
-nn <silent><leader>tzm :TZMinimalist<cr>
-nn <silent><leader>tzf :TZFocus<cr>
+nn <silent><leader>tz :ZenMode<cr>
+nn <silent><leader>tl :Twilight<cr>
 nn <leader>tc :Codi!!<cr>
 nn <leader>ty :Startify<cr>
 nn <leader>ti :IndentBlanklineToggle<cr>
