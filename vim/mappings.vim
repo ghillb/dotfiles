@@ -27,6 +27,7 @@ no <c-s> :w<cr>
 ino <c-s> <c-o>:w<cr>
 nn <c-q> :x<cr>
 ino <c-q> <esc>:x<cr>
+ino <silent><c-b> <c-o>:normal dw<cr>
 no <up> <nop>
 no <down> <nop>
 no <left> <nop>
