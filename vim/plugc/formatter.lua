@@ -45,7 +45,7 @@ local config = {
         }
       end
     },
-    hcl = {
+    terraform = {
       -- terraform fmt
       function()
         return {
