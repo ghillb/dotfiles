@@ -72,6 +72,10 @@ if command -v ansible &>/dev/null; then
   complete -F _complete_alias a
 fi
 
+if command -v molecule &>/dev/null; then
+  eval "$(_MOLECULE_COMPLETE=bash_source molecule)"
+fi
+
 if command -v rustc &>/dev/null; then
   source $(rustc --print sysroot)/etc/bash_completion.d/cargo
 fi
