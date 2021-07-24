@@ -118,8 +118,6 @@ no <leader>id i<c-r>=expand('%:p:h').'/'<cr><esc>
 no <leader>itd "=strftime("%Y-%m-%d")<cr>P
 no <leader>itt "=strftime("%H:%M:%S")<cr>P
 no <leader>itm "=strftime("%Y-%m-%d \/ %H:%M:%S")<cr>P
-no <leader>tq :ToggleQuickFix<cr>
-no <leader>tl :ToggleLocationList<cr>
 no <leader>cp yap<S-}>p
 
 " localleader mappings
@@ -128,9 +126,11 @@ no <silent><localleader><cr> :call SetRoot('git_root')<cr>
 no <silent><localleader><bs> :call SetRoot('parent_dir')<cr>
 no <silent><localleader>/ :call SetRoot('current_dir')<cr>
 no <silent><localleader>\ :chdir $VIM_ROOT<cr> \| :echo "back to root: " . $VIM_ROOT<cr>
-nn <localleader>r :%s///gc<left><left><left><left>
-nn <localleader>q :vim// **/*<left><left><left><left><left><left>
-nn <localleader>l :lv// %<left><left><left>
+nn <localleader>sr :%s///gc<left><left><left><left>
+nn <localleader>sq :vim// **/*<left><left><left><left><left><left>
+nn <localleader>sl :lv// %<left><left><left>
+no <localleader>q :ToggleQuickFix<cr>
+no <localleader>l :ToggleLocationList<cr>
 no <localleader>w :%s/\s\+$//e<cr>
 nn <localleader>, :e $MYVIMRC<cr>
 nn <localleader>. :so $MYVIMRC<cr>
