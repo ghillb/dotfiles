@@ -12,7 +12,7 @@ export TERM=xterm-256color
 export DISPLAY=:0 #set display for VcXsrv
 export VISUAL=$(command -v nvim &>/dev/null && echo "nvim" || echo "vi")
 export EDITOR=$VISUAL
-export PATH="$PATH:$HOME/scripts/bash:$HOME/scripts/ansible:$HOME/.cargo/bin:$HOME/.go/bin"
+export PATH="$PATH:$HOME/code/scripts/bash:$HOME/code/scripts/ansible:$HOME/.cargo/bin:$HOME/.go/bin"
 export LC_ALL=C.UTF-8
 export HISTSIZE=HISTFILESIZE='INFINITY'
 export HISTIGNORE="pwd:df:du:cd:ls:ll:gpl:gps:gs:gd:gdu:gds:gl:glo:gls:glu:v"
@@ -34,7 +34,7 @@ source ~/.files/shell/functions.sh
 source ~/.files/shell/aliases.sh
 source ~/.files/shell/completion.sh
 include /usr/lib/git-core/git-sh-prompt; include /usr/lib/git/git-sh-prompt
-include ~/scripts/bash/utils.sh
+include ~/code/scripts/bash/utils.sh
 
 # scripted behavior
 if [[ -z "$TMUX" && "$SSH_CONNECTION" != "" ]]; then initbash; fi

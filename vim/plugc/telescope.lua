@@ -20,9 +20,13 @@ local config = {
       i = {
         ["<c-s>"] = actions.file_split,
         ["<esc>"] = actions.close,
+        ["<c-w>"] = actions.send_selected_to_qflist,
+        ["<c-q>"] = actions.send_to_qflist,
       },
       n = {
         ["<c-s>"] = actions.file_split,
+        ["<c-w>"] = actions.send_selected_to_qflist,
+        ["<c-q>"] = actions.send_to_qflist,
       }
     }
   },
@@ -46,7 +50,6 @@ local config = {
       base_dirs = {
         {'~/code'},
         {'~/.files'},
-        {'~/scripts'},
       }
     }
   }

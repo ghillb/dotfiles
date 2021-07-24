@@ -36,6 +36,7 @@ df() {
   ln -sf $dfdir/assets/dircolors $HOME/.dircolors
   ln -sf $dfdir/assets/inputrc $HOME/.inputrc
   sudo ln -sf $dfdir/shell/coderun.sh /usr/local/bin/cr
+  mkdir -p $HOME/code
 }
 
 nvim() {
