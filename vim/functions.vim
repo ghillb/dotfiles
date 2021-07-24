@@ -98,6 +98,22 @@ fun! KittyCursor()
   call cursor(l:y,l:x)
 endfun
 
+function! ToggleQuickFix()
+    if empty(filter(getwininfo(), 'v:val.quickfix'))
+        copen
+    else
+        cclose
+    endif
+endfunction
+
+function! ToggleLocationList()
+    if empty(filter(getwininfo(), 'v:val.loclist'))
+        lopen
+    else
+        lclose
+    endif
+endfunction
+
 fun! RemoveQFItem()
   let cur_qf_idx = line('.') -  1
   let qf_win_info = getwininfo(win_getid())[0]

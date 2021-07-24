@@ -36,6 +36,8 @@ no <right> <nop>
 " commands
 cm w!! w !sudo tee > /dev/null %
 cm :G !git -C %:p:h commit -am "--wip--" && git -C %:p:h push
+com! -nargs=0 -bar ToggleQuickFix call ToggleQuickFix()
+com! -nargs=0 -bar ToggleLocationList call ToggleLocationList()
 
 " terminal mappings
 nn <a-s-r> :w<cr>:T cr %<cr>
@@ -66,7 +68,7 @@ map <a-_> <c-w><
 nn <a-g> :G<cr>\|<c-w>T
 nn <silent><a-q> :bdelete<cr>
 
-" leader mappings 
+" leader mappings
 let mapleader = " "
 nn <leader><leader> a<space><esc>
 no <leader>p o<esc>p
@@ -82,7 +84,7 @@ nn <leader>bo :w<bar>%bd<bar>e#<bar>bd#<cr>
 nn <leader>to :tabo<cr>
 nn <silent><leader>tg :call ToggleGutter()<cr>
 nn <silent><leader>tz :ZenMode<cr>
-nn <silent><leader>tl :Twilight<cr>
+nn <silent><leader>tw :Twilight<cr>
 nn <leader>tc :Codi!!<cr>
 nn <leader>ty :Startify<cr>
 nn <leader>ti :IndentBlanklineToggle<cr>
@@ -96,14 +98,14 @@ nn <leader>ttl <cmd>TroubleToggle loclist<cr>
 nn <leader>ttt <cmd>TodoTrouble<cr>
 nn <leader>se :VsnipOpen<cr>
 vn <leader>se :VsnipYank vs_ <bar> VsnipOpenVsplit
-vn <leader>sy :VsnipYank 
+vn <leader>sy :VsnipYank
 nn <leader>zi <c-w>_<bar><c-w>\|
 nn <leader>zo <c-w>=
 nn <leader>v ggVG
 nn <leader>gg :G<cr>
 nn <leader>gd :Gvdiffsplit<cr>
 nn <leader>gcc :G checkout %
-nn <leader>gcb :G checkout -b 
+nn <leader>gcb :G checkout -b
 nn <leader>glo :GV<cr>
 nn <leader>gll :GV!<cr>
 nn <leader>gpl :G -c pull.default=current pull<cr>
@@ -116,6 +118,8 @@ no <leader>id i<c-r>=expand('%:p:h').'/'<cr><esc>
 no <leader>itd "=strftime("%Y-%m-%d")<cr>P
 no <leader>itt "=strftime("%H:%M:%S")<cr>P
 no <leader>itm "=strftime("%Y-%m-%d \/ %H:%M:%S")<cr>P
+no <leader>tq :ToggleQuickFix<cr>
+no <leader>tl :ToggleLocationList<cr>
 no <leader>cp yap<S-}>p
 
 " localleader mappings
@@ -167,7 +171,7 @@ if has('nvim-0.5')
   ino <silent><expr> <c-e>     compe#close('<c-e>')
   ino <silent><expr> <c-f>     compe#scroll({ 'delta': +4 })
   ino <silent><expr> <c-d>     compe#scroll({ 'delta': -4 })
-  
+
 " vsnip vim
   imap <expr> <c-e>   vsnip#expandable()  ? '<plug>(vsnip-expand)'         : '<c-e>'
   smap <expr> <c-e>   vsnip#expandable()  ? '<plug>(vsnip-expand)'         : '<c-e>'
