@@ -33,7 +33,7 @@ else
 
   if has('nvim-0.5')
     call minpac#add('neovim/nvim-lspconfig')
-    call minpac#add('nvim-treesitter/nvim-treesitter')
+    call minpac#add('nvim-treesitter/nvim-treesitter', { 'branch': '0.5-compat' })
     call minpac#add('hrsh7th/nvim-compe')
     call minpac#add('ray-x/lsp_signature.nvim')
     call minpac#add('mhartington/formatter.nvim') 
