@@ -5,8 +5,8 @@ case $- in
       *) return;; # If not running interactively, don't do anything
 esac
 
-
 stty -ixon # forces control sequences to reach the terminal application (e.g. vi)
+stty werase ^H # enable ctrl-backspace previous word kill
 set bell-style none
 export TERM=xterm-256color
 export DISPLAY=:0 #set display for VcXsrv
@@ -41,7 +41,7 @@ if [[ -z "$TMUX" && "$SSH_CONNECTION" != "" ]]; then initbash; fi
 
 # key binds
 bind -x '"\C-b": "cd .."'
-bind -x '"\C-h": "cd ~/"'
+bind -x '"\C-j": "cd ~/"'
 bind -x '"\C-t": "tx"'
 bind -x '"\C-p": fzf-file-widget'
 bind -x '"\C-e": `__fzf_cd__`'

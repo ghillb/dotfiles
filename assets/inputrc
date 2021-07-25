@@ -2,7 +2,6 @@ set editing-mode vi
 set keymap vi-command
 set enable-bracketed-paste off
 "\e\C-e": shell-expand-line
-"\e\C-k": kill-line
 "\e\C-u": kill
 "\e\C-w": werase
 "\e\C-y": dusp
