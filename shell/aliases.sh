@@ -76,6 +76,8 @@ alias reloadwp='feh --bg-scale ~/.wallpaper'
 alias khpa='watch kubectl get hpa -n '
 alias kpods='watch kubectl top pods -n  -l app='
 alias hf='hyperfine'
+alias permoctal='stat -c "%a %n" *'
+alias permprint='echo -e "0: ---\n1: --x\n2: -w-\n3: -wx\n4: r--\n5: r-x\n6: rw-\n7: rwx"'
 
 if ! command -v exa &> /dev/null; then alias ll='ls -alF'; else alias ll='exa -alFg'; fi
 if ! command -v nvim &> /dev/null; then alias v='vi -p'; else alias v='nvim -p'; fi
