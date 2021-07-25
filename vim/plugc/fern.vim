@@ -1,3 +1,6 @@
+nnoremap <silent> <plug>(my-fern-toggle) :Fern . -drawer -reveal=% -width=35 -toggle<CR>
+nmap <a-e> <plug>(my-fern-toggle)<plug>(fern-action-zoom:reset)
+
 fun! s:init_fern() abort
     nmap <buffer> s <Plug>(fern-action-open:split)
     nmap <buffer> v <Plug>(fern-action-open:vsplit)

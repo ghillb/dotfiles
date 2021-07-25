@@ -45,7 +45,6 @@ nn <a-s-r> :w<cr>:T cr %<cr>
 ino <a-s-r> <esc>:w<cr>:T cr %<cr>
 nn <a-r> :TREPLSendLine<cr>j
 vn <a-r> :TREPLSendSelection<cr>
-nn <silent><a-e> :call ToggleFern()<cr>
 nn <silent><a-esc> :Ttoggle<cr><c-w>wa
 nn <a-.> :Tnext<cr>
 nn <a-,> :Tprevious<cr>

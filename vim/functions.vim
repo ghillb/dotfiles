@@ -48,17 +48,6 @@ fun! TmuxMove(direction)
   end
 endfun
 
-fun! ToggleFern()
-  if (&ft=='fern')
-    :Fern . -drawer -toggle
-  else
-    :FernDo :
-    if (&ft!='fern')
-      :Fern . -drawer -toggle -reveal=%
-    endif
-  endif 
-endfun
-
 fun! ToggleGutter()
   if &scl == 'yes' | set scl=no | else | set scl=yes | endif
   set rnu! nu!
