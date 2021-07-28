@@ -9,7 +9,7 @@ local config = {
     theme = gruvbox_custom,
     component_separators = {'', ''},
     section_separators = {'', ''},
-    disabled_filetypes = {'fern'}
+    disabled_filetypes = {'NvimTree'}
   },
   sections = {
     lualine_a = {'mode'},

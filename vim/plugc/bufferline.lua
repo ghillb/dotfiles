@@ -36,7 +36,7 @@ local config = {
          return true
        end
      end,
-    offsets = {{filetype = "fern", text = "tree", text_align = "center"}},
+    offsets = {{filetype = "NvimTree", text = "tree", text_align = "center"}},
   }
 }
 

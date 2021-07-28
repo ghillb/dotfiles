@@ -191,5 +191,9 @@ if has('nvim-0.5')
   nn <silent>be :BufferLineSortByExtension<cr>
   nn <silent>bd :BufferLineSortByDirectory<cr>
 
+" nvimtree
+nn <a-e> :NvimTreeToggle<CR>
+nn <leader>e :NvimTreeFindFile<CR>
+
 endif
 
