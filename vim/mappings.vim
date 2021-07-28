@@ -118,7 +118,8 @@ no <leader>id i<c-r>=expand('%:p:h').'/'<cr><esc>
 no <leader>itd "=strftime("%Y-%m-%d")<cr>P
 no <leader>itt "=strftime("%H:%M:%S")<cr>P
 no <leader>itm "=strftime("%Y-%m-%d \/ %H:%M:%S")<cr>P
-no <leader>cp yap<S-}>p
+no <leader>cpd yap<S-}>p
+no <leader>cpu yap<S-{>p
 
 " localleader mappings
 let localleader = "\\"
@@ -192,8 +193,7 @@ if has('nvim-0.5')
   nn <silent>bd :BufferLineSortByDirectory<cr>
 
 " nvimtree
-nn <a-e> :NvimTreeToggle<CR>
-nn <leader>e :NvimTreeFindFile<CR>
+  nn <silent><a-e> :NvimTreeToggle<cr>
 
 endif
 
