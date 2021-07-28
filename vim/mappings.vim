@@ -22,7 +22,7 @@ no <c-u> <c-u>zz
 no <c-j> <c-e>
 no <c-k> <c-y>
 no <c-y> <c-b>
-nn <c-l> :let @/=""<cr><c-l>
+nn <c-l> :let @/=""<cr>:NvimTreeRefresh<cr><c-l>
 no <c-s> :w<cr>
 ino <c-s> <c-o>:w<cr>
 nn <c-q> :x<cr>
