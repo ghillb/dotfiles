@@ -57,7 +57,7 @@ vim.g.nvim_tree_icons = {
     hint = "",
     info = "",
     warning = "",
-    error = "",
+    error = "",
   }
 }
 
@@ -70,10 +70,10 @@ vim.g.nvim_tree_bindings = {
   { key = "<C-s>",                        cb = tree_cb("split") },
   { key = "<C-t>",                        cb = tree_cb("tabnew") },
   { key = "<C-l>",                        cb = tree_cb("refresh") },
-  { key = "H",                            cb = tree_cb("prev_sibling") },
-  { key = "L",                            cb = tree_cb("next_sibling") },
-  { key = "K",                            cb = tree_cb("first_sibling") },
-  { key = "J",                            cb = tree_cb("last_sibling") },
+  { key = "K",                            cb = tree_cb("prev_sibling") },
+  { key = "J",                            cb = tree_cb("next_sibling") },
+  { key = "<",                            cb = tree_cb("first_sibling") },
+  { key = ">",                            cb = tree_cb("last_sibling") },
   { key = "P",                            cb = tree_cb("parent_node") },
   { key = "h",                            cb = tree_cb("close_node") },
   { key = "<BS>",                         cb = tree_cb("dir_up") },

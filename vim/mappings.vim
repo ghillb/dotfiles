@@ -193,7 +193,7 @@ if has('nvim-0.5')
   nn <silent>bd :BufferLineSortByDirectory<cr>
 
 " nvimtree
-  nn <silent><a-e> :NvimTreeToggle<cr>
+  nn <silent><a-e> :NvimTreeRefresh<cr>:NvimTreeToggle<cr>
 
 endif
 

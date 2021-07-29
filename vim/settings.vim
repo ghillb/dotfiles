@@ -50,6 +50,6 @@ set shortmess+=c
 set laststatus=2
 
 if has('unix')
-    set shell=/bin/bash
+    set shell=dash
 endif
 
