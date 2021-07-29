@@ -87,21 +87,21 @@ fun! KittyCursor()
   call cursor(l:y,l:x)
 endfun
 
-function! ToggleQuickFix()
+fun! ToggleQuickFix()
     if empty(filter(getwininfo(), 'v:val.quickfix'))
         copen
     else
         cclose
     endif
-endfunction
+endfun
 
-function! ToggleLocationList()
+fun! ToggleLocationList()
     if empty(filter(getwininfo(), 'v:val.loclist'))
         lopen
     else
         lclose
     endif
-endfunction
+endfun
 
 fun! RemoveQFItem()
   let cur_qf_idx = line('.') -  1

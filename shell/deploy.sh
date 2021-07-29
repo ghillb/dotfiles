@@ -61,7 +61,7 @@ fzf() {
 }
 
 utils() {
-  sudo apt install -y sshfs jq curl shellcheck ncdu direnv gcc make perl python3-venv python3-pip
+  sudo apt install -y sshfs jq gron curl shellcheck ncdu direnv gcc make perl python3-venv python3-pip
 }
 
 desktop() {
