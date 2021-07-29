@@ -23,6 +23,7 @@ no <c-j> <c-e>
 no <c-k> <c-y>
 no <c-y> <c-b>
 nn <c-l> :let @/=""<cr>:NvimTreeRefresh<cr><c-l>
+map <c-w>O :%bd<cr><c-o>:bd#<cr>
 no <c-s> :w<cr>
 ino <c-s> <c-o>:w<cr>
 nn <c-q> :x<cr>
@@ -103,7 +104,7 @@ nn <leader>zi <c-w>_<bar><c-w>\|
 nn <leader>zo <c-w>=
 nn <leader>v ggVG
 nn <leader>gg :G<cr>
-nn <leader>gd :Gvdiffsplit<cr>
+nn <leader>gd :Gvdiffsplit master
 nn <leader>gcc :G checkout %
 nn <leader>gcb :G checkout -b
 nn <leader>glo :GV<cr>
