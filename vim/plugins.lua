@@ -21,7 +21,7 @@ return require('packer').startup({
     use {'tpope/vim-surround'}
     use {'tpope/vim-commentary'}
     use {'romainl/vim-qf'}
-    use {'vimwiki/vimwiki', branch = 'dev'}
+    use {'vimwiki/vimwiki', branch = 'dev', ft = {'vimwiki'} }
     use {'mbbill/undotree'}
     use {'kassio/neoterm'}
     use {'metakirby5/codi.vim'}
