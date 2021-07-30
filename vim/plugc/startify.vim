@@ -11,9 +11,8 @@ let g:startify_lists = [
     \ ]
 
     let g:startify_commands = [
-        \ {'pu': ['Plugin Update', 'PUpdate']},
-        \ {'ps': ['Plugin Status', 'PStatus']},
-        \ {'pc': ['Plugin Clean-up', 'PClean']},
+        \ {'pu': ['Plugin update', 'PackerSync']},
+        \ {'ps': ['Plugin status', 'PackerStatus']},
         \ {'h' : ['Vim Reference', 'h ref']},
         \ ]
 

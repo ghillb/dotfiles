@@ -46,7 +46,7 @@ nvim() {
   sudo tar -xf ${release} -C /tmp
   sudo cp -r /tmp/${release}/* /usr/local
   sudo rm -rf ${release} /tmp/${release}
-  $(which nvim) --headless -u .files/vim/plugins.vim +PUpdateAndQuit
+  $(which nvim) --headless -u .files/vim/plugins.lua -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
   $(which nvim) --headless +"TSInstallSync all" +"q"
 }
 

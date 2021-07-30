@@ -24,4 +24,5 @@ hi GitSignsAdd guibg=NONE ctermbg=NONE guifg=#989719 "#b16286
 hi GitSignsChange guibg=NONE ctermbg=NONE guifg=#448488
 hi GitSignsDelete guibg=NONE ctermbg=NONE guifg=#fb4934
 hi NvimTreeIndentMarker guifg=#504945
+hi NormalFloat guibg=NONE ctermbg=NONE
 

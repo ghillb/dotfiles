@@ -55,6 +55,6 @@ local config = {
   }
 }
 
-telescope.setup(config)
 telescope.load_extension('project')
+telescope.setup(config)
 

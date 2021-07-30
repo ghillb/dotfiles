@@ -2,7 +2,7 @@ let $VC = $HOME . '/.files/vim'
 let $NVC = $HOME . '/.config/nvim'
 
 source $VC/settings.vim
-source $VC/plugins.vim
+luafile $VC/plugins.lua
 source $VC/functions.vim
 source $VC/theme.vim
 source $VC/mappings.vim
