@@ -12,6 +12,20 @@ end
 -- auto compile
 vim.cmd([[autocmd BufWritePost plugins.lua source <afile> | PackerCompile]])
 
+vim.api.nvim_set_keymap(
+    'n',
+    '<localleader>pu',
+    ":source $MYVIMRC<cr> :PackerSync<cr>",
+    {noremap = true, silent = false}
+)
+
+vim.api.nvim_set_keymap(
+    'n',
+    '<localleader>ps',
+    ":source $MYVIMRC<cr> :PackerStatus<cr>",
+    {noremap = true, silent = false}
+)
+
 return require('packer').startup({
   function()
     use {'wbthomason/packer.nvim'}
@@ -36,11 +50,22 @@ return require('packer').startup({
     -- lua
     use {'neovim/nvim-lspconfig'}
     use {'nvim-treesitter/nvim-treesitter', branch = '0.5-compat'}
+    use {'nvim-telescope/telescope.nvim',
+      requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+    }
+    use {'nvim-telescope/telescope-project.nvim'}
     use {'hrsh7th/nvim-compe'}
     use {'ray-x/lsp_signature.nvim'}
     use {'mhartington/formatter.nvim'}
-    use {'folke/trouble.nvim'}
-    use {'folke/todo-comments.nvim'}
+    use {'windwp/nvim-autopairs'}
+    use {'lewis6991/gitsigns.nvim'}
+    use {'lukas-reineke/indent-blankline.nvim'}
+    use {'folke/trouble.nvim',
+      requires = {"kyazdani42/nvim-web-devicons"},
+    }
+    use {'folke/todo-comments.nvim',
+      requires = {"nvim-lua/plenary.nvim"},
+    }
     use {"folke/which-key.nvim",
       event = "VimEnter",
       config = function()
@@ -51,23 +76,19 @@ return require('packer').startup({
         }
       end
     }
-    use {'simrat39/rust-tools.nvim'}
-    use {'mfussenegger/nvim-jdtls'}
+    use {'folke/twilight.nvim'}
+    use {'folke/zen-mode.nvim'}
     use {'milisims/nvim-luaref'}
     use {'norcalli/nvim-colorizer.lua'}
     use {'akinsho/nvim-bufferline.lua'}
     use {'hoob3rt/lualine.nvim'}
-    use {'kyazdani42/nvim-tree.lua'}
-    use {'kyazdani42/nvim-web-devicons'}
-    use {'nvim-lua/popup.nvim'}
-    use {'nvim-lua/plenary.nvim'}
-    use {'nvim-telescope/telescope.nvim'}
-    use {'nvim-telescope/telescope-project.nvim'}
-    use {'lewis6991/gitsigns.nvim'}
-    use {'lukas-reineke/indent-blankline.nvim'}
-    use {'folke/twilight.nvim'}
-    use {'folke/zen-mode.nvim'}
-    use {'windwp/nvim-autopairs'}
+    use {'kyazdani42/nvim-tree.lua',
+      requires = {"kyazdani42/nvim-web-devicons"},
+    }
+    use {'simrat39/rust-tools.nvim',
+      requires = {"neovim/nvim-lspconfig"},
+    }
+    use {'mfussenegger/nvim-jdtls'}
 
   end,
   config = {
