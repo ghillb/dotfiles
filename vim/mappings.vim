@@ -133,7 +133,8 @@ nn <localleader>sq :vim// **/*<left><left><left><left><left><left>
 nn <localleader>sl :lv// %<left><left><left>
 no <localleader>q :ToggleQuickFix<cr>
 no <localleader>l :ToggleLocationList<cr>
-no <localleader>w :%s/\s\+$//e<cr>
+no <localleader>dw :%s/\s\+$//e<cr>
+nn <localleader>dc :!remove_comments.sh %:p<cr>
 nn <localleader>, :e $MYVIMRC<cr>
 nn <localleader>. :so $MYVIMRC<cr>
 

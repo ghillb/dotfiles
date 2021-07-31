@@ -62,6 +62,7 @@ fzf() {
 
 utils() {
   sudo apt install -y sshfs jq gron curl shellcheck ncdu direnv gcc make perl python3-venv python3-pip
+  sudo ln -sf $dfdir/shell/remove_comments.sh /usr/local/bin/remove_comments.sh
 }
 
 desktop() {

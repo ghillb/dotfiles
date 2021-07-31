@@ -15,7 +15,9 @@ local config = {
   max_abbr_width = 100;
   max_kind_width = 100;
   max_menu_width = 100;
-  documentation = true;
+  documentation = {
+    border = 'single',
+  };
 
   source = {
     path = true;
@@ -24,7 +26,7 @@ local config = {
     nvim_lsp = true;
     nvim_lua = true;
     vsnip = true;
-    ultisnips = true;
+    ultisnips = false;
   };
 }
 
