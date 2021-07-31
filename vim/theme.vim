@@ -1,6 +1,3 @@
-if has('termguicolors') && has('nvim') | set termguicolors | endif
-if has('nvim') | set fcs=eob:· | endif
-
 au colorscheme * hi Normal guibg=NONE ctermbg=NONE
 au colorscheme * hi Terminal guibg=NONE ctermbg=NONE
 au colorscheme * hi LineNr guibg=NONE ctermbg=NONE

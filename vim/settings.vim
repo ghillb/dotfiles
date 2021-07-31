@@ -1,5 +1,6 @@
 filetype plugin indent on
 syntax enable
+set shell=dash
 set encoding=utf-8
 set fileencoding=utf-8
 set spelllang=en_us,de_de nospell
@@ -48,8 +49,6 @@ set completeopt=menuone,noselect
 set complete+=kspell
 set shortmess+=c
 set laststatus=2
-
-if has('unix')
-    set shell=dash
-endif
+set termguicolors
+set fcs=eob:·
 
