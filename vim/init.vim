@@ -39,6 +39,5 @@ if has('nvim-0.5') && !exists('g:vscode')
   luafile $VC/plugc/autopairs.lua
   luafile $VC/plugc/nvim-tree.lua
   lua local ok, cz = pcall(require, 'colorizer') if ok then cz.setup() end
-  lua local ok, wk = pcall(require, 'which-key') if ok then wk.setup() end
 endif
 

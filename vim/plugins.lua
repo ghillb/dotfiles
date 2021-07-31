@@ -1,12 +1,16 @@
 local execute = vim.api.nvim_command
 local fn = vim.fn
 
+-- bootstrap packer
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 
 if fn.empty(fn.glob(install_path)) then
   fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
   execute 'packadd packer.nvim'
 end
+
+-- auto compile
+vim.cmd([[autocmd BufWritePost plugins.lua source <afile> | PackerCompile]])
 
 return require('packer').startup({
   function()
@@ -37,7 +41,16 @@ return require('packer').startup({
     use {'mhartington/formatter.nvim'}
     use {'folke/trouble.nvim'}
     use {'folke/todo-comments.nvim'}
-    use {'folke/which-key.nvim'}
+    use {"folke/which-key.nvim",
+      event = "VimEnter",
+      config = function()
+        require("which-key").setup{
+          window = {
+            border = "single"
+          }
+        }
+      end
+    }
     use {'simrat39/rust-tools.nvim'}
     use {'mfussenegger/nvim-jdtls'}
     use {'milisims/nvim-luaref'}
