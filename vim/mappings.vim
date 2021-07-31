@@ -145,8 +145,9 @@ if has('nvim-0.5')
   nn <silent> gi <cmd>lua vim.lsp.buf.implementation()<cr>
   nn <silent> gh <cmd>lua vim.lsp.buf.hover()<cr>
   nn <silent> gs <cmd>lua vim.lsp.buf.signature_help()<cr>
-  nn <silent> gp <cmd>lua vim.lsp.diagnostic.goto_prev()<cr>
-  nn <silent> gn <cmd>lua vim.lsp.diagnostic.goto_next()<cr>
+  nn <silent> ]g :lua vim.lsp.diagnostic.goto_next({ popup_opts = { border = "single" }})<cr>
+  nn <silent> [g :lua vim.lsp.diagnostic.goto_prev({ popup_opts = { border = "single" }})<cr>
+  nn <silent> <a-space> :lua vim.lsp.diagnostic.show_line_diagnostics({ border = "single" })<cr>
   nn <silent> gF <cmd>Format<cr>
   " nn <silent> gF <cmd>lua vim.lsp.buf.formatting()<cr>
   nn <silent> gR <cmd>TroubleToggle lsp_references<cr>

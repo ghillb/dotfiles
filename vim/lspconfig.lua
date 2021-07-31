@@ -6,19 +6,32 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   }
 )
 
+vim.lsp.handlers["textDocument/hover"] =
+  vim.lsp.with(
+  vim.lsp.handlers.hover,
+  {
+    border = "single"
+  }
+)
+
+vim.lsp.handlers["textDocument/signatureHelp"] =
+  vim.lsp.with(
+  vim.lsp.handlers.signature_help,
+  {
+    border = "single"
+  }
+)
+
+-- local on_attach = function(client, bufnr)
+  -- vim.api.nvim_command('autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics({ focusable = false })')
+-- end
+
 local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
 
 for type, icon in pairs(signs) do
   local hl = "LspDiagnosticsSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end 
-
-local nvim_command = vim.api.nvim_command
-
--- lsp set-ups
-local on_attach = function(client, bufnr)
-  nvim_command('autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics({ focusable = false })')
-end
 
 local has_lsp, nvim_lsp = pcall(require, 'lspconfig')
 if has_lsp then
