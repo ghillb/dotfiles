@@ -4,6 +4,9 @@ no x "_x
 no X "_X
 no Y yg_
 no vv V
+no n nzzzv
+no N Nzzzv
+no J mzJ`z
 no V vg_
 nn Q @q
 vn Q :norm @q<cr>
@@ -16,6 +19,8 @@ xn <silent> p p:let @+=@0<cr>:let @"=@0<cr>
 xn <silent> P P:let @+=@0<cr>:let @"=@0<cr>
 vn / y/\V<c-r>=escape(@",'/\')<cr><cr>N
 nm cg* *N"ccgn
+nn cn *``cgn
+nn cN *``cgN
 nn <silent>gf :call CreateOrGoToFile()<cr>
 no <c-d> <c-d>zz
 no <c-u> <c-u>zz
