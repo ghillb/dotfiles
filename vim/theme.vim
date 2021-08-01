@@ -17,6 +17,10 @@ au colorscheme * hi GitSignsChange guibg=NONE ctermbg=NONE guifg=#448488
 au colorscheme * hi GitSignsDelete guibg=NONE ctermbg=NONE guifg=#fb4934
 au colorscheme * hi NvimTreeIndentMarker guifg=#504945
 au colorscheme * hi NormalFloat guibg=NONE ctermbg=NONE
+au colorscheme * hi IndentBlanklineChar guifg=#504945 gui=nocombine
+au colorscheme * hi IndentBlanklineSpaceChar guifg=#504945 gui=nocombine
+au colorscheme * hi IndentBlanklineSpaceCharBlankline guifg=#504945 gui=nocombine
+au colorscheme * hi IndentBlanklineContextChar guifg=#504945 gui=nocombine
 
 let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_invert_selection = '0'
