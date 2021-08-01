@@ -21,23 +21,21 @@ source $VC/plugc/text-objects.vim
 source $VC/plugc/myvis.vim
 source $VC/plugc/indent_line.vim
 
-if has('nvim-0.5') && !exists('g:vscode')
-  luafile $VC/lspconfig.lua
-  luafile $VC/plugc/treesitter.lua
-  luafile $VC/plugc/nvim-compe.lua
-  luafile $VC/plugc/trouble.lua
-  luafile $VC/plugc/formatter.lua
-  luafile $VC/plugc/lsp_signature.lua
-  luafile $VC/plugc/rust_tools.lua
-  luafile $VC/plugc/todo_comments.lua
-  luafile $VC/plugc/telescope.lua
-  luafile $VC/plugc/bufferline.lua
-  luafile $VC/plugc/lualine.lua
-  luafile $VC/plugc/gitsigns.lua
-  luafile $VC/plugc/twilight.lua
-  luafile $VC/plugc/zen_mode.lua
-  luafile $VC/plugc/autopairs.lua
-  luafile $VC/plugc/nvim-tree.lua
-  lua local ok, cz = pcall(require, 'colorizer') if ok then cz.setup() end
-endif
+luafile $VC/lspconfig.lua
+luafile $VC/plugc/treesitter.lua
+luafile $VC/plugc/nvim-compe.lua
+luafile $VC/plugc/trouble.lua
+luafile $VC/plugc/formatter.lua
+luafile $VC/plugc/lsp_signature.lua
+luafile $VC/plugc/rust_tools.lua
+luafile $VC/plugc/todo_comments.lua
+luafile $VC/plugc/telescope.lua
+luafile $VC/plugc/bufferline.lua
+luafile $VC/plugc/lualine.lua
+luafile $VC/plugc/gitsigns.lua
+luafile $VC/plugc/twilight.lua
+luafile $VC/plugc/zen_mode.lua
+luafile $VC/plugc/autopairs.lua
+luafile $VC/plugc/nvim-tree.lua
+lua local ok, cz = pcall(require, 'colorizer') if ok then cz.setup() end
 

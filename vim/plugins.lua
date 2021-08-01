@@ -68,6 +68,7 @@ return require('packer').startup({
     }
     use {"folke/which-key.nvim",
       event = "VimEnter",
+      cond = function() return vim.api.nvim_eval('!exists("g:vscode")') end,
       config = function()
         require("which-key").setup{
           window = {
