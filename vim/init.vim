@@ -12,14 +12,12 @@ source $VC/file_types.vim
 source $VC/plugc/vimwiki.vim
 source $VC/plugc/sneak.vim
 source $VC/plugc/netrw.vim
-source $VC/plugc/neoterm.vim
 source $VC/plugc/startify.vim
 source $VC/plugc/codi.vim
 source $VC/plugc/vsnip.vim
 source $VC/plugc/vimqf.vim
 source $VC/plugc/text-objects.vim
 source $VC/plugc/myvis.vim
-source $VC/plugc/indent_line.vim
 
 luafile $VC/lspconfig.lua
 luafile $VC/plugc/treesitter.lua
@@ -30,8 +28,10 @@ luafile $VC/plugc/lsp_signature.lua
 luafile $VC/plugc/rust_tools.lua
 luafile $VC/plugc/todo_comments.lua
 luafile $VC/plugc/telescope.lua
+luafile $VC/plugc/neoterm.lua
 luafile $VC/plugc/bufferline.lua
 luafile $VC/plugc/lualine.lua
+luafile $VC/plugc/indent_line.lua
 luafile $VC/plugc/gitsigns.lua
 luafile $VC/plugc/twilight.lua
 luafile $VC/plugc/zen_mode.lua
