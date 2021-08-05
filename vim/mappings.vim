@@ -169,7 +169,7 @@ if has('nvim-0.5')
   nn <c-p> <cmd>Telescope live_grep<cr>
   nn <c-b> <cmd>Telescope buffers<cr>
   nn <c-\> <cmd>Telescope current_buffer_fuzzy_find<cr>
-  nn <c-g> <cmd>Telescope git_branches<cr>
+  nn <c-g> :call SetRoot('git_root')<cr><cmd>Telescope git_branches<cr>
   nn <esc><esc> <cmd>Telescope project display_type=full<cr>
   nn <leader>fg <cmd>Telescope git_status<cr>
   nn <leader>fk <cmd>Telescope keymaps<cr>
