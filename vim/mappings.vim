@@ -21,6 +21,8 @@ vn / y/\V<c-r>=escape(@",'/\')<cr><cr>N
 nm cg* *N"ccgn
 nn cn *``cgn
 nn cN *``cgN
+nn d[ :diffget //2<cr>
+nn d] :diffget //3<cr>
 nn <silent>gf :call CreateOrGoToFile()<cr>
 no <c-d> <c-d>zz
 no <c-u> <c-u>zz
@@ -92,6 +94,7 @@ nn <silent><leader>tg :call ToggleGutter()<cr>
 nn <silent><leader>tz :ZenMode<cr>
 nn <silent><leader>tw :Twilight<cr>
 nn <leader>tc :Codi!!<cr>
+nn <leader>td :diffthis<cr>
 nn <leader>ty :Startify<cr>
 nn <leader>ti :IndentBlanklineToggle<cr>
 nn <leader>tu :UndotreeToggle<cr>
@@ -109,9 +112,11 @@ nn <leader>zi <c-w>_<bar><c-w>\|
 nn <leader>zo <c-w>=
 nn <leader>v ggVG
 nn <leader>gg :G<cr>
-nn <leader>gd :Gvdiffsplit master
+nn <leader>gds :Gvdiffsplit
+nn <leader>gmt :Gvdiffsplit!<cr>
+nn <leader>gw :Gwrite
 nn <leader>gcc :G checkout %
-nn <leader>gcb :G checkout -b
+nn <leader>gcb :G checkout -b 
 nn <leader>glo :GV<cr>
 nn <leader>gll :GV!<cr>
 nn <leader>gpl :G -c pull.default=current pull<cr>
