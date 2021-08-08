@@ -73,7 +73,7 @@ map <a--> <c-w>-
 map <a-=> <c-w>+
 map <a-+> <c-w>>
 map <a-_> <c-w><
-nn <a-g> :G<cr>\|<c-w>T
+nn <a-g> :G<cr>
 nn <silent><a-q> :bdelete<cr>
 
 " leader mappings
@@ -111,7 +111,7 @@ vn <leader>sy :VsnipYank
 nn <leader>zi <c-w>_<bar><c-w>\|
 nn <leader>zo <c-w>=
 nn <leader>v ggVG
-nn <leader>gg :G<cr>
+nn <leader>gg :G<cr>\|<c-w>T
 nn <leader>gd :Gvdiffsplit 
 nn <leader>gmt :Gvdiffsplit!<cr>
 nn <leader>gw :Gwrite
