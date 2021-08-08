@@ -20,6 +20,7 @@ set shiftwidth=2
 set softtabstop=2
 set textwidth=100
 set wrapmargin=0
+set scrolloff=5
 set colorcolumn=
 set signcolumn=yes
 set formatoptions-=tc

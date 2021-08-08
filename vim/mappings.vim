@@ -1,12 +1,14 @@
 " various
-nn K xi<cr><esc>
 no x "_x
 no X "_X
 no Y yg_
 no vv V
 no n nzzzv
 no N Nzzzv
+nn H ^h 
+nn L $
 no J mzJ`z
+nn K xi<cr><esc>
 no V vg_
 nn Q @q
 vn Q :norm @q<cr>
