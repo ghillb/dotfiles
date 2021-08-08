@@ -25,3 +25,14 @@ aug quickfix
   au FileType qf map <buffer> <c-g> <nop>
   au FileType qf map <buffer> <c-\> <nop>
 aug END
+
+aug NvimTree
+  au! *
+  au FileType NvimTree map <buffer> <c-p> <nop>
+  au FileType NvimTree map <buffer> <c-e> <nop>
+  au FileType NvimTree map <buffer> <c-b> <nop>
+  au FileType NvimTree map <buffer> <c-g> <nop>
+  au FileType NvimTree map <buffer> <c-\> <nop>
+  au FileType NvimTree nn <buffer> <a-esc> <c-w>l
+  au FileType NvimTree nn <silent><buffer> <a-q> :NvimTreeClose<cr>
+aug END

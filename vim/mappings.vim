@@ -112,7 +112,7 @@ nn <leader>zi <c-w>_<bar><c-w>\|
 nn <leader>zo <c-w>=
 nn <leader>v ggVG
 nn <leader>gg :G<cr>
-nn <leader>gds :Gvdiffsplit
+nn <leader>gd :Gvdiffsplit 
 nn <leader>gmt :Gvdiffsplit!<cr>
 nn <leader>gw :Gwrite
 nn <leader>gcc :G checkout %
