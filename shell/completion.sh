@@ -67,6 +67,10 @@ if command -v kompose &>/dev/null; then
   source <(kompose completion bash)
 fi
 
+if command -v flux &>/dev/null; then
+  source <(flux completion bash)
+fi
+
 if command -v ansible &>/dev/null; then
   source ~/.bash_completion.d/ansible-completion.bash
   complete -F _complete_alias a
