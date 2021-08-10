@@ -59,6 +59,7 @@ return require('packer').startup({
     use {'mhartington/formatter.nvim'}
     use {'windwp/nvim-autopairs'}
     use {'lewis6991/gitsigns.nvim'}
+    use {'sindrets/diffview.nvim'}
     use {'lukas-reineke/indent-blankline.nvim'}
     use {'folke/trouble.nvim',
       requires = {"kyazdani42/nvim-web-devicons"},

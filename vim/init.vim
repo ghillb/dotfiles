@@ -3,6 +3,7 @@ let $NVC = $HOME . '/.config/nvim'
 
 source $VC/settings.vim
 luafile $VC/plugins.lua
+luafile $VC/functions.lua
 source $VC/functions.vim
 source $VC/theme.vim
 source $VC/mappings.vim
@@ -33,6 +34,7 @@ luafile $VC/plugc/bufferline.lua
 luafile $VC/plugc/lualine.lua
 luafile $VC/plugc/indent_line.lua
 luafile $VC/plugc/gitsigns.lua
+luafile $VC/plugc/diffview.lua
 luafile $VC/plugc/twilight.lua
 luafile $VC/plugc/zen_mode.lua
 luafile $VC/plugc/autopairs.lua

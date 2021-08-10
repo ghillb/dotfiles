@@ -46,7 +46,7 @@ no <right> <nop>
 
 " commands
 cm w!! w !sudo tee > /dev/null %
-cm :G !git -C %:p:h commit -am "--wip--" && git -C %:p:h push
+cm :G !git -C %:p:h commit -am "--wip--" && git -C %:p:h -c push.default=current push
 com! -nargs=0 -bar ToggleQuickFix call ToggleQuickFix()
 com! -nargs=0 -bar ToggleLocationList call ToggleLocationList()
 
@@ -76,7 +76,7 @@ map <a-=> <c-w>+
 map <a-+> <c-w>>
 map <a-_> <c-w><
 nn <a-g> :G<cr>
-nn <silent><a-q> :bdelete<cr>
+nn <silent><a-q> :lua CloseView()<cr>
 
 " leader mappings
 let mapleader = " "
@@ -114,7 +114,8 @@ nn <leader>zi <c-w>_<bar><c-w>\|
 nn <leader>zo <c-w>=
 nn <leader>v ggVG
 nn <leader>gg :G<cr>\|<c-w>T
-nn <leader>gd :Gvdiffsplit 
+nn <leader>gr :G restore --source %
+nn <leader>gd :DiffviewOpen 
 nn <leader>gmt :Gvdiffsplit!<cr>
 nn <leader>gw :Gwrite
 nn <leader>gcc :G checkout %
@@ -207,8 +208,8 @@ if has('nvim-0.5')
   nn <silent>be :BufferLineSortByExtension<cr>
   nn <silent>bd :BufferLineSortByDirectory<cr>
 
-" nvimtree
-  nn <silent><a-e> :NvimTreeRefresh<cr>:NvimTreeToggle<cr>
+" diffview & nvimtree drawer toggle
+  nn <silent><a-e> :lua DrawerToggle()<cr>
 
 endif
 
