@@ -13,8 +13,6 @@ function DrawerToggle()
   end
 end
 
-local last_tabpage = vim.api.nvim_get_current_tabpage()
-
 function CloseView()
   local lib = require'diffview.lib'
   local view = lib.get_current_diffview()
@@ -25,4 +23,14 @@ function CloseView()
   end
 end
 
+local utils = require('telescope.utils')
+local builtin = require('telescope.builtin')
+_G.project_files = function()
+    local _, ret, _ = utils.get_os_command_output({ 'git', 'rev-parse', '--is-inside-work-tree' })
+    if ret == 0 then
+        builtin.git_files()
+    else
+        builtin.find_files()
+    end
+end
 
