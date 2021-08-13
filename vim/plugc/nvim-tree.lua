@@ -35,13 +35,13 @@ vim.g.nvim_tree_icons = {
   default = '', -- ''
   symlink = '',
   git = {
-    unstaged = "●",
+    unstaged = "!",
     staged = "✓",
     unmerged = "",
     renamed = "➜",
     untracked = "?",
-    deleted = "",
-    ignored = "◌"
+    deleted = "◯",
+    ignored = "∅"
   },
   folder = {
     arrow_open = "",
