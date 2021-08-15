@@ -39,6 +39,7 @@ if has_lsp then
   nvim_lsp.vimls.setup{on_attach = on_attach}
   nvim_lsp.jsonls.setup{on_attach = on_attach}
   nvim_lsp.yamlls.setup{on_attach = on_attach, settings = yamlls_settings}
+  nvim_lsp.ansiblels.setup{on_attach = on_attach, settings = ansiblels_settings}
   nvim_lsp.dockerls.setup{on_attach = on_attach}
   nvim_lsp.terraformls.setup{on_attach = on_attach, filetypes = {"tf"}}
   nvim_lsp.html.setup{on_attach = on_attach}
@@ -65,3 +66,20 @@ local yamlls_settings = {
     }
   }
 }
+
+-- ansible-ls settings
+local ansiblels_settings = {
+  ansible = {
+    ansible = {
+      path = "ansible"
+    },
+    ansibleLint = {
+      enabled = true,
+      path = "ansible-lint"
+    },
+    python = {
+      interpreterPath = "python3"
+    }
+  }
+}
+
