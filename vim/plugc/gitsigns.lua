@@ -45,7 +45,6 @@ local config = {
   update_debounce = 100,
   status_formatter = nil,
   word_diff = false,
-  use_decoration_api = true,
   use_internal_diff = true,
 }
 
