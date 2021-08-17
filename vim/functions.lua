@@ -19,6 +19,7 @@ function CloseView()
   if view then
     vim.cmd(":DiffviewClose")
   else
+    vim.cmd(":NvimTreeClose")
     vim.cmd(":bdelete")
   end
 end
