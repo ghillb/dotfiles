@@ -1,6 +1,6 @@
 function DrawerToggle()
   local lib = require'diffview.lib'
-  local view = lib.get_current_diffview()
+  local view = lib.get_current_view()
   if view then
     if vim.bo.filetype == 'DiffviewFiles' then
       vim.cmd(":DiffviewToggleFiles")
@@ -15,7 +15,7 @@ end
 
 function CloseView()
   local lib = require'diffview.lib'
-  local view = lib.get_current_diffview()
+  local view = lib.get_current_view()
   if view then
     vim.cmd(":DiffviewClose")
   else
