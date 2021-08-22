@@ -204,9 +204,9 @@ if has('nvim-0.5')
   nn <silent><right> :BufferLineCycleNext<cr>
   nn <silent><a-left> :BufferLineMovePrev<cr>
   nn <silent><a-right> :BufferLineMoveNext<cr>
-  nn <silent>gb :BufferLinePick<cr>
-  nn <silent>be :BufferLineSortByExtension<cr>
-  nn <silent>bd :BufferLineSortByDirectory<cr>
+  nn <silent>gbp :BufferLinePick<cr>
+  nn <silent>gbe :BufferLineSortByExtension<cr>
+  nn <silent>gbd :BufferLineSortByDirectory<cr>
 
 " diffview & nvimtree drawer toggle
   nn <silent><a-e> :lua DrawerToggle()<cr>
