@@ -50,7 +50,8 @@ local config = {
       base_dirs = {
         {'~/code'},
         {'~/.files'},
-      }
+      },
+      hidden_files = true
     }
   }
 }
