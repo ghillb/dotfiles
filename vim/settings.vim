@@ -52,4 +52,5 @@ set shortmess+=c
 set laststatus=2
 set termguicolors
 set fcs=eob:·
+let $MACCHINA_DISABLED = 1
 
