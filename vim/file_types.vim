@@ -14,6 +14,7 @@ au FileType neoterm map <buffer> <tab> <nop>
 au FileType rust map <a-s-t> :T cd %:p:h; cargo test --all-targets<cr>
 au FileType java lua require('jdtls').start_or_attach({cmd = {'java-lsp.sh'}})
 au FileType tf setlocal ft=hcl
+au FileType yaml setlocal indentkeys-=:
 
 aug quickfix
   au! *
