@@ -39,5 +39,6 @@ luafile $VC/plugc/twilight.lua
 luafile $VC/plugc/zen_mode.lua
 luafile $VC/plugc/autopairs.lua
 luafile $VC/plugc/nvim-tree.lua
+luafile $VC/plugc/async_tasks.lua
 lua local ok, cz = pcall(require, 'colorizer') if ok then cz.setup() end
 

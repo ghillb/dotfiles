@@ -46,6 +46,9 @@ return require('packer').startup({
     use {'justinmk/vim-sneak'}
     use {'hrsh7th/vim-vsnip'}
     use {'Jorengarenar/vim-MvVis'}
+    use {'skywind3000/asynctasks.vim'}
+    use {'skywind3000/asyncrun.vim'}
+    use {'GustavoKatel/telescope-asynctasks.nvim'}
 
     -- lua
     use {'neovim/nvim-lspconfig'}

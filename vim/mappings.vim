@@ -51,8 +51,8 @@ com! -nargs=0 -bar ToggleQuickFix call ToggleQuickFix()
 com! -nargs=0 -bar ToggleLocationList call ToggleLocationList()
 
 " terminal mappings
-nn <a-s-r> :w<cr>:T cr %<cr>
-ino <a-s-r> <esc>:w<cr>:T cr %<cr>
+nn <a-s-r> :AsyncTask file-run<cr>
+ino <a-s-r> <esc>:AsyncTask file-run<cr>
 nn <a-r> :TREPLSendLine<cr>j
 vn <a-r> :TREPLSendSelection<cr>
 nn <silent><a-esc> :Ttoggle<cr><c-w>wa
@@ -181,6 +181,7 @@ if has('nvim-0.5')
   nn <leader>fh <cmd>Telescope help_tags<cr>
   nn <leader>fq <cmd>Telescope quickfix<cr>
   nn <leader>fl <cmd>Telescope localist<cr>
+  nn <leader>ft <cmd>lua require('telescope').extensions.asynctasks.all()<cr>
 
 " nvim compe
   ino <silent><expr> <cr>      compe#confirm('<cr>')
