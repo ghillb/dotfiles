@@ -116,8 +116,9 @@ nn <leader>v ggVG
 nn <leader>gg :G<cr>\|<c-w>T
 nn <leader>gr :G restore --source %
 nn <leader>gd :DiffviewOpen 
+nn <leader>gf :DiffviewFileHistory<cr>
 nn <leader>gmt :Gvdiffsplit!<cr>
-nn <leader>gw :Gwrite
+nn <leader>gw :Gwrite<cr>
 nn <leader>gcc :G checkout %
 nn <leader>gcb :G checkout -b 
 nn <leader>glo :GV<cr>
@@ -127,7 +128,7 @@ no <leader>gps :G -c push.default=current push<cr>
 nn <leader>gss :G stash<cr>
 nn <leader>gsp :G stash pop -q<cr>
 nn <leader>ga :G add -p<cr>
-nn <leader>gb :Gblame<cr>
+nn <leader>gb :Git blame<cr>
 no <leader>id i<c-r>=expand('%:p:h').'/'<cr><esc>
 no <leader>itd "=strftime("%Y-%m-%d")<cr>P
 no <leader>itt "=strftime("%H:%M:%S")<cr>P

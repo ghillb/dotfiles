@@ -7,9 +7,9 @@ local cb = require'diffview.config'.diffview_callback
 
 diffview.setup {
   diff_binaries = false,
+  use_icons = false,
   file_panel = {
     width = 35,
-    use_icons = false
   },
   key_bindings = {
     disable_defaults = false,
