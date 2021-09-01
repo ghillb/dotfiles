@@ -66,6 +66,7 @@ alias py='python3'
 alias jn='jupyter notebook'
 alias 0xf='curl -F"file=@$(find $HOME -type f | fzf)" 0x0.st | xsel --input --clipboard'
 alias 0xs="curl -F\'shorten=\' https://0x0.st"
+alias t='tremc'
 alias hist='history|grep'
 alias hx='hexyl'
 alias vr='nvr'

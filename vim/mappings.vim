@@ -183,7 +183,7 @@ if has('nvim-0.5')
 
 " nvim compe
   ino <silent><expr> <cr>      compe#confirm('<cr>')
-  ino <silent><expr> <a-space> compe#complete()
+  ino <silent><expr> <a-cr>    compe#complete()
   ino <silent><expr> <cr>      compe#confirm('<cr>')
   ino <silent><expr> <c-e>     compe#close('<c-e>')
   ino <silent><expr> <c-f>     compe#scroll({ 'delta': +4 })
