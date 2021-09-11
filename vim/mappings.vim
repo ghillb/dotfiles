@@ -101,6 +101,7 @@ nn <leader>ty :Startify<cr>
 nn <leader>ti :IndentBlanklineToggle<cr>
 nn <leader>tu :UndotreeToggle<cr>
 nn <leader>tp :set paste!<cr>
+no <leader>tm :Glow<cr><c-w>\| <c-w>_
 nn <leader>ttx <cmd>TroubleToggle<cr>
 nn <leader>ttw <cmd>TroubleToggle lsp_workspace_diagnostics<cr>
 nn <leader>ttd <cmd>TroubleToggle lsp_document_diagnostics<cr>

@@ -14,6 +14,9 @@ local config = {
   numhl = false
   ,
   linehl = false,
+  diff_opts = {
+    internal = true,
+  },
   keymaps = {
     noremap = true,
     buffer = true,
@@ -42,7 +45,6 @@ local config = {
   update_debounce = 100,
   status_formatter = nil,
   word_diff = false,
-  use_internal_diff = true,
 }
 
 gitsigns.setup(config)

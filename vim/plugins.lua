@@ -118,6 +118,7 @@ return require('packer').startup({
       end,
       wants = {'nvim-treesitter'},
     }
+    use {"ellisonleao/glow.nvim"}
 
   end,
   config = {
