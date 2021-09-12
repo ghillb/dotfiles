@@ -75,7 +75,7 @@ map <a--> <c-w>-
 map <a-=> <c-w>+
 map <a-+> <c-w>>
 map <a-_> <c-w><
-nn <a-g> :G<cr>
+nn <a-g> :tab G<cr>
 nn <silent><a-q> :lua CloseView()<cr>
 
 " leader mappings
@@ -114,7 +114,7 @@ vn <leader>sy :VsnipYank
 nn <leader>zi <c-w>_<bar><c-w>\|
 nn <leader>zo <c-w>=
 nn <leader>v ggVG
-nn <leader>gg :G<cr>\|<c-w>T
+nn <leader>gg :G<cr>
 nn <leader>gr :G restore --source %
 nn <leader>gd :DiffviewOpen 
 nn <leader>gf :DiffviewFileHistory<cr>

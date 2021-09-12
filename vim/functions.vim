@@ -20,7 +20,7 @@ fun! SetGitModifiedCount()
 endfun
 
 fun! SetSelectiveFilename()
-  let g:selective_filename = &filetype =~# '\v^(neoterm|vimwiki)' ? expand('%:t') : ''
+  let g:selective_filename = &filetype =~# '\v^(neoterm|vimwiki)' ? '' : expand('%:t')
 endfun
 
 fun! SetSelectiveFiletype()
