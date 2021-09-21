@@ -93,7 +93,7 @@ return require('packer').startup({
       requires = {"neovim/nvim-lspconfig"},
     }
     use {'mfussenegger/nvim-jdtls'}
-
+    use {'mcchrish/nnn.vim'}
     use {
       'abecodes/tabout.nvim',
       config = function()

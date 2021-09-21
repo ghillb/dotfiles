@@ -114,6 +114,7 @@ vn <leader>sy :VsnipYank
 nn <leader>zi <c-w>_<bar><c-w>\|
 nn <leader>zo <c-w>=
 nn <leader>v ggVG
+nn <silent> <leader>e :NnnPicker %:p:h<cr>
 nn <leader>gg :G<cr>
 nn <leader>gr :G restore --source %
 nn <leader>gd :DiffviewOpen 
