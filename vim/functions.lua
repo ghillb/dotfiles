@@ -19,7 +19,9 @@ function CloseView()
   if view then
     vim.cmd(":DiffviewClose")
   else
-    vim.cmd(":NvimTreeClose")
+    if packer_plugins['nvim-tree.lua'] then
+      vim.cmd(":NvimTreeClose")
+    end
     vim.cmd(":bdelete")
   end
 end

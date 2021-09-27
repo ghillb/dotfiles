@@ -88,9 +88,9 @@ return require('packer').startup({
     use {'norcalli/nvim-colorizer.lua'}
     use {'akinsho/nvim-bufferline.lua'}
     use {'hoob3rt/lualine.nvim'}
-    use {'kyazdani42/nvim-tree.lua',
-      requires = {"kyazdani42/nvim-web-devicons"},
-    }
+    -- use {'kyazdani42/nvim-tree.lua',
+      -- requires = {"kyazdani42/nvim-web-devicons"},
+    -- }
     use {'simrat39/rust-tools.nvim',
       requires = {"neovim/nvim-lspconfig"},
     }
