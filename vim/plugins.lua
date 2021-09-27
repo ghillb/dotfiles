@@ -56,7 +56,9 @@ return require('packer').startup({
       requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
     }
     use {'nvim-telescope/telescope-project.nvim'}
-    use {'hrsh7th/nvim-compe'}
+    use {'hrsh7th/nvim-cmp',
+      requires = {{'hrsh7th/cmp-buffer'}, {'hrsh7th/cmp-vsnip'}, {'hrsh7th/cmp-nvim-lsp'}}
+    }
     use {'ray-x/lsp_signature.nvim'}
     use {'mhartington/formatter.nvim'}
     use {'windwp/nvim-autopairs'}

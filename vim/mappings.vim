@@ -185,14 +185,6 @@ if has('nvim-0.5')
   nn <leader>fl <cmd>Telescope localist<cr>
   nn <leader>ft <cmd>lua require('telescope').extensions.asynctasks.all()<cr>
 
-" nvim compe
-  ino <silent><expr> <cr>      compe#confirm('<cr>')
-  ino <silent><expr> <a-cr>    compe#complete()
-  ino <silent><expr> <cr>      compe#confirm('<cr>')
-  ino <silent><expr> <c-e>     compe#close('<c-e>')
-  ino <silent><expr> <c-f>     compe#scroll({ 'delta': +4 })
-  ino <silent><expr> <c-d>     compe#scroll({ 'delta': -4 })
-
 " vsnip vim
   imap <expr> <c-e>   vsnip#expandable()  ? '<plug>(vsnip-expand)'         : '<c-e>'
   smap <expr> <c-e>   vsnip#expandable()  ? '<plug>(vsnip-expand)'         : '<c-e>'
