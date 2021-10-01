@@ -88,38 +88,15 @@ return require('packer').startup({
     use {'norcalli/nvim-colorizer.lua'}
     use {'akinsho/nvim-bufferline.lua'}
     use {'hoob3rt/lualine.nvim'}
-    -- use {'kyazdani42/nvim-tree.lua',
-      -- requires = {"kyazdani42/nvim-web-devicons"},
-    -- }
+    use {'kyazdani42/nvim-tree.lua',
+      requires = {"kyazdani42/nvim-web-devicons"},
+    }
     use {'simrat39/rust-tools.nvim',
       requires = {"neovim/nvim-lspconfig"},
     }
     use {'mfussenegger/nvim-jdtls'}
     use {'mcchrish/nnn.vim'}
-    use {
-      'abecodes/tabout.nvim',
-      config = function()
-        require('tabout').setup {
-        tabkey = '<Tab>',
-        backwards_tabkey = '<S-Tab>',
-        act_as_tab = true,
-        act_as_shift_tab = true,
-        enable_backwards = true,
-        completion = false,
-        tabouts = {
-          {open = "'", close = "'"},
-          {open = '"', close = '"'},
-          {open = '`', close = '`'},
-          {open = '(', close = ')'},
-          {open = '[', close = ']'},
-          {open = '{', close = '}'}
-        },
-        ignore_beginning = true,
-        exclude = {}
-        }
-      end,
-      wants = {'nvim-treesitter'},
-    }
+    use {'abecodes/tabout.nvim', wants = {'nvim-treesitter'}}
     use {"ellisonleao/glow.nvim"}
 
   end,
