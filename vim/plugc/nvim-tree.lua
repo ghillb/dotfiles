@@ -50,7 +50,7 @@ vim.g.nvim_tree_icons = {
 
 local tree_cb = nvimtree_config.nvim_tree_callback
 
-local list = {
+local mappings_table = {
   { key = {"o", "l"},                     cb = tree_cb("edit") },
   { key = "<CR>",                         cb = tree_cb("cd") },
   { key = "<C-v>",                        cb = tree_cb("vsplit") },
@@ -108,8 +108,8 @@ require'nvim-tree'.setup {
     side = 'left',
     auto_resize = false,
     mappings = {
-      custom_only = false,
-      list = {}
+      custom_only = true,
+      list = mappings_table
     }
   }
 }
