@@ -14,7 +14,6 @@ vim.g.nvim_tree_highlight_opened_files = 1
 vim.g.nvim_tree_root_folder_modifier = ':~'
 vim.g.nvim_tree_add_trailing = 1
 vim.g.nvim_tree_group_empty = 1
-vim.g.nvim_tree_disable_window_picker = 1
 vim.g.nvim_tree_icon_padding = ' '
 vim.g.nvim_tree_show_icons = { git = 1, folders = 0, files = 0, folder_arrows = 1 }
 vim.g.nvim_tree_window_picker_exclude = { filetype = { packer, qf }, buftype = { terminal } }
