@@ -75,7 +75,7 @@ map <a--> <c-w>-
 map <a-=> <c-w>+
 map <a-+> <c-w>>
 map <a-_> <c-w><
-nn <a-g> :vert G<cr>
+nn <a-g> :G<cr>
 nn <silent><a-q> :lua CloseView()<cr>
 
 " leader mappings

@@ -23,15 +23,16 @@ success_symbol = "[⮞](9)"
 error_symbol = "[◯](bold red)"
 
 [username]
-style_user = "#1affc6"
+style_user = "4"
 style_root = "white"
 format = "[$user@]($style)"
 disabled = true
 show_always = true
 
 [hostname]
-ssh_only = true
-format =  "[$hostname ](#1affc6): "
+ssh_only = false
+disabled = true
+format =  "[$hostname ](4): "
 
 [directory]
 style = "yellow"
@@ -43,7 +44,7 @@ truncation_symbol = "…/"
 
 [git_branch]
 style = "purple"
-symbol = " "
+symbol = " "
 format = ": [$symbol$branch]($style) "
 
 [line_break]
