@@ -51,6 +51,7 @@ return require('packer').startup({
 
     -- lua
     use {'neovim/nvim-lspconfig'}
+    use {'williamboman/nvim-lsp-installer'}
     use {'nvim-treesitter/nvim-treesitter', branch = '0.5-compat'}
     use {'nvim-telescope/telescope.nvim',
       requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
