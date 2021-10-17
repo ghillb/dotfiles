@@ -17,7 +17,6 @@ lsp_installer.on_server_ready(function(server)
     local opts = {}
 
     if server.name == "ansiblels" then
-      opts.cmd = { "ansible-language-server", "--stdio" }
       opts.filetypes = { "yaml", "yml" }
       opts.settings = {
         ansible = {
@@ -27,6 +26,9 @@ lsp_installer.on_server_ready(function(server)
           ansibleLint = {
             enabled = true,
             path = "ansible-lint"
+          },
+          executionEnvironment = {
+            enabled = false,
           },
           python = {
             interpreterPath = "python3"
