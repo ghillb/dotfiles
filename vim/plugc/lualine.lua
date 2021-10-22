@@ -3,18 +3,19 @@ if not ok then
   return
 end
 
+local gruvbox_custom = require'lualine.themes.gruvbox'
 local config = {
   options = {
     icons_enabled = true,
     theme = gruvbox_custom,
-    component_separators = {'', ''},
-    section_separators = {'', ''},
+    component_separators = {left = '', right = ''},
+    section_separators = {left = '', right = ''},
     disabled_filetypes = {'NvimTree'}
   },
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'branch','g:git_modified_count' ,'diff'},
-    lualine_c = {'g:selective_filename'},
+    lualine_c = {{'diagnostics', sources={'nvim_lsp'}}, 'g:selective_filename'},
     lualine_x = {'encoding', 'g:selective_filetype'},
     lualine_y = {'LinePercent'},
     lualine_z = {'location'}
@@ -31,8 +32,6 @@ local config = {
   extensions = {}
 }
 
-lualine.setup(config)
-
 local colors = {
   black        = '#282828',
   white        = '#ebdbb2',
@@ -47,41 +46,40 @@ local colors = {
   inactivegray = '#7c6f64',
 }
 
-local custom_gruvbox = require'lualine.themes.gruvbox'
-
-custom_gruvbox.normal = {
+gruvbox_custom.normal = {
   a = {bg = colors.gray, fg = colors.black, gui = 'bold'},
   b = {bg = colors.lightgray, fg = colors.white},
   c = {bg = colors.darkgray, fg = colors.gray}
 }
-custom_gruvbox.insert = {
+gruvbox_custom.insert = {
   a = {bg = colors.blue, fg = colors.black, gui = 'bold'},
   b = {bg = colors.lightgray, fg = colors.white},
-  c = {bg = colors.lightgray, fg = colors.white}
+  c = {bg = colors.darkgray, fg = colors.white}
 }
-custom_gruvbox.visual = {
+gruvbox_custom.visual = {
   a = {bg = colors.yellow, fg = colors.black, gui = 'bold'},
   b = {bg = colors.lightgray, fg = colors.white},
   c = {bg = colors.inactivegray, fg = colors.black}
 }
-custom_gruvbox.terminal = {
+gruvbox_custom.terminal = {
   a = {bg = colors.pink, fg = colors.black, gui = 'bold'},
   b = {bg = colors.lightgray, fg = colors.white},
   c = {bg = colors.darkgray, fg = colors.gray}
 }
-custom_gruvbox.replace = {
+gruvbox_custom.replace = {
   a = {bg = colors.red, fg = colors.black, gui = 'bold'},
   b = {bg = colors.lightgray, fg = colors.white},
   c = {bg = colors.black, fg = colors.white}
 }
-custom_gruvbox.command = {
+gruvbox_custom.command = {
   a = {bg = colors.green, fg = colors.black, gui = 'bold'},
   b = {bg = colors.lightgray, fg = colors.white},
   c = {bg = colors.inactivegray, fg = colors.black}
 }
-custom_gruvbox.inactive = {
+gruvbox_custom.inactive = {
   a = {bg = colors.darkgray, fg = colors.gray, gui = 'bold'},
   b = {bg = colors.darkgray, fg = colors.gray},
   c = {bg = colors.darkgray, fg = colors.gray}
 }
 
+lualine.setup(config)

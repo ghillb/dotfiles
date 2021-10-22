@@ -88,7 +88,7 @@ return require('packer').startup({
     use {'milisims/nvim-luaref'}
     use {'norcalli/nvim-colorizer.lua'}
     use {'akinsho/nvim-bufferline.lua'}
-    use {'hoob3rt/lualine.nvim'}
+    use {'nvim-lualine/lualine.nvim', opt = true}
     use {'kyazdani42/nvim-tree.lua',
       requires = {"kyazdani42/nvim-web-devicons"},
     }
