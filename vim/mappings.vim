@@ -13,8 +13,7 @@ no V vg_
 nn Q @q
 vn Q :norm @q<cr>
 vm s <plug>VSurround
-no <silent><c-_> :Commentary<cr>j
-ino <silent><c-_> <esc>:Commentary<cr>ja
+no <silent><c-_> :lua require('Comment').toggle()<cr>j
 ino kj <esc>
 ino jk <esc>
 xn <silent> p p:let @+=@0<cr>:let @"=@0<cr>

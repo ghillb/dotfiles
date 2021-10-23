@@ -36,7 +36,6 @@ return require('packer').startup({
     use {'will133/vim-dirdiff'}
     use {'junegunn/gv.vim'}
     use {'tpope/vim-surround'}
-    use {'tpope/vim-commentary'}
     use {'romainl/vim-qf'}
     use {'vimwiki/vimwiki', branch = 'dev'}
     use {'mbbill/undotree'}
@@ -109,6 +108,7 @@ return require('packer').startup({
     use {'mcchrish/nnn.vim'}
     use {'abecodes/tabout.nvim', wants = {'nvim-treesitter'}}
     use {"ellisonleao/glow.nvim"}
+    use {'numToStr/Comment.nvim', config = function() require('Comment').setup() end}
 
   end,
   config = {
