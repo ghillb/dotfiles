@@ -26,7 +26,7 @@ vim.api.nvim_set_keymap(
 )
 
 return require('packer').startup({
-  function()
+  function(use)
     use {'wbthomason/packer.nvim'}
 
     use {'morhetz/gruvbox'}

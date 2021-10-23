@@ -6,7 +6,9 @@ no vv V
 no n nzzzv
 no N Nzzzv
 nn H ^h 
+vn H ^h 
 nn L $
+vn L $h
 no J mzJ`z
 nn K xi<cr><esc>
 no V vg_
