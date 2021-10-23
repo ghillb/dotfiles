@@ -16,10 +16,10 @@ local config = {
   max_height = 12,
   max_width = 120,
   handler_opts = {
-    border = "none"
+    border = {"┌", "─", "┐", "│", "┘", "─", "└", "│"}
   },
   extra_trigger_chars = {}
 }
 
-lsp_signature.on_attach(config)
+lsp_signature.setup(config)
 

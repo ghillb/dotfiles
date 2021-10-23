@@ -1,7 +1,7 @@
 if filereadable(expand($NVC) . '/localrc.vim') | source $NVC/localrc.vim | endif
 au BufEnter * if filereadable(expand('%:p:h') . '/.exrc.vim') | source %:p:h/.exrc.vim | endif
 au BufEnter * call SetGitModifiedCount() | call SetSelectiveFilename() | call SetSelectiveFiletype() | call SetCurrentGitBranch()
-au VimEnter * call SetRoot('start_dir')
+au VimEnter * silent call SetRoot('start_dir')
 au TextChanged,TextChangedI * if &readonly == 0 && filereadable(bufname('%')) | silent write | endif
 
 if has('nvim')

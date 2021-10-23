@@ -5,8 +5,8 @@ no Y yg_
 no vv V
 no n nzzzv
 no N Nzzzv
-nn H ^h 
-vn H ^h 
+nn H ^
+vn H ^
 nn L $
 vn L $h
 no J mzJ`z
