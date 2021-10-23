@@ -54,12 +54,22 @@ return require('packer').startup({
     use {'williamboman/nvim-lsp-installer'}
     use {'nvim-treesitter/nvim-treesitter', branch = '0.5-compat'}
     use {'nvim-telescope/telescope.nvim',
-      requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+      requires = {
+        {'nvim-lua/popup.nvim'},
+        {'nvim-lua/plenary.nvim'}
+      }
     }
     use {'nvim-telescope/telescope-project.nvim'}
     use {'hrsh7th/nvim-cmp',
-      requires = {{'hrsh7th/cmp-buffer'}, {'hrsh7th/cmp-vsnip'}, {'hrsh7th/cmp-nvim-lsp'}}
+      requires = {
+        {'hrsh7th/cmp-buffer'},
+        {'hrsh7th/cmp-path'},
+        {'hrsh7th/cmp-vsnip'},
+        {'hrsh7th/cmp-nvim-lua'},
+        {'hrsh7th/cmp-nvim-lsp'}
+      }
     }
+    use {'onsails/lspkind-nvim'}
     use {'ray-x/lsp_signature.nvim'}
     use {'mhartington/formatter.nvim'}
     use {'windwp/nvim-autopairs'}
@@ -88,7 +98,7 @@ return require('packer').startup({
     use {'milisims/nvim-luaref'}
     use {'norcalli/nvim-colorizer.lua'}
     use {'akinsho/nvim-bufferline.lua'}
-    use {'nvim-lualine/lualine.nvim', opt = true}
+    use {'nvim-lualine/lualine.nvim', opt = false}
     use {'kyazdani42/nvim-tree.lua',
       requires = {"kyazdani42/nvim-web-devicons"},
     }

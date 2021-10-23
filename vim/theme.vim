@@ -21,6 +21,7 @@ au colorscheme * hi IndentBlanklineChar guifg=#504945 gui=nocombine
 au colorscheme * hi IndentBlanklineSpaceChar guifg=#504945 gui=nocombine
 au colorscheme * hi IndentBlanklineSpaceCharBlankline guifg=#504945 gui=nocombine
 au colorscheme * hi IndentBlanklineContextChar guifg=#504945 gui=nocombine
+au colorscheme * hi CmpItemMenu guifg=#a89984 gui=nocombine
 
 let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_invert_selection = '0'
