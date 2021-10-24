@@ -103,7 +103,9 @@ require'nvim-tree'.setup {
     cmd  = nil,
     args = {}
   },
-
+  update_to_buf_dir = {
+    enable = false
+  },
   view = {
     width = 30,
     side = 'left',
