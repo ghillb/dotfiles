@@ -55,6 +55,30 @@ lsp_installer.on_server_ready(function(server)
       }
     end
 
+    if server.name == "rust_analyzer" then
+      local _, rust_tools = pcall(require, 'rust-tools')
+
+      local rust_tools_opts = {
+        tools = {
+          autoSetHints = true,
+          hover_with_actions = true,
+          runnables = {
+            use_telescope = true
+          },
+          debuggables = {
+            use_telescope = true
+          },
+          inlay_hints = {
+            show_parameter_hints = true,
+            parameter_hints_prefix = "<-",
+            other_hints_prefix  = "=>",
+          },
+        },
+        server = server:get_default_options()
+      }
+      rust_tools.setup(rust_tools_opts)
+    end
+
     -- nvim-cmp
     opts.capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 

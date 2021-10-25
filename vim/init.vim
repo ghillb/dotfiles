@@ -28,7 +28,6 @@ luafile $VC/plugc/trouble.lua
 luafile $VC/plugc/formatter.lua
 luafile $VC/plugc/lsp_signature.lua
 luafile $VC/plugc/lsp_installer.lua
-luafile $VC/plugc/rust_tools.lua
 luafile $VC/plugc/todo_comments.lua
 luafile $VC/plugc/telescope.lua
 luafile $VC/plugc/neoterm.lua

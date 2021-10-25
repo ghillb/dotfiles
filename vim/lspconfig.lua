@@ -28,7 +28,7 @@ vim.lsp.handlers["textDocument/signatureHelp"] =
   -- vim.api.nvim_command('autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics({ focusable = false })')
 -- end
 
-local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
+local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
 
 for type, icon in pairs(signs) do
   local hl = "LspDiagnosticsSign" .. type
