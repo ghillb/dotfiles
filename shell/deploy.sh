@@ -42,7 +42,7 @@ df() {
 nvim() {
   release=nvim-linux64
   mkdir -p ~/.config/nvim; ln -sf $dfdir/vim/init.vim $confdir/nvim/
-  wget -nc https://github.com/neovim/neovim/releases/download/v0.5.0/${release}.tar.gz -O - > ${release}
+  wget -nc https://github.com/neovim/neovim/releases/download/v0.5.1/${release}.tar.gz -O - > ${release}
   sudo tar -xf ${release} -C /tmp
   sudo cp -r /tmp/${release}/* /usr/local
   sudo rm -rf ${release} /tmp/${release}

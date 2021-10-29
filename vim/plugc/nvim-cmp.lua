@@ -42,6 +42,9 @@ cmp.setup({
       maxwidth = 50
     }
   },
+  completion = {
+    completeopt = 'menu,menuone,noinsert,noselect',
+  },
   experimental = {
     ghost_text = true,
     native_menu = false

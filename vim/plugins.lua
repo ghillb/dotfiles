@@ -94,7 +94,6 @@ return require('packer').startup({
     }
     use {'folke/twilight.nvim'}
     use {'folke/zen-mode.nvim'}
-    use {'milisims/nvim-luaref'}
     use {'norcalli/nvim-colorizer.lua'}
     use {'akinsho/nvim-bufferline.lua'}
     use {'nvim-lualine/lualine.nvim', opt = false}
@@ -104,7 +103,6 @@ return require('packer').startup({
     use {'simrat39/rust-tools.nvim',
       requires = {"neovim/nvim-lspconfig"},
     }
-    use {'mfussenegger/nvim-jdtls'}
     use {'mcchrish/nnn.vim'}
     use {'abecodes/tabout.nvim', wants = {'nvim-treesitter'}}
     use {"ellisonleao/glow.nvim"}
