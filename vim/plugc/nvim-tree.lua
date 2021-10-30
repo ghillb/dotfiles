@@ -3,12 +3,10 @@ if not ok then
   return
 end
 
-vim.g.nvim_tree_ignore = { '.git', 'node_modules', '.cache' }
 vim.g.nvim_tree_gitignore = 1
 vim.g.nvim_tree_auto_ignore_ft = { 'startify', 'dashboard', 'copy-mode'}
 vim.g.nvim_tree_quit_on_open = 0
 vim.g.nvim_tree_indent_markers = 1
-vim.g.nvim_tree_hide_dotfiles = 1
 vim.g.nvim_tree_git_hl = 0
 vim.g.nvim_tree_highlight_opened_files = 1
 vim.g.nvim_tree_root_folder_modifier = ':~'
@@ -114,6 +112,10 @@ require'nvim-tree'.setup {
       custom_only = true,
       list = mappings_table
     }
+  },
+  filters = {
+    dotfiles = true,
+    custom = {'.git', 'node_modules', '.cache'}
   }
 }
 

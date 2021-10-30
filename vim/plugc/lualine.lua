@@ -15,7 +15,7 @@ local config = {
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'branch','g:git_modified_count' ,'diff'},
-    lualine_c = {{'diagnostics', sources = {'nvim_lsp'}}, 'g:selective_filename'},
+    lualine_c = {{'diagnostics', sources = {'nvim_lsp'}}, 'g:selective_breadcrumbs'},
     lualine_x = {'encoding', 'g:selective_filetype'},
     lualine_y = {'LinePercent'},
     lualine_z = {'location'}

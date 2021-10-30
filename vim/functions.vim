@@ -1,6 +1,6 @@
 if filereadable(expand($NVC) . '/localrc.vim') | source $NVC/localrc.vim | endif
 au BufEnter * if filereadable(expand('%:p:h') . '/.exrc.vim') | source %:p:h/.exrc.vim | endif
-au BufEnter * call SetGitModifiedCount() | call SetSelectiveFilename() | call SetSelectiveFiletype() | call SetCurrentGitBranch()
+au BufEnter * call SetGitModifiedCount() | call SetSelectiveBreadcrumbs() | call SetSelectiveFiletype() | call SetCurrentGitBranch()
 au VimEnter * silent call SetRoot('start_dir')
 au TextChanged,TextChangedI * if &readonly == 0 && filereadable(bufname('%')) | silent write | endif
 
@@ -19,8 +19,16 @@ fun! SetGitModifiedCount()
   let g:git_modified_count = l:modified_count =~ '\D' ? "" : l:modified_count
 endfun
 
-fun! SetSelectiveFilename()
-  let g:selective_filename = &filetype =~# '\v^(neoterm|vimwiki)' ? '' : expand('%:t')
+fun! GetTitleString()
+  if !exists("*FugitiveIsGitDir") || !FugitiveIsGitDir()
+    return substitute(expand('%:p:h:t'), $HOME, '~', '')
+  else
+    return fnamemodify(FugitiveWorkTree(), ':t')
+  endif
+endfun
+
+fun! SetSelectiveBreadcrumbs()
+  let g:selective_breadcrumbs = &filetype =~# '\v^(neoterm)' ? expand('%:t') : substitute(expand('%:p'), $HOME, '~', '')
 endfun
 
 fun! SetSelectiveFiletype()
