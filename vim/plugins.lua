@@ -49,7 +49,7 @@ return require('packer').startup({
     use {'GustavoKatel/telescope-asynctasks.nvim'}
 
     -- lua
-    use {'neovim/nvim-lspconfig'}
+    use {'neovim/nvim-lspconfig', git = { subcommands = { update_branch = 'merge' } } }
     use {'williamboman/nvim-lsp-installer'}
     use {'nvim-treesitter/nvim-treesitter', branch = '0.5-compat'}
     use {'nvim-telescope/telescope.nvim',

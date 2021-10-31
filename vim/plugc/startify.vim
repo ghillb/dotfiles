@@ -11,9 +11,10 @@ let g:startify_lists = [
     \ ]
 
     let g:startify_commands = [
-        \ {'pu': ['Plugin update', 'PackerSync']},
-        \ {'ps': ['Plugin status', 'PackerStatus']},
-        \ {'h' : ['Vim Reference', 'h ref']},
+        \ {'p': ['Open Project', 'Telescope project']},
+        \ {'u': ['Plugin update', 'PackerSync']},
+        \ {'s': ['Plugin status', 'PackerStatus']},
+        \ {'h': ['Vim Reference', 'h ref']},
         \ ]
 
 let g:startify_skiplist = [
