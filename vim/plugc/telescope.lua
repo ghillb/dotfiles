@@ -43,6 +43,12 @@ local config = {
           ["<c-d>"] = actions.delete_buffer,
         }
       }
+    },
+    find_files = {
+      hidden = true,
+      file_ignore_patterns = {
+        "^.git/"
+      }
     }
   },
   extensions = {
