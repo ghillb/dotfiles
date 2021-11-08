@@ -71,6 +71,7 @@ return require('packer').startup({
     use {'onsails/lspkind-nvim'}
     use {'ray-x/lsp_signature.nvim'}
     use {'mhartington/formatter.nvim'}
+    use {'nathom/filetype.nvim'}
     use {'windwp/nvim-autopairs'}
     use {'lewis6991/gitsigns.nvim'}
     use {'sindrets/diffview.nvim'}
