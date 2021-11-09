@@ -16,6 +16,16 @@ lsp_installer.settings {
 lsp_installer.on_server_ready(function(server)
     local opts = {}
 
+    if server.name == "sumneko_lua" then
+      opts.settings = {
+        Lua = {
+          diagnostics = {
+            globals = { 'vim' }
+          }
+        }
+      }
+    end
+
     if server.name == "ansiblels" then
       opts.filetypes = { "yaml", "yml" }
       opts.settings = {
@@ -38,6 +48,7 @@ lsp_installer.on_server_ready(function(server)
     end
 
     if server.name == "yamlls" then
+      opts.filetypes = { "yaml", "yml", "gitlab-ci" }
       opts.settings = {
         yaml = {
           schemas = {

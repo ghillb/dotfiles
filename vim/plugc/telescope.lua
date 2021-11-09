@@ -8,10 +8,10 @@ local actions = require('telescope.actions')
 local config = {
   defaults = {
     layout_config = {
-      horizontal = { 
+      horizontal = {
         preview_width = 0.6
       },
-      center = { 
+      center = {
       },
       vertical = {
       }
@@ -49,6 +49,20 @@ local config = {
       file_ignore_patterns = {
         "^.git/"
       }
+    },
+    live_grep = {
+      vimgrep_arguments = {
+        'rg',
+        '--color=never',
+        '--no-heading',
+        '--with-filename',
+        '--line-number',
+        '--column',
+        '--smart-case',
+        '--hidden',
+        '-g',
+        '!.git/'
+      },
     }
   },
   extensions = {

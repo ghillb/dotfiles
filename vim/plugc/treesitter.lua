@@ -25,3 +25,6 @@ local config = {
 
 treesitter_configs.setup(config)
 
+local parser_configs = require 'nvim-treesitter.parsers'.get_parser_configs()
+parser_configs.yaml.used_by =  'gitlab-ci'
+
