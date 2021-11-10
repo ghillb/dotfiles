@@ -8,7 +8,7 @@ esac
 stty -ixon # forces control sequences to reach the terminal application (e.g. vi)
 stty werase ^H # enable ctrl-backspace previous word kill
 set bell-style none
-export TERM="xterm-kitty" #xterm-256color
+if [ $KITTY_WINDOW_ID ]; then export TERM="xterm-kitty"; else export TERM=xterm-256color; fi
 export DISPLAY=:0 #set display for VcXsrv
 export VISUAL=$(command -v nvim &>/dev/null && echo "nvim" || echo "vi")
 export EDITOR=$VISUAL
