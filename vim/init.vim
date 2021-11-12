@@ -12,7 +12,6 @@ luafile $VC/file_types_nvim.lua
 
 " plugin configs
 source $VC/plugc/vimwiki.vim
-source $VC/plugc/sneak.vim
 source $VC/plugc/netrw.vim
 source $VC/plugc/startify.vim
 source $VC/plugc/codi.vim
@@ -30,6 +29,7 @@ luafile $VC/plugc/formatter.lua
 luafile $VC/plugc/lsp_signature.lua
 luafile $VC/plugc/lsp_installer.lua
 luafile $VC/plugc/todo_comments.lua
+luafile $VC/plugc/lightspeed.lua
 luafile $VC/plugc/telescope.lua
 luafile $VC/plugc/neoterm.lua
 luafile $VC/plugc/bufferline.lua

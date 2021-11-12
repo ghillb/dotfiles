@@ -41,7 +41,7 @@ return require('packer').startup({
     use {'mbbill/undotree'}
     use {'kassio/neoterm'}
     use {'metakirby5/codi.vim'}
-    use {'justinmk/vim-sneak'}
+    use {'ggandor/lightspeed.nvim', requires = {'tpope/vim-repeat'} }
     use {'hrsh7th/vim-vsnip'}
     use {'Jorengarenar/vim-MvVis'}
     use {'skywind3000/asynctasks.vim'}
