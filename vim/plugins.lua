@@ -107,7 +107,13 @@ return require('packer').startup({
     use {'mcchrish/nnn.vim'}
     use {'abecodes/tabout.nvim', wants = {'nvim-treesitter'}}
     use {"ellisonleao/glow.nvim"}
-    use {'numToStr/Comment.nvim', config = function() require('Comment').setup() end}
+    use {'numToStr/Comment.nvim',
+      config = function()
+        require('Comment').setup()
+        local ft = require('Comment.ft')
+        ft.set('gitlab-ci', {'#%s', '#%s'})
+      end
+    }
 
   end,
   config = {
