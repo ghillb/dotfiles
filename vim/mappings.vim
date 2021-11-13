@@ -98,6 +98,7 @@ nn <silent><leader>tz :ZenMode<cr>
 nn <silent><leader>tw :Twilight<cr>
 nn <leader>tc :Codi!!<cr>
 nn <leader>td :diffthis<cr>
+nn <leader>ts :setlocal spell!<cr>
 nn <leader>ty :Startify<cr>
 nn <leader>ti :IndentBlanklineToggle<cr>
 nn <leader>tu :UndotreeToggle<cr>
@@ -172,7 +173,7 @@ if has('nvim-0.5')
   nn <silent> gR <cmd>TroubleToggle lsp_references<cr>
 
   "nvim telescope
-  nn <c-e> <cmd>call TelescopeOmniFiles()<cr>
+  nn <c-e> <cmd>lua TelescopeOmniFiles()<cr>
   nn <c-a-e> <cmd>Telescope find_files<cr>
   nn <c-p> <cmd>Telescope live_grep<cr>
   nn <c-b> <cmd>Telescope buffers<cr>

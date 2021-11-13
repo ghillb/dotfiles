@@ -7,8 +7,7 @@ luafile $VC/functions.lua
 source $VC/functions.vim
 source $VC/theme.vim
 source $VC/mappings.vim
-source $VC/file_types.vim
-luafile $VC/file_types_nvim.lua
+luafile $VC/file_types.lua
 
 " plugin configs
 source $VC/plugc/vimwiki.vim
