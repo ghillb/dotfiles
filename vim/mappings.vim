@@ -47,9 +47,7 @@ no <right> <nop>
 
 " commands
 cm w!! w !sudo tee > /dev/null %
-cm :G !git -C %:p:h commit -am "--wip--" && git -C %:p:h -c push.default=current push
-com! -nargs=0 -bar ToggleQuickFix call ToggleQuickFix()
-com! -nargs=0 -bar ToggleLocationList call ToggleLocationList()
+cm GG !git -C %:p:h commit -am "--wip--" && git -C %:p:h -c push.default=current push
 
 " terminal mappings
 nn <a-s-r> :AsyncTask file-run<cr>
@@ -78,6 +76,12 @@ map <a-+> <c-w>>
 map <a-_> <c-w><
 nn <a-g> :G<cr>
 nn <silent><a-q> :lua CloseView()<cr>
+
+" quickfix
+nm [q <plug>(qf_qf_previous)
+nm ]q <plug>(qf_qf_next)
+nm [l <plug>(qf_loc_previous)
+nm ]l <plug>(qf_loc_next)
 
 " leader mappings
 let mapleader = " "
@@ -149,66 +153,63 @@ no <silent><localleader>\ :chdir $VIM_ROOT<cr> \| :echo "back to root: " . $VIM_
 nn <localleader>sr :%s///gc<left><left><left><left>
 nn <localleader>sq :vim// **/*<left><left><left><left><left><left>
 nn <localleader>sl :lv// %<left><left><left>
-no <localleader>q :ToggleQuickFix<cr>
-no <localleader>l :ToggleLocationList<cr>
+nm <localleader>q <plug>(qf_qf_toggle_stay)<cr>
+nm <localleader>l <plug>(qf_loc_toggle_stay)<cr>
 no <localleader>dw :%s/\s\+$//e<cr>
 nn <localleader>dc :!remove_comments.sh %:p<cr>
 nn <localleader>, :e $MYVIMRC<cr>
 nn <localleader>. :so $MYVIMRC<cr>
 
-if has('nvim-0.5')
 " nvim lsp
-  nn <silent> gd <cmd>lua vim.lsp.buf.definition()<cr>
-  nn <silent> gD <cmd>lua vim.lsp.buf.declaration()<cr>
-  nn <silent> gr <cmd>lua vim.lsp.buf.references()<cr>
-  nn <silent> gi <cmd>lua vim.lsp.buf.implementation()<cr>
-  nn <silent> gh <cmd>lua vim.lsp.buf.hover()<cr>
-  nn <silent> gs <cmd>lua vim.lsp.buf.signature_help()<cr>
-  nn <silent> ]g :lua vim.lsp.diagnostic.goto_next({ popup_opts = { border = "single" }})<cr>
-  nn <silent> [g :lua vim.lsp.diagnostic.goto_prev({ popup_opts = { border = "single" }})<cr>
-  nn <silent> <a-space> :lua vim.lsp.diagnostic.show_line_diagnostics({ border = "single" })<cr>
-  nn <silent> <a-\> <cmd>lua vim.lsp.buf.code_action()<cr>
-  nn <silent> gF <cmd>Format<cr>
-  " nn <silent> gF <cmd>lua vim.lsp.buf.formatting()<cr>
-  nn <silent> gR <cmd>TroubleToggle lsp_references<cr>
+nn <silent> gd <cmd>lua vim.lsp.buf.definition()<cr>
+nn <silent> gD <cmd>lua vim.lsp.buf.declaration()<cr>
+nn <silent> gr <cmd>lua vim.lsp.buf.references()<cr>
+nn <silent> gi <cmd>lua vim.lsp.buf.implementation()<cr>
+nn <silent> gh <cmd>lua vim.lsp.buf.hover()<cr>
+nn <silent> gs <cmd>lua vim.lsp.buf.signature_help()<cr>
+nn <silent> ]g :lua vim.lsp.diagnostic.goto_next({ popup_opts = { border = "single" }})<cr>
+nn <silent> [g :lua vim.lsp.diagnostic.goto_prev({ popup_opts = { border = "single" }})<cr>
+nn <silent> <a-space> :lua vim.lsp.diagnostic.show_line_diagnostics({ border = "single" })<cr>
+nn <silent> <a-\> <cmd>lua vim.lsp.buf.code_action()<cr>
+nn <silent> gF <cmd>Format<cr>
+" nn <silent> gF <cmd>lua vim.lsp.buf.formatting()<cr>
+nn <silent> gR <cmd>TroubleToggle lsp_references<cr>
 
-  "nvim telescope
-  nn <c-e> <cmd>lua TelescopeOmniFiles()<cr>
-  nn <c-a-e> <cmd>Telescope find_files<cr>
-  nn <c-p> <cmd>Telescope live_grep<cr>
-  nn <c-b> <cmd>Telescope buffers<cr>
-  nn <c-\> <cmd>Telescope current_buffer_fuzzy_find<cr>
-  nn <c-g> :call SetRoot('git_root')<cr><cmd>Telescope git_branches<cr>
-  nn <esc><esc> <cmd>Telescope project display_type=full<cr>
-  nn <leader>fg <cmd>Telescope git_status<cr>
-  nn <leader>fk <cmd>Telescope keymaps<cr>
-  nn <leader>fc <cmd>Telescope commands<cr>
-  nn <leader>fh <cmd>Telescope help_tags<cr>
-  nn <leader>fq <cmd>Telescope quickfix<cr>
-  nn <leader>fl <cmd>Telescope localist<cr>
-  nn <leader>ft <cmd>lua require('telescope').extensions.asynctasks.all()<cr>
+"nvim telescope
+nn <c-e> <cmd>lua TelescopeOmniFiles()<cr>
+nn <c-a-e> <cmd>Telescope find_files<cr>
+nn <c-p> <cmd>Telescope live_grep<cr>
+nn <c-b> <cmd>Telescope buffers<cr>
+nn <c-\> <cmd>Telescope current_buffer_fuzzy_find<cr>
+nn <c-g> :call SetRoot('git_root')<cr><cmd>Telescope git_branches<cr>
+nn <esc><esc> <cmd>Telescope project display_type=full<cr>
+nn <leader>fg <cmd>Telescope git_status<cr>
+nn <leader>fk <cmd>Telescope keymaps<cr>
+nn <leader>fc <cmd>Telescope commands<cr>
+nn <leader>fh <cmd>Telescope help_tags<cr>
+nn <leader>fq <cmd>Telescope quickfix<cr>
+nn <leader>fl <cmd>Telescope localist<cr>
+nn <leader>ft <cmd>lua require('telescope').extensions.asynctasks.all()<cr>
 
 " vsnip vim
-  imap <expr> <c-e>   vsnip#expandable()  ? '<plug>(vsnip-expand)'         : '<c-e>'
-  smap <expr> <c-e>   vsnip#expandable()  ? '<plug>(vsnip-expand)'         : '<c-e>'
-  imap <expr> <c-l>   vsnip#available(1)  ? '<plug>(vsnip-expand-or-jump)' : '<c-l>'
-  smap <expr> <c-l>   vsnip#available(1)  ? '<plug>(vsnip-expand-or-jump)' : '<c-l>'
-  imap <expr> <tab>   vsnip#jumpable(1)   ? '<plug>(vsnip-jump-next)'      : '<tab>'
-  smap <expr> <tab>   vsnip#jumpable(1)   ? '<plug>(vsnip-jump-next)'      : '<tab>'
-  imap <expr> <s-tab> vsnip#jumpable(-1)  ? '<plug>(vsnip-jump-prev)'      : '<s-Tab>'
-  smap <expr> <s-tab> vsnip#jumpable(-1)  ? '<plug>(vsnip-jump-prev)'      : '<s-Tab>'
+imap <expr> <c-e>   vsnip#expandable()  ? '<plug>(vsnip-expand)'         : '<c-e>'
+smap <expr> <c-e>   vsnip#expandable()  ? '<plug>(vsnip-expand)'         : '<c-e>'
+imap <expr> <c-l>   vsnip#available(1)  ? '<plug>(vsnip-expand-or-jump)' : '<c-l>'
+smap <expr> <c-l>   vsnip#available(1)  ? '<plug>(vsnip-expand-or-jump)' : '<c-l>'
+imap <expr> <tab>   vsnip#jumpable(1)   ? '<plug>(vsnip-jump-next)'      : '<tab>'
+smap <expr> <tab>   vsnip#jumpable(1)   ? '<plug>(vsnip-jump-next)'      : '<tab>'
+imap <expr> <s-tab> vsnip#jumpable(-1)  ? '<plug>(vsnip-jump-prev)'      : '<s-Tab>'
+smap <expr> <s-tab> vsnip#jumpable(-1)  ? '<plug>(vsnip-jump-prev)'      : '<s-Tab>'
 
 " bufferline
-  nn <silent><left> :BufferLineCyclePrev<cr>
-  nn <silent><right> :BufferLineCycleNext<cr>
-  nn <silent><a-left> :BufferLineMovePrev<cr>
-  nn <silent><a-right> :BufferLineMoveNext<cr>
-  nn <silent>gbp :BufferLinePick<cr>
-  nn <silent>gbe :BufferLineSortByExtension<cr>
-  nn <silent>gbd :BufferLineSortByDirectory<cr>
+nn <silent><left> :BufferLineCyclePrev<cr>
+nn <silent><right> :BufferLineCycleNext<cr>
+nn <silent><a-left> :BufferLineMovePrev<cr>
+nn <silent><a-right> :BufferLineMoveNext<cr>
+nn <silent>gbp :BufferLinePick<cr>
+nn <silent>gbe :BufferLineSortByExtension<cr>
+nn <silent>gbd :BufferLineSortByDirectory<cr>
 
 " diffview & nvimtree drawer toggle
-  nn <silent><a-e> :lua DrawerToggle()<cr>
-
-endif
+nn <silent><a-e> :lua DrawerToggle()<cr>
 

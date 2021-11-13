@@ -15,7 +15,6 @@ source $VC/plugc/netrw.vim
 source $VC/plugc/startify.vim
 source $VC/plugc/codi.vim
 source $VC/plugc/vsnip.vim
-source $VC/plugc/vimqf.vim
 source $VC/plugc/text-objects.vim
 source $VC/plugc/myvis.vim
 

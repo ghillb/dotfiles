@@ -3,11 +3,8 @@ au BufEnter * if filereadable(expand('%:p:h') . '/.exrc.vim') | source %:p:h/.ex
 au BufEnter * call SetGitModifiedCount() | call SetSelectiveBreadcrumbs() | call SetSelectiveFiletype() | call SetCurrentGitBranch()
 au VimEnter * silent call SetRoot('start_dir')
 au TextChanged,TextChangedI * if &readonly == 0 && filereadable(bufname('%')) | silent write | endif
-
-if has('nvim')
-  au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=500}
-  au TermEnter,TermOpen * setlocal nospell nobuflisted nonumber nornu
-endif
+au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=500}
+au TermEnter,TermOpen * setlocal nospell nobuflisted nonumber nornu
 
 fun! SetCurrentGitBranch()
   let l:branch_name = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
@@ -85,49 +82,6 @@ fun! SetRoot(new_root)
     chdir $VIM_ROOT
   else
     echo "directory doesn't exist"
-  endif
-endfun
-
-fun! KittyCursor()
-  let l:cursor_pos = system('echo $KITTY_PIPE_DATA | cut -d":" -f2')
-  let l:y = split(l:cursor_pos,",")[1]
-  let l:x = split(l:cursor_pos,",")[0] + 1
-  call cursor(l:y,l:x)
-endfun
-
-fun! ToggleQuickFix()
-    if empty(filter(getwininfo(), 'v:val.quickfix'))
-        copen
-    else
-        cclose
-    endif
-endfun
-
-fun! ToggleLocationList()
-    if empty(filter(getwininfo(), 'v:val.loclist'))
-        lopen
-    else
-        lclose
-    endif
-endfun
-
-fun! RemoveQFItem()
-  let cur_qf_idx = line('.') -  1
-  let qf_win_info = getwininfo(win_getid())[0]
-  if qf_win_info['loclist'] == 1
-    let loclist_win_nr = qf_win_info['winnr']
-    let loclist_all = getloclist(loclist_win_nr)
-    let cur_pos = getcurpos()
-    call remove(loclist_all, cur_qf_idx)
-    call setloclist(loclist_win_nr, loclist_all, 'r')
-    execute cur_pos[1] . "lfirst"
-    :lopen
-  else
-    let qf_all = getqflist()
-    call remove(qf_all, cur_qf_idx)
-    call setqflist(qf_all, 'r')
-    execute cur_qf_idx + 1 . "cfirst"
-    :copen
   endif
 endfun
 
