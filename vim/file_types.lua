@@ -21,6 +21,7 @@ require('filetype').setup({
 vim.cmd 'au FileType markdown lua ApplyFTSettingsMarkdown()'
 vim.cmd 'au FileType NvimTree lua ApplyFTSettingsNvimTree()'
 vim.cmd 'au FileType qf lua ApplyFTSettingsQuickFix()'
+vim.cmd 'au TermEnter,TermOpen * lua ApplyFTSettingsNeoterm()'
 vim.cmd 'au FileType git normal zR'
 vim.cmd 'au FileType neoterm map <buffer> <tab> <nop>'
 vim.cmd 'au FileType yaml,gitlab-ci setlocal indentkeys-=<:>'
@@ -53,3 +54,11 @@ function ApplyFTSettingsNvimTree()
   DisableTelescopeMappings()
 end
 
+function ApplyFTSettingsNeoterm()
+  require'lualine'.setup {sections = {lualine_b = {''}, lualine_x = {''}, lualine_y = {''}, lualine_z = {''}}}
+  vim.cmd "au TermLeave * source $VC/plugc/lualine.lua"
+  vim.opt.buflisted = false
+  vim.opt.spell = false
+  vim.opt.number = false
+  vim.opt.relativenumber = false
+end

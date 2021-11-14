@@ -1,48 +1,9 @@
 if filereadable(expand($NVC) . '/localrc.vim') | source $NVC/localrc.vim | endif
-au BufEnter * if filereadable(expand('%:p:h') . '/.exrc.vim') | source %:p:h/.exrc.vim | endif
-au BufEnter * call SetGitModifiedCount() | call SetSelectiveBreadcrumbs() | call SetSelectiveFiletype() | call SetCurrentGitBranch()
+au DirChanged * if filereadable(expand('%:p:h') . '/.exrc.vim') | source %:p:h/.exrc.vim | endif
+au BufEnter * lua PopulateInfo()
 au VimEnter * silent call SetRoot('start_dir')
 au TextChanged,TextChangedI * if &readonly == 0 && filereadable(bufname('%')) | silent write | endif
 au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=500}
-au TermEnter,TermOpen * setlocal nospell nobuflisted nonumber nornu
-
-fun! SetCurrentGitBranch()
-  let l:branch_name = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-  let g:current_git_branch = l:branch_name ==# '' ? '' : ' ' . l:branch_name
-endfun
-
-fun! SetGitModifiedCount()
-  let l:modified_count = system('git diff --numstat | wc -l | tr -d "\n" ')
-  let g:git_modified_count = l:modified_count =~ '\D' ? "" : l:modified_count
-endfun
-
-fun! GetTitleString()
-  if !exists("*FugitiveIsGitDir") || !FugitiveIsGitDir()
-    return substitute(expand('%:p:h:t'), $HOME, '~', '')
-  else
-    return fnamemodify(FugitiveWorkTree(), ':t')
-  endif
-endfun
-
-fun! SetSelectiveBreadcrumbs()
-  let g:selective_breadcrumbs = &filetype =~# '\v^(neoterm)' ? expand('%:t') : substitute(expand('%:p'), $HOME, '~', '')
-endfun
-
-fun! SetSelectiveFiletype()
-  let g:selective_filetype = &filetype =~# '\v^(neoterm)' ? '' : &filetype
-endfun
-
-fun! LinePercent()
-    return line('.') * 100 / line('$') . '%%'
-endfun
-
-fun! TelescopeOmniFiles()
-  if v:shell_error || system('git submodule status') != ""
-    :Telescope find_files
-  else
-    :Telescope git_files
-  endif
-endfun
 
 fun! TmuxMove(direction)
   let wnr = winnr()

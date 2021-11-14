@@ -2,7 +2,6 @@ local opt = vim.opt
 
 vim.cmd 'filetype plugin indent on'
 vim.cmd 'syntax enable'
-vim.cmd 'set titlestring=[%{GetTitleString()}]'
 
 vim.env.MACCHINA_DISABLED              = 1
 
