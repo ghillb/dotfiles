@@ -91,3 +91,22 @@ function GetLinePercent()
   return math.floor(vim.fn.line('.') * 100 / vim.fn.line('$')) .. '%%'
 end
 
+function GetActiveBuffers()
+ local active_buffers = {}
+ for k, value in ipairs(vim.api.nvim_list_bufs()) do
+   if vim.api.nvim_buf_is_valid(value) and vim.api.nvim_buf_is_loaded(value) then
+    active_buffers[tostring(k)] = vim.api.nvim_buf_get_name(value)
+   end
+ end
+ return active_buffers
+end
+
+function NewTerminal()
+  if vim.api.nvim_buf_get_name(0):find('term://') then
+    vim.cmd ':Tnew'
+    vim.cmd ':Tnext'
+  end
+  vim.cmd ":Ttoggle"
+  vim.api.nvim_feedkeys(vim.api.nvim_eval('"\\<c-w>ji"'), 'm', true)
+end
+

@@ -46,31 +46,6 @@ fun! SetRoot(new_root)
   endif
 endfun
 
-fun! GetActiveBuffers()
-  let l:blist = getbufinfo({'bufloaded': 1})
-  let l:result = []
-  for l:item in l:blist
-    "skip unnamed buffers; also skip hidden buffers?
-    if empty(l:item.name) || l:item.hidden
-      continue
-    endif
-    call add(l:result, shellescape(l:item.name))
-  endfor
-  return l:result
-endfun
-
-fun! NewTerminalToggle()
-  let l:blist = GetActiveBuffers()
-  for buftitle in l:blist
-    if buftitle =~? 'term://'
-      :Ttoggle
-      break
-    endif
-  endfor
-  :Tnew
-  execute "normal \<c-w>ji"
-endfun
-
 fun! CreateOrGoToFile()
   let l:node_path = expand(expand('<cfile>'))
   if ! (filereadable(l:node_path) || isdirectory(l:node_path))

@@ -57,10 +57,10 @@ vn <a-r> :TREPLSendSelection<cr>
 nn <silent><a-esc> :Ttoggle<cr><c-w>wa
 nn <a-.> :Tnext<cr>
 nn <a-,> :Tprevious<cr>
-nn <silent><a-/> :call NewTerminalToggle()<cr>
+nn <silent><a-/> :lua NewTerminal()<cr>
 tno <a-.> <c-\><c-n>:Tnext<cr>i
 tno <a-,> <c-\><c-n>:Tprevious<cr>i
-tno <silent><a-/> <c-\><c-n>:call NewTerminalToggle()<cr>
+tno <silent><a-/> <c-\><c-n>:lua NewTerminal()<cr>
 tno <silent><a-esc> <c-\><c-n>:Ttoggle<cr>
 tno ` <esc>
 tno <esc> <c-\><c-n>
