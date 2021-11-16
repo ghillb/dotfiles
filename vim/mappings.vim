@@ -26,7 +26,7 @@ nn cn *``cgn
 nn cN *``cgN
 nn d[ :diffget //2<cr>
 nn d] :diffget //3<cr>
-nn <silent>gf :call CreateOrGoToFile()<cr>
+nn <silent>gf :lua CreateOrGoToFile()<cr>
 no <c-d> <c-d>zz
 no <c-u> <c-u>zz
 no <c-j> <c-e>
@@ -66,10 +66,10 @@ tno ` <esc>
 tno <esc> <c-\><c-n>
 
 " window / buffer / split mappings
-nn <silent> <a-h> :call TmuxMove('h')<cr>
-nn <silent> <a-j> :call TmuxMove('j')<cr>
-nn <silent> <a-k> :call TmuxMove('k')<cr>
-nn <silent> <a-l> :call TmuxMove('l')<cr>
+nn <silent> <a-h> :lua TmuxSwitchPane('h')<cr>
+nn <silent> <a-j> :lua TmuxSwitchPane('j')<cr>
+nn <silent> <a-k> :lua TmuxSwitchPane('k')<cr>
+nn <silent> <a-l> :lua TmuxSwitchPane('l')<cr>
 map <a--> <c-w>-
 map <a-=> <c-w>+
 map <a-+> <c-w>>
@@ -97,7 +97,7 @@ nn <leader>bd :bd<cr>
 nn <leader>bl :buffers<cr>
 nn <leader>bo :w<bar>%bd<bar>e#<bar>bd#<cr>
 nn <leader>to :tabo<cr>
-nn <silent><leader>tg :call ToggleGutter()<cr>
+nn <silent><leader>tg :lua ToggleGutter()<cr>
 nn <silent><leader>tz :ZenMode<cr>
 nn <silent><leader>tw :Twilight<cr>
 nn <leader>tc :Codi!!<cr>
@@ -146,10 +146,10 @@ no <leader>cpu yap<S-{>p
 
 " localleader mappings
 let localleader = "\\"
-no <silent><localleader><cr> :call SetRoot('git_root')<cr>
-no <silent><localleader><bs> :call SetRoot('parent_dir')<cr>
-no <silent><localleader>/ :call SetRoot('current_dir')<cr>
-no <silent><localleader>\ :chdir $VIM_ROOT<cr> \| :echo "back to root: " . $VIM_ROOT<cr>
+no <silent><localleader><cr> :lua SetRoot('git_worktree')<cr>
+no <silent><localleader><bs> :lua SetRoot('parent_dir')<cr>
+no <silent><localleader>/ :lua SetRoot('current_dir')<cr>
+no <silent><localleader>\ :chdir $VIM_ROOT<cr> \| :echo "back to root -> " . $VIM_ROOT<cr>
 nn <localleader>sr :%s///gc<left><left><left><left>
 nn <localleader>sq :vim// **/*<left><left><left><left><left><left>
 nn <localleader>sl :lv// %<left><left><left>
@@ -181,7 +181,7 @@ nn <c-a-e> <cmd>Telescope find_files<cr>
 nn <c-p> <cmd>Telescope live_grep<cr>
 nn <c-b> <cmd>Telescope buffers<cr>
 nn <c-\> <cmd>Telescope current_buffer_fuzzy_find<cr>
-nn <c-g> :call SetRoot('git_root')<cr><cmd>Telescope git_branches<cr>
+nn <c-g> :lua SetRoot('git_worktree')<cr><cmd>Telescope git_branches<cr>
 nn <esc><esc> <cmd>Telescope project display_type=full<cr>
 nn <leader>fg <cmd>Telescope git_status<cr>
 nn <leader>fk <cmd>Telescope keymaps<cr>

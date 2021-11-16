@@ -4,7 +4,6 @@ let $NVC = $HOME . '/.config/nvim'
 luafile $VC/settings.lua
 luafile $VC/plugins.lua
 luafile $VC/functions.lua
-source $VC/functions.vim
 source $VC/theme.vim
 source $VC/mappings.vim
 luafile $VC/file_types.lua

@@ -1,3 +1,9 @@
+vim.cmd "au DirChanged * if filereadable(expand('%:p:h') . '/.exrc.vim') | source %:p:h/.exrc.vim | endif"
+vim.cmd "au BufEnter * lua PopulateInfo()"
+vim.cmd "au VimEnter * if filereadable(expand($NVC) . '/localrc.vim') | source $NVC/localrc.vim | endif | silent lua SetRoot('start_dir')"
+vim.cmd "au TextChanged,TextChangedI * if &readonly == 0 && filereadable(bufname('%')) | silent write | endif"
+vim.cmd "au TextYankPost * silent! lua vim.highlight.on_yank{higroup='IncSearch', timeout=500}"
+
 function DrawerToggle()
   local lib = require'diffview.lib'
   local view = lib.get_current_view()
@@ -108,5 +114,63 @@ function NewTerminal()
   end
   vim.cmd ":Ttoggle"
   vim.api.nvim_feedkeys(vim.api.nvim_eval('"\\<c-w>ji"'), 'm', true)
+end
+
+function ToggleGutter()
+  if vim.wo.scl == 'yes' then vim.wo.scl = 'no' else vim.wo.scl = 'yes' end
+  vim.wo.rnu = not vim.wo.rnu
+  vim.wo.nu = not vim.wo.nu
+end
+
+function TmuxSwitchPane(direction)
+  local wnr = vim.fn.winnr()
+  vim.fn.execute('wincmd ' .. direction)
+  if wnr == vim.fn.winnr() then
+    vim.fn.system('tmux select-pane -' .. vim.fn.tr(direction, 'phjkl', 'lLDUR'))
+  end
+end
+
+function CreateOrGoToFile()
+  local node_path = vim.fn.expand(vim.fn.expand('<cfile>'))
+  if (vim.fn.filereadable(node_path) == 0 and vim.fn.isdirectory(node_path) == 0) then
+    local choice = vim.fn.confirm("Create new file: " .. node_path .. " ?", "&Yes\n&No", 1)
+    if choice ~= 1 then
+      return
+    end
+  end
+  vim.fn.execute("vsplit " .. node_path)
+end
+
+function SetRoot(...)
+  vim.env.VIM_ROOT = vim.fn.getcwd()
+  if #(...) < 1 then return end
+  if ... == 'git_worktree' then
+    if IsGitWorkTree() then
+      vim.env.VIM_ROOT = vim.fn.FugitiveWorkTree()
+    else
+      print('not a git repo!')
+      return
+    end
+  end
+  if ... == 'parent_dir' then
+    vim.env.VIM_ROOT = vim.fn.fnamemodify(vim.env.VIM_ROOT, ':h')
+  end
+  if ... == 'current_dir' then
+    vim.env.VIM_ROOT = vim.fn.expand('%:p:h')
+  end
+  if ... == 'start_dir' then
+    if IsGitWorkTree() then
+      SetRoot('git_worktree')
+      return
+    else
+      vim.env.VIM_ROOT = vim.fn.fnamemodify(vim.env.VIM_ROOT, ':p:h')
+    end
+  end
+  if vim.fn.isdirectory(vim.env.VIM_ROOT) == 1 then
+    vim.cmd( "silent chdir " .. vim.env.VIM_ROOT)
+    print(vim.fn.substitute(..., "_", " ", "") .. ' rooted ' .. " -> " .. vim.env.VIM_ROOT)
+  else
+    print("directory doesn't exist")
+  end
 end
 

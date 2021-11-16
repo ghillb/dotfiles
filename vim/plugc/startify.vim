@@ -23,5 +23,5 @@ let g:startify_skiplist = [
        \ '\.vimgolf',
        \ ]
 
-au User StartifyBufferOpened silent call SetRoot('git_dir')
+au User StartifyBufferOpened silent lua SetRoot('git_dir')
 
