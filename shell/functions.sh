@@ -34,6 +34,10 @@ notes() {
   eval "nvim -c VimwikiIndex +'cd %:h' +\"call timer_start(5, { tid -> execute('Telescope live_grep')})\""
 }
 
+launch_nvim() {
+  eval "nvim -c \"call timer_start(5, { tid -> execute('Telescope project display_type=full')})\""
+}
+
 diary() {
   eval "nvim -c 'let g:startify_disable_at_vimenter = 1' +VimwikiMakeDiaryNote +'cd %:h'"
 }
