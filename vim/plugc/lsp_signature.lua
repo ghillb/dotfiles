@@ -16,7 +16,7 @@ local config = {
   max_height = 12,
   max_width = 120,
   handler_opts = {
-    border = {"┌", "─", "┐", "│", "┘", "─", "└", "│"}
+    border = 'single'
   },
   extra_trigger_chars = {}
 }

@@ -8,7 +8,6 @@ local actions = require('telescope.actions')
 local config = {
   defaults = {
     layout_config = {
-      preview_width = 0.5,
       bottom_pane = {
         height = 25,
         prompt_position = "top"
@@ -28,7 +27,8 @@ local config = {
         height = 0.9,
         preview_cutoff = 120,
         prompt_position = "bottom",
-        width = 0.8
+        width = 0.8,
+        preview_width = 0.5,
       },
       vertical = {
         height = 0.9,
