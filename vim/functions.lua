@@ -44,6 +44,12 @@ function TelescopeOmniFiles()
   end
 end
 
+function SwitchGitBranch()
+  SetRoot('git_worktree')
+  vim.cmd "Git fetch --prune --verbose --all"
+  require('telescope.builtin').git_branches()
+end
+
 function PopulateInfo()
   local is_git_worktree = IsGitWorkTree()
   SetGitModifiedCount(is_git_worktree)
