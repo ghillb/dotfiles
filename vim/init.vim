@@ -10,12 +10,10 @@ luafile $VC/file_types.lua
 
 " plugin configs
 source $VC/plugc/vimwiki.vim
-source $VC/plugc/netrw.vim
 source $VC/plugc/startify.vim
 source $VC/plugc/codi.vim
 source $VC/plugc/vsnip.vim
 source $VC/plugc/text-objects.vim
-source $VC/plugc/myvis.vim
 
 luafile $VC/lspconfig.lua
 luafile $VC/plugc/treesitter.lua
@@ -39,6 +37,7 @@ luafile $VC/plugc/zen_mode.lua
 luafile $VC/plugc/autopairs.lua
 luafile $VC/plugc/nvim-tree.lua
 luafile $VC/plugc/nnn.lua
+luafile $VC/plugc/mvvis.lua
 luafile $VC/plugc/async_tasks.lua
 lua local ok, cz = pcall(require, 'colorizer') if ok then cz.setup() end
 

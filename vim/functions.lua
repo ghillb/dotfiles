@@ -46,7 +46,6 @@ end
 
 function PopulateInfo()
   local is_git_worktree = IsGitWorkTree()
-  SetCurrentGitBranch(is_git_worktree)
   SetGitModifiedCount(is_git_worktree)
   SetBreadcrumbs()
   SetTitleString()
