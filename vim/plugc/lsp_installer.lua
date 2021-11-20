@@ -27,7 +27,7 @@ lsp_installer.on_server_ready(function(server)
     end
 
     if server.name == "ansiblels" then
-      opts.filetypes = { "yaml", "yml" }
+      opts.filetypes = { "ansible" }
       opts.settings = {
         ansible = {
           ansible = {
@@ -48,7 +48,7 @@ lsp_installer.on_server_ready(function(server)
     end
 
     if server.name == "yamlls" then
-      opts.filetypes = { "yaml", "yml", "gitlab-ci" }
+      opts.filetypes = { "yaml", "yml", "gitlab-ci", "ansible" }
       opts.settings = {
         yaml = {
           schemas = {

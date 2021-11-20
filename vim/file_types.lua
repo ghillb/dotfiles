@@ -7,6 +7,7 @@ require('filetype').setup({
     },
     complex = {
       [".*gitlab.*yml"] = "gitlab-ci",
+      [".*pb.*yml"] = "ansible",
     },
 
     function_extensions = {
@@ -24,7 +25,7 @@ vim.cmd 'au FileType qf lua ApplyFTSettingsQuickFix()'
 vim.cmd 'au TermEnter,TermOpen * lua ApplyFTSettingsNeoterm()'
 vim.cmd 'au FileType git normal zR'
 vim.cmd 'au FileType neoterm map <buffer> <tab> <nop>'
-vim.cmd 'au FileType yaml,gitlab-ci setlocal indentkeys-=<:>'
+vim.cmd 'au FileType yaml,gitlab-ci,ansible setlocal indentkeys-=<:>'
 
 function DisableTelescopeMappings()
   vim.api.nvim_buf_set_keymap(0, '', '<c-p>', '<nop>', { noremap = false, silent = true })

@@ -43,8 +43,7 @@ return require('packer').startup({
     use {'ggandor/lightspeed.nvim', requires = {'tpope/vim-repeat'} }
     use {'hrsh7th/vim-vsnip'}
     use {'Jorengarenar/vim-MvVis'}
-    use {'skywind3000/asynctasks.vim'}
-    use {'skywind3000/asyncrun.vim'}
+    use {'skywind3000/asynctasks.vim', requires = {'skywind3000/asyncrun.vim'} }
     use {'GustavoKatel/telescope-asynctasks.nvim'}
 
     -- lua
