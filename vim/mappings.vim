@@ -3,6 +3,8 @@ no x "_x
 no X "_X
 no Y yg_
 no vv V
+nn j gj
+nn k gk
 no n nzzzv
 no N Nzzzv
 nn H ^
@@ -86,10 +88,6 @@ nm ]l <plug>(qf_loc_next)
 " leader mappings
 let mapleader = " "
 nn <leader><leader> a<space><esc>
-no <leader>p o<esc>p
-no <leader>P O<esc>p
-nn <leader>o o<esc>
-nn <leader>O O<esc>
 nn <leader>bn :bnext<cr>
 nn <leader>bp :bprevious<cr>
 nn <leader>bc :enew<cr>
@@ -119,7 +117,8 @@ vn <leader>se :VsnipYank vs_ <bar> VsnipOpenVsplit
 vn <leader>sy :VsnipYank
 nn <leader>zi <c-w>_<bar><c-w>\|
 nn <leader>zo <c-w>=
-nn <leader>v ggVG
+nn <leader>ve :e $MYVIMRC<cr>
+nn <leader>vr :so $MYVIMRC<cr>
 nn <silent> <leader>e :NnnPicker %:p:h<cr>
 nn <leader>gg :G<cr>
 nn <leader>gr :G restore --source %
@@ -157,8 +156,11 @@ nm <localleader>q <plug>(qf_qf_toggle_stay)<cr>
 nm <localleader>l <plug>(qf_loc_toggle_stay)<cr>
 no <localleader>dw :%s/\s\+$//e<cr>
 nn <localleader>dc :!remove_comments.sh %:p<cr>
-nn <localleader>, :e $MYVIMRC<cr>
-nn <localleader>. :so $MYVIMRC<cr>
+no <localleader>p o<esc>p
+no <localleader>P O<esc>p
+nn <localleader>o o<esc>
+nn <localleader>O O<esc>
+nn <localleader>v ggVG
 
 " nvim lsp
 nn <silent> gd <cmd>lua vim.lsp.buf.definition()<cr>

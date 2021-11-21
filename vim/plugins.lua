@@ -12,14 +12,14 @@ vim.cmd([[autocmd BufWritePost plugins.lua source <afile> | PackerCompile]])
 
 vim.api.nvim_set_keymap(
     'n',
-    '<localleader>pu',
+    '<leader>pu',
     ":source $MYVIMRC<cr> :PackerSync<cr>",
     {noremap = true, silent = false}
 )
 
 vim.api.nvim_set_keymap(
     'n',
-    '<localleader>ps',
+    '<leader>ps',
     ":source $MYVIMRC<cr> :PackerStatus<cr>",
     {noremap = true, silent = false}
 )
