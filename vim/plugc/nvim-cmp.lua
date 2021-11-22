@@ -25,6 +25,7 @@ cmp.setup({
     { name = 'vsnip' },
     { name = 'buffer' },
     { name = 'path' },
+    { name = 'neorg' }
   },
   documentation = {
     border = 'single'
