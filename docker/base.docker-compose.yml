@@ -1,0 +1,14 @@
+# dc --env-file .env.base up -d
+version: '3'
+services:
+  ubu-dev:
+    container_name: devcon
+    hostname: dc
+    tty: true
+    volumes:
+      - $PROJECT_MOUNT
+    build:
+      context: .
+      args:
+        IMAGE: $BASE_IMAGE
+

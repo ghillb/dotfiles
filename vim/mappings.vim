@@ -41,6 +41,7 @@ ino <c-s> <c-o>:w<cr>
 nn <c-q> :x<cr>
 ino <c-q> <esc>:x<cr>
 ino <c-h> <c-w>
+ino <c-l> <c-o>de
 ino <c-del> <c-o>de
 no <up> <nop>
 no <down> <nop>
@@ -196,8 +197,6 @@ nn <leader>ft <cmd>lua require('telescope').extensions.asynctasks.all()<cr>
 " vsnip vim
 imap <expr> <c-e>   vsnip#expandable()  ? '<plug>(vsnip-expand)'         : '<c-e>'
 smap <expr> <c-e>   vsnip#expandable()  ? '<plug>(vsnip-expand)'         : '<c-e>'
-imap <expr> <c-l>   vsnip#available(1)  ? '<plug>(vsnip-expand-or-jump)' : '<c-l>'
-smap <expr> <c-l>   vsnip#available(1)  ? '<plug>(vsnip-expand-or-jump)' : '<c-l>'
 imap <expr> <tab>   vsnip#jumpable(1)   ? '<plug>(vsnip-jump-next)'      : '<tab>'
 smap <expr> <tab>   vsnip#jumpable(1)   ? '<plug>(vsnip-jump-next)'      : '<tab>'
 imap <expr> <s-tab> vsnip#jumpable(-1)  ? '<plug>(vsnip-jump-prev)'      : '<s-Tab>'

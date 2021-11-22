@@ -15,7 +15,7 @@ if $noninteractive == true ;then
   deploy["tmux"]="y"
   deploy["fzf"]="y"
   deploy["df"]="y"
-  deploy["utils"]="n"
+  deploy["utils"]="y"
   deploy["desktop"]="n"
 else
   for c in "${configs[@]}"; do echo "add [$c] config? (y / → n)"; read -s ans; deploy[$c]=$ans; done
@@ -35,7 +35,6 @@ df() {
   echo -e "source '$dfdir/configs/bashrc'\n" >> $HOME/.bashrc
   ln -sf $dfdir/assets/dircolors $HOME/.dircolors
   ln -sf $dfdir/assets/inputrc $HOME/.inputrc
-  sudo ln -sf $dfdir/shell/coderun.sh /usr/local/bin/cr
   mkdir -p $HOME/code
 }
 
@@ -51,7 +50,7 @@ nvim() {
 }
 
 tmux() {
-  if ! command -v tmux &> /dev/null; then sudo apt install -y tmux; fi
+  sudo apt install -y tmux
   ln -sf $dfdir/configs/tmux.conf $HOME/.tmux.conf
 }
 
@@ -61,7 +60,7 @@ fzf() {
 }
 
 utils() {
-  sudo apt install -y sshfs jq gron curl shellcheck ncdu direnv gcc make perl python3-venv python3-pip
+  sudo apt install -y sshfs nnn jq gron curl shellcheck ncdu direnv gcc make perl python3-venv python3-pip
   sudo ln -sf $dfdir/shell/remove_comments.sh /usr/local/bin/remove_comments.sh
 }
 
