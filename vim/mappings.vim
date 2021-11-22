@@ -80,10 +80,10 @@ nn <a-g> :G<cr>
 nn <silent><a-q> :lua CloseView()<cr>
 
 " quickfix
-nm [q <plug>(qf_qf_previous)
-nm ]q <plug>(qf_qf_next)
-nm [l <plug>(qf_loc_previous)
-nm ]l <plug>(qf_loc_next)
+nnoremap [q <cmd>QFPrev<CR>
+nnoremap ]q <cmd>QFNext<CR>
+nnoremap [l <cmd>LLPrev<CR>
+nnoremap ]l <cmd>LLNext<CR>
 
 " leader mappings
 let mapleader = " "
@@ -117,7 +117,7 @@ vn <leader>se :VsnipYank vs_ <bar> VsnipOpenVsplit
 vn <leader>sy :VsnipYank
 nn <leader>zi <c-w>_<bar><c-w>\|
 nn <leader>zo <c-w>=
-nn <leader>ve :e $MYVIMRC<cr>
+nn <leader>ve :e $VC/init.vim<$MYVIMRCcr>
 nn <leader>vr :so $MYVIMRC<cr>
 nn <silent> <leader>e :NnnPicker %:p:h<cr>
 nn <leader>gg :G<cr>
@@ -152,8 +152,8 @@ no <silent><localleader>\ :chdir $VIM_ROOT<cr> \| :echo "back to root -> " . $VI
 nn <localleader>sr :%s///gc<left><left><left><left>
 nn <localleader>sq :vim// **/*<left><left><left><left><left><left>
 nn <localleader>sl :lv// %<left><left><left>
-nm <localleader>q <plug>(qf_qf_toggle_stay)<cr>
-nm <localleader>l <plug>(qf_loc_toggle_stay)<cr>
+nn <silent> <localleader>q <cmd>QFToggle!<CR>
+nn <silent> <localleader>l <cmd>LLToggle!<CR>
 no <localleader>dw :%s/\s\+$//e<cr>
 nn <localleader>dc :!remove_comments.sh %:p<cr>
 no <localleader>p o<esc>p

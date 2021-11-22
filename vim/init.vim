@@ -34,6 +34,7 @@ luafile $VC/plugc/gitsigns.lua
 luafile $VC/plugc/diffview.lua
 luafile $VC/plugc/twilight.lua
 luafile $VC/plugc/zen_mode.lua
+luafile $VC/plugc/qf_helper.lua
 luafile $VC/plugc/autopairs.lua
 luafile $VC/plugc/nvim-tree.lua
 luafile $VC/plugc/nnn.lua

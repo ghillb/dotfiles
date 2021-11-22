@@ -35,7 +35,7 @@ return require('packer').startup({
     use {'will133/vim-dirdiff'}
     use {'junegunn/gv.vim'}
     use {'tpope/vim-surround'}
-    use {'romainl/vim-qf'}
+    use {'stevearc/qf_helper.nvim'}
     use {'vimwiki/vimwiki', branch = 'dev'}
     use {'mbbill/undotree'}
     use {'kassio/neoterm'}
