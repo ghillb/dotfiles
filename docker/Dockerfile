@@ -12,4 +12,4 @@ WORKDIR /home/dv
 RUN git -C ./ clone https://github.com/ghillb/dotfiles.git .files
 RUN noninteractive=true ./.files/shell/deploy.sh
 RUN curl -fsSL https://get.docker.com | sudo sh
-RUN sudo usermod -aG docker $USER
+RUN sudo usermod -aG docker $USER && newgrp docker

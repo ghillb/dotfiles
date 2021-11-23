@@ -29,6 +29,7 @@ execute() {
   if [[ ${deploy["df"]} == "y" ]]; then df; fi
   if [[ ${deploy["utils"]} == "y" ]]; then utils; fi
   if [[ ${deploy["desktop"]} == "y" ]]; then desktop; fi
+  put_settings
 }
 
 df() {
@@ -60,8 +61,7 @@ fzf() {
 }
 
 utils() {
-  sudo apt install -y sshfs nnn jq gron curl shellcheck ncdu direnv gcc make perl python3-venv python3-pip
-  sudo ln -sf $dfdir/shell/remove_comments.sh /usr/local/bin/remove_comments.sh
+  sudo apt install -y ripgrep sshfs nnn jq gron curl shellcheck ncdu direnv gcc make perl python3-venv python3-pip
 }
 
 desktop() {
@@ -81,6 +81,11 @@ desktop() {
   sudo ln -sf $dfdir/assets/nvim-terminal.desktop /usr/share/applications/nvim-terminal.desktop
   sudo ln -sf $dfdir/assets/nnn-terminal.desktop /usr/share/applications/nnn-terminal.desktop
   echo "eval \$(ssh-agent); setxkbmap -layout ansi_hybrid -variant 5layer; exec spectrwm" >> $HOME/.xprofile
+}
+
+put_settings() {
+  git config --global pull.ff only
+  git config --global credential.helper 'cache --timeout=43200'
 }
 
 execute

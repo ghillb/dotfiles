@@ -8,6 +8,7 @@ services:
     network_mode: host
     volumes:
       - home:/home/dv
+      - $HOME/code:/home/dv/code
       - /:/home/host
       - /var/run/docker.sock:/var/run/docker.sock
     extra_hosts:

@@ -40,12 +40,13 @@ local config = {
     mappings = {
       i = {
         ["<c-s>"] = actions.file_split,
-        ["<esc>"] = actions.close,
+        ["<c-h>"] = actions.which_key,
         ["<c-w>"] = actions.send_selected_to_qflist,
         ["<c-q>"] = actions.send_to_qflist,
       },
       n = {
         ["<c-s>"] = actions.file_split,
+        ["<c-h>"] = actions.which_key,
         ["<c-w>"] = actions.send_selected_to_qflist,
         ["<c-q>"] = actions.send_to_qflist,
       }

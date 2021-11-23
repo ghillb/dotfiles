@@ -156,7 +156,6 @@ nn <localleader>sl :lv// %<left><left><left>
 nn <silent> <localleader>q <cmd>QFToggle!<CR>
 nn <silent> <localleader>l <cmd>LLToggle!<CR>
 no <localleader>dw :%s/\s\+$//e<cr>
-nn <localleader>dc :!remove_comments.sh %:p<cr>
 no <localleader>p o<esc>p
 no <localleader>P O<esc>p
 nn <localleader>o o<esc>
