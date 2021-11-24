@@ -118,7 +118,7 @@ vn <leader>se :VsnipYank vs_ <bar> VsnipOpenVsplit
 vn <leader>sy :VsnipYank
 nn <leader>zi <c-w>_<bar><c-w>\|
 nn <leader>zo <c-w>=
-nn <leader>ve :e $VC/init.vim<$MYVIMRCcr>
+nn <leader>ve :e $VC/init.vim<cr>
 nn <leader>vr :so $MYVIMRC<cr>
 nn <silent> <leader>e :NnnPicker %:p:h<cr>
 nn <leader>gg :G<cr>

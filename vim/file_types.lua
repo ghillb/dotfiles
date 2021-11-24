@@ -6,8 +6,9 @@ require('filetype').setup({
     literal = {
     },
     complex = {
-      [".*gitlab.*yml"] = "gitlab-ci",
-      [".*pb.*yml"] = "ansible",
+      [".*.gitlab.*.yml"] = "gitlab-ci",
+      [".*.pb.*.yml"] = "ansible",
+      [".*.tk.*.yml"] = "ansible",
     },
 
     function_extensions = {

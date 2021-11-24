@@ -37,6 +37,7 @@ return require('packer').startup({
     use {'tpope/vim-surround'}
     use {'stevearc/qf_helper.nvim'}
     use {'vimwiki/vimwiki', branch = 'dev'}
+    use {'nvim-neorg/neorg', requires = {'nvim-lua/plenary.nvim'} }
     use {'mbbill/undotree'}
     use {'kassio/neoterm'}
     use {'metakirby5/codi.vim'}
@@ -110,6 +111,7 @@ return require('packer').startup({
         require('Comment').setup()
         local ft = require('Comment.ft')
         ft.set('gitlab-ci', {'#%s', '#%s'})
+        ft.set('ansible', {'#%s', '#%s'})
       end
     }
 
