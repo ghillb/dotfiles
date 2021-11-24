@@ -84,8 +84,8 @@ desktop() {
 }
 
 put_settings() {
-  git config --global pull.ff only
-  git config --global credential.helper 'cache --timeout=43200'
+  sudo git config --system pull.ff only
+  sudo git config --system credential.helper 'cache --timeout=43200'
 }
 
 execute
