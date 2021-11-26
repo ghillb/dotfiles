@@ -102,7 +102,7 @@ nn <silent><leader>tw :Twilight<cr>
 nn <leader>tc :Codi!!<cr>
 nn <leader>td :diffthis<cr>
 nn <leader>ts :setlocal spell!<cr>
-nn <leader>ty :Startify<cr>
+nn <leader>ty :Alpha<cr>
 nn <leader>ti :IndentBlanklineToggle<cr>
 nn <leader>tu :UndotreeToggle<cr>
 nn <leader>tp :set paste!<cr>
@@ -188,6 +188,7 @@ nn <esc><esc> <cmd>Telescope project display_type=full<cr>
 nn <leader>fg <cmd>Telescope git_status<cr>
 nn <leader>fk <cmd>Telescope keymaps<cr>
 nn <leader>fc <cmd>Telescope commands<cr>
+nn <leader>fm <cmd>Telescope man_pages<cr>
 nn <leader>fh <cmd>Telescope help_tags<cr>
 nn <leader>fq <cmd>Telescope quickfix<cr>
 nn <leader>fl <cmd>Telescope localist<cr>

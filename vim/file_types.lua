@@ -27,6 +27,7 @@ vim.cmd 'au TermEnter,TermOpen * lua ApplyFTSettingsNeoterm()'
 vim.cmd 'au FileType git normal zR'
 vim.cmd 'au FileType neoterm map <buffer> <tab> <nop>'
 vim.cmd 'au FileType yaml,gitlab-ci,ansible setlocal indentkeys-=<:>'
+vim.cmd 'au FileType alpha lua ApplyFTSettingsAlpha()'
 
 function DisableTelescopeMappings()
   vim.api.nvim_buf_set_keymap(0, '', '<c-p>', '<nop>', { noremap = false, silent = true })
@@ -63,4 +64,10 @@ function ApplyFTSettingsNeoterm()
   vim.wo.spell = false
   vim.wo.number = false
   vim.wo.relativenumber = false
+end
+
+function ApplyFTSettingsAlpha()
+  vim.wo.fcs = 'eob: '
+  vim.opt.showtabline = 0
+  vim.cmd("autocmd BufUnload <buffer> set showtabline=2")
 end

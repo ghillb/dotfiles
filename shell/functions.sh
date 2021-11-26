@@ -39,7 +39,7 @@ launch_nvim() {
 }
 
 diary() {
-  eval "nvim -c 'let g:startify_disable_at_vimenter = 1' +VimwikiMakeDiaryNote +'cd %:h'"
+  eval "nvim +VimwikiMakeDiaryNote +'cd %:h'"
 }
 
 function_exists() {

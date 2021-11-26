@@ -30,12 +30,12 @@ return require('packer').startup({
 
     use {'morhetz/gruvbox'}
     use {'habamax/vim-gruvbit'}
-    use {'mhinz/vim-startify'}
     use {'tpope/vim-fugitive'}
     use {'will133/vim-dirdiff'}
     use {'junegunn/gv.vim'}
     use {'tpope/vim-surround'}
     use {'stevearc/qf_helper.nvim'}
+    use {'goolord/alpha-nvim'}
     use {'vimwiki/vimwiki', branch = 'dev'}
     use {'nvim-neorg/neorg', requires = {'nvim-lua/plenary.nvim'} }
     use {'mbbill/undotree'}
@@ -110,8 +110,7 @@ return require('packer').startup({
       config = function()
         require('Comment').setup()
         local ft = require('Comment.ft')
-        ft.set('gitlab-ci', {'#%s', '#%s'})
-        ft.set('ansible', {'#%s', '#%s'})
+        ft.set('gitlab-ci', {'#%s', '#%s'}).set('ansible', {'#%s', '#%s'})
       end
     }
 

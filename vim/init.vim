@@ -10,7 +10,6 @@ luafile $VC/file_types.lua
 
 " plugin configs
 source $VC/plugc/vimwiki.vim
-source $VC/plugc/startify.vim
 source $VC/plugc/codi.vim
 source $VC/plugc/vsnip.vim
 source $VC/plugc/text-objects.vim
@@ -27,6 +26,7 @@ luafile $VC/plugc/todo_comments.lua
 luafile $VC/plugc/lightspeed.lua
 luafile $VC/plugc/telescope.lua
 luafile $VC/plugc/neoterm.lua
+luafile $VC/plugc/alpha.lua
 luafile $VC/plugc/bufferline.lua
 luafile $VC/plugc/lualine.lua
 luafile $VC/plugc/indent_line.lua
