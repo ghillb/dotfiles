@@ -93,7 +93,7 @@ nn <leader>bn :bnext<cr>
 nn <leader>bp :bprevious<cr>
 nn <leader>bc :enew<cr>
 nn <leader>bd :bd<cr>
-nn <leader>bl :buffers<cr>
+nn <leader>bb :buffers<cr>
 nn <leader>bo :w<bar>%bd<bar>e#<bar>bd#<cr>
 nn <leader>to :tabo<cr>
 nn <silent><leader>tg :lua ToggleGutter()<cr>
@@ -103,7 +103,7 @@ nn <leader>tc :Codi!!<cr>
 nn <leader>td :diffthis<cr>
 nn <leader>ts :setlocal spell!<cr>
 nn <leader>ty :Alpha<cr>
-nn <leader>ti :IndentBlanklineToggle<cr>
+nn <leader>ta :AerialToggle<cr>
 nn <leader>tu :UndotreeToggle<cr>
 nn <leader>tp :set paste!<cr>
 no <leader>tm :Glow<cr><c-w>\| <c-w>_
@@ -118,8 +118,6 @@ vn <leader>se :VsnipYank vs_ <bar> VsnipOpenVsplit
 vn <leader>sy :VsnipYank
 nn <leader>zi <c-w>_<bar><c-w>\|
 nn <leader>zo <c-w>=
-nn <leader>ve :e $VC/init.vim<cr>
-nn <leader>vr :so $MYVIMRC<cr>
 nn <silent> <leader>e :NnnPicker %:p:h<cr>
 nn <leader>gg :G<cr>
 nn <leader>gr :G restore --source %
@@ -143,6 +141,11 @@ no <leader>itt "=strftime("%H:%M:%S")<cr>P
 no <leader>itm "=strftime("%Y-%m-%d \/ %H:%M:%S")<cr>P
 no <leader>cpd yap<S-}>p
 no <leader>cpu yap<S-{>p
+no <leader>p o<esc>p
+no <leader>P O<esc>p
+nn <leader>o o<esc>
+nn <leader>O O<esc>
+nn <leader>v ggVG
 
 " localleader mappings
 let localleader = "\\"
@@ -156,11 +159,8 @@ nn <localleader>sl :lv// %<left><left><left>
 nn <silent> <localleader>q <cmd>QFToggle!<CR>
 nn <silent> <localleader>l <cmd>LLToggle!<CR>
 no <localleader>dw :%s/\s\+$//e<cr>
-no <localleader>p o<esc>p
-no <localleader>P O<esc>p
-nn <localleader>o o<esc>
-nn <localleader>O O<esc>
-nn <localleader>v ggVG
+nn <localleader>ve :e $VC/init.vim<cr>
+nn <localleader>vr :so $MYVIMRC<cr>
 
 " nvim lsp
 nn <silent> gd <cmd>lua vim.lsp.buf.definition()<cr>

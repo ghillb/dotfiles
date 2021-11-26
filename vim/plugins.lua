@@ -12,14 +12,14 @@ vim.cmd([[autocmd BufWritePost plugins.lua source <afile> | PackerCompile]])
 
 vim.api.nvim_set_keymap(
     'n',
-    '<leader>pu',
+    '<localleader>pu',
     ":source $MYVIMRC<cr> :PackerSync<cr>",
     {noremap = true, silent = false}
 )
 
 vim.api.nvim_set_keymap(
     'n',
-    '<leader>ps',
+    '<localleader>ps',
     ":source $MYVIMRC<cr> :PackerStatus<cr>",
     {noremap = true, silent = false}
 )
@@ -43,6 +43,7 @@ return require('packer').startup({
     use {'metakirby5/codi.vim'}
     use {'ggandor/lightspeed.nvim', requires = {'tpope/vim-repeat'} }
     use {'hrsh7th/vim-vsnip'}
+    use {'rafamadriz/friendly-snippets'}
     use {'Jorengarenar/vim-MvVis'}
     use {'skywind3000/asynctasks.vim', requires = {'skywind3000/asyncrun.vim'} }
     use {'GustavoKatel/telescope-asynctasks.nvim'}
@@ -69,6 +70,7 @@ return require('packer').startup({
     }
     use {'onsails/lspkind-nvim'}
     use {'ray-x/lsp_signature.nvim'}
+    use {'stevearc/aerial.nvim'}
     use {'mhartington/formatter.nvim'}
     use {'nathom/filetype.nvim'}
     use {'windwp/nvim-autopairs'}
