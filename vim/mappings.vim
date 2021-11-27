@@ -116,6 +116,9 @@ nn <leader>ttt <cmd>TodoTrouble<cr>
 nn <leader>se :VsnipOpen<cr>
 vn <leader>se :VsnipYank vs_ <bar> VsnipOpenVsplit
 vn <leader>sy :VsnipYank
+nn <leader>ss <cmd>lua require("persistence").load()<cr>
+nn <leader>sl <cmd>lua require("persistence").load({ last = true })<cr>
+nn <leader>sq <cmd>lua require("persistence").stop()<cr>
 nn <leader>zi <c-w>_<bar><c-w>\|
 nn <leader>zo <c-w>=
 nn <silent> <leader>e :NnnPicker %:p:h<cr>

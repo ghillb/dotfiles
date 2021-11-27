@@ -95,6 +95,14 @@ return require('packer').startup({
         }
       end
     }
+    use({
+      "folke/persistence.nvim",
+      event = "BufReadPre",
+      module = "persistence",
+      config = function()
+        require("persistence").setup()
+      end,
+    })
     use {'folke/twilight.nvim'}
     use {'folke/zen-mode.nvim'}
     use {'norcalli/nvim-colorizer.lua'}
