@@ -61,7 +61,7 @@ fzf() {
 }
 
 utils() {
-  sudo apt install -y ripgrep sshfs nnn jq gron curl shellcheck ncdu direnv gcc make perl python3-venv python3-pip
+  sudo apt install -y ripgrep sshfs nnn jq gron curl shellcheck ncdu direnv gcc make perl python3-venv python3-pip sqlite3 libsqlite3-dev
 }
 
 desktop() {

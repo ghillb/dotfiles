@@ -3,7 +3,6 @@ if not ok then
   return
 end
 
-vim.g.nvim_tree_gitignore = 1
 vim.g.nvim_tree_auto_ignore_ft = { 'alpha', 'dashboard', 'copy-mode'}
 vim.g.nvim_tree_quit_on_open = 0
 vim.g.nvim_tree_indent_markers = 1
@@ -93,8 +92,8 @@ require'nvim-tree'.setup {
     enable = true
   },
   update_focused_file = {
-    enable      = false,
-    update_cwd  = false,
+    enable      = true,
+    update_cwd  = true,
     ignore_list = {}
   },
   system_open = {
@@ -116,6 +115,9 @@ require'nvim-tree'.setup {
   filters = {
     dotfiles = true,
     custom = {'.git', 'node_modules', '.cache'}
+  },
+  git = {
+    ignore = true
   }
 }
 
