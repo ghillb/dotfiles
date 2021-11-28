@@ -38,7 +38,7 @@ function DisableTelescopeMappings()
 end
 
 function ApplyFTSettingsMarkdown()
-  vim.opt.spell = true
+  vim.cmd('setlocal spell')
   vim.bo.formatoptions = 'jroql'
   vim.b.surround_99 = "```\n\r\n```"  --c
   vim.b.surround_105 = "*\r*"         --i
@@ -69,5 +69,5 @@ end
 function ApplyFTSettingsAlpha()
   vim.wo.fcs = 'eob: '
   vim.opt.showtabline = 0
-  vim.cmd("autocmd BufUnload <buffer> set showtabline=2")
+  vim.cmd("autocmd BufUnload <buffer> set showtabline=2 | cd %:p:h | pwd")
 end

@@ -60,6 +60,7 @@ return require('packer').startup({
     }
     use {'nvim-telescope/telescope-project.nvim'}
     use {'nvim-telescope/telescope-frecency.nvim', requires = {"tami5/sqlite.lua"}}
+    use {'nvim-telescope/telescope-cheat.nvim', requires = {"tami5/sqlite.lua"}}
     use {'hrsh7th/nvim-cmp',
       requires = {
         {'hrsh7th/cmp-buffer'},

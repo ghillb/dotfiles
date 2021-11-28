@@ -192,6 +192,7 @@ nn <leader>ff <cmd>Telescope frecency<cr>
 nn <leader>fg <cmd>Telescope git_status<cr>
 nn <leader>fk <cmd>Telescope keymaps<cr>
 nn <leader>fc <cmd>Telescope commands<cr>
+nn <leader>fz <cmd>Telescope cheat fd<cr>
 nn <leader>fm <cmd>Telescope man_pages<cr>
 nn <leader>fh <cmd>Telescope help_tags<cr>
 nn <leader>fq <cmd>Telescope quickfix<cr>

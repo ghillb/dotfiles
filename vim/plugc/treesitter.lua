@@ -6,7 +6,7 @@ end
 local config = {
   highlight = {
     enable = true,
-    disable = {},
+    disable = {'vim'},
   },
   indent = {
     enable = true,
