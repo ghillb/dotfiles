@@ -11,11 +11,11 @@ sudo apt-get update && sudo apt-get upgrade -y;
 sudo apt-get install -y build-essential git curl wget inetutils-ping
 
 if $noninteractive == true ;then
+  deploy["utils"]="y"
   deploy["nvim"]="y"
   deploy["tmux"]="y"
   deploy["fzf"]="y"
   deploy["df"]="y"
-  deploy["utils"]="y"
   deploy["desktop"]="n"
 else
   for c in "${configs[@]}"; do echo "add [$c] config? (y / → n)"; read -s ans; deploy[$c]=$ans; done
@@ -23,11 +23,11 @@ else
 fi
 
 execute() {
+  if [[ ${deploy["utils"]} == "y" ]]; then utils; fi
   if [[ ${deploy["nvim"]} == "y" ]]; then nvim; fi
   if [[ ${deploy["tmux"]} == "y" ]]; then tmux; fi
   if [[ ${deploy["fzf"]} == "y" ]]; then fzf; fi
   if [[ ${deploy["df"]} == "y" ]]; then df; fi
-  if [[ ${deploy["utils"]} == "y" ]]; then utils; fi
   if [[ ${deploy["desktop"]} == "y" ]]; then desktop; fi
   put_settings
 }
