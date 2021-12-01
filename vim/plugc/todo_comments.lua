@@ -29,10 +29,10 @@ local config = {
     exclude = {},
   },
   colors = {
-    error = { "LspDiagnosticsDefaultError", "ErrorMsg", "#DC2626" },
-    warning = { "LspDiagnosticsDefaultWarning", "WarningMsg", "#FBBF24" },
-    info = { "LspDiagnosticsDefaultInformation", "#2563EB" },
-    hint = { "LspDiagnosticsDefaultHint", "#10B981" },
+    error = { "DiagnosticError", "ErrorMsg", "#DC2626" },
+    warning = { "DiagnosticWarning", "WarningMsg", "#FBBF24" },
+    info = { "DiagnosticInformation", "#2563EB" },
+    hint = { "DiagnosticHint", "#10B981" },
     default = { "Identifier", "#7C3AED" },
   },
   search = {

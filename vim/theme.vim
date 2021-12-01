@@ -11,7 +11,7 @@ au colorscheme * hi SpecialKey guibg=NONE ctermbg=NONE
 au colorscheme * hi StatusLine guifg=#3c3836
 au colorscheme * hi EndOfBuffer guibg=NONE ctermbg=NONE guifg=#504945
 au colorscheme * hi WarningMsg guibg=NONE ctermbg=NONE guifg=#fb4934
-au colorscheme * hi LspDiagnosticsDefaultError guifg=#fb4934
+au colorscheme * hi DiagnosticError guifg=#fb4934
 au colorscheme * hi GitSignsAdd guibg=NONE ctermbg=NONE guifg=#989719 "#b16286
 au colorscheme * hi GitSignsChange guibg=NONE ctermbg=NONE guifg=#448488
 au colorscheme * hi GitSignsDelete guibg=NONE ctermbg=NONE guifg=#fb4934
