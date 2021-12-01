@@ -19,7 +19,7 @@ luafile $VC/plugc/treesitter.lua
 luafile $VC/plugc/nvim-cmp.lua
 luafile $VC/plugc/tabout.lua
 luafile $VC/plugc/trouble.lua
-luafile $VC/plugc/formatter.lua
+luafile $VC/plugc/null_ls.lua
 luafile $VC/plugc/lsp_signature.lua
 luafile $VC/plugc/lsp_installer.lua
 luafile $VC/plugc/todo_comments.lua

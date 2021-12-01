@@ -176,8 +176,7 @@ nn <silent> ]g :lua vim.lsp.diagnostic.goto_next({ popup_opts = { border = "sing
 nn <silent> [g :lua vim.lsp.diagnostic.goto_prev({ popup_opts = { border = "single" }})<cr>
 nn <silent> <a-space> :lua vim.lsp.diagnostic.show_line_diagnostics({ border = "single" })<cr>
 nn <silent> <a-\> <cmd>lua vim.lsp.buf.code_action()<cr>
-nn <silent> gF <cmd>Format<cr>
-" nn <silent> gF <cmd>lua vim.lsp.buf.formatting()<cr>
+nn <silent> gF <cmd>lua vim.lsp.buf.formatting()<cr>
 nn <silent> gR <cmd>TroubleToggle lsp_references<cr>
 
 "nvim telescope

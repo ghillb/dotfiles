@@ -73,7 +73,6 @@ return require('packer').startup({
     use {'onsails/lspkind-nvim'}
     use {'ray-x/lsp_signature.nvim'}
     use {'stevearc/aerial.nvim'}
-    use {'mhartington/formatter.nvim'}
     use {'nathom/filetype.nvim'}
     use {'windwp/nvim-autopairs'}
     use {'lewis6991/gitsigns.nvim'}
@@ -125,7 +124,7 @@ return require('packer').startup({
         ft.set('gitlab-ci', {'#%s', '#%s'}).set('ansible', {'#%s', '#%s'})
       end
     }
-
+    use({ "jose-elias-alvarez/null-ls.nvim", requires = {"nvim-lua/plenary.nvim", "neovim/nvim-lspconfig"} })
   end,
   config = {
     display = {
