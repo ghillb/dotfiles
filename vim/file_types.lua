@@ -69,5 +69,5 @@ end
 function ApplyFTSettingsAlpha()
   vim.wo.fcs = 'eob: '
   vim.opt.showtabline = 0
-  vim.cmd("autocmd BufUnload <buffer> set showtabline=2 | call timer_start(1, { tid -> execute('cd %:p:h')})")
+  vim.cmd("autocmd BufUnload <buffer> set showtabline=2 | call timer_start(1, { tid -> execute('lua SetRoot(\"git_worktree\")')})")
 end

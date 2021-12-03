@@ -26,3 +26,4 @@ local opts = {
 }
 
 null_ls.config(opts)
+require("lspconfig")["null-ls"].setup({})

@@ -23,7 +23,7 @@ ino jk <esc>
 xn <silent> p p:let @+=@0<cr>:let @"=@0<cr>
 xn <silent> P P:let @+=@0<cr>:let @"=@0<cr>
 vn / y/\V<c-r>=escape(@",'/\')<cr><cr>N
-nm cg* *N"ccgn
+no cg* *N"ccgn
 nn cn *``cgn
 nn cN *``cgN
 nn d[ :diffget //2<cr>
@@ -149,6 +149,7 @@ no <leader>P O<esc>p
 nn <leader>o o<esc>
 nn <leader>O O<esc>
 nn <leader>v ggVG
+no <leader>* *:%s//
 
 " localleader mappings
 let localleader = "\\"

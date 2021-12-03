@@ -119,7 +119,7 @@ return require('packer').startup({
     use {"ellisonleao/glow.nvim"}
     use {'numToStr/Comment.nvim',
       config = function()
-        require('Comment').setup()
+        require('Comment').setup({ignore = '^$'})
         local ft = require('Comment.ft')
         ft.set('gitlab-ci', {'#%s', '#%s'}).set('ansible', {'#%s', '#%s'})
       end
