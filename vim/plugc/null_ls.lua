@@ -11,7 +11,7 @@ local opts = {
 		null_ls.builtins.formatting.black,
 		null_ls.builtins.formatting.rustfmt,
 		null_ls.builtins.formatting.prettier.with({
-			filetypes = { null_ls.builtins.formatting.prettier.filetypes, "docker-compose" },
+			filetypes = table.merge(null_ls.builtins.formatting.prettier.filetypes, { "docker-compose" }),
 		}),
 	},
 
