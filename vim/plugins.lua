@@ -41,6 +41,7 @@ return require("packer").startup({
 		use({ "mbbill/undotree" })
 		use({ "kassio/neoterm" })
 		use({ "metakirby5/codi.vim" })
+		use({ "chaoren/vim-wordmotion" })
 		use({ "arthurxavierx/vim-caser" })
 		use({ "ggandor/lightspeed.nvim", requires = { "tpope/vim-repeat" } })
 		use({ "hrsh7th/vim-vsnip" })
