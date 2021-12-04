@@ -10,7 +10,7 @@ local config = {
   },
   indent = {
     enable = true,
-    disable = {},
+    disable = {'yaml'},
   },
   incremental_selection = {
     enable = true,
@@ -26,8 +26,9 @@ local config = {
 treesitter_configs.setup(config)
 
 local parser_configs = require 'nvim-treesitter.parsers'.get_parser_configs()
-parser_configs.yaml.used_by =  'gitlab-ci'
 parser_configs.yaml.used_by =  'ansible'
+parser_configs.yaml.used_by =  'gitlab-ci'
+parser_configs.yaml.used_by =  'docker-compose'
 
 parser_configs.norg = {
     install_info = {

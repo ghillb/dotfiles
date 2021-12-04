@@ -1,73 +1,70 @@
 vim.g.did_load_filetypes = 1
-require('filetype').setup({
-  overrides = {
-    extensions = {
-    },
-    literal = {
-    },
-    complex = {
-      [".*.gitlab.*.yml"] = "gitlab-ci",
-      [".*.pb.*.yml"] = "ansible",
-      [".*.tk.*.yml"] = "ansible",
-    },
+require("filetype").setup({
+	overrides = {
+		extensions = {
+			tf = "terraform",
+		},
+		literal = {},
+		complex = {
+			[".*.gitlab.*.yml"] = "gitlab-ci",
+			[".*.pb.*.yml"] = "ansible",
+			[".*.tk.*.yml"] = "ansible",
+			["docker.compose.yml"] = "docker-compose",
+		},
 
-    function_extensions = {
-    },
-    function_literal = {
-    },
-    function_complex = {
-    },
-  }
+		function_extensions = {},
+		function_literal = {},
+		function_complex = {},
+	},
 })
 
-vim.cmd 'au FileType markdown lua ApplyFTSettingsMarkdown()'
-vim.cmd 'au FileType NvimTree lua ApplyFTSettingsNvimTree()'
-vim.cmd 'au FileType qf lua ApplyFTSettingsQuickFix()'
-vim.cmd 'au TermEnter,TermOpen * lua ApplyFTSettingsNeoterm()'
-vim.cmd 'au FileType git normal zR'
-vim.cmd 'au FileType neoterm map <buffer> <tab> <nop>'
-vim.cmd 'au FileType yaml,gitlab-ci,ansible setlocal indentkeys-=<:>'
-vim.cmd 'au FileType alpha lua ApplyFTSettingsAlpha()'
+vim.cmd("au FileType markdown lua ApplyFTSettingsMarkdown()")
+vim.cmd("au FileType NvimTree lua ApplyFTSettingsNvimTree()")
+vim.cmd("au FileType qf lua ApplyFTSettingsQuickFix()")
+vim.cmd("au TermEnter,TermOpen * lua ApplyFTSettingsNeoterm()")
+vim.cmd("au FileType git normal zR")
+vim.cmd("au FileType neoterm map <buffer> <tab> <nop>")
+vim.cmd("au FileType alpha lua ApplyFTSettingsAlpha()")
 
 function DisableTelescopeMappings()
-  vim.api.nvim_buf_set_keymap(0, '', '<c-p>', '<nop>', { noremap = false, silent = true })
-  vim.api.nvim_buf_set_keymap(0, '', '<c-e>', '<nop>', { noremap = false, silent = true })
-  vim.api.nvim_buf_set_keymap(0, '', '<c-b>', '<nop>', { noremap = false, silent = true })
-  vim.api.nvim_buf_set_keymap(0, '', '<c-g>', '<nop>', { noremap = false, silent = true })
-  vim.api.nvim_buf_set_keymap(0, '', '<c-\\>', '<nop>', { noremap = false, silent = true })
+	vim.api.nvim_buf_set_keymap(0, "", "<c-p>", "<nop>", { noremap = false, silent = true })
+	vim.api.nvim_buf_set_keymap(0, "", "<c-e>", "<nop>", { noremap = false, silent = true })
+	vim.api.nvim_buf_set_keymap(0, "", "<c-b>", "<nop>", { noremap = false, silent = true })
+	vim.api.nvim_buf_set_keymap(0, "", "<c-g>", "<nop>", { noremap = false, silent = true })
+	vim.api.nvim_buf_set_keymap(0, "", "<c-\\>", "<nop>", { noremap = false, silent = true })
 end
 
 function ApplyFTSettingsMarkdown()
-  vim.cmd('setlocal spell')
-  vim.bo.formatoptions = 'jroql'
-  vim.b.surround_99 = "```\n\r\n```"  --c
-  vim.b.surround_105 = "*\r*"         --i
-  vim.b.surround_98 = "**\r**"        --b
+	vim.cmd("setlocal spell")
+	vim.bo.formatoptions = "jroql"
+	vim.b.surround_99 = "```\n\r\n```" --c
+	vim.b.surround_105 = "*\r*" --i
+	vim.b.surround_98 = "**\r**" --b
 end
 
 function ApplyFTSettingsQuickFix()
-  vim.api.nvim_buf_set_keymap(0, '', 'dd', ':.Reject<cr>', { noremap = true, silent = true })
-  vim.api.nvim_buf_set_keymap(0, '', '<localleader>r', ':cdo s///', { noremap = true, silent = false })
-  DisableTelescopeMappings()
+	vim.api.nvim_buf_set_keymap(0, "", "dd", ":.Reject<cr>", { noremap = true, silent = true })
+	vim.api.nvim_buf_set_keymap(0, "", "<localleader>r", ":cdo s///", { noremap = true, silent = false })
+	DisableTelescopeMappings()
 end
 
 function ApplyFTSettingsNvimTree()
-  vim.api.nvim_buf_set_keymap(0, '', '<a-esc>', '<c-w>l', { noremap = true, silent = true })
-  vim.api.nvim_buf_set_keymap(0, '', '<a-q>', ':NvimTreeClose<cr>', { noremap = true, silent = true })
-  DisableTelescopeMappings()
+	vim.api.nvim_buf_set_keymap(0, "", "<a-esc>", "<c-w>l", { noremap = true, silent = true })
+	vim.api.nvim_buf_set_keymap(0, "", "<a-q>", ":NvimTreeClose<cr>", { noremap = true, silent = true })
+	DisableTelescopeMappings()
 end
 
 function ApplyFTSettingsNeoterm()
-  require'lualine'.setup {sections = {lualine_b = {''}, lualine_x = {''}, lualine_y = {''}, lualine_z = {''}}}
-  vim.cmd "au TermLeave * source $VC/plugc/lualine.lua"
-  vim.opt.buflisted = false
-  vim.wo.spell = false
-  vim.wo.number = false
-  vim.wo.relativenumber = false
+	require("lualine").setup({ sections = { lualine_b = { "" }, lualine_x = { "" }, lualine_y = { "" }, lualine_z = { "" } } })
+	vim.cmd("au TermLeave * source $VC/plugc/lualine.lua")
+	vim.opt.buflisted = false
+	vim.wo.spell = false
+	vim.wo.number = false
+	vim.wo.relativenumber = false
 end
 
 function ApplyFTSettingsAlpha()
-  vim.wo.fcs = 'eob: '
-  vim.opt.showtabline = 0
-  vim.cmd("autocmd BufUnload <buffer> set showtabline=2 | call timer_start(1, { tid -> execute('lua SetRoot(\"git_worktree\")')})")
+	vim.wo.fcs = "eob: "
+	vim.opt.showtabline = 0
+	vim.cmd("autocmd BufUnload <buffer> set showtabline=2 | call timer_start(1, { tid -> execute('lua SetRoot(\"git_worktree\")')})")
 end
