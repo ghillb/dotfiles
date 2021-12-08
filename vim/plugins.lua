@@ -78,6 +78,7 @@ return require("packer").startup({
 		})
 		use({ "onsails/lspkind-nvim" })
 		use({ "ray-x/lsp_signature.nvim" })
+    use({ "kosayoda/nvim-lightbulb" })
 		use({ "stevearc/aerial.nvim" })
 		use({ "nathom/filetype.nvim" })
 		use({ "windwp/nvim-autopairs" })

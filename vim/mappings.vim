@@ -36,6 +36,7 @@ no <c-k> <c-y>
 no <c-y> <c-b>
 nn <c-l> :let @/=""<cr>:NvimTreeRefresh<cr><c-l>
 map <c-w>O :%bd<cr><c-o>:bd#<cr>
+map <a-o> <c-w>o<cr>
 no <c-s> :w<cr>
 ino <c-s> <c-o>:w<cr>
 nn <c-q> :x<cr>
@@ -176,7 +177,7 @@ nn <silent> gs <cmd>lua vim.lsp.buf.signature_help()<cr>
 nn <silent> ]g :lua vim.diagnostic.goto_next()<cr>
 nn <silent> [g :lua vim.diagnostic.goto_prev()<cr>
 nn <silent> <a-space> :lua vim.diagnostic.open_float()<cr>
-nn <silent> <a-\> <cmd>lua vim.lsp.buf.code_action()<cr>
+nn <silent> <a-cr> <cmd>Telescope lsp_code_actions<cr>
 nn <silent> gF <cmd>lua vim.lsp.buf.formatting()<cr>
 nn <silent> gR <cmd>TroubleToggle lsp_references<cr>
 
