@@ -4,7 +4,7 @@ if not ok then
 end
 
 local config = {
-  use_lsp_diagnostic_signs = false,
+  use_diagnostic_signs = true,
   icons=false
 }
 

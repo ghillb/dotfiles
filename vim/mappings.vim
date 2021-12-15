@@ -109,8 +109,8 @@ nn <leader>tu :UndotreeToggle<cr>
 nn <leader>tp :set paste!<cr>
 no <leader>tm :Glow<cr><c-w>\| <c-w>_
 nn <leader>ttx <cmd>TroubleToggle<cr>
-nn <leader>ttw <cmd>TroubleToggle lsp_workspace_diagnostics<cr>
-nn <leader>ttd <cmd>TroubleToggle lsp_document_diagnostics<cr>
+nn <leader>ttw <cmd>TroubleToggle workspace_diagnostics<cr>
+nn <leader>ttd <cmd>TroubleToggle document_diagnostics<cr>
 nn <leader>ttq <cmd>TroubleToggle quickfix<cr>
 nn <leader>ttl <cmd>TroubleToggle loclist<cr>
 nn <leader>ttt <cmd>TodoTrouble<cr>
@@ -190,6 +190,7 @@ nn <c-\> <cmd>Telescope current_buffer_fuzzy_find<cr>
 nn <c-g> :lua SwitchGitBranch()<cr>
 nn <esc><esc> <cmd>Telescope project display_type=full<cr>
 nn <leader>ff <cmd>Telescope frecency<cr>
+nn <leader>fy <cmd>Telescope neoclip default<cr>
 nn <leader>fg <cmd>Telescope git_status<cr>
 nn <leader>fk <cmd>Telescope keymaps<cr>
 nn <leader>fc <cmd>Telescope commands<cr>

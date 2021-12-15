@@ -14,12 +14,12 @@ vim.lsp.handlers["textDocument/signtureHelp"] = vim.lsp.with(vim.lsp.handlers.si
 	border = "single",
 })
 
-DiagnosticSigns = { Error = " ", Warn = " ", Hint = " ", Info = "" }
+DiagnosticSigns = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 
 for type, icon in pairs(DiagnosticSigns) do
 	local hl = "DiagnosticSign" .. type
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
-vim.fn.sign_define('LightBulbSign', { text = "", texthl = "", linehl="", numhl="" }) -- ◆
+vim.fn.sign_define('LightBulbSign', { text = "", texthl = "", linehl="", numhl="" })
 vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]

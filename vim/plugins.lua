@@ -56,7 +56,7 @@ return require("packer").startup({
 		use({ "williamboman/nvim-lsp-installer" })
 		use({ "jose-elias-alvarez/null-ls.nvim", requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" } })
 		use({ "nvim-treesitter/nvim-treesitter", branch = "master" })
-    use({ "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} })
+		use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
 		use({
 			"nvim-telescope/telescope.nvim",
 			requires = {
@@ -79,7 +79,7 @@ return require("packer").startup({
 		})
 		use({ "onsails/lspkind-nvim" })
 		use({ "ray-x/lsp_signature.nvim" })
-    use({ "kosayoda/nvim-lightbulb" })
+		use({ "kosayoda/nvim-lightbulb" })
 		use({ "stevearc/aerial.nvim" })
 		use({ "nathom/filetype.nvim" })
 		use({ "windwp/nvim-autopairs" })
@@ -120,6 +120,12 @@ return require("packer").startup({
 		use({ "mcchrish/nnn.vim" })
 		use({ "abecodes/tabout.nvim", wants = { "nvim-treesitter" } })
 		use({ "ellisonleao/glow.nvim" })
+		use({
+			"AckslD/nvim-neoclip.lua",
+			config = function()
+				require("neoclip").setup({ default_register = { '"', "+", "*" } })
+			end,
+		})
 		use({
 			"numToStr/Comment.nvim",
 			config = function()
