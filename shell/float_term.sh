@@ -7,6 +7,7 @@ if [ $# -gt 0 ]; then kitty_args="$@"; else "bash"; fi
 
 if [ -z $kitty_float ]; then
   kitty --class $identifier \
+    --listen-on unix:/tmp/$identifier \
     -o background_opacity=0.95 \
     -o initial_window_width=1500 \
     -o initial_window_height=800 \
