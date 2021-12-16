@@ -14,7 +14,6 @@ source $VC/plugc/codi.vim
 source $VC/plugc/vsnip.vim
 source $VC/plugc/text-objects.vim
 
-luafile $VC/lspconfig.lua
 luafile $VC/plugc/treesitter.lua
 luafile $VC/plugc/nvim-cmp.lua
 luafile $VC/plugc/tabout.lua
