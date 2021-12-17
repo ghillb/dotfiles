@@ -1,7 +1,7 @@
 local opt = vim.opt
 
-vim.cmd 'filetype plugin indent on'
-vim.cmd 'syntax enable'
+vim.cmd("filetype plugin indent on")
+vim.cmd("syntax enable")
 
 vim.env.MACCHINA_DISABLED              = 1
 
@@ -61,37 +61,37 @@ opt.shortmess                          = 'filnxtToOFIc'
 opt.fcs                                = 'eob:·'
 
 -- netrw settings
-vim.g.netrw_banner = 0
-vim.g.netrw_liststyle = 0
-vim.g.netrw_browse_split = 0
-vim.g.netrw_winsize = 25
-vim.g.netrw_altv = 1
-vim.g.netrw_fastbrowse = 0
-
+vim.g.netrw_banner                     = 0
+vim.g.netrw_liststyle                  = 0
+vim.g.netrw_browse_split               = 0
+vim.g.netrw_winsize                    = 25
+vim.g.netrw_altv                       = 1
+vim.g.netrw_fastbrowse                 = 0
 
 -- lsp and diagnostics settings
 vim.diagnostic.config({
-	virtual_text = false,
-	signs = true,
+  virtual_text = false,
+  signs = true,
   severity_sort = true,
-	update_in_insert = false,
-	float = { show_header = false, border = "single", source = "always" },
+  update_in_insert = false,
+  underline = true,
+  float = { show_header = false, border = "single", source = "always", focusable = false, header = "", prefix = "" },
 })
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-	border = "single",
+  border = "single",
 })
 
 vim.lsp.handlers["textDocument/signtureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-	border = "single",
+  border = "single",
 })
 
-DiagnosticSigns = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+DiagnosticSigns = { Error = " ", Warn = " ", Hint = " ", Info = " " } --
 
 for type, icon in pairs(DiagnosticSigns) do
-	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
-vim.fn.sign_define('LightBulbSign', { text = "", texthl = "", linehl="", numhl="" })
-vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
+vim.fn.sign_define("LightBulbSign", { text = "", texthl = "", linehl = "", numhl = "" })
+vim.cmd([[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]])
