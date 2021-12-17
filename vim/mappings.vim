@@ -56,6 +56,8 @@ cm GG !git -C %:p:h commit -am "--wip--" && git -C %:p:h -c push.default=current
 " terminal mappings
 nn <a-s-r> :AsyncTask file-run<cr>
 ino <a-s-r> <esc>:AsyncTask file-run<cr>
+nn <a-s-b> :AsyncTask file-build<cr>
+ino <a-s-b> <esc>:AsyncTask file-build<cr>
 nn <a-r> :TREPLSendLine<cr>j
 vn <a-r> :TREPLSendSelection<cr>
 nn <silent><a-esc> :Ttoggle<cr><c-w>wa
