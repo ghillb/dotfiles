@@ -17,7 +17,10 @@ no V vg_
 nn Q @q
 vn Q :norm @q<cr>
 vm s <plug>VSurround
-no <silent><c-_> :lua require('Comment').toggle()<cr>j
+vno < <gv
+vno > >gv
+nmap <c-_> gccj
+vmap <c-_> gc
 ino kj <esc>
 ino jk <esc>
 xn <silent> p p:let @+=@0<cr>:let @"=@0<cr>
