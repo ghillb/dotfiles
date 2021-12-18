@@ -169,7 +169,7 @@ nn <localleader>sl :lv// %<left><left><left>
 nn <silent> <localleader>q <cmd>QFToggle!<CR>
 nn <silent> <localleader>l <cmd>LLToggle!<CR>
 no <localleader>dw :%s/\s\+$//e<cr>
-nn <localleader>ve :e $VC/init.vim<cr>
+nn <localleader>ve :e $NVC/init.lua<cr>
 nn <localleader>vr :so $MYVIMRC<cr>
 
 " nvim lsp

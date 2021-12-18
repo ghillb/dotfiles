@@ -96,8 +96,8 @@ local config = {
   extensions = {
     project = {
       base_dirs = {
-        { "~/code" },
-        { "~/.files" },
+        { vim.env.CODE  },
+        { vim.env.DOTFILES },
       },
       hidden_files = true,
     },
