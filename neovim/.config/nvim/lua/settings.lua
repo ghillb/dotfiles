@@ -3,6 +3,7 @@ local opt = vim.opt
 vim.cmd("filetype plugin indent on")
 vim.cmd("syntax enable")
 
+vim.env.NVIM_CONFIG                    = vim.fn.stdpath('config')
 vim.env.MACCHINA_DISABLED              = 1
 
 opt.shell                              = 'dash'
@@ -52,7 +53,7 @@ opt.updatetime                         = 100
 opt.hidden                             = true
 opt.title                              = true
 opt.undofile                           = true
-opt.undodir                            = vim.env.NVC .. '/undodir'
+opt.undodir                            = vim.env.NVIM_CONFIG .. '/undodir'
 opt.wildmode                           = 'longest:full,full'
 opt.wildignore                         = '*.o,*~,*.pyc,*.pyo,__pycache__,*/venv/*'
 opt.completeopt                        ='menu,menuone,noselect,noinsert'

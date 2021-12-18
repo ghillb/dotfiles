@@ -56,7 +56,7 @@ end
 
 function ApplyFTSettingsNeoterm()
 	require("lualine").setup({ sections = { lualine_b = { "" }, lualine_x = { "" }, lualine_y = { "" }, lualine_z = { "" } } })
-	vim.cmd("au TermLeave * source $NVC/lua/plugc/lualine.lua")
+	vim.cmd("au TermLeave * source $NVIM_CONFIG/lua/plugc/lualine.lua")
 	vim.opt.buflisted = false
 	vim.wo.spell = false
 	vim.wo.number = false

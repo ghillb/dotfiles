@@ -1,6 +1,6 @@
 vim.cmd("au DirChanged * if filereadable(expand('%:p:h') . '/.exrc.vim') | source %:p:h/.exrc.vim | endif")
 vim.cmd("au BufEnter * lua PopulateInfo()")
-vim.cmd("au VimEnter * if filereadable(expand($NVC) . '/localrc.vim') | source $NVC/localrc.vim | endif | silent lua SetRoot('start_dir')")
+vim.cmd("au VimEnter * if filereadable(expand($NVIM_CONFIG) . '/localrc.vim') | source $NVIM_CONFIG/localrc.vim | endif | silent lua SetRoot('start_dir')")
 vim.cmd("au TextChanged,TextChangedI * if &readonly == 0 && filereadable(bufname('%')) | silent write | endif")
 vim.cmd("au TextYankPost * silent! lua vim.highlight.on_yank{higroup='IncSearch', timeout=500}")
 

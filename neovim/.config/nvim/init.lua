@@ -1,12 +1,10 @@
-vim.env.NVC = vim.env.HOME .. "/.config/nvim"
-
 require("settings")
 require("plugins")
 require("functions")
 require("theme")
 require("file_types")
 -- TODO: convert to lua
-vim.cmd("source $NVC/lua/mappings.vim")
+vim.cmd("source $NVIM_CONFIG/lua/mappings.vim")
 
 -- plugin configs
 require("plugc/treesitter")
