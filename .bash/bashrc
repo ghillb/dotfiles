@@ -34,9 +34,9 @@ export NNN_BMS=$NNN_BMS_LOCAL"h:~/;c:$CODE;d:~/dl/;n:~/.notes/;p:~/projects/;"
 export NNN_OPENER='dopen'
 export WORKSPACE=$HOME/.workspace #jdtls
 
-source $DOTFILES/shell/functions.sh
-source $DOTFILES/shell/aliases.sh
-source $DOTFILES/shell/completion.sh
+source $DOTFILES/.bash/functions.sh
+source $DOTFILES/.bash/aliases.sh
+source $DOTFILES/.bash/completion.sh
 include /usr/lib/git-core/git-sh-prompt; include /usr/lib/git/git-sh-prompt
 include $CODE/scripts/bash/utils.sh
 

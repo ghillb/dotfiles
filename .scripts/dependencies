@@ -1,0 +1,93 @@
+#!/usr/bin/env ansible-playbook
+
+---
+- name: Install packages
+  connection: local
+  hosts: localhost
+  become: true
+  become_method: sudo
+  become_user: root
+  gather_facts: false
+
+  tasks:
+
+    - name: Install pre-requisites via apt
+      apt:
+        pkg:
+          - stow
+          - git
+          - software-properties-common
+        update_cache: true
+        state: present
+      tags:
+        - pre-requisites
+
+    - name: Add neovim-ppa repository
+      ansible.builtin.apt_repository:
+        repo: ppa:neovim-ppa/unstable
+        state: present
+      tags:
+        - terminal-utilities
+
+    - name: Install terminal-utilities via apt
+      apt:
+        pkg:
+          - curl
+          - wget
+          - inetutils-ping
+          - neovim
+          - tmux
+          - docker.io
+          - ripgrep
+          - silversearcher-ag
+          - fzf
+          - sshfs
+          - nnn
+          - jq
+          - gron
+          - curl
+          - shellcheck
+          - ncdu
+          - direnv
+          - gcc
+          - make
+          - perl
+          - python3-venv
+          - python3-pip 
+          - python3-dev
+          - sqlite3 
+          - libsqlite3-dev
+        update_cache: true
+        state: present
+      tags:
+        - terminal-utilities
+
+    - name: Install desktop-utilities via apt
+      apt:
+        pkg:
+          - spectrwm
+          - fonts-firacode
+          - ttf-ancient-fonts
+          - picom
+          - feh
+          - xdotool
+          - wmctrl
+          - xsel
+          - rofi
+          - kitty
+          - nnn
+          - zathura
+          - scrot
+        update_cache: true
+        state: present
+      tags:
+        - desktop-utilities
+
+    - name: Install desktop-utilities via git
+      become: false
+      git:
+        repo: https://github.com/bardisty/gruvbox-rofi
+        dest: ~/.config/rofi/themes/gruvbox
+      tags:
+        - desktop-utilities
+

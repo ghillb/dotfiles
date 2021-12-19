@@ -6,9 +6,7 @@ end
 local opts = {
 
   sources = {
-    null_ls.builtins.formatting.stylua.with({
-      extra_args = { "--config-path", vim.fn.expand(vim.env.DOTFILES .. "/configs/stylua.toml") },
-    }),
+    null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.terraform_fmt,
     null_ls.builtins.formatting.black,
     null_ls.builtins.formatting.rustfmt,

@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -eu
+
+mkdir -p $HOME/code
+echo -e "source '$DOTFILES/.bash/bashrc'\n" >> $HOME/.bashrc
+
+$(which nvim) --headless -u $DOTFILES/neovim/.config/nvim/lua/plugins.lua \
+  -c 'set termguicolors' -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+$(which nvim) --headless +"TSInstallSync all" +"q"
+
+sudo git config --system pull.ff only
+sudo git config --system credential.helper 'cache --timeout=43200'
