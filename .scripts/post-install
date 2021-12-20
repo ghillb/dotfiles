@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 set -eu
 
-# integrate bash config
-mkdir -p $HOME/code
+# integrate fzf & bash config
+~/.fzf/install --all
 echo -e "source '$DOTFILES/.bash/bashrc'\n" >> $HOME/.bashrc
+
+# create code folder, otherwise nvim complains
+mkdir -p $HOME/code
 
 # install nvim plugins
 $(which nvim) --headless -u $DOTFILES/neovim/.config/nvim/lua/plugins.lua \

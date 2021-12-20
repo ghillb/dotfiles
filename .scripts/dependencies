@@ -40,7 +40,6 @@
           - docker.io
           - ripgrep
           - silversearcher-ag
-          - fzf
           - sshfs
           - nnn
           - jq
@@ -54,9 +53,9 @@
           - make
           - perl
           - python3-venv
-          - python3-pip 
+          - python3-pip
           - python3-dev
-          - sqlite3 
+          - sqlite3
           - libsqlite3-dev
         update_cache: true
         state: present
@@ -84,11 +83,18 @@
       tags:
         - desktop-utilities
 
-    - name: Install desktop-utilities via git
+    - name: Install utilities via git
       become: false
       git:
-        repo: https://github.com/bardisty/gruvbox-rofi
-        dest: ~/.config/rofi/themes/gruvbox
+        repo: "{{ item.repo }}"
+        dest: "{{ item.dest }}"
+        depth: 1
+      loop:
+        - repo: https://github.com/bardisty/gruvbox-rofi
+          dest: ~/.config/rofi/themes/gruvbox
+        - repo: https://github.com/junegunn/fzf.git
+          dest: ~/.fzf
       tags:
         - desktop-utilities
+        - terminal-utilities
 
