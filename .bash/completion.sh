@@ -1,10 +1,4 @@
-#!/usr/bin/env bash    
-
-if [[ ! -d ~/.bash_completion.d  ]]; then
-  mkdir ~/.bash_completion.d
-  curl https://raw.githubusercontent.com/ghillb/complete-alias/master/complete_alias \
-      > ~/.bash_completion.d/complete_alias
-fi
+#!/usr/bin/env bash
 
 source ~/.bash_completion.d/complete_alias
 
@@ -72,7 +66,6 @@ if command -v flux &>/dev/null; then
 fi
 
 if command -v ansible &>/dev/null; then
-  source ~/.bash_completion.d/ansible-completion.bash
   complete -F _complete_alias a
 fi
 

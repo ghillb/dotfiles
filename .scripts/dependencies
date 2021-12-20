@@ -47,6 +47,7 @@
           - gron
           - curl
           - shellcheck
+          - bash-completion
           - ncdu
           - direnv
           - gcc

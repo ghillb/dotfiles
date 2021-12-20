@@ -1,12 +1,21 @@
 #!/usr/bin/env bash
 set -eu
 
+# integrate bash config
 mkdir -p $HOME/code
 echo -e "source '$DOTFILES/.bash/bashrc'\n" >> $HOME/.bashrc
 
+# install nvim plugins
 $(which nvim) --headless -u $DOTFILES/neovim/.config/nvim/lua/plugins.lua \
   -c 'set termguicolors' -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 $(which nvim) --headless +"TSInstallSync all" +"q"
 
+# add completion
+mkdir ~/.bash_completion.d -p
+curl https://raw.githubusercontent.com/cykerway/complete-alias/master/complete_alias \
+  > ~/.bash_completion.d/complete_alias
+activate-global-python-argcomplete3 --dest ~/.bash_completion.d/
+
+# configure git
 sudo git config --system pull.ff only
 sudo git config --system credential.helper 'cache --timeout=43200'
