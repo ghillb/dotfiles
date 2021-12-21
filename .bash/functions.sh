@@ -34,7 +34,7 @@ notes() {
   eval "nvim -c VimwikiIndex +'cd %:h' +\"call timer_start(5, { tid -> execute('Telescope live_grep')})\""
 }
 
-launch_nvim() {
+project_picker() {
   eval "nvim -c \"call timer_start(5, { tid -> execute('Telescope project display_type=full')})\""
 }
 
