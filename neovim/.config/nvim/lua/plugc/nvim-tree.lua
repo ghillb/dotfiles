@@ -36,12 +36,6 @@ vim.g.nvim_tree_icons = {
 		symlink = "",
 		symlink_open = "",
 	},
-	lsp = {
-		hint = "",
-		info = "",
-		warning = "",
-		error = "",
-	},
 }
 
 local tree_cb = nvimtree_config.nvim_tree_callback

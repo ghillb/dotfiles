@@ -22,7 +22,7 @@ dashboard.section.buttons.val = {
   dashboard.button( "l", "  > Load session"    , ":lua require('persistence').load({ last = true })<cr>"),
   dashboard.button( "p", "  > Projects"        , ":Telescope project<cr>"),
   dashboard.button( "u", "  > Update"          , ":PackerSync<cr>"),
-  dashboard.button( "s", "  > Settings"        , ":e $NVIM_CONFIG/init.lua<cr>"),
+  dashboard.button( "s", "  > Settings"        , ":e $DOTFILES/neovim/.config/nvim/init.lua<cr>"),
   dashboard.button( "h", "?  > Help"            , ":h ref | wincmd o<cr>"),
   dashboard.button( "q", "  > Quit"            , ":bd<cr>"),
 }

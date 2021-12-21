@@ -120,7 +120,7 @@ nn <leader>ttq <cmd>TroubleToggle quickfix<cr>
 nn <leader>ttl <cmd>TroubleToggle loclist<cr>
 nn <leader>ttt <cmd>TodoTrouble<cr>
 nn <leader>se :VsnipOpen<cr>
-vn <leader>se :VsnipYank vs_ <bar> VsnipOpenVsplit
+vn <leader>se :VsnipYank new <bar> VsnipOpenVsplit<cr>
 vn <leader>sy :VsnipYank
 nn <leader>ss <cmd>lua require("persistence").load()<cr>
 nn <leader>sl <cmd>lua require("persistence").load({ last = true })<cr>
