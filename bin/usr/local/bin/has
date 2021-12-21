@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -eu
+
+command -v "$1" &> /dev/null
+
