@@ -122,10 +122,11 @@ function NewTerminal()
 end
 
 function ToggleGutter()
-	if vim.wo.scl == "yes" then
+	if vim.wo.scl:find('yes') then
+    vim.g._scl = vim.wo.scl
 		vim.wo.scl = "no"
 	else
-		vim.wo.scl = "yes"
+		vim.wo.scl = vim.g._scl
 	end
 	vim.wo.rnu = not vim.wo.rnu
 	vim.wo.nu = not vim.wo.nu
