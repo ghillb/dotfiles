@@ -1,5 +1,5 @@
-local ok_cmp, cmp = pcall(require, 'cmp')
-local ok_lspkind, lspkind = pcall(require, 'lspkind')
+local ok_cmp, cmp = pcall(require, "cmp")
+local ok_lspkind, lspkind = pcall(require, "lspkind")
 if not ok_cmp and ok_lspkind then
   return
 end
@@ -11,27 +11,28 @@ cmp.setup({
     end,
   },
   mapping = {
-    ['<c-d>'] = cmp.mapping.scroll_docs(4),
-    ['<c-u>'] = cmp.mapping.scroll_docs(-4),
-    ['<a-cr>'] = cmp.mapping.complete(),
-    ['<c-e>'] = cmp.mapping.close(),
-    ['<cr>'] = cmp.mapping.confirm({
+    ["<c-d>"] = cmp.mapping.scroll_docs(4),
+    ["<c-u>"] = cmp.mapping.scroll_docs(-4),
+    ["<a-cr>"] = cmp.mapping.complete(),
+    ["<c-q>"] = cmp.mapping.close(),
+    ["<c-cr>"] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Replace,
-      select = true }),
+      select = true,
+    }),
   },
   sources = {
-    { name = 'nvim_lsp' },
-    { name = 'nvim_lua' },
-    { name = 'vsnip' },
-    { name = 'buffer' },
-    { name = 'path' },
-    { name = 'neorg' }
+    { name = "nvim_lsp" },
+    { name = "nvim_lua" },
+    { name = "vsnip" },
+    { name = "buffer" },
+    { name = "path" },
+    { name = "neorg" },
   },
   documentation = {
-    border = 'single'
+    border = "single",
   },
   formatting = {
-    format = lspkind.cmp_format{
+    format = lspkind.cmp_format({
       menu = {
         buffer = "[buff]",
         path = "[path]",
@@ -40,19 +41,18 @@ cmp.setup({
         nvim_lua = "[nvim]",
       },
       with_text = false,
-      maxwidth = 50
-    }
+      maxwidth = 50,
+    }),
   },
   completion = {
-    completeopt = 'menu,menuone,noinsert,noselect',
+    completeopt = "menu,menuone,noinsert,noselect",
   },
   experimental = {
     ghost_text = true,
-    native_menu = false
+    native_menu = false,
   },
-  preselect = cmp.PreselectMode.Item
+  preselect = cmp.PreselectMode.Item,
 })
 
-local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
-
+local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
