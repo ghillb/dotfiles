@@ -88,6 +88,7 @@ return require("packer").startup({
     use({ "lukas-reineke/indent-blankline.nvim" })
     use({ "folke/trouble.nvim", requires = { "kyazdani42/nvim-web-devicons" } })
     use({ "folke/todo-comments.nvim", requires = { "nvim-lua/plenary.nvim" } })
+    use({ "tjdevries/astronauta.nvim" })
     use({
       "folke/which-key.nvim",
       event = "VimEnter",

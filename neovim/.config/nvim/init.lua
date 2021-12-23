@@ -3,8 +3,7 @@ require("plugins")
 require("functions")
 require("theme")
 require("file_types")
--- TODO: convert to lua
-vim.cmd("source $NVIM_CONFIG/lua/mappings.vim")
+require("keymaps")
 
 -- plugin configs
 require("plugc/treesitter")

@@ -39,3 +39,14 @@ local config = {
 }
 
 -- bufferline.setup(config)
+
+-- bufferline keymaps
+local nnoremap = vim.keymap.nnoremap
+nnoremap { '<left>', ':BufferLineCyclePrev<cr>', silent = true }
+nnoremap { '<right>', ':BufferLineCycleNext<cr>', silent = true }
+nnoremap { '<a-left>', ':BufferLineMovePrev<cr>', silent = true }
+nnoremap { '<a-right>', ':BufferLineMoveNext<cr>', silent = true }
+nnoremap { 'gbp', ':BufferLinePick<cr>', silent = true }
+nnoremap { 'gbe', ':BufferLineSortByExtension<cr>', silent = true }
+nnoremap { 'gbd', ':BufferLineSortByDirectory<cr>', silent = true }
+

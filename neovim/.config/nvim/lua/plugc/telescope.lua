@@ -96,7 +96,7 @@ local config = {
   extensions = {
     project = {
       base_dirs = {
-        { vim.env.CODE  },
+        { vim.env.CODE },
         { vim.env.DOTFILES },
       },
       hidden_files = true,
@@ -108,3 +108,31 @@ telescope.setup(config)
 telescope.load_extension("project")
 telescope.load_extension("frecency")
 telescope.load_extension("cheat")
+
+-- telescope mappings
+local nnoremap = vim.keymap.nnoremap
+local builtin = require("telescope.builtin")
+
+nnoremap({ "<c-e>", builtin.find_files })
+nnoremap({ "<c-a-e>", TelescopeOmniFiles })
+nnoremap({ "<c-p>", builtin.live_grep })
+nnoremap({ "<c-b>", builtin.buffers })
+nnoremap({ "<c-\\>", builtin.current_buffer_fuzzy_find })
+nnoremap({ "<c-g>", SwitchGitBranch })
+nnoremap({ "<leader>fg", builtin.git_status })
+nnoremap({ "<leader>fk", builtin.keymaps })
+nnoremap({ "<leader>fc", builtin.commands })
+nnoremap({ "<leader>fm", builtin.man_pages })
+nnoremap({ "<leader>fh", builtin.help_tags })
+nnoremap({ "<leader>fq", builtin.quickfix })
+nnoremap({ "<leader>fl", builtin.loclist })
+nnoremap({ "<leader>ff", telescope.extensions.frecency.frecency })
+nnoremap({ "<leader>ft", telescope.extensions.asynctasks.all })
+nnoremap({ "<leader>fy", telescope.extensions.neoclip.default})
+nnoremap({ "<leader>fz", ":Telescope cheat fd<cr>" })
+nnoremap({
+  "<esc><esc>",
+  function()
+    telescope.extensions.project.project({ display_type = "full" })
+  end,
+})
