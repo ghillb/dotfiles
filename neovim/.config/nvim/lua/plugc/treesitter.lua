@@ -1,4 +1,4 @@
-local ok, treesitter_configs = pcall(require, 'nvim-treesitter.configs')
+local ok, treesitter_configs = pcall(require, "nvim-treesitter.configs")
 if not ok then
   return
 end
@@ -6,11 +6,11 @@ end
 local config = {
   highlight = {
     enable = true,
-    disable = {'vim'},
+    disable = { "vim" },
   },
   indent = {
     enable = true,
-    disable = {'yaml'},
+    disable = { "yaml" },
   },
   incremental_selection = {
     enable = true,
@@ -21,20 +21,25 @@ local config = {
       scope_incremental = "<a-b>",
     },
   },
+  rainbow = {
+    enable = false,
+    disable = {},
+    extended_mode = true,
+    max_file_lines = nil,
+  },
 }
 
 treesitter_configs.setup(config)
 
-local parser_configs = require 'nvim-treesitter.parsers'.get_parser_configs()
-parser_configs.yaml.used_by =  'ansible'
-parser_configs.yaml.used_by =  'gitlab-ci'
-parser_configs.yaml.used_by =  'docker-compose'
+local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
+parser_configs.yaml.used_by = "ansible"
+parser_configs.yaml.used_by = "gitlab-ci"
+parser_configs.yaml.used_by = "docker-compose"
 
 parser_configs.norg = {
-    install_info = {
-        url = "https://github.com/nvim-neorg/tree-sitter-norg",
-        files = { "src/parser.c", "src/scanner.cc" },
-        branch = "main"
-    },
+  install_info = {
+    url = "https://github.com/nvim-neorg/tree-sitter-norg",
+    files = { "src/parser.c", "src/scanner.cc" },
+    branch = "main",
+  },
 }
-

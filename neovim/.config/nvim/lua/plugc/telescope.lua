@@ -58,7 +58,7 @@ local config = {
   pickers = {
     buffers = {
       sort_lastused = true,
-      theme = "dropdown",
+      layout_config = { width = 80, height = 15 },
       previewer = false,
       mappings = {
         i = {

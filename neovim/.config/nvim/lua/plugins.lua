@@ -125,6 +125,7 @@ return require("packer").startup({
     use({ "simrat39/rust-tools.nvim", requires = { "neovim/nvim-lspconfig" } })
     use({ "mcchrish/nnn.vim" })
     use({ "abecodes/tabout.nvim", wants = { "nvim-treesitter" } })
+    use({ "p00f/nvim-ts-rainbow" })
     use({ "ellisonleao/glow.nvim" })
     use({
       "AckslD/nvim-neoclip.lua",
