@@ -30,6 +30,7 @@ return require("packer").startup({
 
     use({ "morhetz/gruvbox" })
     use({ "habamax/vim-gruvbit" })
+    use({ "rebelot/kanagawa.nvim" })
     use({ "tpope/vim-fugitive" })
     use({ "will133/vim-dirdiff" })
     use({ "junegunn/gv.vim" })

@@ -28,7 +28,11 @@ function CloseView()
 		if packer_plugins["nvim-tree.lua"] then
 			vim.cmd(":NvimTreeClose")
 		end
-		vim.cmd(":bdelete")
+    if vim.bo.filetype == 'vim' then
+      vim.cmd(":q")
+    else
+		  vim.cmd(":bdelete")
+    end
 	end
 end
 
