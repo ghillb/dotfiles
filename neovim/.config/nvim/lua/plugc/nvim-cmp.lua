@@ -34,11 +34,11 @@ cmp.setup({
   formatting = {
     format = lspkind.cmp_format({
       menu = {
-        buffer = "[buff]",
-        path = "[path]",
         vsnip = "[snip]",
         nvim_lsp = "[lsp]",
         nvim_lua = "[nvim]",
+        buffer = "[buff]",
+        path = "[path]",
       },
       with_text = false,
       maxwidth = 50,
@@ -53,6 +53,19 @@ cmp.setup({
   },
   preselect = cmp.PreselectMode.Item,
 })
+
+require("cmp").setup.cmdline("/", {
+  sources = {
+    { name = "buffer" },
+  },
+})
+
+-- require("cmp").setup.cmdline(":", {
+  -- sources = {
+    -- { name = "cmdline" },
+    -- { name = "path" },
+  -- },
+-- })
 
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
