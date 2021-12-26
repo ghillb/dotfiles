@@ -89,7 +89,7 @@ tnoremap({ "<esc>", "<c-\\><c-n>" })
 cnoremap({ "w!!", "w !sudo tee > /dev/null %" })
 cnoremap({ "GG", '!git -C %:p:h commit -am "--wip--" && git -C %:p:h -c push.default=current push' })
 
--- window / split mappings
+-- buffer / window / tab mappings
 noremap({ "<a-h>", ":lua TmuxSwitchPane('h')<cr>", silent = true })
 noremap({ "<a-j>", ":lua TmuxSwitchPane('j')<cr>", silent = true })
 noremap({ "<a-k>", ":lua TmuxSwitchPane('k')<cr>", silent = true })
@@ -103,7 +103,13 @@ noremap({ "<a-_>", "<c-w><" })
 noremap({ "<a-g>", ":G<cr>" })
 noremap({ "<a-o>", "<c-w>o<cr>" })
 noremap({ "<c-w>O", ":%bd<cr><c-o>:bd#<cr>" })
-noremap({ "<c-w>t", ":tabo<cr>" })
+noremap({ "<c-w>t", ":$tabnew<cr>:Telescope project<cr>" })
+noremap({ "<c-w>q", ":tabclose<cr>" })
+noremap({ "<c-w>T", ":tabonly<cr>" })
+nnoremap({ "<left>", ":tabp<cr>" })
+nnoremap({ "<right>", ":tabn<cr>" })
+nnoremap({ "<a-left>", ":-tabmove<cr>" })
+nnoremap({ "<a-right>", ":+tabmove<cr>" })
 
 -- quickfix mappings
 noremap({ "[q", ":QFPrev<CR>" })

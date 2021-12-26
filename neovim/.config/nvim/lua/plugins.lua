@@ -121,7 +121,7 @@ return require("packer").startup({
         require("colorizer").setup()
       end,
     })
-    use({ "akinsho/nvim-bufferline.lua" })
+    use({ "nanozuki/tabby.nvim" })
     use({ "nvim-lualine/lualine.nvim", opt = false })
     use({ "kyazdani42/nvim-tree.lua", requires = { "kyazdani42/nvim-web-devicons" } })
     use({ "simrat39/rust-tools.nvim", requires = { "neovim/nvim-lspconfig" } })
