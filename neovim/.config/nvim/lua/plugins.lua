@@ -27,7 +27,6 @@ vim.api.nvim_set_keymap(
 return require("packer").startup({
   function(use)
     use({ "wbthomason/packer.nvim" })
-
     use({ "morhetz/gruvbox" })
     use({ "habamax/vim-gruvbit" })
     use({ "rebelot/kanagawa.nvim" })
@@ -35,8 +34,6 @@ return require("packer").startup({
     use({ "will133/vim-dirdiff" })
     use({ "junegunn/gv.vim" })
     use({ "tpope/vim-surround" })
-    use({ "stevearc/qf_helper.nvim" })
-    use({ "goolord/alpha-nvim" })
     use({ "vimwiki/vimwiki", branch = "dev" })
     use({ "nvim-neorg/neorg", requires = { "nvim-lua/plenary.nvim" } })
     use({ "mbbill/undotree" })
@@ -51,8 +48,6 @@ return require("packer").startup({
     use({ "Jorengarenar/vim-MvVis" })
     use({ "skywind3000/asynctasks.vim", requires = { "skywind3000/asyncrun.vim" } })
     use({ "GustavoKatel/telescope-asynctasks.nvim" })
-
-    -- lua
     use({ "neovim/nvim-lspconfig", git = { subcommands = { update_branch = "merge" } } })
     use({ "williamboman/nvim-lsp-installer" })
     use({ "jose-elias-alvarez/null-ls.nvim", requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" } })
@@ -128,6 +123,8 @@ return require("packer").startup({
     use({ "mcchrish/nnn.vim" })
     use({ "abecodes/tabout.nvim", wants = { "nvim-treesitter" } })
     use({ "p00f/nvim-ts-rainbow" })
+    use({ "stevearc/qf_helper.nvim" })
+    use({ "goolord/alpha-nvim" })
     use({ "ellisonleao/glow.nvim" })
     use({
       "AckslD/nvim-neoclip.lua",

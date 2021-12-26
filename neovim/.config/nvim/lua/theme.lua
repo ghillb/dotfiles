@@ -13,6 +13,9 @@ vim.cmd([[ au colorscheme * hi NormalFloat guibg=NONE ctermbg=NONE ]])
 vim.cmd([[ au colorscheme * hi MsgArea guibg=NONE ctermbg=NONE ]])
 vim.cmd([[ au colorscheme * hi StatusLine guifg=#3c3836 ]])
 vim.cmd([[ au colorscheme * hi EndOfBuffer guibg=NONE ctermbg=NONE guifg=#3c3836 ]])
+vim.cmd([[ au colorscheme * hi NonText guibg=NONE ctermbg=NONE guifg=#3c3836 ]])
+vim.cmd([[ au colorscheme * hi TabLineSel guifg=#ebdbb2 ]])
+vim.cmd([[ au colorscheme * hi TabLineFill guibg=NONE ctermbg=NONE ]])
 
 -- plugin highlight groups
 vim.cmd([[ au colorscheme * hi GitSignsAdd guibg=NONE ctermbg=NONE guifg=#989719 ]])
@@ -23,7 +26,7 @@ vim.cmd([[ au colorscheme * hi NvimTreeIndentMarker guifg=#3c3836 ]])
 
 -- gruvbox setup
 vim.g.gruvbox_contrast_dark = "hard"
-vim.g.gruvbox_invert_selection = "0"
+vim.g.gruvbox_invert_selection = 0
 
 -- kanagawa setup
 local ok, kanagawa = pcall(require, "kanagawa")
@@ -49,6 +52,6 @@ local config = {
 kanagawa.setup(config)
 
 -- enable colorscheme
-vim.cmd([[ silent! colorscheme kanagawa ]])
+-- vim.cmd([[ silent! colorscheme kanagawa ]])
 -- vim.cmd([[ silent! colorscheme gruvbit ]])
--- vim.cmd([[ silent! colorscheme gruvbox ]])
+vim.cmd([[ silent! colorscheme gruvbox ]])
