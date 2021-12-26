@@ -15,17 +15,17 @@ cmp.setup({
     ["<c-u>"] = cmp.mapping.scroll_docs(-4),
     ["<a-cr>"] = cmp.mapping.complete(),
     ["<c-q>"] = cmp.mapping.close(),
-    ["<c-cr>"] = cmp.mapping.confirm({
+    ["<cr>"] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     }),
   },
   sources = {
-    { name = "nvim_lsp" },
-    { name = "nvim_lua" },
-    { name = "vsnip" },
-    { name = "buffer" },
-    { name = "path" },
+    { name = "vsnip", max_item_count = 5},
+    { name = "nvim_lsp", max_item_count = 5 },
+    { name = "nvim_lua", max_item_count = 5 },
+    { name = "buffer", max_item_count = 5 },
+    { name = "path", max_item_count = 5 },
     { name = "neorg" },
   },
   documentation = {
@@ -45,13 +45,13 @@ cmp.setup({
     }),
   },
   completion = {
-    completeopt = "menu,menuone,noinsert,noselect",
+    completeopt = "menu,menuone,noinsert",
   },
   experimental = {
     ghost_text = true,
     native_menu = false,
   },
-  preselect = cmp.PreselectMode.Item,
+  preselect = cmp.PreselectMode.None,
 })
 
 require("cmp").setup.cmdline("/", {
