@@ -5,7 +5,7 @@ vim.cmd("au TextChanged,TextChangedI * if &readonly == 0 && filereadable(bufname
 vim.cmd("au TextYankPost * silent! lua vim.highlight.on_yank{higroup='IncSearch', timeout=500}")
 vim.cmd("au TermEnter,TermOpen * set ft=terminal" )
 
-function DrawerToggle()
+function _G.DrawerToggle()
 	local lib = require("diffview.lib")
 	local view = lib.get_current_view()
 	if view then
@@ -20,7 +20,7 @@ function DrawerToggle()
 	end
 end
 
-function CloseView()
+function _G.CloseView()
 	local lib = require("diffview.lib")
 	local view = lib.get_current_view()
 	if view then
@@ -37,7 +37,7 @@ function CloseView()
 	end
 end
 
-function TelescopeOmniFiles()
+function _G.TelescopeOmniFiles()
 	-- git submodule status more stable?
 	local builtin = require("telescope.builtin")
 	local utils = require("telescope.utils")
@@ -49,27 +49,27 @@ function TelescopeOmniFiles()
 	end
 end
 
-function SwitchGitBranch()
+function _G.SwitchGitBranch()
 	SetRoot("git_worktree")
 	vim.cmd("Git fetch --prune --verbose --all")
 	require("telescope.builtin").git_branches()
 end
 
-function PopulateInfo()
+function _G.PopulateInfo()
 	local is_git_worktree = IsGitWorkTree()
 	SetGitModifiedCount(is_git_worktree)
 	SetBreadcrumbs()
 	SetTitleString()
 end
 
-function IsGitWorkTree()
+function _G.IsGitWorkTree()
 	return vim.fn.exists("*FugitiveIsGitDir") and vim.fn.FugitiveIsGitDir() == 1
 	-- non-vim-fugitive
 	-- vim.fn.system('git rev-parse --is-inside-work-tree')
 	-- return vim.v.shell_error
 end
 
-function SetCurrentGitBranch(is_git_worktree)
+function _G.SetCurrentGitBranch(is_git_worktree)
 	if is_git_worktree then
 		vim.g.current_git_branch = " " .. vim.fn.FugitiveHead()
 	else
@@ -77,7 +77,7 @@ function SetCurrentGitBranch(is_git_worktree)
 	end
 end
 
-function SetGitModifiedCount(is_git_worktree)
+function _G.SetGitModifiedCount(is_git_worktree)
 	if is_git_worktree then
 		vim.g.git_modified_count = vim.fn.system('git diff --numstat | wc -l | tr -d "\n"')
 	else
@@ -85,7 +85,7 @@ function SetGitModifiedCount(is_git_worktree)
 	end
 end
 
-function SetBreadcrumbs()
+function _G.SetBreadcrumbs()
 	if vim.bo.filetype == "neoterm" then
 		vim.g.breadcrumbs = vim.fn.expand("%:t")
 	else
@@ -93,7 +93,7 @@ function SetBreadcrumbs()
 	end
 end
 
-function SetTitleString()
+function _G.SetTitleString()
 	local titlestring
 	if IsGitWorkTree() then
 		titlestring = vim.fn.fnamemodify(vim.fn.FugitiveWorkTree(), ":t")
@@ -103,11 +103,11 @@ function SetTitleString()
 	vim.opt.titlestring = "[" .. titlestring .. "]"
 end
 
-function GetLinePercent()
+function _G.GetLinePercent()
 	return math.floor(vim.fn.line(".") * 100 / vim.fn.line("$")) .. "%%"
 end
 
-function GetActiveBuffers()
+function _G.GetActiveBuffers()
 	local active_buffers = {}
 	for k, value in ipairs(vim.api.nvim_list_bufs()) do
 		if vim.api.nvim_buf_is_valid(value) and vim.api.nvim_buf_is_loaded(value) then
@@ -117,7 +117,7 @@ function GetActiveBuffers()
 	return active_buffers
 end
 
-function NewTerminal()
+function _G.NewTerminal()
 	if vim.api.nvim_buf_get_name(0):find("term://") then
 		vim.cmd(":Tnew")
 		vim.cmd(":Tnext")
@@ -126,7 +126,7 @@ function NewTerminal()
 	vim.api.nvim_feedkeys(vim.api.nvim_eval('"\\<c-w>ji"'), "m", true)
 end
 
-function ToggleGutter()
+function _G.ToggleGutter()
 	if vim.wo.scl:find('yes') then
     vim.g._scl = vim.wo.scl
 		vim.wo.scl = "no"
@@ -137,7 +137,7 @@ function ToggleGutter()
 	vim.wo.nu = not vim.wo.nu
 end
 
-function TmuxSwitchPane(direction)
+function _G.TmuxSwitchPane(direction)
 	local wnr = vim.fn.winnr()
 	vim.fn.execute("wincmd " .. direction)
 	if wnr == vim.fn.winnr() then
@@ -145,7 +145,7 @@ function TmuxSwitchPane(direction)
 	end
 end
 
-function CreateOrGoToFile()
+function _G.CreateOrGoToFile()
 	local node_path = vim.fn.expand(vim.fn.expand("<cfile>"))
 	if vim.fn.filereadable(node_path) == 0 and vim.fn.isdirectory(node_path) == 0 then
 		local choice = vim.fn.confirm("Create new file: " .. node_path .. " ?", "&Yes\n&No", 1)
@@ -156,7 +156,7 @@ function CreateOrGoToFile()
 	vim.fn.execute("vsplit " .. node_path)
 end
 
-function SetRoot(...)
+function _G.SetRoot(...)
 	vim.env.VIM_ROOT = vim.fn.getcwd()
 	if #(...) < 1 then
 		return
@@ -191,7 +191,7 @@ function SetRoot(...)
 	end
 end
 
-function DisableTelescopeMappings()
+function _G.DisableTelescopeMappings()
 	vim.api.nvim_buf_set_keymap(0, "", "<c-p>", "<nop>", { noremap = false, silent = true })
 	vim.api.nvim_buf_set_keymap(0, "", "<c-e>", "<nop>", { noremap = false, silent = true })
 	vim.api.nvim_buf_set_keymap(0, "", "<c-b>", "<nop>", { noremap = false, silent = true })
