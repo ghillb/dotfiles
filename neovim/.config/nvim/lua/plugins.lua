@@ -53,6 +53,7 @@ return require("packer").startup({
     use({ "jose-elias-alvarez/null-ls.nvim", requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" } })
     use({ "nvim-treesitter/nvim-treesitter", branch = "master" })
     use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
+    use({ "theHamsta/nvim-dap-virtual-text" })
     use({
       "nvim-telescope/telescope.nvim",
       requires = {
@@ -61,6 +62,7 @@ return require("packer").startup({
       },
     })
     use({ "nvim-telescope/telescope-project.nvim" })
+    use({ "nvim-telescope/telescope-dap.nvim" })
     use({ "nvim-telescope/telescope-frecency.nvim", requires = { "tami5/sqlite.lua" } })
     use({ "nvim-telescope/telescope-cheat.nvim", requires = { "tami5/sqlite.lua" } })
     use({

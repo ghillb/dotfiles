@@ -106,6 +106,7 @@ local config = {
 
 telescope.setup(config)
 telescope.load_extension("project")
+telescope.load_extension("dap")
 telescope.load_extension("frecency")
 telescope.load_extension("cheat")
 
@@ -128,7 +129,7 @@ nnoremap({ "<leader>fq", builtin.quickfix })
 nnoremap({ "<leader>fl", builtin.loclist })
 nnoremap({ "<leader>ff", telescope.extensions.frecency.frecency })
 nnoremap({ "<leader>ft", telescope.extensions.asynctasks.all })
-nnoremap({ "<leader>fy", telescope.extensions.neoclip.default})
+nnoremap({ "<leader>fy", telescope.extensions.neoclip.default })
 nnoremap({ "<leader>fz", ":Telescope cheat fd<cr>" })
 nnoremap({
   "<esc><esc>",
