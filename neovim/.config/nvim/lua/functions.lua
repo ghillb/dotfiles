@@ -3,6 +3,7 @@ vim.cmd("au BufEnter * lua PopulateInfo()")
 vim.cmd("au VimEnter * if filereadable(expand($NVIM_CONFIG) . '/localrc.vim') | source $NVIM_CONFIG/localrc.vim | endif | silent lua SetRoot('start_dir')")
 vim.cmd("au TextChanged,TextChangedI * if &readonly == 0 && filereadable(bufname('%')) | silent write | endif")
 vim.cmd("au TextYankPost * silent! lua vim.highlight.on_yank{higroup='IncSearch', timeout=500}")
+vim.cmd("au TermEnter,TermOpen * set ft=terminal" )
 
 function DrawerToggle()
 	local lib = require("diffview.lib")
@@ -188,6 +189,14 @@ function SetRoot(...)
 	else
 		print("directory doesn't exist")
 	end
+end
+
+function DisableTelescopeMappings()
+	vim.api.nvim_buf_set_keymap(0, "", "<c-p>", "<nop>", { noremap = false, silent = true })
+	vim.api.nvim_buf_set_keymap(0, "", "<c-e>", "<nop>", { noremap = false, silent = true })
+	vim.api.nvim_buf_set_keymap(0, "", "<c-b>", "<nop>", { noremap = false, silent = true })
+	vim.api.nvim_buf_set_keymap(0, "", "<c-g>", "<nop>", { noremap = false, silent = true })
+	vim.api.nvim_buf_set_keymap(0, "", "<c-\\>", "<nop>", { noremap = false, silent = true })
 end
 
 function table.merge(...)
