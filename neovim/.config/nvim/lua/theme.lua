@@ -14,9 +14,9 @@ vim.cmd([[ au colorscheme * hi MsgArea guibg=NONE ctermbg=NONE ]])
 vim.cmd([[ au colorscheme * hi StatusLine guifg=#3c3836 ]])
 vim.cmd([[ au colorscheme * hi EndOfBuffer guibg=NONE ctermbg=NONE guifg=#3c3836 ]])
 vim.cmd([[ au colorscheme * hi NonText guibg=NONE ctermbg=NONE guifg=#3c3836 ]])
--- vim.cmd([[ au colorscheme * hi TabLine guibg=NONE ]])
 vim.cmd([[ au colorscheme * hi TabLineSel guifg=#ebdbb2 ]])
 vim.cmd([[ au colorscheme * hi TabLineFill guibg=NONE ctermbg=NONE ]])
+vim.cmd([[ au colorscheme * hi TabLine guibg=NONE ]])
 
 -- plugin highlight groups
 vim.cmd([[ au colorscheme * hi GitSignsAdd guibg=NONE ctermbg=NONE guifg=#989719 ]])
