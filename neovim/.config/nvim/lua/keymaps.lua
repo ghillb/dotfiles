@@ -197,6 +197,8 @@ nnoremap({ "<localleader>l", "<cmd>LLToggle!<CR>", silent = true })
 nnoremap({ "<localleader>dw", ":%s/\\s\\+$//e<cr>" })
 nnoremap({ "<localleader>ve", ":e $NVIM_CONFIG/init.lua<cr>" })
 nnoremap({ "<localleader>vr", ":so $MYVIMRC<cr>" })
+nnoremap({ "<localleader>pu", ":source $MYVIMRC<cr> :PackerSync<cr>" })
+nnoremap({ "<localleader>ps", ":source $MYVIMRC<cr> :PackerStatus<cr>" })
 
 -- lsp mappings
 nnoremap({ "gd", vim.lsp.buf.definition })

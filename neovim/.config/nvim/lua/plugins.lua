@@ -10,20 +10,6 @@ end
 -- auto compile
 vim.cmd([[autocmd BufWritePost plugins.lua source <afile> | PackerCompile]])
 
-vim.api.nvim_set_keymap(
-  "n",
-  "<localleader>pu",
-  ":source $MYVIMRC<cr> :PackerSync<cr>",
-  { noremap = true, silent = false }
-)
-
-vim.api.nvim_set_keymap(
-  "n",
-  "<localleader>ps",
-  ":source $MYVIMRC<cr> :PackerStatus<cr>",
-  { noremap = true, silent = false }
-)
-
 return require("packer").startup({
   function(use)
     use({ "wbthomason/packer.nvim" })
