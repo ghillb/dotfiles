@@ -14,13 +14,15 @@ vim.cmd([[ au colorscheme * hi MsgArea guibg=NONE ctermbg=NONE ]])
 vim.cmd([[ au colorscheme * hi StatusLine guifg=#3c3836 ]])
 vim.cmd([[ au colorscheme * hi EndOfBuffer guibg=NONE ctermbg=NONE guifg=#3c3836 ]])
 vim.cmd([[ au colorscheme * hi NonText guibg=NONE ctermbg=NONE guifg=#3c3836 ]])
+vim.cmd [[ au colorscheme * hi WarningMsg guibg=NONE ctermbg=NONE guifg=#fb4934 ]]
+vim.cmd [[ au colorscheme * hi DiagnosticError guifg=#fb4934 ]]
 vim.cmd([[ au colorscheme * hi TabLineSel guifg=#ebdbb2 ]])
 vim.cmd([[ au colorscheme * hi TabLineFill guibg=NONE ctermbg=NONE ]])
 vim.cmd([[ au colorscheme * hi TabLine guibg=NONE ]])
 
 -- plugin highlight groups
 vim.cmd([[ au colorscheme * hi GitSignsAdd guibg=NONE ctermbg=NONE guifg=#989719 ]])
-vim.cmd([[ au colorscheme * hi GitSignsChange guibg=NONE ctermbg=NONE guifg=#b16286 "#448488 ]])
+vim.cmd([[ au colorscheme * hi GitSignsChange guibg=NONE ctermbg=NONE guifg=#448488 "#b16286  ]])
 vim.cmd([[ au colorscheme * hi GitSignsDelete guibg=NONE ctermbg=NONE guifg=#fb4934 ]])
 vim.cmd([[ au colorscheme * hi NvimTreeNormal guibg=NONE ctermbg=NONE ]])
 vim.cmd([[ au colorscheme * hi NvimTreeIndentMarker guifg=#3c3836 ]])
