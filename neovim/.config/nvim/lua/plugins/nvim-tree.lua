@@ -121,7 +121,7 @@ _G.NvimTreeConfig = {
     },
   },
   filters = {
-    dotfiles = true,
+    dotfiles = false,
     custom = { ".git", "node_modules", ".cache" },
   },
   git = {
