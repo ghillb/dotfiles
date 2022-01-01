@@ -22,7 +22,7 @@ cmp.setup({
   },
   sources = {
     { name = "vsnip", max_item_count = 5},
-    { name = "nvim_lsp", max_item_count = 5 },
+    { name = "nvim_lsp" },
     { name = "nvim_lua", max_item_count = 5 },
     { name = "buffer", max_item_count = 5 },
     { name = "path", max_item_count = 5 },
@@ -41,7 +41,7 @@ cmp.setup({
         path = "[path]",
       },
       with_text = false,
-      maxwidth = 50,
+      maxwidth = 70,
     }),
   },
   completion = {
