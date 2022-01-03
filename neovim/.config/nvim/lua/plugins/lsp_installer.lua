@@ -52,9 +52,8 @@ lsp_installer.on_server_ready(function(server)
     opts.settings = {
       yaml = {
         schemas = {
-          ["https://json.schemastore.org/ansible-playbook.json"] = "*.pb.{yml,yaml}",
-          ["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = "*.gitlab-ci.{yml,yaml}",
-          ["https://raw.githubusercontent.com/docker/cli/master/cli/compose/schema/data/config_schema_v3.9.json"] = "*.docker-compose.yml",
+          ["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = "/*gitlab*",
+          ["https://raw.githubusercontent.com/docker/cli/master/cli/compose/schema/data/config_schema_v3.9.json"] = "/*docker-compose*",
         },
         validate = true,
         hover = true,
