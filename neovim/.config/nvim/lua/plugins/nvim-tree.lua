@@ -14,6 +14,7 @@ vim.g.nvim_tree_group_empty = 1
 vim.g.nvim_tree_icon_padding = " "
 vim.g.nvim_tree_show_icons = { git = 1, folders = 0, files = 0, folder_arrows = 1 }
 vim.g.nvim_tree_window_picker_exclude = { filetype = { "packer", "qf" }, buftype = { "terminal" } }
+vim.g.nvim_tree_special_files = { ["README"] = 1, ["README.md"] = 1, [".gitlab-ci.yml"] = 1 }
 vim.g.nvim_tree_icons = {
   default = "", -- ''
   symlink = "",
