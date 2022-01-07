@@ -196,7 +196,7 @@ function _G.DisableTelescopeMappings()
 	vim.api.nvim_buf_set_keymap(0, "", "<c-e>", "<nop>", { noremap = false, silent = true })
 	vim.api.nvim_buf_set_keymap(0, "", "<c-b>", "<nop>", { noremap = false, silent = true })
 	vim.api.nvim_buf_set_keymap(0, "", "<c-g>", "<nop>", { noremap = false, silent = true })
-	vim.api.nvim_buf_set_keymap(0, "", "<c-\\>", "<nop>", { noremap = false, silent = true })
+	vim.api.nvim_buf_set_keymap(0, "", "<c-/>", "<nop>", { noremap = false, silent = true })
 end
 
 function table.merge(...)

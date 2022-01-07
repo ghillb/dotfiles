@@ -70,6 +70,7 @@ return require("packer").startup({
     use({ "windwp/nvim-autopairs" })
     use({ "lewis6991/gitsigns.nvim" })
     use({ "sindrets/diffview.nvim" })
+    use({ "akinsho/toggleterm.nvim" })
     use({ "lukas-reineke/indent-blankline.nvim" })
     use({ "folke/trouble.nvim", requires = { "kyazdani42/nvim-web-devicons" } })
     use({ "folke/todo-comments.nvim", requires = { "nvim-lua/plenary.nvim" } })
