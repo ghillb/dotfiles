@@ -126,7 +126,8 @@ return require("packer").startup({
       config = function()
         require("Comment").setup({ ignore = "^$" })
         local ft = require("Comment.ft")
-        ft.set("gitlab-ci", { "#%s", "#%s" }).set("ansible", { "#%s", "#%s" })
+        local comment_strings = { "#%s", "#%s" }
+        ft.set("gitlab-ci", comment_strings).set("ansible", comment_strings).set("docker-compose", comment_strings)
       end,
     })
   end,

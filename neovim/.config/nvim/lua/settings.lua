@@ -4,7 +4,6 @@ vim.cmd("filetype plugin indent on")
 vim.cmd("syntax enable")
 
 vim.env.NVIM_CONFIG                    = vim.fn.stdpath('config')
-vim.env.MACCHINA_DISABLED              = 1
 
 opt.shell                              = 'dash'
 opt.encoding                           = 'utf-8'

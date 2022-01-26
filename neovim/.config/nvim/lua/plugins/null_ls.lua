@@ -13,6 +13,7 @@ local opts = {
     null_ls.builtins.formatting.prettier.with({
       filetypes = table.merge(null_ls.builtins.formatting.prettier.filetypes, { "docker-compose" }),
     }),
+    null_ls.builtins.diagnostics.flake8,
   },
 
   diagnostics_format = "#{m}",

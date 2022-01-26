@@ -7,7 +7,7 @@ require("filetype").setup({
     literal = {},
     complex = {
       [".*.gitlab.*.yml"] = "gitlab-ci",
-      [".*docker.compose.*"] = "docker-compose",
+      [".*docker.compose.*.yml"] = "docker-compose",
     },
 
     function_extensions = {},
