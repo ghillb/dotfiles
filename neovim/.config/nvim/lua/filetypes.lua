@@ -1,4 +1,4 @@
--- this file and "nathom/filetype.nvim" can be retired in nvim 0.8
+-- TODO: retire this file and "nathom/filetype.nvim" in nvim 0.8
 require("filetype").setup({
   overrides = {
     extensions = {

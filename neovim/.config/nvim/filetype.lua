@@ -1,3 +1,4 @@
+-- TODO:add missing fts neovim/.config/nvim/lua/filetypes.lua in nvim 0.8
 -- https://github.com/neovim/neovim/pull/16600
 -- vim.g.do_filetype_lua = 1
 vim.filetype.add({
