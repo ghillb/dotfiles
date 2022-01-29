@@ -8,6 +8,7 @@ alias upgrade='sudo apt update && sudo apt -y upgrade && brew upgrade && sudo sn
 alias in='sudo apt install'
 alias un='sudo apt remove'
 alias cd='cdls'
+alias op='fzf_project_picker'
 alias mv='mv -i'
 alias x='xsel -ib'
 alias rs='rsync -hP'

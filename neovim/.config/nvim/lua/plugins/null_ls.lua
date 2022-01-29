@@ -6,9 +6,12 @@ end
 local opts = {
 
   sources = {
+    null_ls.builtins.formatting.shfmt,
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.terraform_fmt,
+    null_ls.builtins.formatting.goimports,
     null_ls.builtins.formatting.black,
+    null_ls.builtins.formatting.isort,
     null_ls.builtins.formatting.rustfmt,
     null_ls.builtins.formatting.prettier.with({
       filetypes = table.merge(null_ls.builtins.formatting.prettier.filetypes, { "docker-compose" }),
