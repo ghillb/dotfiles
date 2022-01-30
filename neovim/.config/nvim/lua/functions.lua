@@ -157,7 +157,6 @@ function _G.CreateOrGoToFile()
 end
 
 function _G.SetRoot(...)
-	vim.env.VIM_ROOT = vim.fn.getcwd()
 	if #(...) < 1 then
 		return
 	end
@@ -172,7 +171,7 @@ function _G.SetRoot(...)
 	if ... == "parent_dir" then
 		vim.env.VIM_ROOT = vim.fn.fnamemodify(vim.env.VIM_ROOT, ":h")
 	end
-	if ... == "current_dir" then
+	if ... == "file_dir" then
 		vim.env.VIM_ROOT = vim.fn.expand("%:p:h")
 	end
 	if ... == "start_dir" then
@@ -183,6 +182,9 @@ function _G.SetRoot(...)
 			vim.env.VIM_ROOT = vim.fn.fnamemodify(vim.env.VIM_ROOT, ":p:h")
 		end
 	end
+  if ... == "origin" then
+	  vim.env.VIM_ROOT = vim.env.PWD
+  end
 	if vim.fn.isdirectory(vim.env.VIM_ROOT) == 1 then
 		vim.cmd("silent chdir " .. vim.env.VIM_ROOT)
 		print(vim.fn.substitute(..., "_", " ", "") .. " rooted " .. " -> " .. vim.env.VIM_ROOT)

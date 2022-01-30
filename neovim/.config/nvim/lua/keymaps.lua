@@ -167,13 +167,8 @@ map("n", "<leader>*", "*:%s//")
 -- localleader mappings
 map("n", "<localleader><cr>", ":lua SetRoot('git_worktree')<cr>", { silent = true })
 map("n", "<localleader><bs>", ":lua SetRoot('parent_dir')<cr>", { silent = true })
-map("n", "<localleader>/", ":lua SetRoot('current_dir')<cr>", { silent = true })
-map(
-  "n",
-  "<localleader><localleader>",
-  ':chdir $VIM_ROOT<cr><bar> :echo "back to root -> " . $VIM_ROOT<cr>',
-  { silent = true }
-)
+map("n", "<localleader>/", ":lua SetRoot('file_dir')<cr>", { silent = true })
+map("n", "<localleader>\\", ":lua SetRoot('origin')<cr>", { silent = true })
 map("n", "<localleader>sr", ":%s///gc<left><left><left><left>")
 map("n", "<localleader>sq", ":vim// **/*<left><left><left><left><left><left>")
 map("n", "<localleader>sl", ":lv// %<left><left><left>")
