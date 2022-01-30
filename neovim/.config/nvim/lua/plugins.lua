@@ -66,7 +66,6 @@ return require("packer").startup({
     use({ "ray-x/lsp_signature.nvim" })
     use({ "kosayoda/nvim-lightbulb" })
     use({ "stevearc/aerial.nvim" })
-    use({ "nathom/filetype.nvim" })
     use({ "windwp/nvim-autopairs" })
     use({ "lewis6991/gitsigns.nvim" })
     use({ "sindrets/diffview.nvim" })

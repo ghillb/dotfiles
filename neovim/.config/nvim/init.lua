@@ -2,7 +2,6 @@ require("settings")
 require("plugins")
 require("functions")
 require("theme")
-require("filetypes")
 require("keymaps")
 
 -- plugin configs
