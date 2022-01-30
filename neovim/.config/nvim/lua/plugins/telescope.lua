@@ -37,7 +37,7 @@ local config = {
         width = 0.8,
       },
     },
-    path_display = { "shorten" },
+    path_display = { 'smart' },
     dynamic_preview_title = true,
     borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
     mappings = {
@@ -114,12 +114,12 @@ telescope.load_extension("cheat")
 local map = vim.keymap.set
 local builtin = require("telescope.builtin")
 
-map('n', "<c-e>", builtin.find_files)
-map('n', "<c-a-e>", TelescopeOmniFiles)
-map('n', "<c-p>", builtin.live_grep)
-map('n', "<c-b>", builtin.buffers)
-map('n', "<c-_>", builtin.current_buffer_fuzzy_find)
-map('n', "<c-g>", SwitchGitBranch)
+map({'n','v'}, "<c-e>", builtin.find_files)
+map({'n','v'}, "<c-a-e>", TelescopeOmniFiles)
+map({'n','v'}, "<c-p>", builtin.live_grep)
+map({'n','v'}, "<c-b>", builtin.buffers)
+map({'n','v'}, "<c-_>", builtin.current_buffer_fuzzy_find)
+map({'n','v'}, "<c-g>", SwitchGitBranch)
 map('n', "<leader>fg", builtin.git_status)
 map('n', "<leader>fk", builtin.keymaps)
 map('n', "<leader>fc", builtin.commands)
