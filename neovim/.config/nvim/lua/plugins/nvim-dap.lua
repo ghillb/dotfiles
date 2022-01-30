@@ -24,16 +24,17 @@ local config = {
 dap_virtual_text.setup(config)
 
 -- keymaps
-local nnoremap = vim.keymap.nnoremap
-nnoremap({ "<leader>dc", ':lua require"dap".continue()<cr>' })
-nnoremap({ "<leader>dsv", ':lua require"dap".step_over()<cr>' })
-nnoremap({ "<leader>dsi", ':lua require"dap".step_into()<cr>' })
-nnoremap({ "<leader>dso", ':lua require"dap".step_out()<cr>' })
-nnoremap({ "<leader>dtb", ':lua require"dap".toggle_breakpoint()<cr>' })
-nnoremap({ "<leader>dro", ':lua require"dap".repl.open()<cr>' })
-nnoremap({ "<leader>drr", ':lua require"dap".repl.run_last()<cr>' })
+local map = vim.keymap.set
 
-nnoremap({ "<leader>fdc", ':lua require"telescope".extensions.dap.commands{}<cr>' })
-nnoremap({ "<leader>fdb", ':lua require"telescope".extensions.dap.list_breakpoints{}<cr>' })
-nnoremap({ "<leader>fdv", ':lua require"telescope".extensions.dap.variables{}<cr>' })
-nnoremap({ "<leader>fdf", ':lua require"telescope".extensions.dap.frames{}<cr>' })
+map('n', "<leader>dc", ':lua require"dap".continue()<cr>')
+map('n', "<leader>dsv", ':lua require"dap".step_over()<cr>')
+map('n', "<leader>dsi", ':lua require"dap".step_into()<cr>')
+map('n', "<leader>dso", ':lua require"dap".step_out()<cr>')
+map('n', "<leader>dtb", ':lua require"dap".toggle_breakpoint()<cr>')
+map('n', "<leader>dro", ':lua require"dap".repl.open()<cr>')
+map('n', "<leader>drr", ':lua require"dap".repl.run_last()<cr>')
+
+map('n', "<leader>fdc", ':lua require"telescope".extensions.dap.commands{}<cr>')
+map('n', "<leader>fdb", ':lua require"telescope".extensions.dap.list_breakpoints{}<cr>')
+map('n', "<leader>fdv", ':lua require"telescope".extensions.dap.variables{}<cr>')
+map('n', "<leader>fdf", ':lua require"telescope".extensions.dap.frames{}<cr>')
