@@ -110,9 +110,9 @@ return require("packer").startup({
     use({
       "yriveiro/dap-go.nvim",
       requires = { { "nvim-lua/plenary.nvim" } },
-      config = function ()
-        require('dap-go').setup()
-      end
+      config = function()
+        require("dap-go").setup()
+      end,
     })
     use({ "mcchrish/nnn.vim" })
     use({ "abecodes/tabout.nvim", wants = { "nvim-treesitter" } })
@@ -120,6 +120,15 @@ return require("packer").startup({
     use({ "stevearc/qf_helper.nvim" })
     use({ "goolord/alpha-nvim" })
     use({ "ellisonleao/glow.nvim" })
+    use({
+      "danymat/neogen",
+      config = function()
+        require("neogen").setup({
+          enabled = true,
+        })
+      end,
+      requires = "nvim-treesitter/nvim-treesitter",
+    })
     use({
       "AckslD/nvim-neoclip.lua",
       config = function()

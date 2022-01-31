@@ -23,7 +23,7 @@ dashboard.section.buttons.val = {
   dashboard.button( "n", "🗎  > Notes"           , ":VimwikiIndex<cr>"),
   dashboard.button( "p", "  > Projects"        , ":Telescope project<cr>"),
   dashboard.button( "u", "  > Update"          , ":PackerSync<cr>"),
-  dashboard.button( "s", "  > Settings"        , ":e $DOTFILES/neovim/.config/nvim/init.lua<cr>"),
+  dashboard.button( "s", "  > Settings"        , ":chdir $DOTFILES <bar> Telescope find_files<cr>"),
   dashboard.button( "h", "?  > Help"            , ":h ref | wincmd o<cr>"),
   dashboard.button( "q", "  > Quit"            , ":bd<cr>"),
 }
