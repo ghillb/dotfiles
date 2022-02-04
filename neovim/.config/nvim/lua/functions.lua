@@ -4,6 +4,7 @@ vim.cmd("au VimEnter * if filereadable(expand($NVIM_CONFIG) . '/localrc.vim') | 
 vim.cmd("au TextChanged,TextChangedI * if &readonly == 0 && filereadable(bufname('%')) | silent write | endif")
 vim.cmd("au TextYankPost * silent! lua vim.highlight.on_yank{higroup='IncSearch', timeout=500}")
 vim.cmd("au TermEnter,TermOpen * set ft=terminal" )
+vim.cmd("au BufWritePre * lua vim.lsp.buf.formatting_seq_sync()")
 
 function _G.DrawerToggle()
 	local lib = require("diffview.lib")
