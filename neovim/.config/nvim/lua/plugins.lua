@@ -38,8 +38,15 @@ return require("packer").startup({
     use({ "williamboman/nvim-lsp-installer" })
     use({ "jose-elias-alvarez/null-ls.nvim", requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" } })
     use({ "nvim-treesitter/nvim-treesitter", branch = "master" })
-    use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
-    use({ "theHamsta/nvim-dap-virtual-text" })
+    use({
+      "mfussenegger/nvim-dap",
+      requires = {
+        "rcarriga/nvim-dap-ui",
+        "theHamsta/nvim-dap-virtual-text",
+        "Pocco81/DAPInstall.nvim",
+      },
+    })
+    use({ "rcarriga/vim-ultest" })
     use({
       "nvim-telescope/telescope.nvim",
       requires = {
