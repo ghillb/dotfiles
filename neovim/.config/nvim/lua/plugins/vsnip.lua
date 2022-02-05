@@ -1,14 +1,12 @@
 vim.g.vsnip_filetypes = { bash = { "sh" } }
 vim.g.vsnip_snippet_dir = "~/code/scripts/snippets"
 
--- vsnip mappings
-vim.cmd([[
+local map = vim.keymap.set
 
-  imap <expr> <c-e>   vsnip#expandable()  ? '<plug>(vsnip-expand)'         : '<c-e>'
-  smap <expr> <c-e>   vsnip#expandable()  ? '<plug>(vsnip-expand)'         : '<c-e>'
-  imap <expr> <tab>   vsnip#jumpable(1)   ? '<plug>(vsnip-jump-next)'      : '<tab>'
-  smap <expr> <tab>   vsnip#jumpable(1)   ? '<plug>(vsnip-jump-next)'      : '<tab>'
-  imap <expr> <s-tab> vsnip#jumpable(-1)  ? '<plug>(vsnip-jump-prev)'      : '<s-Tab>'
-  smap <expr> <s-tab> vsnip#jumpable(-1)  ? '<plug>(vsnip-jump-prev)'      : '<s-Tab>'
+map({ "i", "s" }, "<tab>", function()
+  return vim.fn["vsnip#jumpable"](1) == 1 and "<plug>(vsnip-jump-next)" or "<tab>"
+end, { expr = true, remap = true })
 
-]])
+map({ "i", "s" }, "<s-tab>", function()
+  return vim.fn["vsnip#jumpable"](-1) == 1 and "<plug>(vsnip-jump-prev)" or "<s-tab>"
+end, { expr = true, remap = true })

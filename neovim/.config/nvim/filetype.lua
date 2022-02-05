@@ -9,11 +9,15 @@ vim.filetype.add({
   },
   pattern = {
     [".*"] = function(path, bufnr)
-      if vim.api.nvim_buf_get_lines(bufnr, 0, 1, true)[1]:find("#!/usr/bin/env ansible") then
-        return "ansible"
+      local buf_first_line = vim.api.nvim_buf_get_lines(bufnr, 0, 1, true)[1]
+      if buf_first_line:find("#!/usr/bin/env ansible") then
+        return "ansible.yaml"
+      end
+      if buf_first_line:find("#!/usr/bin/env kubernetes") then
+        return "kubernetes.yaml"
       end
     end,
-    [".*gitlab[-]ci.*.yml"] = "gitlab-ci",
-    [".*docker[-]compose.*.yml"] = "docker-compose",
+    [".*gitlab[-]ci.*.yml"] = "gitlab-ci.yaml",
+    [".*docker[-]compose.*.yml"] = "docker-compose.yaml",
   },
 })

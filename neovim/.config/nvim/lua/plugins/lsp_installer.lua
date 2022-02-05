@@ -27,7 +27,7 @@ lsp_installer.on_server_ready(function(server)
   end
 
   if server.name == "ansiblels" then
-    opts.filetypes = { "ansible" }
+    opts.filetypes = { "ansible.yaml" }
     opts.settings = {
       ansible = {
         ansible = {
@@ -48,12 +48,13 @@ lsp_installer.on_server_ready(function(server)
   end
 
   if server.name == "yamlls" then
-    opts.filetypes = { "yaml", "yml", "gitlab-ci", "ansible", "docker-compose" }
+    opts.filetypes = { "yaml", "yml", "gitlab-ci.yaml", "ansible.yaml", "docker-compose.yaml", "kubernetes.yaml" }
     opts.settings = {
       yaml = {
         schemas = {
           ["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = "/*gitlab[-]ci*.yml",
           ["https://raw.githubusercontent.com/docker/cli/master/cli/compose/schema/data/config_schema_v3.9.json"] = "/*docker[-]compose*.yml",
+          ["kubernetes"] = { "/*.yml", "/*.yaml" },
         },
         validate = true,
         hover = true,
