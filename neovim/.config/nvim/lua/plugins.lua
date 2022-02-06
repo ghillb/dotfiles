@@ -123,6 +123,7 @@ return require("packer").startup({
     })
     use({ "mcchrish/nnn.vim" })
     use({ "abecodes/tabout.nvim", wants = { "nvim-treesitter" } })
+    use({ "wellle/targets.vim" })
     use({ "p00f/nvim-ts-rainbow" })
     use({ "stevearc/qf_helper.nvim" })
     use({ "goolord/alpha-nvim" })

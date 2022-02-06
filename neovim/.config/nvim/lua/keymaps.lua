@@ -163,7 +163,6 @@ map("n", "<leader>p", "o<esc>p")
 map("n", "<leader>P", "O<esc>P")
 map("n", "<leader>o", "o<esc>")
 map("n", "<leader>O", "O<esc>")
-map("n", "<leader>v", "ggVG")
 map("n", "<leader>*", "*:%s//")
 
 -- localleader mappings
@@ -196,3 +195,12 @@ map("n", "gF", vim.lsp.buf.formatting)
 map("n", "<a-space>", vim.diagnostic.open_float)
 map("n", "<a-bs>", "<cmd>TroubleToggle document_diagnostics<cr>")
 map("n", "<a-cr>", "<cmd>Telescope lsp_code_actions<cr>")
+
+-- pseudo text objects
+map("x", "il", "g_o^")
+map("o", "il", ":<c-u>normal vil<cr>")
+map("x", "al", "$o0")
+map("o", "al", ":<c-u>normal val<cr>")
+
+map("x", "i%", "ggoGV")
+map("o", "i%", ":<c-u>normal vi%<cr>")

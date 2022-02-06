@@ -13,7 +13,7 @@ vim.filetype.add({
       if buf_first_line:find("#!/usr/bin/env ansible") then
         return "ansible.yaml"
       end
-      if buf_first_line:find("#!/usr/bin/env kubernetes") then
+      if buf_first_line:find("#!/usr/bin/env kubectl") then
         return "kubernetes.yaml"
       end
     end,

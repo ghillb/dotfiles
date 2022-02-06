@@ -1,3 +1,4 @@
+#!/usr/bin/env -S docker-compose -f
 version: '3'
 services:
   ubu-dev:
