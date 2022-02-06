@@ -54,7 +54,7 @@ lsp_installer.on_server_ready(function(server)
         schemas = {
           ["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = "/*gitlab[-]ci*.yml",
           ["https://raw.githubusercontent.com/docker/cli/master/cli/compose/schema/data/config_schema_v3.9.json"] = "/*docker[-]compose*.yml",
-          ["kubernetes"] = { "/*.yml", "/*.yaml" },
+          ["kubernetes"] = { "/k8s/*.yml", "/k8s/*.yaml" },
         },
         validate = true,
         hover = true,

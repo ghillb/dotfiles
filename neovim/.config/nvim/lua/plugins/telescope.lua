@@ -37,7 +37,7 @@ local config = {
         width = 0.8,
       },
     },
-    path_display = { 'smart' },
+    path_display = { "smart" },
     dynamic_preview_title = true,
     borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
     mappings = {
@@ -96,8 +96,8 @@ local config = {
   extensions = {
     project = {
       base_dirs = {
-        { vim.env.CODE },
-        { vim.env.DOTFILES },
+        { "~/code" },
+        { "~/.files" },
       },
       hidden_files = true,
     },
@@ -114,21 +114,23 @@ telescope.load_extension("cheat")
 local map = vim.keymap.set
 local builtin = require("telescope.builtin")
 
-map({'n','v'}, "<c-e>", builtin.find_files)
-map({'n','v'}, "<c-a-e>", TelescopeOmniFiles)
-map({'n','v'}, "<c-p>", builtin.live_grep)
-map({'n','v'}, "<c-b>", builtin.buffers)
-map({'n','v'}, "<c-_>", builtin.current_buffer_fuzzy_find)
-map({'n','v'}, "<c-g>", SwitchGitBranch)
-map('n', "<leader>fg", builtin.git_status)
-map('n', "<leader>fk", builtin.keymaps)
-map('n', "<leader>fc", builtin.commands)
-map('n', "<leader>fm", builtin.man_pages)
-map('n', "<leader>fh", builtin.help_tags)
-map('n', "<leader>fq", builtin.quickfix)
-map('n', "<leader>fl", builtin.loclist)
-map('n', "<leader>ff", telescope.extensions.frecency.frecency)
-map('n', "<leader>ft", telescope.extensions.asynctasks.all)
-map('n', "<leader>fy", telescope.extensions.neoclip.default)
-map('n', "<leader>fz", ":Telescope cheat fd<cr>")
-map('n', "<esc><esc>", function() telescope.extensions.project.project({ display_type = "full" }) end)
+map({ "n", "v" }, "<c-e>", builtin.find_files)
+map({ "n", "v" }, "<c-a-e>", TelescopeOmniFiles)
+map({ "n", "v" }, "<c-p>", builtin.live_grep)
+map({ "n", "v" }, "<c-b>", builtin.buffers)
+map({ "n", "v" }, "<c-_>", builtin.current_buffer_fuzzy_find)
+map({ "n", "v" }, "<c-g>", SwitchGitBranch)
+map("n", "<leader>fg", builtin.git_status)
+map("n", "<leader>fk", builtin.keymaps)
+map("n", "<leader>fc", builtin.commands)
+map("n", "<leader>fm", builtin.man_pages)
+map("n", "<leader>fh", builtin.help_tags)
+map("n", "<leader>fq", builtin.quickfix)
+map("n", "<leader>fl", builtin.loclist)
+map("n", "<leader>ff", telescope.extensions.frecency.frecency)
+map("n", "<leader>ft", telescope.extensions.asynctasks.all)
+map("n", "<leader>fy", telescope.extensions.neoclip.default)
+map("n", "<leader>fz", ":Telescope cheat fd<cr>")
+map("n", "<esc><esc>", function()
+  telescope.extensions.project.project({ display_type = "full" })
+end)
