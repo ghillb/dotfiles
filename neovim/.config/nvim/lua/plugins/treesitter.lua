@@ -31,12 +31,13 @@ local config = {
 
 treesitter_configs.setup(config)
 
-local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
-parser_configs.yaml.used_by = "ansible"
-parser_configs.yaml.used_by = "gitlab-ci"
-parser_configs.yaml.used_by = "docker-compose"
+local parsers = require("nvim-treesitter.parsers")
+parsers.filetype_to_parsername["ansible.yaml"] = "yaml"
+parsers.filetype_to_parsername["kubernetes.yaml"] = "yaml"
+parsers.filetype_to_parsername["docker-compose.yaml"] = "yaml"
+parsers.filetype_to_parsername["gitlab-ci.yaml"] = "yaml"
 
-parser_configs.norg = {
+parsers.get_parser_configs().norg = {
   install_info = {
     url = "https://github.com/nvim-neorg/tree-sitter-norg",
     files = { "src/parser.c", "src/scanner.cc" },
