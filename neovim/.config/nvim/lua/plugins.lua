@@ -46,7 +46,7 @@ return require("packer").startup({
         "Pocco81/DAPInstall.nvim",
       },
     })
-    use({ "rcarriga/vim-ultest" })
+    use({ "rcarriga/vim-ultest", requires = { "vim-test/vim-test" }, run = ":UpdateRemotePlugins" })
     use({
       "nvim-telescope/telescope.nvim",
       requires = {
@@ -74,7 +74,7 @@ return require("packer").startup({
     use({ "kosayoda/nvim-lightbulb" })
     use({ "stevearc/aerial.nvim" })
     use({ "windwp/nvim-autopairs" })
-    use({ "lewis6991/gitsigns.nvim" })
+    use({ "lewis6991/gitsigns.nvim", commit = "e91fda815a5f7d20d7e4c89cd1f07f3497fe200d" }) -- fixed in stable 0.7
     use({ "sindrets/diffview.nvim" })
     use({ "akinsho/toggleterm.nvim" })
     use({ "lukas-reineke/indent-blankline.nvim" })
