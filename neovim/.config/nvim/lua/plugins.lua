@@ -114,7 +114,6 @@ return require("packer").startup({
     use({ "nvim-lualine/lualine.nvim", opt = false })
     use({ "kyazdani42/nvim-tree.lua", requires = { "kyazdani42/nvim-web-devicons" } })
     use({ "simrat39/rust-tools.nvim", requires = { "neovim/nvim-lspconfig" } })
-    use({ "yriveiro/dap-go.nvim", requires = { { "nvim-lua/plenary.nvim" } } })
     use({ "mcchrish/nnn.vim" })
     use({ "abecodes/tabout.nvim", wants = { "nvim-treesitter" } })
     use({ "wellle/targets.vim" })

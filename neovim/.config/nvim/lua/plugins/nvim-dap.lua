@@ -14,14 +14,23 @@ local config = {
   highlight_new_as_changed = false,
   show_stop_reason = true,
   commented = false,
-  -- experimental features:
   virt_text_pos = "eol",
-  all_frames = false,
-  virt_lines = false,
-  virt_text_win_col = nil,
 }
 
 dap_virtual_text.setup(config)
+
+-- nvim-dap-install setup
+local dap_install = require("dap-install")
+
+dap_install.setup({
+  installation_path = vim.fn.stdpath("data") .. "/dapinstall/",
+})
+
+local dbg_list = require("dap-install.api.debuggers").get_installed_debuggers()
+
+for _, debugger in ipairs(dbg_list) do
+  dap_install.config(debugger)
+end
 
 local map = vim.keymap.set
 
@@ -32,26 +41,17 @@ map("n", "<F4>", ":lua require('dap').step_out()<cr>")
 map("n", "<F5>", ":lua require('dap').toggle_breakpoint()<cr>")
 map("n", "<F10>", ":lua require('dapui').toggle()<cr>")
 
+map("n", "<Leader>dbc", ":lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>")
+map("n", "<Leader>dbm", ":lua require('dap').set_breakpoint({ nil, nil, vim.fn.input('Log point message: ')})<cr>")
+
 map("n", "<Leader>dsc", ":lua require('dap').continue()<cr>")
 map("n", "<Leader>dsv", ":lua require('dap').step_over()<cr>")
 map("n", "<Leader>dsi", ":lua require('dap').step_into()<cr>")
 map("n", "<Leader>dso", ":lua require('dap').step_out()<cr>")
 
-map("n", "<Leader>dhh", ":lua require('dap.ui.variables').hover()<cr>")
-map("v", "<Leader>dhv", ":lua require('dap.ui.variables').visual_hover()<cr>")
-
-map("n", "<Leader>duh", ":lua require('dap.ui.widgets').hover()<cr>")
-map("n", "<Leader>duf", ":lua local widgets=require('dap.ui.widgets');widgets.centered_float(widgets.scopes)<cr>")
-
-map("n", "<Leader>dro", ":lua require('dap').repl.open()<cr>")
-map("n", "<Leader>drl", ":lua require('dap').repl.run_last()<cr>")
-
-map("n", "<Leader>dbc", ":lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>")
-map("n", "<Leader>dbm", ":lua require('dap').set_breakpoint({ nil, nil, vim.fn.input('Log point message: ')})<cr>")
-map("n", "<Leader>dbt", ":lua require('dap').toggle_breakpoint()<cr>")
-
-map("n", "<Leader>dc", ":lua require('dap.ui.variables').scopes()<cr>")
-map("n", "<Leader>di", ":lua require('dapui').toggle()<cr>")
+map("n", "<Leader>dtr", ":lua require('dap').repl.open()<cr>")
+map("n", "<Leader>dtu", ":lua require('dapui').toggle()<cr>")
+map("n", "<Leader>dtv", ":lua local widgets=require('dap.ui.widgets');widgets.centered_float(widgets.scopes)<cr>")
 
 map("n", "<leader>fdc", ':lua require"telescope".extensions.dap.commands{}<cr>')
 map("n", "<leader>fdb", ':lua require"telescope".extensions.dap.list_breakpoints{}<cr>')
