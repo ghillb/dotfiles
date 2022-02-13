@@ -1,10 +1,12 @@
 _G.palette = {
   red = "#fb4934",
-  green = "#989719",
+  yellow = "#fabd2f",
   blue = "#448488",
+  green = "#989719",
+  aqua = "#8ec07c",
   pink = "#b16286",
   ivory = "#ebdbb2",
-  dark_gray = "#3c3836",
+  gray = "#3c3836",
 }
 
 function SetTheme()
@@ -13,13 +15,13 @@ function SetTheme()
   end
 
   -- vim highlight groups
+  set_hl("Border", { fg = palette.gray })
   set_hl("SignColumn", { bg = nil })
   set_hl("NormalFloat", { bg = nil })
-  set_hl("StatusLine", { fg = palette.dark_gray })
-  set_hl("EndOfBuffer", { fg = palette.dark_gray })
-  set_hl("VertSplit", { bg = nil, fg = palette.dark_gray })
+  set_hl("StatusLine", { fg = palette.gray })
+  set_hl("EndOfBuffer", { fg = palette.gray })
+  set_hl("VertSplit", { bg = nil, fg = palette.gray })
   set_hl("WarningMsg", { fg = palette.red })
-  set_hl("DiagnosticError", { fg = palette.red })
   set_hl("TabLineSel", { fg = palette.ivory })
   set_hl("TabLineFill", { bg = nil })
   set_hl("TabLine", { bg = nil })
@@ -27,8 +29,15 @@ function SetTheme()
   set_hl("GitSignsAdd", { bg = nil, fg = palette.green })
   set_hl("GitSignsChange", { bg = nil, fg = palette.blue })
   set_hl("GitSignsDelete", { bg = nil, fg = palette.red })
+  set_hl("TelescopePromptBorder", { fg = palette.gray })
+  set_hl("TelescopeResultsBorder", { fg = palette.gray })
+  set_hl("TelescopePreviewBorder", { fg = palette.gray })
   set_hl("NvimTreeNormal", { bg = nil })
-  set_hl("NvimTreeIndentMarker", { fg = palette.dark_gray })
+  set_hl("NvimTreeIndentMarker", { fg = palette.gray })
+  set_hl("GruvboxRedSign", { bg = nil, fg = palette.red })
+  set_hl("GruvboxYellowSign", { bg = nil, fg = palette.yellow })
+  set_hl("GruvboxBlueSign", { bg = nil, fg = palette.blue })
+  set_hl("GruvboxAquaSign", { bg = nil, fg = palette.ivory })
 end
 
 -- set theme, for some reason 'Normal' has to be set the old way

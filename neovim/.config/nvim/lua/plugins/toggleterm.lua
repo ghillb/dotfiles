@@ -20,7 +20,7 @@ toggleterm.setup({
 		border = "single",
 		winblend = 0,
 		highlights = {
-			border = "Normal",
+			border = "Border",
 			background = "Normal",
 		},
 	},
