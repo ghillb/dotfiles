@@ -1,31 +1,40 @@
--- nvim highlight groups
-vim.cmd([[ au colorscheme * hi Normal guibg=NONE ctermbg=NONE ]])
-vim.cmd([[ au colorscheme * hi Terminal guibg=NONE ctermbg=NONE ]])
-vim.cmd([[ au colorscheme * hi LineNr guibg=NONE ctermbg=NONE ]])
-vim.cmd([[ au colorscheme * hi CursorLineNR guibg=NONE ctermbg=NONE ]])
-vim.cmd([[ au colorscheme * hi SignColumn guibg=NONE ctermbg=NONE ]])
-vim.cmd([[ au colorscheme * hi FoldColumn guibg=NONE ctermbg=NONE ]])
-vim.cmd([[ au colorscheme * hi VertSplit guibg=NONE ctermbg=NONE ]])
-vim.cmd([[ au colorscheme * hi Folded guibg=NONE ctermbg=NONE ]])
-vim.cmd([[ au colorscheme * hi NonText guibg=NONE ctermbg=NONE ]])
-vim.cmd([[ au colorscheme * hi SpecialKey guibg=NONE ctermbg=NONE ]])
-vim.cmd([[ au colorscheme * hi NormalFloat guibg=NONE ctermbg=NONE ]])
-vim.cmd([[ au colorscheme * hi MsgArea guibg=NONE ctermbg=NONE ]])
-vim.cmd([[ au colorscheme * hi StatusLine guifg=#3c3836 ]])
-vim.cmd([[ au colorscheme * hi EndOfBuffer guibg=NONE ctermbg=NONE guifg=#3c3836 ]])
-vim.cmd([[ au colorscheme * hi NonText guibg=NONE ctermbg=NONE guifg=#3c3836 ]])
-vim.cmd [[ au colorscheme * hi WarningMsg guibg=NONE ctermbg=NONE guifg=#fb4934 ]]
-vim.cmd [[ au colorscheme * hi DiagnosticError guifg=#fb4934 ]]
-vim.cmd([[ au colorscheme * hi TabLineSel guifg=#ebdbb2 ]])
-vim.cmd([[ au colorscheme * hi TabLineFill guibg=NONE ctermbg=NONE ]])
-vim.cmd([[ au colorscheme * hi TabLine guibg=NONE ]])
+_G.palette = {
+  red = "#fb4934",
+  green = "#989719",
+  blue = "#448488",
+  pink = "#b16286",
+  ivory = "#ebdbb2",
+  dark_gray = "#3c3836",
+}
 
--- plugin highlight groups
-vim.cmd([[ au colorscheme * hi GitSignsAdd guibg=NONE ctermbg=NONE guifg=#989719 ]])
-vim.cmd([[ au colorscheme * hi GitSignsChange guibg=NONE ctermbg=NONE guifg=#448488 "#b16286  ]])
-vim.cmd([[ au colorscheme * hi GitSignsDelete guibg=NONE ctermbg=NONE guifg=#fb4934 ]])
-vim.cmd([[ au colorscheme * hi NvimTreeNormal guibg=NONE ctermbg=NONE ]])
-vim.cmd([[ au colorscheme * hi NvimTreeIndentMarker guifg=#3c3836 ]])
+function SetTheme()
+  local function set_hl(hl_group, value)
+    vim.api.nvim_set_hl(0, hl_group, value)
+  end
+
+  -- vim highlight groups
+  set_hl("SignColumn", { bg = nil })
+  set_hl("NormalFloat", { bg = nil })
+  set_hl("StatusLine", { fg = palette.dark_gray })
+  set_hl("EndOfBuffer", { fg = palette.dark_gray })
+  set_hl("VertSplit", { bg = nil, fg = palette.dark_gray })
+  set_hl("WarningMsg", { fg = palette.red })
+  set_hl("DiagnosticError", { fg = palette.red })
+  set_hl("TabLineSel", { fg = palette.ivory })
+  set_hl("TabLineFill", { bg = nil })
+  set_hl("TabLine", { bg = nil })
+  -- plugin highlight groups
+  set_hl("GitSignsAdd", { bg = nil, fg = palette.green })
+  set_hl("GitSignsChange", { bg = nil, fg = palette.blue })
+  set_hl("GitSignsDelete", { bg = nil, fg = palette.red })
+  set_hl("NvimTreeNormal", { bg = nil })
+  set_hl("NvimTreeIndentMarker", { fg = palette.dark_gray })
+end
+
+-- set theme, for some reason 'Normal' has to be set the old way
+-- vim.api.nvim_set_hl(0, "Normal", { bg = nil })
+vim.cmd([[au colorscheme * hi Normal guibg=NONE ctermbg=NONE]])
+vim.cmd([[au colorscheme * lua SetTheme()]])
 
 -- gruvbox setup
 vim.g.gruvbox_contrast_dark = "hard"
@@ -56,5 +65,4 @@ kanagawa.setup(config)
 
 -- enable colorscheme
 -- vim.cmd([[ silent! colorscheme kanagawa ]])
--- vim.cmd([[ silent! colorscheme gruvbit ]])
 vim.cmd([[ silent! colorscheme gruvbox ]])
