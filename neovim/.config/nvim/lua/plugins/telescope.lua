@@ -74,6 +74,7 @@ local config = {
       file_ignore_patterns = {
         ".git/",
       },
+      prompt_title = "Files",
     },
     live_grep = {
       vimgrep_arguments = {
@@ -109,6 +110,7 @@ telescope.load_extension("project")
 telescope.load_extension("dap")
 telescope.load_extension("frecency")
 telescope.load_extension("cheat")
+telescope.load_extension("live_grep_raw")
 
 -- telescope mappings
 local map = vim.keymap.set
@@ -117,10 +119,12 @@ local builtin = require("telescope.builtin")
 map({ "n", "v" }, "<c-e>", builtin.find_files)
 map({ "n", "v" }, "<c-a-e>", TelescopeOmniFiles)
 map({ "n", "v" }, "<c-p>", builtin.live_grep)
+map({ "n", "v" }, "<c-a-p>", telescope.extensions.live_grep_raw.live_grep_raw)
 map({ "n", "v" }, "<c-b>", builtin.buffers)
 map({ "n", "v" }, "<c-_>", builtin.current_buffer_fuzzy_find)
 map({ "n", "v" }, "<c-g>", SwitchGitBranch)
 map("n", "<leader>fg", builtin.git_status)
+map("n", "<leader>fr", builtin.resume)
 map("n", "<leader>fk", builtin.keymaps)
 map("n", "<leader>fc", builtin.commands)
 map("n", "<leader>fm", builtin.man_pages)

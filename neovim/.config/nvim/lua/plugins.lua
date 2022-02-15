@@ -15,6 +15,7 @@ return require("packer").startup({
     use({ "wbthomason/packer.nvim" })
     use({ "gruvbox-community/gruvbox" })
     use({ "rebelot/kanagawa.nvim" })
+    use({ "navarasu/onedark.nvim" })
     use({ "tpope/vim-fugitive" })
     use({ "will133/vim-dirdiff" })
     use({ "junegunn/gv.vim" })
@@ -32,7 +33,6 @@ return require("packer").startup({
     use({ "rafamadriz/friendly-snippets" })
     use({ "Jorengarenar/vim-MvVis" })
     use({ "skywind3000/asynctasks.vim", requires = { "skywind3000/asyncrun.vim" } })
-    use({ "GustavoKatel/telescope-asynctasks.nvim" })
     use({ "neovim/nvim-lspconfig", git = { subcommands = { update_branch = "merge" } } })
     use({ "williamboman/nvim-lsp-installer" })
     use({ "jose-elias-alvarez/null-ls.nvim", requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" } })
@@ -51,12 +51,14 @@ return require("packer").startup({
       requires = {
         { "nvim-lua/popup.nvim" },
         { "nvim-lua/plenary.nvim" },
+        { "nvim-telescope/telescope-project.nvim" },
+        { "nvim-telescope/telescope-dap.nvim" },
+        { "nvim-telescope/telescope-rg.nvim" },
+        { "nvim-telescope/telescope-frecency.nvim", requires = { "tami5/sqlite.lua" } },
+        { "nvim-telescope/telescope-cheat.nvim", requires = { "tami5/sqlite.lua" } },
+        { "GustavoKatel/telescope-asynctasks.nvim" },
       },
     })
-    use({ "nvim-telescope/telescope-project.nvim" })
-    use({ "nvim-telescope/telescope-dap.nvim" })
-    use({ "nvim-telescope/telescope-frecency.nvim", requires = { "tami5/sqlite.lua" } })
-    use({ "nvim-telescope/telescope-cheat.nvim", requires = { "tami5/sqlite.lua" } })
     use({
       "hrsh7th/nvim-cmp",
       requires = {

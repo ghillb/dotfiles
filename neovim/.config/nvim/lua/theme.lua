@@ -9,7 +9,7 @@ _G.palette = {
   gray = "#3c3836",
 }
 
-function SetTheme()
+function _G.SetTheme()
   local function set_hl(hl_group, value)
     vim.api.nvim_set_hl(0, hl_group, value)
   end
@@ -72,6 +72,13 @@ local config = {
 
 kanagawa.setup(config)
 
+-- onedark setup
+require("onedark").setup({
+  style = "darker",
+  transparent = true,
+})
+
 -- enable colorscheme
--- vim.cmd([[ silent! colorscheme kanagawa ]])
 vim.cmd([[ silent! colorscheme gruvbox ]])
+-- vim.cmd([[ silent! colorscheme kanagawa ]])
+-- vim.cmd([[ silent! colorscheme onedark ]])
