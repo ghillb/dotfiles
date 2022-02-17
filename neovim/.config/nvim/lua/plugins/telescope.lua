@@ -116,15 +116,29 @@ telescope.load_extension("live_grep_raw")
 local map = vim.keymap.set
 local builtin = require("telescope.builtin")
 
+map({ "n", "v" }, "<bs><bs>", builtin.builtin)
+map({ "n", "v" }, "<c-h>", builtin.resume)
 map({ "n", "v" }, "<c-e>", builtin.find_files)
 map({ "n", "v" }, "<c-a-e>", TelescopeOmniFiles)
-map({ "n", "v" }, "<c-p>", builtin.live_grep)
-map({ "n", "v" }, "<c-a-p>", telescope.extensions.live_grep_raw.live_grep_raw)
+map({ "n", "v" }, "<c-p>", function()
+  telescope.extensions.live_grep_raw.live_grep_raw({
+    vimgrep_arguments = {
+      "rg",
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--smart-case",
+      "--hidden",
+    },
+  })
+end)
+map({ "n", "v" }, "<c-a-p>", builtin.live_grep)
 map({ "n", "v" }, "<c-b>", builtin.buffers)
 map({ "n", "v" }, "<c-_>", builtin.current_buffer_fuzzy_find)
-map({ "n", "v" }, "<c-g>", SwitchGitBranch)
-map("n", "<leader>fg", builtin.git_status)
-map("n", "<leader>fr", builtin.resume)
+map({ "n", "v" }, "<c-g>", builtin.git_status)
+map("n", "<leader>fg", SwitchGitBranch)
 map("n", "<leader>fk", builtin.keymaps)
 map("n", "<leader>fc", builtin.commands)
 map("n", "<leader>fm", builtin.man_pages)
