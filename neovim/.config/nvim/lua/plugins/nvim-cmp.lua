@@ -16,15 +16,19 @@ cmp.setup({
       vim.fn["vsnip#anonymous"](args.body)
     end,
   },
+
   mapping = {
     ["<c-d>"] = cmp.mapping.scroll_docs(4),
     ["<c-u>"] = cmp.mapping.scroll_docs(-4),
-    ["<a-cr>"] = cmp.mapping.complete(),
-    ["<c-q>"] = cmp.mapping.close(),
-    ["<cr>"] = cmp.mapping.confirm({
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    }),
+    ["<a-cr>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+    ["<c-q>"] = cmp.mapping(cmp.mapping.close(), { "i", "c" }),
+    ["<cr>"] = cmp.mapping(
+      cmp.mapping.confirm({
+        behavior = cmp.ConfirmBehavior.Replace,
+        select = true,
+      }),
+      { "i", "c" }
+    ),
     ["<tab>"] = cmp.mapping(function(fallback)
       if neogen.jumpable() then
         vim.fn.feedkeys(t("<cmd>lua require('neogen').jump_next()<cr>"), "")
@@ -86,12 +90,14 @@ require("cmp").setup.cmdline("/", {
   },
 })
 
--- require("cmp").setup.cmdline(":", {
---   sources = {
---     { name = "cmdline" },
---     { name = "path" },
---   },
--- })
+require("cmp").setup.cmdline(":", {
+  sources = {
+    { name = "cmdline" },
+    { name = "path", option = {
+      trailing_slash = true,
+    } },
+  },
+})
 
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))

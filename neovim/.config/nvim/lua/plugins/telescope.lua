@@ -4,6 +4,18 @@ if not ok then
 end
 
 local actions = require("telescope.actions")
+local rg_config = {
+  "rg",
+  "--color=never",
+  "--no-heading",
+  "--with-filename",
+  "--line-number",
+  "--column",
+  "--smart-case",
+  "--hidden",
+  "--glob",
+  "!.git/",
+}
 
 local config = {
   defaults = {
@@ -77,18 +89,7 @@ local config = {
       prompt_title = "Files",
     },
     live_grep = {
-      vimgrep_arguments = {
-        "rg",
-        "--color=never",
-        "--no-heading",
-        "--with-filename",
-        "--line-number",
-        "--column",
-        "--smart-case",
-        "--hidden",
-        "-g",
-        "!.git/",
-      },
+      vimgrep_arguments = rg_config,
     },
     lsp_code_actions = {
       layout_config = { width = 80, height = 10 },
@@ -122,16 +123,8 @@ map({ "n", "v" }, "<c-e>", builtin.find_files)
 map({ "n", "v" }, "<c-a-e>", TelescopeOmniFiles)
 map({ "n", "v" }, "<c-p>", function()
   telescope.extensions.live_grep_raw.live_grep_raw({
-    vimgrep_arguments = {
-      "rg",
-      "--color=never",
-      "--no-heading",
-      "--with-filename",
-      "--line-number",
-      "--column",
-      "--smart-case",
-      "--hidden",
-    },
+    vimgrep_arguments = rg_config,
+    prompt_title = "Grep"
   })
 end)
 map({ "n", "v" }, "<c-a-p>", builtin.live_grep)
