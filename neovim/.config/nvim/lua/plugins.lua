@@ -121,6 +121,7 @@ return require("packer").startup({
     use({ "p00f/nvim-ts-rainbow" })
     use({ "stevearc/qf_helper.nvim" })
     use({ "goolord/alpha-nvim" })
+    use({ "kenn7/vim-arsync" })
     use({ "ellisonleao/glow.nvim" })
     use({
       "danymat/neogen",

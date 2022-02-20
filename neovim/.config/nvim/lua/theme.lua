@@ -37,7 +37,7 @@ function _G.SetTheme()
   set_hl("GruvboxRedSign", { bg = nil, fg = palette.red })
   set_hl("GruvboxYellowSign", { bg = nil, fg = palette.yellow })
   set_hl("GruvboxBlueSign", { bg = nil, fg = palette.blue })
-  set_hl("GruvboxAquaSign", { bg = nil, fg = palette.ivory })
+  set_hl("GruvboxAquaSign", { bg = nil, fg = palette.aqua })
 end
 
 -- set theme, for some reason 'Normal' has to be set the old way
