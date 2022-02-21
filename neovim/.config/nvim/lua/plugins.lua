@@ -16,6 +16,7 @@ return require("packer").startup({
     use({ "gruvbox-community/gruvbox" })
     use({ "rebelot/kanagawa.nvim" })
     use({ "navarasu/onedark.nvim" })
+    use({ "folke/tokyonight.nvim" })
     use({ "tpope/vim-fugitive" })
     use({ "will133/vim-dirdiff" })
     use({ "junegunn/gv.vim" })

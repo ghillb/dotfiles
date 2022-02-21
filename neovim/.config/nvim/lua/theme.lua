@@ -78,7 +78,12 @@ require("onedark").setup({
   transparent = true,
 })
 
+-- tokyonight setup
+vim.g.tokyonight_style = "night"
+vim.g.tokyonight_transparent = true
+
 -- enable colorscheme
 vim.cmd([[ silent! colorscheme gruvbox ]])
 -- vim.cmd([[ silent! colorscheme kanagawa ]])
 -- vim.cmd([[ silent! colorscheme onedark ]])
+-- vim.cmd([[ silent! colorscheme tokyonight ]])
