@@ -6,6 +6,18 @@ vim.cmd("au TextChanged,TextChangedI * if &readonly == 0 && filereadable(bufname
 vim.cmd("au TextYankPost * silent! lua vim.highlight.on_yank{higroup='IncSearch', timeout=500}")
 vim.cmd("au TermEnter,TermOpen * set ft=terminal")
 vim.cmd("au BufWritePre * lua vim.lsp.buf.formatting_seq_sync(nil, 2000)")
+vim.cmd([[
+augroup Binary
+  au!
+  au BufReadPre  *.bin let &bin=1
+  au BufReadPost *.bin if &bin | %!xxd
+  au BufReadPost *.bin set ft=xxd | endif
+  au BufWritePre *.bin if &bin | %!xxd -r
+  au BufWritePre *.bin endif
+  au BufWritePost *.bin if &bin | %!xxd
+  au BufWritePost *.bin set nomod | endif
+augroup END
+]])
 
 function _G.DrawerToggle()
   local lib = require("diffview.lib")
@@ -211,4 +223,15 @@ function table.merge(...)
     end
   end
   return result
+end
+
+function _G.SplitStringIntoTable(inputstr, sep)
+  if sep == nil then
+    sep = "%s"
+  end
+  local t = {}
+  for str in string.gmatch(inputstr, "([^" .. sep .. "]+)") do
+    table.insert(t, str)
+  end
+  return t
 end

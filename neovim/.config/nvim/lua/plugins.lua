@@ -12,6 +12,13 @@ vim.cmd([[autocmd BufWritePost plugins.lua source <afile> | PackerCompile]])
 
 return require("packer").startup({
   function(use)
+
+    if vim.env.LOCAL_NVIM_PLUGINS ~= nil then
+      for _, plugin in ipairs(_G.SplitStringIntoTable(vim.env.LOCAL_NVIM_PLUGINS)) do
+        use({ plugin })
+      end
+    end
+
     use({ "wbthomason/packer.nvim" })
     use({ "gruvbox-community/gruvbox" })
     use({ "rebelot/kanagawa.nvim" })
