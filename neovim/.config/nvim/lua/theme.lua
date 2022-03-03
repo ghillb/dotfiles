@@ -17,6 +17,7 @@ function _G.SetTheme()
   -- vim highlight groups
   set_hl("Border", { fg = palette.gray })
   set_hl("SignColumn", { bg = nil })
+  set_hl("FoldColumn", { bg = nil })
   set_hl("NormalFloat", { bg = nil })
   set_hl("StatusLine", { fg = palette.gray })
   set_hl("EndOfBuffer", { fg = palette.gray })
