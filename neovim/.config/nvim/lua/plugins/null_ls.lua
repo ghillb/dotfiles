@@ -6,7 +6,9 @@ end
 local opts = {
 
   sources = {
-    null_ls.builtins.formatting.shfmt,
+    null_ls.builtins.formatting.shfmt.with({
+      extra_args = { "-i", "2", "-ci" },
+    }),
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.terraform_fmt,
     null_ls.builtins.formatting.goimports,
