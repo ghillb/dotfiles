@@ -1,24 +1,3 @@
-vim.cmd("au VimEnter * silent lua SetRoot('start_dir')")
-vim.cmd("au VimEnter * if filereadable(expand($NVIM_CONFIG) . '/localrc.lua') | source $NVIM_CONFIG/localrc.lua | endif")
-vim.cmd("au BufEnter * lua PopulateInfo()")
-vim.cmd("au DirChanged * if filereadable(expand('%:p:h') . '/.nvim.lua') | source %:p:h/.nvim.lua | endif")
-vim.cmd("au TextChanged,TextChangedI * if &readonly == 0 && filereadable(bufname('%')) | silent write | endif")
-vim.cmd("au TextYankPost * silent! lua vim.highlight.on_yank{higroup='IncSearch', timeout=500}")
-vim.cmd("au TermEnter,TermOpen * set ft=terminal")
-vim.cmd("au BufWritePre * lua vim.lsp.buf.formatting_seq_sync(nil, 2000)")
-vim.cmd([[
-augroup Binary
-  au!
-  au BufReadPre  *.bin let &bin=1
-  au BufReadPost *.bin if &bin | %!xxd
-  au BufReadPost *.bin set ft=xxd | endif
-  au BufWritePre *.bin if &bin | %!xxd -r
-  au BufWritePre *.bin endif
-  au BufWritePost *.bin if &bin | %!xxd
-  au BufWritePost *.bin set nomod | endif
-augroup END
-]])
-
 function _G.DrawerToggle()
   local lib = require("diffview.lib")
   local view = lib.get_current_view()
@@ -64,16 +43,16 @@ function _G.TelescopeOmniFiles()
 end
 
 function _G.SwitchGitBranch()
-  SetRoot("git_worktree")
+  _G.SetRoot("git_worktree")
   vim.cmd("Git fetch --prune --verbose --all")
   require("telescope.builtin").git_branches()
 end
 
 function _G.PopulateInfo()
-  local is_git_worktree = IsGitWorkTree()
-  SetGitModifiedCount(is_git_worktree)
-  SetBreadcrumbs()
-  SetTitleString()
+  local is_git_worktree = _G.IsGitWorkTree()
+  _G.SetGitModifiedCount(is_git_worktree)
+  _G.SetBreadcrumbs()
+  _G.SetTitleString()
 end
 
 function _G.IsGitWorkTree()
@@ -109,7 +88,7 @@ end
 
 function _G.SetTitleString()
   local titlestring
-  if IsGitWorkTree() then
+  if _G.IsGitWorkTree() then
     titlestring = vim.fn.fnamemodify(vim.fn.FugitiveWorkTree(), ":t")
   else
     titlestring = vim.fn.substitute(vim.fn.expand("%:p:h:t"), vim.env.HOME, "~", "")
@@ -174,34 +153,38 @@ function _G.SetRoot(...)
   if #(...) < 1 then
     return
   end
-  if ... == "git_worktree" then
-    if IsGitWorkTree() then
+  local target, echo = ...
+
+  if target == "git_worktree" then
+    if _G.IsGitWorkTree() then
       vim.env.VIM_ROOT = vim.fn.FugitiveWorkTree()
     else
       print("not a git repo!")
       return
     end
   end
-  if ... == "parent_dir" then
+  if target == "parent_dir" then
     vim.env.VIM_ROOT = vim.fn.fnamemodify(vim.env.VIM_ROOT, ":h")
   end
-  if ... == "file_dir" then
+  if target == "file_dir" then
     vim.env.VIM_ROOT = vim.fn.expand("%:p:h")
   end
-  if ... == "start_dir" then
-    if IsGitWorkTree() then
-      SetRoot("git_worktree")
+  if target == "start_dir" then
+    if _G.IsGitWorkTree() then
+      _G.SetRoot("git_worktree", echo)
       return
     else
       vim.env.VIM_ROOT = vim.fn.fnamemodify(vim.env.VIM_ROOT, ":p:h")
     end
   end
-  if ... == "origin" then
+  if target == "origin" then
     vim.env.VIM_ROOT = vim.env.PWD
   end
   if vim.fn.isdirectory(vim.env.VIM_ROOT) == 1 then
     vim.cmd("silent chdir " .. vim.env.VIM_ROOT)
-    print(vim.fn.substitute(..., "_", " ", "") .. " rooted " .. " -> " .. vim.env.VIM_ROOT)
+    if echo then
+      print(vim.fn.substitute(target, "_", " ", "") .. " rooted " .. " -> " .. vim.env.VIM_ROOT)
+    end
   else
     print("directory doesn't exist")
   end
@@ -235,3 +218,14 @@ function _G.SplitStringIntoTable(inputstr, sep)
   end
   return t
 end
+
+function _G.filereadable(path)
+  local f = io.open(path, "r")
+  if f ~= nil then
+    io.close(f)
+    return true
+  else
+    return false
+  end
+end
+
