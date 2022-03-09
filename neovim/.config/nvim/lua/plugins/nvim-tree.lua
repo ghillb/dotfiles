@@ -4,7 +4,6 @@ if not ok then
 end
 
 vim.g.nvim_tree_auto_ignore_ft = { "alpha", "dashboard", "copy-mode" }
-vim.g.nvim_tree_quit_on_open = 0
 vim.g.nvim_tree_indent_markers = 1
 vim.g.nvim_tree_git_hl = 0
 vim.g.nvim_tree_highlight_opened_files = 1
@@ -13,7 +12,6 @@ vim.g.nvim_tree_add_trailing = 1
 vim.g.nvim_tree_group_empty = 1
 vim.g.nvim_tree_icon_padding = " "
 vim.g.nvim_tree_show_icons = { git = 1, folders = 0, files = 0, folder_arrows = 1 }
-vim.g.nvim_tree_window_picker_exclude = { filetype = { "packer", "qf" }, buftype = { "terminal" } }
 vim.g.nvim_tree_special_files = { ["README"] = 1, ["README.md"] = 1, [".gitlab-ci.yml"] = 1 }
 vim.g.nvim_tree_icons = {
   default = "", -- ''
@@ -127,6 +125,14 @@ _G.NvimTreeConfig = {
   },
   git = {
     ignore = true,
+  },
+  actions = {
+    open_file = {
+      quit_on_open = true,
+    },
+    window_picker = {
+      exclude = { filetype = { "packer", "qf" }, buftype = { "terminal" } },
+    },
   },
 }
 

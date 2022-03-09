@@ -19,7 +19,7 @@ function _G.SetTheme()
   set_hl("SignColumn", { bg = nil })
   set_hl("FoldColumn", { bg = nil })
   set_hl("NormalFloat", { bg = nil })
-  set_hl("StatusLine", { fg = palette.gray })
+  set_hl("StatusLine", { bg = palette.gray }) -- TODO: link to status inactive
   set_hl("EndOfBuffer", { fg = palette.gray })
   set_hl("VertSplit", { bg = nil, fg = palette.gray })
   set_hl("WarningMsg", { fg = palette.red })
