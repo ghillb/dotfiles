@@ -1,5 +1,4 @@
 #!/usr/bin/env ansible-playbook
-# vim:ft=ansible
 
 ---
 - name: Install packages
@@ -35,6 +34,7 @@
         pkg:
           - curl
           - wget
+          - rsync
           - inetutils-ping
           - neovim
           - tmux
