@@ -11,16 +11,6 @@ aucmd("VimEnter", {
   group = ag_vim_enter,
 })
 
-aucmd("VimEnter", {
-  callback = function()
-    local local_config_path = vim.env.NVIM_CONFIG .. "/localrc.lua"
-    if _G.filereadable(local_config_path) then
-      vim.cmd("source" .. local_config_path)
-    end
-  end,
-  group = ag_vim_enter,
-})
-
 aucmd("BufEnter", { callback = PopulateInfo })
 
 aucmd({ "TermEnter", "TermOpen" }, { command = "set ft=terminal" })
