@@ -3,21 +3,21 @@ set -eu
 
 # integrate fzf & bash config
 ~/.fzf/install --all
-echo -e "source '$DOTFILES/.bash/bashrc'\n" >> $HOME/.bashrc
-
-# create code folder, otherwise nvim complains
-mkdir -p $HOME/code
+echo -e "source '$DOTFILES/.bash/bashrc'\n" >>$HOME/.bashrc
 
 # install nvim plugins
 export NVIM_INIT=1
-$(which nvim) --headless -u $DOTFILES/neovim/.config/nvim/lua/plugins.lua \
+mkdir -p "$HOME/code" # otherwise nvim complains
+pip install --user neovim
+$(which nvim) --headless -u "$DOTFILES/neovim/.config/nvim/lua/plugins.lua" \
   -c 'set termguicolors' -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 $(which nvim) --headless +"TSInstallSync all" +"q"
+unset NVIM_INIT
 
 # add completion
 mkdir ~/.bash_completion.d -p
 curl https://raw.githubusercontent.com/cykerway/complete-alias/master/complete_alias \
-  > ~/.bash_completion.d/complete_alias
+  >~/.bash_completion.d/complete_alias
 activate-global-python-argcomplete3 --dest ~/.bash_completion.d/
 
 # configure git

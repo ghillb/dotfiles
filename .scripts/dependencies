@@ -39,6 +39,7 @@
           - neovim
           - tmux
           - docker.io
+          - docker-compose
           - ripgrep
           - silversearcher-ag
           - sshfs
