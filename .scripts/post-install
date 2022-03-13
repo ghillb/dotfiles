@@ -9,9 +9,8 @@ echo -e "source '$DOTFILES/.bash/bashrc'\n" >> $HOME/.bashrc
 mkdir -p $HOME/code
 
 # install nvim plugins
-$(which nvim) --headless -u $DOTFILES/neovim/.config/nvim/lua/plugins.lua \
-  -c 'set termguicolors' -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-$(which nvim) --headless +"TSInstallSync all" +"q"
+# $(which nvim) --headless -c 'set termguicolors' -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+# $(which nvim) --headless +"TSInstallSync all" +"q"
 
 # add completion
 mkdir ~/.bash_completion.d -p
