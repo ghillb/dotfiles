@@ -2,10 +2,8 @@ local packer_opts = {
   "nvim-neorg/neorg",
   requires = { "nvim-lua/plenary.nvim" },
   config = function()
-    local ok, neorg = pcall(require, "neorg")
-    if not ok then
-      return
-    end
+    if vim.env.NVIM_INIT then return end
+    local neorg = require("neorg")
 
     neorg.setup({
       load = {

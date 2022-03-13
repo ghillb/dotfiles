@@ -1,10 +1,8 @@
 local packer_opts = {
   "ray-x/lsp_signature.nvim",
   config = function()
-    local ok, lsp_signature = pcall(require, "lsp_signature")
-    if not ok then
-      return
-    end
+    if vim.env.NVIM_INIT then return end
+    local lsp_signature = require("lsp_signature")
 
     local config = {
       bind = true,

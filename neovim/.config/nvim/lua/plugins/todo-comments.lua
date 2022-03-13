@@ -2,10 +2,8 @@ local packer_opts = {
   "folke/todo-comments.nvim",
   requires = { "nvim-lua/plenary.nvim" },
   config = function()
-    local ok, todo_comments = pcall(require, "todo-comments")
-    if not ok then
-      return
-    end
+    if vim.env.NVIM_INIT then return end
+    local todo_comments = require("todo-comments")
 
     local config = {
       signs = true,

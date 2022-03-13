@@ -6,11 +6,9 @@ local packer_opts = {
     "Pocco81/DAPInstall.nvim",
   },
   config = function()
-    local dap_ui_ok, dap_ui = pcall(require, "dapui")
-    local dap_vt_ok, dap_virtual_text = pcall(require, "nvim-dap-virtual-text")
-    if not dap_ui_ok and dap_vt_ok then
-      return
-    end
+    if vim.env.NVIM_INIT then return end
+    local dap_ui = require("dapui")
+    local dap_virtual_text = require("nvim-dap-virtual-text")
 
     dap_ui.setup()
 

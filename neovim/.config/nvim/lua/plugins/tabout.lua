@@ -2,10 +2,8 @@ local packer_opts = {
   "abecodes/tabout.nvim",
   wants = { "nvim-treesitter" },
   config = function()
-    local ok, tabout = pcall(require, "tabout")
-    if not ok then
-      return
-    end
+    if vim.env.NVIM_INIT then return end
+    local tabout = require("tabout")
     tabout.setup({
       tabkey = "",
       backwards_tabkey = "",

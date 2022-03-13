@@ -1,6 +1,7 @@
 local packer_opts = {
   "numToStr/Comment.nvim",
   config = function()
+    if vim.env.NVIM_INIT then return end
     require("Comment").setup({ ignore = "^$" })
     local ft = require("Comment.ft")
     local comment_strings = { "#%s", "#%s" }

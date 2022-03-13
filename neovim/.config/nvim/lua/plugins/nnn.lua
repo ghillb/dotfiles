@@ -1,10 +1,8 @@
 local packer_opts = {
   "mcchrish/nnn.vim",
   config = function()
-    local ok, nnn = pcall(require, "nnn")
-    if not ok then
-      return
-    end
+    if vim.env.NVIM_INIT then return end
+    local nnn = require("nnn")
 
     local function copy_to_clipboard(lines)
       local joined_lines = table.concat(lines, "\n")

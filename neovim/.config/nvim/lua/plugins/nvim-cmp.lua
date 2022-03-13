@@ -9,12 +9,10 @@ local packer_opts = {
     { "hrsh7th/cmp-cmdline" },
   },
   config = function()
-    local ok_cmp, cmp = pcall(require, "cmp")
-    local ok_lspkind, lspkind = pcall(require, "lspkind")
-    local ok_neogen, neogen = pcall(require, "neogen")
-    if not ok_cmp and ok_lspkind and ok_neogen then
-      return
-    end
+    if vim.env.NVIM_INIT then return end
+    local cmp = require("cmp")
+    local lspkind = require("lspkind")
+    local neogen = require("neogen")
 
     -- neogen mapping helper
     local t = function(str)

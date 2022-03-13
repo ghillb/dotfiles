@@ -1,10 +1,8 @@
 local packer_opts = {
   "williamboman/nvim-lsp-installer",
   config = function()
-    local ok, lsp_installer = pcall(require, "nvim-lsp-installer")
-    if not ok then
-      return
-    end
+    if vim.env.NVIM_INIT then return end
+    local lsp_installer = require("nvim-lsp-installer")
 
     lsp_installer.settings({
       ui = {

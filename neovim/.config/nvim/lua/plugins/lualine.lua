@@ -2,10 +2,8 @@ local packer_opts = {
   "nvim-lualine/lualine.nvim",
   opt = false,
   config = function()
-    local ok, lualine = pcall(require, "lualine")
-    if not ok then
-      return
-    end
+    if vim.env.NVIM_INIT then return end
+    local lualine = require("lualine")
 
     local gruvbox_custom = require("lualine.themes.gruvbox")
     local config = {

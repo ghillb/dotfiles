@@ -5,6 +5,7 @@ local packer_opts = {
     return vim.api.nvim_eval('!exists("g:vscode")')
   end,
   config = function()
+    if vim.env.NVIM_INIT then return end
     require("which-key").setup({
       window = {
         border = "single",

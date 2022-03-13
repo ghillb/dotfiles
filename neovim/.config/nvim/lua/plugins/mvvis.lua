@@ -1,6 +1,7 @@
 local packer_opts = {
   "Jorengarenar/vim-MvVis",
   config = function()
+    if vim.env.NVIM_INIT then return end
     vim.g.MvVis_mappings = 0
 
     vim.api.nvim_set_keymap("v", "<left>", "<plug>(MvVisLeft)", {})

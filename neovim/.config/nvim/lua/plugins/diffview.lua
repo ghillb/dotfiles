@@ -1,10 +1,8 @@
 local packer_opts = {
   "sindrets/diffview.nvim",
   config = function()
-    local ok, diffview = pcall(require, "diffview")
-    if not ok then
-      return
-    end
+    if vim.env.NVIM_INIT then return end
+    local diffview = require("diffview")
 
     local cb = require("diffview.config").diffview_callback
 

@@ -1,10 +1,8 @@
 local packer_opts = {
   "akinsho/toggleterm.nvim",
   config = function()
-    local status_ok, toggleterm = pcall(require, "toggleterm")
-    if not status_ok then
-      return
-    end
+    if vim.env.NVIM_INIT then return end
+    local toggleterm = require("toggleterm")
 
     toggleterm.setup({
       size = 20,

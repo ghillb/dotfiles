@@ -2,6 +2,7 @@ local packer_opts = {
   "skywind3000/asynctasks.vim",
   requires = { "skywind3000/asyncrun.vim" },
   config = function()
+    if vim.env.NVIM_INIT then return end
     vim.g.asyncrun_open = 10
     vim.g.asynctasks_term_reuse = 1
     vim.g.asynctasks_term_focus = 0

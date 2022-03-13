@@ -1,10 +1,8 @@
 local packer_opts = {
   "nvim-treesitter/nvim-treesitter",
   config = function()
-    local ok, treesitter_configs = pcall(require, "nvim-treesitter.configs")
-    if not ok then
-      return
-    end
+    if vim.env.NVIM_INIT then return end
+    local treesitter_configs = require("nvim-treesitter.configs")
 
     local config = {
       highlight = {

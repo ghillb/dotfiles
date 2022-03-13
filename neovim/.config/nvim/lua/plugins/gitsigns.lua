@@ -1,10 +1,8 @@
 local packer_opts = {
   "lewis6991/gitsigns.nvim",
   config = function()
-    local ok, gitsigns = pcall(require, "gitsigns")
-    if not ok then
-      return
-    end
+    if vim.env.NVIM_INIT then return end
+    local gitsigns = require("gitsigns")
 
     local config = {
       signs = {

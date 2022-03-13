@@ -2,10 +2,8 @@ local packer_opts = {
   "jose-elias-alvarez/null-ls.nvim",
   requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
   config = function()
-    local ok, null_ls = pcall(require, "null-ls")
-    if not ok then
-      return
-    end
+    if vim.env.NVIM_INIT then return end
+    local null_ls = require("null-ls")
 
     local opts = {
 

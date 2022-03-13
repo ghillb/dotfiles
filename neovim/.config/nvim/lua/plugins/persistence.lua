@@ -3,6 +3,7 @@ local packer_opts = {
   event = "BufReadPre",
   module = "persistence",
   config = function()
+    if vim.env.NVIM_INIT then return end
     require("persistence").setup()
   end,
 }

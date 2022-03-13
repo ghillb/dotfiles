@@ -2,10 +2,8 @@ local packer_opts = {
   "ggandor/lightspeed.nvim",
   requires = { "tpope/vim-repeat" },
   config = function()
-    local ok, lightspeed = pcall(require, "lightspeed")
-    if not ok then
-      return
-    end
+    if vim.env.NVIM_INIT then return end
+    local lightspeed = require("lightspeed")
 
     lightspeed.setup({
       jump_to_unique_chars = { safety_timeout = 400 },

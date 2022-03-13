@@ -1,6 +1,7 @@
 local packer_opts = {
   "hrsh7th/vim-vsnip",
   config = function()
+    if vim.env.NVIM_INIT then return end
     vim.g.vsnip_filetypes = { bash = { "sh" } }
     vim.g.vsnip_snippet_dir = "~/code/scripts/snippets"
 

@@ -1,11 +1,8 @@
 local packer_opts = {
   "goolord/alpha-nvim",
   config = function()
-    local ok, alpha = pcall(require, "alpha")
-    if not ok then
-      return
-    end
-
+    if vim.env.NVIM_INIT then return end
+    local alpha = require("alpha")
     local dashboard = require("alpha.themes.dashboard")
     local fortune = require("alpha.fortune")
 
