@@ -1,5 +1,5 @@
 require("settings")
-require("functions")
+require("utils")
 require("events")
 require("plugins")
 require("theme")

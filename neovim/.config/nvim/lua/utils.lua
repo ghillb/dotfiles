@@ -229,3 +229,6 @@ function _G.filereadable(path)
   end
 end
 
+function _G.P(table)
+  print(vim.inspect(table))
+end

@@ -182,6 +182,7 @@ map("n", "<localleader>l", "<cmd>LLToggle!<cr>", { silent = true })
 map("n", "<localleader>dw", ":%s/\\s\\+$//e<cr>")
 map("n", "<localleader>ve", ":e $NVIM_CONFIG/init.lua<cr>")
 map("n", "<localleader>vr", ":so $MYVIMRC<cr>")
+map("n", "<localleader>pc", ":source $MYVIMRC<cr> :PackerCompile<cr>")
 map("n", "<localleader>pu", ":source $MYVIMRC<cr> :PackerSync<cr>")
 map("n", "<localleader>ps", ":source $MYVIMRC<cr> :PackerStatus<cr>")
 

@@ -12,9 +12,9 @@ vim.cmd([[autocmd BufWritePost plugins.lua source <afile> | PackerCompile]])
 
 return require("packer").startup({
   function(use)
-    local ok, localrc = pcall(require, "plugin.localrc")
+    local ok, localrc = pcall(require, "localrc")
     if ok then
-      for _, plugin in ipairs(localrc.plugins) do
+      for _, plugin in pairs(localrc.plugins) do
         use(plugin)
       end
     end
