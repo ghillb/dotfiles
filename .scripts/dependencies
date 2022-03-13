@@ -44,6 +44,8 @@
           - sshfs
           - nnn
           - jq
+          - bat
+          - exa
           - gron
           - curl
           - shellcheck
