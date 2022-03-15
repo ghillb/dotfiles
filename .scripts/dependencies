@@ -38,6 +38,7 @@
           - inetutils-ping
           - neovim
           - tmux
+          - htop
           - docker.io
           - docker-compose
           - ripgrep
@@ -50,6 +51,7 @@
           - gron
           - curl
           - shellcheck
+          - dos2unix
           - bash-completion
           - ncdu
           - direnv
@@ -94,8 +96,6 @@
         dest: "{{ item.dest }}"
         depth: 1
       loop:
-        - repo: https://github.com/bardisty/gruvbox-rofi
-          dest: ~/.config/rofi/themes/gruvbox
         - repo: https://github.com/junegunn/fzf.git
           dest: ~/.fzf
       tags:
