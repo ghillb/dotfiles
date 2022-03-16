@@ -63,6 +63,9 @@
           - python3-dev
           - sqlite3
           - libsqlite3-dev
+          - pre-commit
+          - yamllint
+          - ansible-lint
         update_cache: true
         state: present
       tags:
