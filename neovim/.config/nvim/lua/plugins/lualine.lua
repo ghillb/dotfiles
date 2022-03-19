@@ -2,10 +2,22 @@ local packer_opts = {
   "nvim-lualine/lualine.nvim",
   opt = false,
   config = function()
-    if vim.env.NVIM_INIT then return end
+    if vim.env.NVIM_INIT then
+      return
+    end
     local lualine = require("lualine")
 
     local gruvbox_custom = require("lualine.themes.gruvbox")
+    local terminal_extension = {
+      sections = {
+        lualine_a = { "mode" },
+        lualine_b = { { "filename", file_status = false, path = 0 } },
+        lualine_x = {},
+        lualine_y = { "filetype" },
+        lualine_z = {},
+      },
+      filetypes = { "terminal" },
+    }
     local config = {
       options = {
         icons_enabled = true,
@@ -13,6 +25,7 @@ local packer_opts = {
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
         disabled_filetypes = { "NvimTree" },
+        globalstatus = true,
       },
       sections = {
         lualine_a = { "mode" },
@@ -43,7 +56,7 @@ local packer_opts = {
         lualine_z = {},
       },
       tabline = {},
-      extensions = {},
+      extensions = { terminal_extension, "fugitive", "quickfix" },
     }
 
     local colors = {

@@ -138,7 +138,6 @@ local packer_opts = {
         prompt_title = "Grep",
       })
     end)
-    map({ "n", "v" }, "<c-a-p>", builtin.live_grep)
     map({ "n", "v" }, "<c-b>", builtin.buffers)
     map({ "n", "v" }, "<c-_>", builtin.current_buffer_fuzzy_find)
     map({ "n", "v" }, "<c-g>", builtin.git_status)

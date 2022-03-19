@@ -28,7 +28,6 @@ opt.softtabstop                        = 2
 opt.textwidth                          = 100
 opt.wrapmargin                         = 0
 opt.scrolloff                          = 5
-opt.laststatus                         = 2
 opt.colorcolumn                        = ''
 opt.signcolumn                         = 'yes:2'
 opt.formatoptions                      = 'jcroql'
@@ -58,7 +57,7 @@ opt.wildignore                         = '*.o,*~,*.pyc,*.pyo,__pycache__,*/venv/
 opt.completeopt                        = 'menu,menuone,noselect,noinsert'
 opt.complete                           = '.,w,b,u,t,kspell'
 opt.shortmess                          = 'filnxtToOFIc'
-opt.fcs                                = 'eob:·'
+vim.opt.fillchars                      = { eob = '·'}
 
 -- netrw settings
 vim.g.netrw_banner                     = 0
