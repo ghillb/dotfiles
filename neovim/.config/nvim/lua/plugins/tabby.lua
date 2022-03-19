@@ -1,7 +1,9 @@
 local packer_opts = {
   "nanozuki/tabby.nvim",
   config = function()
-    if vim.env.NVIM_INIT then return end
+    if vim.env.NVIM_INIT then
+      return
+    end
     local tabby = require("tabby")
     local util = require("tabby.util")
     local filename = require("tabby.filename")

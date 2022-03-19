@@ -60,7 +60,7 @@ return require("packer").startup({
     plug({ remote = "onsails/lspkind-nvim" })
     plug({ config = "lsp_signature" })
     plug({ remote = "kosayoda/nvim-lightbulb" })
-    plug({ remote = "stevearc/aerial.nvim" }) -- fix
+    plug({ config = "aerial" })
     plug({ config = "autopairs" })
     plug({ config = "gitsigns" })
     plug({ config = "diffview" })
