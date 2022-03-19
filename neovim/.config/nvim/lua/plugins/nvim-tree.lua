@@ -2,7 +2,9 @@ local packer_opts = {
   "kyazdani42/nvim-tree.lua",
   requires = { "kyazdani42/nvim-web-devicons" },
   config = function()
-    if vim.env.NVIM_INIT then return end
+    if vim.env.NVIM_INIT then
+      return
+    end
     local nvimtree_config = require("nvim-tree.config")
 
     vim.g.nvim_tree_auto_ignore_ft = { "alpha", "dashboard", "copy-mode" }
@@ -153,6 +155,9 @@ local packer_opts = {
     end
 
     nvimtree.setup(_G.NvimTreeConfig)
+
+    vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = nil })
+    vim.api.nvim_set_hl(0, "NvimTreeIndentMarker", { fg = _G.palette.gray })
   end,
 }
 return packer_opts
