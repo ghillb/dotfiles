@@ -1,7 +1,9 @@
 local packer_opts = {
   "goolord/alpha-nvim",
   config = function()
-    if vim.env.NVIM_INIT then return end
+    if vim.env.NVIM_INIT then
+      return
+    end
     local alpha = require("alpha")
     local dashboard = require("alpha.themes.dashboard")
     local fortune = require("alpha.fortune")
@@ -30,8 +32,6 @@ local packer_opts = {
 
     dashboard.section.footer.val = fortune()
     alpha.setup(dashboard.opts)
-
-    vim.cmd("autocmd BufUnload <buffer> call timer_start(1, { tid -> execute('lua SetRoot(\"git_worktree\")')})")
   end,
 }
 return packer_opts

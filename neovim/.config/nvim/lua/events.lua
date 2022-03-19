@@ -13,6 +13,11 @@ aucmd("VimEnter", {
 
 aucmd("BufEnter", { callback = PopulateInfo })
 
+aucmd(
+  "BufUnload",
+  { pattern = "<buffer>", command = "call timer_start(1, { tid -> execute('lua SetRoot(\"git_worktree\")')})" }
+)
+
 aucmd({ "TermEnter", "TermOpen" }, { command = "set ft=terminal" })
 
 aucmd("DirChanged", {
@@ -29,6 +34,12 @@ aucmd({ "TextChanged", "TextChangedI" }, {
     if _G.filereadable(vim.api.nvim_buf_get_name(0)) and not vim.o.readonly then
       vim.cmd("silent write")
     end
+  end,
+})
+
+aucmd({ "CursorHold", "CursorHoldI" }, {
+  callback = function()
+    require("nvim-lightbulb").update_lightbulb()
   end,
 })
 

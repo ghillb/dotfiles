@@ -9,12 +9,13 @@ _G.palette = {
   gray = "#3c3836",
 }
 
-function _G.SetTheme()
+local function set_theme()
   local function set_hl(hl_group, value)
     vim.api.nvim_set_hl(0, hl_group, value)
   end
 
   -- vim highlight groups
+  set_hl("Normal", { bg = nil })
   set_hl("Border", { fg = palette.gray })
   set_hl("SignColumn", { bg = nil })
   set_hl("FoldColumn", { bg = nil })
@@ -41,10 +42,11 @@ function _G.SetTheme()
   set_hl("GruvboxAquaSign", { bg = nil, fg = palette.aqua })
 end
 
--- set theme, for some reason 'Normal' has to be set the old way
--- vim.api.nvim_set_hl(0, "Normal", { bg = nil })
-vim.cmd([[au colorscheme * hi Normal guibg=NONE ctermbg=NONE]])
-vim.cmd([[au colorscheme * lua SetTheme()]])
+vim.api.nvim_create_autocmd("colorscheme", {
+  callback = function()
+    set_theme()
+  end,
+})
 
 -- gruvbox setup
 vim.g.gruvbox_contrast_dark = "hard"

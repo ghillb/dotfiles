@@ -99,7 +99,6 @@ local packer_opts = {
       opts.capabilities.textDocument.completion.completionItem.snippetSupport = true
 
       server:setup(opts)
-      vim.cmd([[ do User LspAttachBuffers ]])
     end)
   end,
 }
