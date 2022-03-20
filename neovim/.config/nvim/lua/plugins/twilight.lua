@@ -1,8 +1,10 @@
 local packer_opts = {
   "folke/twilight.nvim",
   config = function()
-    if vim.env.NVIM_INIT then return end
-    local twilight = require("twilight")
+    local ok, twilight = pcall(require, 'twilight')
+    if not ok then
+      return
+    end
 
     local config = {
       dimming = {

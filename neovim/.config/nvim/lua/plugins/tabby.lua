@@ -1,10 +1,11 @@
 local packer_opts = {
   "nanozuki/tabby.nvim",
   config = function()
-    if vim.env.NVIM_INIT then
+    local ok, tabby = pcall(require, 'tabby')
+    if not ok then
       return
     end
-    local tabby = require("tabby")
+
     local util = require("tabby.util")
     local filename = require("tabby.filename")
     local hl_tabline = util.extract_nvim_hl("TabLine")

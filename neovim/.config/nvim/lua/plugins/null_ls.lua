@@ -2,10 +2,12 @@ local packer_opts = {
   "jose-elias-alvarez/null-ls.nvim",
   requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
   config = function()
-    if vim.env.NVIM_INIT then return end
-    local null_ls = require("null-ls")
+    local ok, null_ls = pcall(require, 'null-ls')
+    if not ok then
+      return
+    end
 
-    local opts = {
+    local config = {
 
       sources = {
         null_ls.builtins.formatting.shfmt.with({
@@ -37,7 +39,7 @@ local packer_opts = {
       },
     }
 
-    null_ls.setup(opts)
+    null_ls.setup(config)
   end,
 }
 return packer_opts

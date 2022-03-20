@@ -3,8 +3,12 @@ local packer_opts = {
   event = "BufReadPre",
   module = "persistence",
   config = function()
-    if vim.env.NVIM_INIT then return end
-    require("persistence").setup()
+    local ok, persistence = pcall(require, "persistence")
+    if not ok then
+      return
+    end
+
+    persistence.setup()
   end,
 }
 return packer_opts

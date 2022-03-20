@@ -2,9 +2,12 @@ local packer_opts = {
   "abecodes/tabout.nvim",
   wants = { "nvim-treesitter" },
   config = function()
-    if vim.env.NVIM_INIT then return end
-    local tabout = require("tabout")
-    tabout.setup({
+    local ok, tabout = pcall(require, "tabout")
+    if not ok then
+      return
+    end
+
+    local config = {
       tabkey = "",
       backwards_tabkey = "",
       act_as_tab = true,
@@ -21,7 +24,9 @@ local packer_opts = {
       },
       ignore_beginning = true,
       exclude = {},
-    })
+    }
+
+    tabout.setup(config)
 
     -- nvim-cmp compatible bindings
     local function replace_keycodes(str)

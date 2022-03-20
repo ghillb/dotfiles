@@ -1,11 +1,16 @@
 local packer_opts = {
   "numToStr/Comment.nvim",
   config = function()
-    if vim.env.NVIM_INIT then return end
-    require("Comment").setup({ ignore = "^$" })
-    local ft = require("Comment.ft")
-    local comment_strings = { "#%s", "#%s" }
-    ft.set("gitlab-ci", comment_strings).set("ansible", comment_strings).set("docker-compose", comment_strings)
+    local ok, comment = pcall(require, "Comment")
+    if not ok then
+      return
+    end
+
+    local config = {
+      ignore = "^$",
+    }
+
+    comment.setup(config)
   end,
 }
 return packer_opts

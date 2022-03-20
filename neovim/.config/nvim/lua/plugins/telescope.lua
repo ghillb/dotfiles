@@ -11,8 +11,10 @@ local packer_opts = {
     { "GustavoKatel/telescope-asynctasks.nvim" },
   },
   config = function()
-    if vim.env.NVIM_INIT then return end
-    local telescope = require("telescope")
+    local ok, telescope = pcall(require, 'telescope')
+    if not ok then
+      return
+    end
 
     local actions = require("telescope.actions")
     local rg_config = {

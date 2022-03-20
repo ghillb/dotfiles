@@ -1,7 +1,6 @@
 local packer_opts = {
   "vimwiki/vimwiki",
   config = function()
-    if vim.env.NVIM_INIT then return end
     vim.g.vimwiki_list = {
       {
         path = "~/.notes/",

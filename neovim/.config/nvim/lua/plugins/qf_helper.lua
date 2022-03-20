@@ -1,8 +1,10 @@
 local packer_opts = {
   "stevearc/qf_helper.nvim",
   config = function()
-    if vim.env.NVIM_INIT then return end
-    local qf_helper = require("qf_helper")
+    local ok, qf_helper = pcall(require, 'qf_helper')
+    if not ok then
+      return
+    end
 
     local config = {
       prefer_loclist = true,

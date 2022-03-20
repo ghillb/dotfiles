@@ -9,8 +9,11 @@ local packer_opts = {
     { "hrsh7th/cmp-cmdline" },
   },
   config = function()
-    if vim.env.NVIM_INIT then return end
-    local cmp = require("cmp")
+    local ok, cmp = pcall(require, "cmp")
+    if not ok then
+      return
+    end
+
     local lspkind = require("lspkind")
     local neogen = require("neogen")
 
@@ -19,7 +22,7 @@ local packer_opts = {
       return vim.api.nvim_replace_termcodes(str, true, true, true)
     end
 
-    cmp.setup({
+    local config = {
       snippet = {
         expand = function(args)
           vim.fn["vsnip#anonymous"](args.body)
@@ -91,15 +94,15 @@ local packer_opts = {
         native_menu = false,
       },
       preselect = cmp.PreselectMode.None,
-    })
+    }
 
-    require("cmp").setup.cmdline("/", {
+    cmp.setup.cmdline("/", {
       sources = {
         { name = "buffer" },
       },
     })
 
-    require("cmp").setup.cmdline(":", {
+    cmp.setup.cmdline(":", {
       sources = {
         { name = "cmdline" },
         { name = "path", option = {
@@ -107,6 +110,8 @@ local packer_opts = {
         } },
       },
     })
+
+    cmp.setup(config)
 
     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
     cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))

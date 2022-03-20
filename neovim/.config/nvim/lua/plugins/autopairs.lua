@@ -1,8 +1,10 @@
 local packer_opts = {
   "windwp/nvim-autopairs",
   config = function()
-    if vim.env.NVIM_INIT then return end
-    local autopairs = require("nvim-autopairs")
+    local ok, nvim_autopairs = pcall(require, "nvim-autopairs")
+    if not ok then
+      return
+    end
 
     local config = {
       disable_filetype = { "TelescopePrompt" },
@@ -13,7 +15,7 @@ local packer_opts = {
       check_ts = true,
     }
 
-    autopairs.setup(config)
+    nvim_autopairs.setup(config)
   end,
 }
 return packer_opts

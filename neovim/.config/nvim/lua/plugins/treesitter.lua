@@ -1,8 +1,11 @@
 local packer_opts = {
   "nvim-treesitter/nvim-treesitter",
   config = function()
-    if vim.env.NVIM_INIT then return end
-    local treesitter_configs = require("nvim-treesitter.configs")
+    local ok, nvim_treesitter_configs = pcall(require, 'nvim-treesitter.configs')
+    if not ok then
+      return
+    end
+
 
     local config = {
       highlight = {
@@ -30,7 +33,7 @@ local packer_opts = {
       },
     }
 
-    treesitter_configs.setup(config)
+    nvim_treesitter_configs.setup(config)
 
     local parsers = require("nvim-treesitter.parsers")
     parsers.filetype_to_parsername["ansible.yaml"] = "yaml"

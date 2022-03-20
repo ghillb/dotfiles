@@ -1,15 +1,17 @@
 local packer_opts = {
   "mcchrish/nnn.vim",
   config = function()
-    if vim.env.NVIM_INIT then return end
-    local nnn = require("nnn")
+    local ok, nnn = pcall(require, "nnn")
+    if not ok then
+      return
+    end
 
     local function copy_to_clipboard(lines)
       local joined_lines = table.concat(lines, "\n")
       vim.fn.setreg("+", joined_lines)
     end
 
-    nnn.setup({
+    local config = {
       command = "nnn -o -C",
       set_default_mappings = 0,
       replace_netrw = 1,
@@ -19,7 +21,9 @@ local packer_opts = {
         ["<c-v>"] = "vsplit",
         ["<c-o>"] = copy_to_clipboard,
       },
-    })
+    }
+
+    nnn.setup(config)
 
     vim.g["nnn#set_default_mappings"] = 0
     vim.g["nnn#session"] = "local"

@@ -1,12 +1,12 @@
 local packer_opts = {
   "williamboman/nvim-lsp-installer",
   config = function()
-    if vim.env.NVIM_INIT then
+    local ok, nvim_lsp_installer = pcall(require, "nvim-lsp-installer")
+    if not ok then
       return
     end
-    local lsp_installer = require("nvim-lsp-installer")
 
-    lsp_installer.settings({
+    nvim_lsp_installer.settings({
       ui = {
         icons = {
           server_installed = "✓",
@@ -16,7 +16,7 @@ local packer_opts = {
       },
     })
 
-    lsp_installer.on_server_ready(function(server)
+    nvim_lsp_installer.on_server_ready(function(server)
       local opts = {}
 
       if server.name == "sumneko_lua" then

@@ -1,8 +1,12 @@
 local packer_opts = {
   "norcalli/nvim-colorizer.lua",
   config = function()
-    if vim.env.NVIM_INIT then return end
-    require("colorizer").setup()
+    local ok, colorizer = pcall(require, 'colorizer')
+    if not ok then
+      return
+    end
+
+    colorizer.setup()
   end,
 }
 return packer_opts

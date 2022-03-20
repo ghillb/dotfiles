@@ -85,9 +85,9 @@ vim.lsp.handlers["textDocument/signtureHelp"] = vim.lsp.with(vim.lsp.handlers.si
   border = "single",
 })
 
-DiagnosticSigns = { Error = " ", Warn = " ", Hint = " ", Info = " " } --
+_G.DiagnosticSigns = { Error = " ", Warn = " ", Hint = " ", Info = " " } --
 
-for type, icon in pairs(DiagnosticSigns) do
+for type, icon in pairs(_G.DiagnosticSigns) do
   local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end

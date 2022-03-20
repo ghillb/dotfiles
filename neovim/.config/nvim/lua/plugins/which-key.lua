@@ -5,12 +5,18 @@ local packer_opts = {
     return vim.api.nvim_eval('!exists("g:vscode")')
   end,
   config = function()
-    if vim.env.NVIM_INIT then return end
-    require("which-key").setup({
+    local ok, which_key = pcall(require, "which-key")
+    if not ok then
+      return
+    end
+
+    local config = {
       window = {
         border = "single",
       },
-    })
+    }
+
+    which_key.setup(config)
   end,
 }
 return packer_opts

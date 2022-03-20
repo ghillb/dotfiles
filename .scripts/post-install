@@ -6,13 +6,10 @@ set -eu
 echo -e "source '$DOTFILES/.bash/bashrc'\n" >>$HOME/.bashrc
 
 # install nvim plugins
-export NVIM_INIT=1
 mkdir -p "$HOME/code" # otherwise nvim complains
 pip install --user neovim
-$(which nvim) --headless -u "$DOTFILES/neovim/.config/nvim/lua/plugins.lua" \
-  -c 'set termguicolors' -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+$(which nvim) --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 $(which nvim) --headless +"TSInstallSync all" +"q"
-unset NVIM_INIT
 
 # add completion
 mkdir ~/.bash_completion.d -p

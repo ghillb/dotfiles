@@ -2,11 +2,6 @@ local packer_opts = {
   "kyazdani42/nvim-tree.lua",
   requires = { "kyazdani42/nvim-web-devicons" },
   config = function()
-    if vim.env.NVIM_INIT then
-      return
-    end
-    local nvimtree_config = require("nvim-tree.config")
-
     vim.g.nvim_tree_auto_ignore_ft = { "alpha", "dashboard", "copy-mode" }
     vim.g.nvim_tree_indent_markers = 1
     vim.g.nvim_tree_git_hl = 0
@@ -41,7 +36,12 @@ local packer_opts = {
       },
     }
 
-    local tree_cb = nvimtree_config.nvim_tree_callback
+    local ok, nvim_tree = pcall(require, "nvim-tree")
+    if not ok then
+      return
+    end
+    local nvim_tree_config = require("nvim-tree.config")
+    local tree_cb = nvim_tree_config.nvim_tree_callback
 
     local mappings_table = {
       { key = { "o", "l" }, cb = tree_cb("edit") },
@@ -96,10 +96,10 @@ local packer_opts = {
       diagnostics = {
         enable = true,
         icons = {
-          error = DiagnosticSigns.Error,
-          warning = DiagnosticSigns.Warn,
-          hint = DiagnosticSigns.Hint,
-          info = DiagnosticSigns.Info,
+          error = _G.DiagnosticSigns.Error,
+          warning = _G.DiagnosticSigns.Warn,
+          hint = _G.DiagnosticSigns.Hint,
+          info = _G.DiagnosticSigns.Info,
         },
       },
       update_focused_file = {
@@ -140,21 +140,19 @@ local packer_opts = {
       },
     }
 
-    local nvimtree = require("nvim-tree")
-
     function _G.NvimTreeConfig.cd_or_open()
       local lib = require("nvim-tree.lib")
       local node = lib.get_node_at_cursor()
       if node then
         if node.entries then
-          nvimtree.on_keypress("cd")
+          nvim_tree.on_keypress("cd")
         else
-          nvimtree.on_keypress("edit")
+          nvim_tree.on_keypress("edit")
         end
       end
     end
 
-    nvimtree.setup(_G.NvimTreeConfig)
+    nvim_tree.setup(_G.NvimTreeConfig)
 
     vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = nil })
     vim.api.nvim_set_hl(0, "NvimTreeIndentMarker", { fg = _G.palette.gray })
