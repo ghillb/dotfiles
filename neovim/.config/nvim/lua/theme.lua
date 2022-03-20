@@ -84,7 +84,7 @@ vim.g.tokyonight_style = "night"
 vim.g.tokyonight_transparent = true
 
 -- enable colorscheme
-vim.cmd([[ silent! colorscheme gruvbox ]])
+vim.cmd([[ silent! colorscheme gruvbox | hi Normal guibg=NONE ctermbg=NONE ]])
 -- vim.cmd([[ silent! colorscheme kanagawa ]])
 -- vim.cmd([[ silent! colorscheme onedark ]])
 -- vim.cmd([[ silent! colorscheme tokyonight ]])
