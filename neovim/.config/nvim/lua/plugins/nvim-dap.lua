@@ -6,7 +6,7 @@ local packer_opts = {
     "Pocco81/DAPInstall.nvim",
   },
   config = function()
-    local ok, dap_ui = pcall(require, "dap_ui")
+    local ok, dap_ui = pcall(require, "dapui")
     if not ok then
       return
     end
@@ -49,17 +49,17 @@ local packer_opts = {
     map("n", "<F5>", ":lua require('dap').toggle_breakpoint()<cr>")
     map("n", "<F10>", ":lua require('dapui').toggle()<cr>")
 
-    map("n", "<Leader>dbc", ":lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>")
-    map("n", "<Leader>dbm", ":lua require('dap').set_breakpoint({ nil, nil, vim.fn.input('Log point message: ')})<cr>")
+    map("n", "<leader>dbc", ":lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>")
+    map("n", "<leader>dbm", ":lua require('dap').set_breakpoint({ nil, nil, vim.fn.input('Log point message: ')})<cr>")
 
-    map("n", "<Leader>dsc", ":lua require('dap').continue()<cr>")
-    map("n", "<Leader>dsv", ":lua require('dap').step_over()<cr>")
-    map("n", "<Leader>dsi", ":lua require('dap').step_into()<cr>")
-    map("n", "<Leader>dso", ":lua require('dap').step_out()<cr>")
+    map("n", "<leader>dsc", ":lua require('dap').continue()<cr>")
+    map("n", "<leader>dsv", ":lua require('dap').step_over()<cr>")
+    map("n", "<leader>dsi", ":lua require('dap').step_into()<cr>")
+    map("n", "<leader>dso", ":lua require('dap').step_out()<cr>")
 
-    map("n", "<Leader>dtr", ":lua require('dap').repl.open()<cr>")
-    map("n", "<Leader>dtu", ":lua require('dapui').toggle()<cr>")
-    map("n", "<Leader>dtv", ":lua local widgets=require('dap.ui.widgets');widgets.centered_float(widgets.scopes)<cr>")
+    map("n", "<leader>dtr", ":lua require('dap').repl.open()<cr>")
+    map("n", "<leader>dtu", ":lua require('dapui').toggle()<cr>")
+    map("n", "<leader>dtv", ":lua local widgets=require('dap.ui.widgets');widgets.centered_float(widgets.scopes)<cr>")
 
     map("n", "<leader>fdc", ':lua require"telescope".extensions.dap.commands{}<cr>')
     map("n", "<leader>fdb", ':lua require"telescope".extensions.dap.list_breakpoints{}<cr>')
