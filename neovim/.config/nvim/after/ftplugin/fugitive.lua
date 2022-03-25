@@ -1,1 +1,2 @@
-vim.wo.fillchars='eob: '
+vim.wo.fillchars = "eob: "
+vim.opt.buflisted = false

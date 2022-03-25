@@ -28,7 +28,7 @@ return require("packer").startup({
     end
 
     plug({ remote = "wbthomason/packer.nvim" })
-    plug({ remote = "gruvbox-community/gruvbox" })
+    plug({ remote = "luisiacc/gruvbox-baby" })
     plug({ remote = "rebelot/kanagawa.nvim" })
     plug({ remote = "navarasu/onedark.nvim" })
     plug({ remote = "folke/tokyonight.nvim" })
@@ -41,6 +41,7 @@ return require("packer").startup({
     plug({ remote = "mbbill/undotree" })
     plug({ config = "neoterm" })
     plug({ config = "codi" })
+    plug({ config = "nvim-luapad" })
     plug({ remote = "chaoren/vim-wordmotion" })
     plug({ remote = "arthurxavierx/vim-caser" })
     plug({ config = "lightspeed" })
@@ -73,8 +74,8 @@ return require("packer").startup({
     plug({ config = "twilight" })
     plug({ config = "zen-mode" })
     plug({ config = "nvim-colorizer" })
-    plug({ config = "tabby" })
     plug({ config = "lualine" })
+    plug({ config = "cokeline" })
     plug({ config = "nvim-tree" })
     plug({ config = "rust-tools" })
     plug({ config = "nnn" })

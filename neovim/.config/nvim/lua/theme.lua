@@ -15,18 +15,10 @@ local function set_theme()
   end
 
   -- vim highlight groups
-  set_hl("Normal", { bg = nil })
   set_hl("Border", { fg = palette.gray })
-  set_hl("SignColumn", { bg = nil })
-  set_hl("FoldColumn", { bg = nil })
-  set_hl("NormalFloat", { bg = nil })
   set_hl("StatusLine", { bg = palette.gray })
   set_hl("EndOfBuffer", { fg = palette.gray })
-  set_hl("VertSplit", { bg = nil, fg = palette.gray })
-  set_hl("WarningMsg", { fg = palette.red })
-  set_hl("TabLineSel", { fg = palette.ivory })
   set_hl("TabLineFill", { bg = nil })
-  set_hl("TabLine", { bg = nil })
   -- plugin highlight groups
   set_hl("GitSignsAdd", { bg = nil, fg = palette.green })
   set_hl("GitSignsChange", { bg = nil, fg = palette.blue })
@@ -34,10 +26,6 @@ local function set_theme()
   set_hl("TelescopePromptBorder", { fg = palette.gray })
   set_hl("TelescopeResultsBorder", { fg = palette.gray })
   set_hl("TelescopePreviewBorder", { fg = palette.gray })
-  set_hl("GruvboxRedSign", { bg = nil, fg = palette.red })
-  set_hl("GruvboxYellowSign", { bg = nil, fg = palette.yellow })
-  set_hl("GruvboxBlueSign", { bg = nil, fg = palette.blue })
-  set_hl("GruvboxAquaSign", { bg = nil, fg = palette.aqua })
 end
 
 vim.api.nvim_create_autocmd("colorscheme", {
@@ -47,15 +35,20 @@ vim.api.nvim_create_autocmd("colorscheme", {
 })
 
 -- gruvbox setup
-vim.g.gruvbox_contrast_dark = "hard"
-vim.g.gruvbox_invert_selection = 0
-
--- kanagawa setup
-local ok, kanagawa = pcall(require, "kanagawa")
+local ok, gruvbox_colors = pcall(require, "gruvbox-baby.colors")
 if not ok then
   return
 end
 
+local gb_colors = gruvbox_colors.config()
+
+vim.g.gruvbox_baby_transparent_mode = 1
+vim.g.gruvbox_baby_background_color = "dark"
+vim.g.gruvbox_baby_highlights = {
+  Search = { fg = gb_colors.background_dark, bg = gb_colors.bright_yellow, style = "NONE" },
+}
+
+-- kanagawa setup
 local config = {
   undercurl = true,
   commentStyle = "italic",
@@ -71,7 +64,7 @@ local config = {
   overrides = {},
 }
 
-kanagawa.setup(config)
+require("kanagawa").setup(config)
 
 -- onedark setup
 require("onedark").setup({
@@ -84,7 +77,7 @@ vim.g.tokyonight_style = "night"
 vim.g.tokyonight_transparent = true
 
 -- enable colorscheme
-vim.cmd([[ silent! colorscheme gruvbox | hi Normal guibg=NONE ctermbg=NONE ]])
+vim.cmd([[ silent! colorscheme gruvbox-baby ]])
 -- vim.cmd([[ silent! colorscheme kanagawa ]])
 -- vim.cmd([[ silent! colorscheme onedark ]])
 -- vim.cmd([[ silent! colorscheme tokyonight ]])
