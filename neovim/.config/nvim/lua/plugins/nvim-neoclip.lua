@@ -6,7 +6,12 @@ local packer_opts = {
       return
     end
 
-    local config = { default_register = { '"', "+", "*" } }
+    local config = {
+      history = 1000,
+      enable_persistent_history = true,
+      continious_sync = true,
+      db_path = vim.fn.stdpath("data") .. "/databases/neoclip.sqlite3",
+    }
     neoclip.setup(config)
   end,
 }

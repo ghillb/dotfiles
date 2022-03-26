@@ -7,6 +7,7 @@ local packer_opts = {
     { "hrsh7th/cmp-nvim-lua" },
     { "hrsh7th/cmp-nvim-lsp" },
     { "hrsh7th/cmp-cmdline" },
+    -- { "hrsh7th/cmp-copilot" },
   },
   config = function()
     local ok, cmp = pcall(require, "cmp")
@@ -68,6 +69,7 @@ local packer_opts = {
         { name = "nvim_lua", max_item_count = 5 },
         { name = "buffer", max_item_count = 5 },
         { name = "path", max_item_count = 5 },
+        -- { name = "copilot" },
         { name = "neorg" },
       },
       documentation = {
@@ -81,6 +83,7 @@ local packer_opts = {
             nvim_lua = "[nvim]",
             buffer = "[buff]",
             path = "[path]",
+            -- copilot = "[copi]",
           },
           with_text = false,
           maxwidth = 70,
@@ -90,7 +93,7 @@ local packer_opts = {
         completeopt = "menu,menuone,noinsert",
       },
       experimental = {
-        ghost_text = true,
+        ghost_text = false,
         native_menu = false,
       },
       preselect = cmp.PreselectMode.None,

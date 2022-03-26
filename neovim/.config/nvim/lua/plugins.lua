@@ -40,6 +40,7 @@ return require("packer").startup({
     plug({ config = "neorg" })
     plug({ remote = "mbbill/undotree" })
     plug({ config = "neoterm" })
+    plug({ config = "copilot" })
     plug({ config = "codi" })
     plug({ config = "nvim-luapad" })
     plug({ remote = "chaoren/vim-wordmotion" })

@@ -152,7 +152,7 @@ local packer_opts = {
     map("n", "<leader>fl", builtin.loclist)
     map("n", "<leader>ff", telescope.extensions.frecency.frecency)
     map("n", "<leader>ft", telescope.extensions.asynctasks.all)
-    map("n", "<leader>fy", telescope.extensions.neoclip.default)
+    map("n", "<leader>fy", telescope.extensions.neoclip.plus)
     map("n", "<leader>fz", ":Telescope cheat fd<cr>")
     map("n", "<esc><esc>", function()
       telescope.extensions.project.project({ display_type = "full" })
