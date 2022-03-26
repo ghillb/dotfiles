@@ -42,6 +42,7 @@ return require("packer").startup({
     plug({ config = "neoterm" })
     plug({ config = "copilot" })
     plug({ config = "codi" })
+    plug({ config = "sniprun" })
     plug({ config = "nvim-luapad" })
     plug({ remote = "chaoren/vim-wordmotion" })
     plug({ remote = "arthurxavierx/vim-caser" })
