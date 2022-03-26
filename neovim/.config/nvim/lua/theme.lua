@@ -19,6 +19,7 @@ local function set_theme()
   set_hl("StatusLine", { bg = palette.gray })
   set_hl("EndOfBuffer", { fg = palette.gray })
   set_hl("TabLineFill", { bg = nil })
+  set_hl("VertSplit", { bg = nil, fg = palette.gray })
   -- plugin highlight groups
   set_hl("GitSignsAdd", { bg = nil, fg = palette.green })
   set_hl("GitSignsChange", { bg = nil, fg = palette.blue })
@@ -77,7 +78,7 @@ vim.g.tokyonight_style = "night"
 vim.g.tokyonight_transparent = true
 
 -- enable colorscheme
-vim.cmd([[ silent! colorscheme gruvbox-baby ]])
--- vim.cmd([[ silent! colorscheme kanagawa ]])
+-- vim.cmd([[ silent! colorscheme gruvbox-baby ]])
+vim.cmd([[ silent! colorscheme kanagawa ]])
 -- vim.cmd([[ silent! colorscheme onedark ]])
 -- vim.cmd([[ silent! colorscheme tokyonight ]])
