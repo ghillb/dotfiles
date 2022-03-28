@@ -59,7 +59,7 @@ local packer_opts = {
       { key = "h", cb = tree_cb("close_node") },
       { key = "<BS>", cb = tree_cb("dir_up") },
       { key = "<Tab>", cb = tree_cb("preview") },
-      { key = "i", cb = tree_cb("toggle_ignored") },
+      { key = "i", cb = tree_cb("toggle_git_ignored") },
       { key = ".", cb = tree_cb("toggle_dotfiles") },
       { key = "f", cb = tree_cb("create") },
       { key = "x", cb = tree_cb("remove") },
@@ -84,23 +84,16 @@ local packer_opts = {
       { key = "<esc><esc>", cb = "<c-w>l" },
     }
 
-    _G.NvimTreeConfig = {
+    local config = {
       disable_netrw = false,
       hijack_netrw = false,
       open_on_setup = false,
       ignore_ft_on_setup = {},
-      auto_close = true,
       open_on_tab = true,
       hijack_cursor = true,
       update_cwd = true,
       diagnostics = {
-        enable = true,
-        icons = {
-          error = _G.DiagnosticSigns.Error,
-          warning = _G.DiagnosticSigns.Warn,
-          hint = _G.DiagnosticSigns.Hint,
-          info = _G.DiagnosticSigns.Info,
-        },
+        enable = false,
       },
       update_focused_file = {
         enable = true,
@@ -128,7 +121,7 @@ local packer_opts = {
         custom = { ".git", "node_modules", ".cache" },
       },
       git = {
-        ignore = true,
+        ignore = false,
       },
       actions = {
         open_file = {
@@ -140,7 +133,7 @@ local packer_opts = {
       },
     }
 
-    function _G.NvimTreeConfig.cd_or_open()
+    function config.cd_or_open()
       local lib = require("nvim-tree.lib")
       local node = lib.get_node_at_cursor()
       if node then
@@ -152,10 +145,7 @@ local packer_opts = {
       end
     end
 
-    nvim_tree.setup(_G.NvimTreeConfig)
-
-    vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = nil })
-    vim.api.nvim_set_hl(0, "NvimTreeIndentMarker", { fg = _G.palette.gray })
+    nvim_tree.setup(config)
   end,
 }
 return packer_opts

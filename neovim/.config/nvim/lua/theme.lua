@@ -18,8 +18,9 @@ local function set_theme()
   set_hl("Border", { fg = palette.gray })
   set_hl("StatusLine", { bg = palette.gray })
   set_hl("EndOfBuffer", { fg = palette.gray })
-  set_hl("TabLineFill", { bg = nil })
   set_hl("VertSplit", { bg = nil, fg = palette.gray })
+  set_hl("NormalFloat", { bg = nil })
+  set_hl("TabLineFill", { bg = nil })
   -- plugin highlight groups
   set_hl("GitSignsAdd", { bg = nil, fg = palette.green })
   set_hl("GitSignsChange", { bg = nil, fg = palette.blue })
@@ -27,6 +28,8 @@ local function set_theme()
   set_hl("TelescopePromptBorder", { fg = palette.gray })
   set_hl("TelescopeResultsBorder", { fg = palette.gray })
   set_hl("TelescopePreviewBorder", { fg = palette.gray })
+  set_hl("NvimTreeNormal", { bg = nil })
+  set_hl("NvimTreeIndentMarker", { fg = _G.palette.gray })
 end
 
 vim.api.nvim_create_autocmd("colorscheme", {
@@ -78,7 +81,7 @@ vim.g.tokyonight_style = "night"
 vim.g.tokyonight_transparent = true
 
 -- enable colorscheme
--- vim.cmd([[ silent! colorscheme gruvbox-baby ]])
-vim.cmd([[ silent! colorscheme kanagawa ]])
+vim.cmd([[ silent! colorscheme gruvbox-baby ]])
+-- vim.cmd([[ silent! colorscheme kanagawa ]])
 -- vim.cmd([[ silent! colorscheme onedark ]])
 -- vim.cmd([[ silent! colorscheme tokyonight ]])

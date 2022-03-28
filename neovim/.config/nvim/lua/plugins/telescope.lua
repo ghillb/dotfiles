@@ -144,6 +144,7 @@ local packer_opts = {
     map({ "n", "v" }, "<c-_>", builtin.current_buffer_fuzzy_find)
     map({ "n", "v" }, "<c-g>", builtin.git_status)
     map("n", "<leader>fg", SwitchGitBranch)
+    map("n", "<leader>fp", builtin.builtin)
     map("n", "<leader>fk", builtin.keymaps)
     map("n", "<leader>fc", builtin.commands)
     map("n", "<leader>fm", builtin.man_pages)
