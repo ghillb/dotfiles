@@ -8,8 +8,7 @@ function _G.DrawerToggle()
       vim.cmd(":DiffviewFocusFiles")
     end
   else
-    vim.cmd(":NvimTreeRefresh")
-    vim.cmd(":NvimTreeToggle")
+    vim.cmd(":Neotree toggle reveal")
   end
 end
 
@@ -19,8 +18,8 @@ function _G.CloseView()
   if view then
     vim.cmd(":DiffviewClose")
   else
-    if packer_plugins["nvim-tree.lua"] then
-      vim.cmd(":NvimTreeClose")
+    if packer_plugins["neo-tree.nvim"] then
+      vim.cmd(":Neotree close")
     end
     if vim.bo.filetype == "vim" then
       vim.cmd(":q")

@@ -130,7 +130,6 @@ local packer_opts = {
     local map = vim.keymap.set
     local builtin = require("telescope.builtin")
 
-    map({ "n", "v" }, "<bs><bs>", builtin.builtin)
     map({ "n", "v" }, "<c-h>", builtin.resume)
     map({ "n", "v" }, "<c-e>", builtin.find_files)
     map({ "n", "v" }, "<c-a-e>", TelescopeOmniFiles)

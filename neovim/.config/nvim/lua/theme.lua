@@ -28,8 +28,6 @@ local function set_theme()
   set_hl("TelescopePromptBorder", { fg = palette.gray })
   set_hl("TelescopeResultsBorder", { fg = palette.gray })
   set_hl("TelescopePreviewBorder", { fg = palette.gray })
-  set_hl("NvimTreeNormal", { bg = nil })
-  set_hl("NvimTreeIndentMarker", { fg = _G.palette.gray })
 end
 
 vim.api.nvim_create_autocmd("colorscheme", {

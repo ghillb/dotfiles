@@ -17,6 +17,9 @@ local packer_opts = {
           return current_tabid == tabid_of_buffer
         end,
       },
+      rendering = {
+        max_buffer_width = 20,
+      },
       default_hl = {
         fg = function(buffer)
           return buffer.is_focused and get_hex("Normal", "fg") or get_hex("Comment", "fg")
@@ -41,7 +44,7 @@ local packer_opts = {
         },
       },
       sidebar = {
-        filetype = "NvimTree",
+        filetype = "neo-tree",
         components = {
           {
             text = " ",

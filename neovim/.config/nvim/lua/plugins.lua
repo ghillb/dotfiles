@@ -78,7 +78,7 @@ return require("packer").startup({
     plug({ config = "nvim-colorizer" })
     plug({ config = "lualine" })
     plug({ config = "cokeline" })
-    plug({ config = "nvim-tree" })
+    plug({ config = "neo-tree" })
     plug({ config = "rust-tools" })
     plug({ config = "nnn" })
     plug({ config = "tabout" })

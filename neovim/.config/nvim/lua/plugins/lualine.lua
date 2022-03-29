@@ -24,7 +24,7 @@ local packer_opts = {
         theme = "gruvbox",
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
-        disabled_filetypes = { "NvimTree" },
+        disabled_filetypes = { "" },
         globalstatus = true,
       },
       sections = {
