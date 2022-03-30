@@ -29,6 +29,7 @@ return require("packer").startup({
 
     plug({ remote = "wbthomason/packer.nvim" })
     plug({ remote = "luisiacc/gruvbox-baby" })
+    plug({ remote = "EdenEast/nightfox.nvim" })
     plug({ remote = "rebelot/kanagawa.nvim" })
     plug({ remote = "navarasu/onedark.nvim" })
     plug({ remote = "folke/tokyonight.nvim" })

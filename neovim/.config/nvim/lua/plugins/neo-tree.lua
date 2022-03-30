@@ -19,13 +19,11 @@ local packer_opts = {
         indent = {
           indent_size = 2,
           padding = 1,
-          -- indent guides
           with_markers = true,
           indent_marker = "│",
           last_indent_marker = "└",
           highlight = "NeoTreeIndentMarker",
-          -- expander config, needed for nesting files
-          with_expanders = nil, -- if nil and file nesting is enabled, will enable expanders
+          with_expanders = nil,
           expander_collapsed = "",
           expander_expanded = "",
           expander_highlight = "NeoTreeExpander",
@@ -98,7 +96,7 @@ local packer_opts = {
         },
         follow_current_file = true,
         hijack_netrw_behavior = "disabled",
-        use_libuv_file_watcher = false,
+        use_libuv_file_watcher = true,
       },
       buffers = {
         show_unloaded = true,
@@ -129,8 +127,6 @@ local packer_opts = {
           handler = function(arg)
             if vim.bo.filetype == "neo-tree" then
               vim.cmd([[setlocal scl=auto]])
-              vim.cmd([[set fillchars=eob:\ ]])
-              DisableTelescopeMappings()
             end
           end,
         },
