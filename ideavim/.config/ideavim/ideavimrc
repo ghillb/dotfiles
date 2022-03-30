@@ -4,9 +4,7 @@ set relativenumber number
 set ideajoin
 set surround
 set highlightedyank
-" set sneak
-set textobj-entire
-set argtextobj
+set commentary
 
 let mapleader = " "
 nn K i<cr><esc>
@@ -22,10 +20,6 @@ nn yil ^vg_y
 nn vil ^vg_
 ino kj <esc>
 ino jk <esc>
-nn <a-down> :m .+1<cr>==
-nn <a-up> :m .-2<cr>==
-ino <a-down> <esc>:m .+1<cr>==gi
-ino <a-up> <esc>:m .-2<cr>==gi
 nn <c-q> :x<cr>
 ino <c-q> <esc>:x<cr>
 no <c-j> <c-e>
@@ -44,6 +38,5 @@ no <leader>C "_C
 nn <leader>o o<esc>
 nn <leader>O O<esc>
 nn <leader>r :%s///gc
-nn <leader>v ggVG
+nn vi% ggVG
 nn <leader><leader> a<space><right><esc>
-

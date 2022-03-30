@@ -127,6 +127,7 @@ local packer_opts = {
           handler = function(arg)
             if vim.bo.filetype == "neo-tree" then
               vim.cmd([[setlocal scl=auto]])
+              DisableTelescopeMappings()
             end
           end,
         },
