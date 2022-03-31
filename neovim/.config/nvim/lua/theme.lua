@@ -21,6 +21,7 @@ local function set_theme()
   set_hl("VertSplit", { bg = nil, fg = palette.gray })
   set_hl("NormalFloat", { bg = nil })
   set_hl("TabLineFill", { bg = nil })
+  set_hl("DiagnosticError", { fg = palette.red })
   -- plugin highlight groups
   set_hl("GitSignsAdd", { bg = nil, fg = palette.green })
   set_hl("GitSignsChange", { bg = nil, fg = palette.blue })
@@ -48,6 +49,7 @@ vim.g.gruvbox_baby_transparent_mode = 1
 vim.g.gruvbox_baby_background_color = "dark"
 vim.g.gruvbox_baby_highlights = {
   Search = { fg = gb_colors.background_dark, bg = gb_colors.bright_yellow, style = "NONE" },
+  SpellBad = { style = "undercurl" },
 }
 
 -- kanagawa setup
