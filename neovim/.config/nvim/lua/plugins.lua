@@ -49,7 +49,7 @@ return require("packer").startup({
     plug({ remote = "arthurxavierx/vim-caser" })
     plug({ config = "lightspeed" })
     plug({ config = "vsnip" })
-    plug({ remote = "RRethy/vim-illuminate" })
+    plug({ config = "vim-illuminate" })
     plug({ remote = "rafamadriz/friendly-snippets" })
     plug({ config = "mvvis" })
     plug({ config = "async_tasks" })

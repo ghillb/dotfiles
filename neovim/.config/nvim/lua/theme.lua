@@ -16,7 +16,6 @@ local function set_theme()
 
   -- vim highlight groups
   set_hl("Border", { fg = palette.gray })
-  set_hl("StatusLine", { bg = palette.gray })
   set_hl("EndOfBuffer", { fg = palette.gray })
   set_hl("VertSplit", { bg = nil, fg = palette.gray })
   set_hl("NormalFloat", { bg = nil })
@@ -49,7 +48,13 @@ vim.g.gruvbox_baby_transparent_mode = 1
 vim.g.gruvbox_baby_background_color = "dark"
 vim.g.gruvbox_baby_highlights = {
   Search = { fg = gb_colors.background_dark, bg = gb_colors.bright_yellow, style = "NONE" },
+  IncSearch = { fg = gb_colors.background_dark, bg = gb_colors.blue_gray },
   SpellBad = { style = "undercurl" },
+  diffLine = { fg = gb_colors.orange },
+  DiffDelete = {  fg = gb_colors.red },
+  DiffAdd = {  fg = gb_colors.forest_green },
+  Identifier = { fg = gb_colors.pink },
+  PreProc = { fg = gb_colors.dark_gray },
 }
 
 -- kanagawa setup
