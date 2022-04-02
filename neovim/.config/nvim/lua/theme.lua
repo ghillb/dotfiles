@@ -50,7 +50,7 @@ vim.g.gruvbox_baby_highlights = {
   Search = { fg = gb_colors.background_dark, bg = gb_colors.bright_yellow, style = "NONE" },
   IncSearch = { fg = gb_colors.background_dark, bg = gb_colors.blue_gray },
   SpellBad = { style = "undercurl" },
-  diffLine = { fg = gb_colors.orange },
+  diffLine = { fg = gb_colors.dark_gray },
   DiffDelete = {  fg = gb_colors.red },
   DiffAdd = {  fg = gb_colors.forest_green },
   Identifier = { fg = gb_colors.pink },
