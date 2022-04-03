@@ -1,4 +1,5 @@
 _G.palette = {
+  black = "#282828",
   red = "#fb4934",
   yellow = "#fabd2f",
   blue = "#448488",
@@ -6,7 +7,9 @@ _G.palette = {
   aqua = "#8ec07c",
   pink = "#b16286",
   ivory = "#ebdbb2",
-  gray = "#3c3836",
+  lightgray = "#a89984",
+  gray = "#504945",
+  darkgray = "#3c3836",
 }
 
 local function set_theme()
@@ -15,9 +18,9 @@ local function set_theme()
   end
 
   -- vim highlight groups
-  set_hl("Border", { fg = palette.gray })
-  set_hl("EndOfBuffer", { fg = palette.gray })
-  set_hl("VertSplit", { bg = nil, fg = palette.gray })
+  set_hl("Border", { fg = palette.darkgray })
+  set_hl("EndOfBuffer", { fg = palette.darkgray })
+  set_hl("VertSplit", { bg = nil, fg = palette.darkgray })
   set_hl("NormalFloat", { bg = nil })
   set_hl("TabLineFill", { bg = nil })
   set_hl("DiagnosticError", { fg = palette.red })
@@ -25,9 +28,9 @@ local function set_theme()
   set_hl("GitSignsAdd", { bg = nil, fg = palette.green })
   set_hl("GitSignsChange", { bg = nil, fg = palette.blue })
   set_hl("GitSignsDelete", { bg = nil, fg = palette.red })
-  set_hl("TelescopePromptBorder", { fg = palette.gray })
-  set_hl("TelescopeResultsBorder", { fg = palette.gray })
-  set_hl("TelescopePreviewBorder", { fg = palette.gray })
+  set_hl("TelescopePromptBorder", { fg = palette.darkgray })
+  set_hl("TelescopeResultsBorder", { fg = palette.darkgray })
+  set_hl("TelescopePreviewBorder", { fg = palette.darkgray })
 end
 
 vim.api.nvim_create_autocmd("colorscheme", {
@@ -51,8 +54,8 @@ vim.g.gruvbox_baby_highlights = {
   IncSearch = { fg = gb_colors.background_dark, bg = gb_colors.blue_gray },
   SpellBad = { style = "undercurl" },
   diffLine = { fg = gb_colors.dark_gray },
-  DiffDelete = {  fg = gb_colors.red },
-  DiffAdd = {  fg = gb_colors.forest_green },
+  DiffDelete = { fg = gb_colors.red },
+  DiffAdd = { fg = gb_colors.forest_green },
   Identifier = { fg = gb_colors.pink },
   PreProc = { fg = gb_colors.dark_gray },
 }

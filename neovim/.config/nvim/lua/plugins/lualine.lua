@@ -11,11 +11,16 @@ local packer_opts = {
       sections = {
         lualine_a = { "mode" },
         lualine_b = { { "filename", file_status = false, path = 0 } },
-        lualine_x = {},
         lualine_y = { "filetype" },
-        lualine_z = {},
       },
       filetypes = { "terminal" },
+    }
+
+    local neotree_extension = {
+      sections = {
+        lualine_a = { { "filename", file_status = false, path = 0 } },
+      },
+      filetypes = { "neo-tree" },
     }
 
     local config = {
@@ -56,7 +61,15 @@ local packer_opts = {
         lualine_z = {},
       },
       tabline = {},
-      extensions = { terminal_extension, "fugitive", "quickfix" },
+      extensions = { terminal_extension, neotree_extension, "fugitive", "quickfix" },
+    }
+
+    local gruvbox = require("lualine.themes.gruvbox")
+
+    gruvbox.terminal = {
+      a = { bg = palette.pink, fg = palette.black, gui = "bold" },
+      b = { bg = palette.gray, fg = palette.ivory },
+      c = { bg = palette.darkgray, fg = palette.lightgray },
     }
 
     lualine.setup(config)

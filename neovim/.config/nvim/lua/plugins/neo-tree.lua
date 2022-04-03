@@ -1,6 +1,6 @@
 local packer_opts = {
   "nvim-neo-tree/neo-tree.nvim",
-  branch = "v2.x",
+  branch = "main",
   requires = {
     "nvim-lua/plenary.nvim",
     "kyazdani42/nvim-web-devicons",
@@ -14,7 +14,7 @@ local packer_opts = {
       close_if_last_window = true,
       popup_border_style = "rounded",
       enable_git_status = true,
-      enable_diagnostics = true,
+      enable_diagnostics = false,
       default_component_configs = {
         indent = {
           indent_size = 2,
@@ -54,7 +54,7 @@ local packer_opts = {
       },
       window = {
         position = "left",
-        width = 40,
+        width = 35,
         mappings = {
           ["<space>"] = "toggle_node",
           ["<2-LeftMouse>"] = "open",
@@ -122,13 +122,10 @@ local packer_opts = {
       },
       event_handlers = {
         {
-          -- event = "neo_tree_buffer_enter", -- TODO: remove
-          event = "vim_win_enter",
+          event = "neo_tree_buffer_enter",
           handler = function(arg)
-            if vim.bo.filetype == "neo-tree" then
-              vim.cmd([[setlocal scl=auto]])
-              DisableTelescopeMappings()
-            end
+            vim.wo.signcolumn = "auto"
+            DisableTelescopeMappings()
           end,
         },
       },
