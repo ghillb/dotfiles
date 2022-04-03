@@ -176,7 +176,7 @@ map("n", "<localleader><bs>", ":lua SetRoot('parent_dir', true)<cr>", { silent =
 map("n", "<localleader>/", ":lua SetRoot('file_dir', true)<cr>", { silent = true })
 map("n", "<localleader>\\", ":lua SetRoot('origin', true)<cr>", { silent = true })
 map("n", "<localleader>sr", ":%s///gc<left><left><left><left>")
-map("n", "<localleader>sq", ":vim// **/*<left><left><left><left><left><left>")
+map("n", "<localleader>sq", ":vim// %<left><left><left>")
 map("n", "<localleader>sl", ":lv// %<left><left><left>")
 map("n", "<localleader>q", "<cmd>QFToggle!<cr>", { silent = true })
 map("n", "<localleader>l", "<cmd>LLToggle!<cr>", { silent = true })

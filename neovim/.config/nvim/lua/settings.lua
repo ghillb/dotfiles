@@ -92,4 +92,3 @@ for type, icon in pairs(_G.DiagnosticSigns) do
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
-vim.fn.sign_define("LightBulbSign", { text = "", texthl = "", linehl = "", numhl = "" })

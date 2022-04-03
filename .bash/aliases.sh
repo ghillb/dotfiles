@@ -69,7 +69,6 @@ alias 0xs="curl -F\'shorten=\' https://0x0.st"
 alias t='tremc'
 alias hist='history|grep'
 alias hx='hexyl'
-alias vr='nvr'
 alias vt='nvim -c "set shell=/bin/bash" -c term -c "norm i" -c "setlocal ls=0 cc= rnu! nu!" -c "au!" -c "au TermClose * :q!"'
 alias vd='docker exec -it devcon bash -c nvim'
 alias dvc='docker exec -it devcon bash -ic tx'

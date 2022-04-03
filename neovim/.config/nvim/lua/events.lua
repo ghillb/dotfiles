@@ -37,12 +37,6 @@ aucmd({ "TextChanged", "TextChangedI" }, {
   end,
 })
 
-aucmd({ "CursorHold", "CursorHoldI" }, {
-  callback = function()
-    require("nvim-lightbulb").update_lightbulb()
-  end,
-})
-
 aucmd("TextYankPost", {
   callback = function()
     vim.highlight.on_yank({ higroup = "IncSearch", timeout = 500 })

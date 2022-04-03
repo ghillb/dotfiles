@@ -58,6 +58,7 @@ vim.g.gruvbox_baby_highlights = {
   DiffAdd = { fg = gb_colors.forest_green },
   Identifier = { fg = gb_colors.pink },
   PreProc = { fg = gb_colors.dark_gray },
+  QuickFixLine = { fg = gb_colors.dark_gray, bg = gb_colors.medium_gray },
 }
 
 -- kanagawa setup
