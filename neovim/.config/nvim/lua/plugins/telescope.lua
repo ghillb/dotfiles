@@ -4,6 +4,7 @@ local packer_opts = {
     { "nvim-lua/popup.nvim" },
     { "nvim-lua/plenary.nvim" },
     { "nvim-telescope/telescope-project.nvim" },
+    { "nvim-telescope/telescope-ui-select.nvim" },
     { "nvim-telescope/telescope-dap.nvim" },
     { "nvim-telescope/telescope-rg.nvim" },
     { "nvim-telescope/telescope-frecency.nvim", requires = { "tami5/sqlite.lua" } },
@@ -11,7 +12,7 @@ local packer_opts = {
     { "GustavoKatel/telescope-asynctasks.nvim" },
   },
   config = function()
-    local ok, telescope = pcall(require, 'telescope')
+    local ok, telescope = pcall(require, "telescope")
     if not ok then
       return
     end
@@ -29,6 +30,8 @@ local packer_opts = {
       "--glob",
       "!.git/",
     }
+
+    local borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" }
 
     local config = {
       defaults = {
@@ -64,7 +67,7 @@ local packer_opts = {
         },
         path_display = { "smart" },
         dynamic_preview_title = true,
-        borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+        borderchars = borderchars,
         mappings = {
           i = {
             ["<c-s>"] = actions.file_split,
@@ -104,9 +107,6 @@ local packer_opts = {
         live_grep = {
           vimgrep_arguments = rg_config,
         },
-        lsp_code_actions = {
-          layout_config = { width = 80, height = 10 },
-        },
       },
       extensions = {
         project = {
@@ -116,11 +116,18 @@ local packer_opts = {
           },
           hidden_files = true,
         },
+        ["ui-select"] = {
+          require("telescope.themes").get_ivy({
+            layout_config = { width = 80, height = 10 },
+            borderchars = borderchars,
+          }),
+        },
       },
     }
 
     telescope.setup(config)
     telescope.load_extension("project")
+    telescope.load_extension("ui-select")
     telescope.load_extension("dap")
     telescope.load_extension("frecency")
     telescope.load_extension("cheat")
