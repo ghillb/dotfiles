@@ -59,6 +59,14 @@ vim.g.gruvbox_baby_highlights = {
   Identifier = { fg = gb_colors.pink },
   PreProc = { fg = gb_colors.dark_gray },
   QuickFixLine = { fg = gb_colors.dark_gray, bg = gb_colors.medium_gray },
+  fugitiveUntrackedHeading = { fg = gb_colors.background_dark, bg = gb_colors.orange },
+  fugitiveUntrackedModifier = { fg = gb_colors.orange },
+  fugitiveUntrackedSection = { fg = gb_colors.pink },
+  fugitiveUnstagedHeading = { fg = gb_colors.background_dark, bg = gb_colors.soft_yellow },
+  fugitiveUnstagedSection = { fg = gb_colors.pink },
+  fugitiveStagedHeading = { fg = gb_colors.background_dark, bg = gb_colors.forest_green },
+  fugitiveStagedSection = { fg = gb_colors.pink },
+  fugitiveSymbolicRef = { fg = gb_colors.magenta },
 }
 
 -- kanagawa setup

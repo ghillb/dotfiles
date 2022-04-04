@@ -204,6 +204,8 @@ map("v", "gF", vim.lsp.buf.range_formatting)
 map("n", "<a-space>", vim.diagnostic.open_float)
 map("n", "<a-bs>", "<cmd>TroubleToggle document_diagnostics<cr>")
 map("n", "<a-cr>", "<cmd>Telescope lsp_code_actions<cr>")
+-- map("v", "<a-cr>", ":Telescope lsp_range_code_actions<cr>") -- buggy?
+map("v", "<a-cr>", ":lua vim.lsp.buf.range_code_action()<cr>")
 
 -- pseudo text objects
 map("x", "il", "g_o^")
