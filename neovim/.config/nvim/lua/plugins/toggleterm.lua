@@ -19,13 +19,14 @@ local packer_opts = {
       direction = "float",
       close_on_exit = true,
       shell = "bash",
+      highlights = {
+        FloatBorder = {
+          link = "Border",
+        },
+      },
       float_opts = {
         border = "single",
         winblend = 0,
-        highlights = {
-          border = "Border",
-          background = "NONE",
-        },
       },
     }
 
