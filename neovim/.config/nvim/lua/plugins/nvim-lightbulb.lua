@@ -6,7 +6,7 @@ local packer_opts = {
       return
     end
 
-    local lightbulb_sign = ""
+    local lightbulb_sign = "" --
 
     vim.fn.sign_define("LightBulbSign", { text = lightbulb_sign, texthl = "", linehl = "", numhl = "" })
 

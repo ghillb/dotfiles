@@ -74,6 +74,7 @@ return require("packer").startup({
     plug({ config = "todo-comments" })
     plug({ config = "which-key" })
     plug({ config = "persistence" })
+    plug({ config = "nvim-spectre" })
     plug({ config = "twilight" })
     plug({ config = "zen-mode" })
     plug({ config = "nvim-colorizer" })
