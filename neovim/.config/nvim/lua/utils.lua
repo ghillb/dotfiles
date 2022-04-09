@@ -237,7 +237,7 @@ local function replace_keycodes(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
-local neogen = require("neogen")
+local _, neogen = pcall(require, "neogen")
 
 function _G.tab_binding()
   if vim.fn.pumvisible() ~= 0 then
