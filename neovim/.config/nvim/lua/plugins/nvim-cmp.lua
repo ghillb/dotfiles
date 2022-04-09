@@ -16,12 +16,6 @@ local packer_opts = {
     end
 
     local lspkind = require("lspkind")
-    local neogen = require("neogen")
-
-    -- neogen mapping helper
-    local t = function(str)
-      return vim.api.nvim_replace_termcodes(str, true, true, true)
-    end
 
     local config = {
       snippet = {
@@ -31,6 +25,8 @@ local packer_opts = {
       },
 
       mapping = {
+        ["<up>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
+        ["<down>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
         ["<c-d>"] = cmp.mapping.scroll_docs(4),
         ["<c-u>"] = cmp.mapping.scroll_docs(-4),
         ["<a-cr>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
@@ -42,26 +38,6 @@ local packer_opts = {
           }),
           { "i", "c" }
         ),
-        ["<tab>"] = cmp.mapping(function(fallback)
-          if neogen.jumpable() then
-            vim.fn.feedkeys(t("<cmd>lua require('neogen').jump_next()<cr>"), "")
-          else
-            fallback()
-          end
-        end, {
-          "i",
-          "s",
-        }),
-        ["<s-tab>"] = cmp.mapping(function(fallback)
-          if neogen.jumpable(-1) then
-            vim.fn.feedkeys(t("<cmd>lua require('neogen').jump_prev()<CR>"), "")
-          else
-            fallback()
-          end
-        end, {
-          "i",
-          "s",
-        }),
       },
       sources = {
         { name = "vsnip", max_item_count = 5 },

@@ -231,3 +231,34 @@ end
 function _G.P(table)
   print(vim.inspect(table))
 end
+
+-- tab key overload
+local function replace_keycodes(str)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
+local neogen = require("neogen")
+
+function _G.tab_binding()
+  if vim.fn.pumvisible() ~= 0 then
+    return replace_keycodes("<C-n>")
+  elseif neogen.jumpable() then
+    return replace_keycodes("<cmd>lua require('neogen').jump_next()<cr>")
+  elseif vim.fn["vsnip#available"](1) ~= 0 then
+    return replace_keycodes("<plug>(vsnip-expand-or-jump)")
+  else
+    return replace_keycodes("<plug>(Tabout)")
+  end
+end
+
+function _G.s_tab_binding()
+  if vim.fn.pumvisible() ~= 0 then
+    return replace_keycodes("<C-p>")
+  elseif neogen.jumpable() then
+    return replace_keycodes("<cmd>lua require('neogen').jump_prev()<cr>")
+  elseif vim.fn["vsnip#jumpable"](-1) ~= 0 then
+    return replace_keycodes("<plug>(vsnip-jump-prev)")
+  else
+    return replace_keycodes("<plug>(TaboutBack)")
+  end
+end
