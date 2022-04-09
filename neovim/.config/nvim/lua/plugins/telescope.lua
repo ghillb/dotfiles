@@ -30,6 +30,12 @@ local packer_opts = {
       "--glob",
       "!.git/",
     }
+    local git_log_cmd = {
+      "git",
+      "log",
+      "--date=short",
+      "--format=%h%d %cd %s",
+    }
 
     local borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" }
 
@@ -44,25 +50,25 @@ local packer_opts = {
             height = 0.9,
             preview_cutoff = 40,
             prompt_position = "top",
-            width = 0.8,
+            width = 0.9,
           },
           cursor = {
             height = 0.9,
             preview_cutoff = 40,
-            width = 0.8,
+            width = 0.9,
           },
           horizontal = {
             height = 0.9,
             preview_cutoff = 120,
             prompt_position = "bottom",
-            width = 0.8,
+            width = 0.9,
             preview_width = 0.5,
           },
           vertical = {
             height = 0.9,
             preview_cutoff = 40,
             prompt_position = "bottom",
-            width = 0.8,
+            width = 0.9,
           },
         },
         path_display = { "smart" },
@@ -118,7 +124,7 @@ local packer_opts = {
         },
         ["ui-select"] = {
           require("telescope.themes").get_ivy({
-            layout_config = { width = 80, height = 10 },
+            layout_config = { height = 10 },
             borderchars = borderchars,
           }),
         },
@@ -138,6 +144,8 @@ local packer_opts = {
     local builtin = require("telescope.builtin")
 
     map({ "n", "v" }, "<c-h>", builtin.resume)
+    map({ "n", "v" }, "<c-b>", builtin.buffers)
+    map({ "n", "v" }, "<c-_>", builtin.current_buffer_fuzzy_find)
     map({ "n", "v" }, "<c-e>", builtin.find_files)
     map({ "n", "v" }, "<c-a-e>", TelescopeOmniFiles)
     map({ "n", "v" }, "<c-p>", function()
@@ -146,9 +154,12 @@ local packer_opts = {
         prompt_title = "Grep",
       })
     end)
-    map({ "n", "v" }, "<c-b>", builtin.buffers)
-    map({ "n", "v" }, "<c-_>", builtin.current_buffer_fuzzy_find)
-    map({ "n", "v" }, "<c-g>", builtin.git_status)
+    map({ "n", "v" }, "<c-g>", function()
+      builtin.git_bcommits({ git_command = git_log_cmd })
+    end)
+    map({ "n", "v" }, "<c-a-g>", function()
+      builtin.git_commits({ git_command = git_log_cmd })
+    end)
     map("n", "<leader>fg", SwitchGitBranch)
     map("n", "<leader>fp", builtin.builtin)
     map("n", "<leader>fk", builtin.keymaps)

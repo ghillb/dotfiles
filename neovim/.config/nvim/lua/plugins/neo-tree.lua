@@ -124,8 +124,8 @@ local packer_opts = {
         {
           event = "neo_tree_buffer_enter",
           handler = function(arg)
-            vim.wo.signcolumn = "auto"
-            vim.wo.fillchars = "eob: "
+            vim.opt_local.signcolumn = "auto"
+            vim.opt_local.fillchars = "eob: "
             DisableTelescopeMappings()
           end,
         },

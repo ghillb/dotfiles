@@ -43,6 +43,7 @@
           - docker-compose
           - ripgrep
           - silversearcher-ag
+          - visidata
           - sshfs
           - nnn
           - jq
