@@ -232,6 +232,15 @@ function _G.P(table)
   print(vim.inspect(table))
 end
 
+function _G.switch(param, cases)
+  local case = cases[param]
+  if case then
+    return case()
+  end
+  local def = cases["default"]
+  return def and def() or nil
+end
+
 -- tab key overload
 local function replace_keycodes(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)

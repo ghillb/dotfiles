@@ -82,6 +82,7 @@ return require("packer").startup({
     plug({ config = "cokeline" })
     plug({ config = "neo-tree" })
     plug({ config = "rust-tools" })
+    plug({ remote = "chrisbra/csv.vim" })
     plug({ config = "nnn" })
     plug({ config = "tabout" })
     plug({ remote = "wellle/targets.vim" })
