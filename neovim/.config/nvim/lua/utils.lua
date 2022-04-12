@@ -241,6 +241,15 @@ function _G.switch(param, cases)
   return def and def() or nil
 end
 
+function _G.toggle_variable(args)
+  local ok, val = pcall(vim.api.nvim_buf_get_var, 0, args.var)
+  if not ok then
+    vim.api.nvim_buf_set_var(0, args.var, args.default)
+    return
+  end
+  vim.api.nvim_buf_set_var(0, args.var, not val)
+end
+
 -- tab key overload
 local function replace_keycodes(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
