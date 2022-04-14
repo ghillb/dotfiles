@@ -48,7 +48,7 @@ local packer_opts = {
           },
           "g:breadcrumbs",
         },
-        lualine_x = { "encoding", "filetype" },
+        lualine_x = { GetIndicators, "encoding", "filetype" },
         lualine_y = { GetLinePercent },
         lualine_z = { "location" },
       },

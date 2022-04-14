@@ -5,6 +5,7 @@ local packer_opts = {
     vim.g.copilot_assume_mapped = true
     vim.g.copilot_filetypes = {
       ["TelescopePrompt"] = false,
+      ["spectre_panel"] = false,
     }
     vim.api.nvim_set_keymap("i", "<s-cr>", 'copilot#Accept("")', { expr = true, silent = true })
     vim.api.nvim_set_keymap("n", "<a-c>", ":Copilot<cr>", {})
