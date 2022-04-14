@@ -48,9 +48,6 @@ local packer_opts = {
         -- { name = "copilot" },
         { name = "neorg" },
       },
-      documentation = {
-        border = "single",
-      },
       formatting = {
         format = lspkind.cmp_format({
           menu = {
@@ -67,6 +64,12 @@ local packer_opts = {
       },
       completion = {
         completeopt = "menu,menuone,noinsert",
+      },
+      window = {
+        documentation = {
+          border = nil,
+          winhighlight = nil,
+        },
       },
       experimental = {
         ghost_text = false,
