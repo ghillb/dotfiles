@@ -3,7 +3,6 @@ local packer_opts = {
   requires = {
     "rcarriga/nvim-dap-ui",
     "theHamsta/nvim-dap-virtual-text",
-    "Pocco81/DAPInstall.nvim",
   },
   config = function()
     local ok, dap_ui = pcall(require, "dapui")
@@ -11,11 +10,20 @@ local packer_opts = {
       return
     end
 
-    dap_ui.setup()
+    -- nvim-dap-ui setup
+    local config_dap_ui = {
+      tray = {
+        elements = { "repl" },
+        size = 10,
+        position = "bottom",
+      },
+    }
+    dap_ui.setup(config_dap_ui)
+
     local dap_virtual_text = require("nvim-dap-virtual-text")
 
     -- nvim-dap-virtual-text setup
-    local config = {
+    local config_dap_vt = {
       enabled = true,
       enabled_commands = true,
       highlight_changed_variables = true,
@@ -25,20 +33,7 @@ local packer_opts = {
       virt_text_pos = "eol",
     }
 
-    dap_virtual_text.setup(config)
-
-    -- nvim-dap-install setup
-    local dap_install = require("dap-install")
-
-    dap_install.setup({
-      installation_path = vim.fn.stdpath("data") .. "/dapinstall/",
-    })
-
-    local dbg_list = require("dap-install.api.debuggers").get_installed_debuggers()
-
-    for _, debugger in ipairs(dbg_list) do
-      dap_install.config(debugger)
-    end
+    dap_virtual_text.setup(config_dap_vt)
 
     local map = vim.keymap.set
 
@@ -65,6 +60,9 @@ local packer_opts = {
     map("n", "<leader>fdb", ':lua require"telescope".extensions.dap.list_breakpoints{}<cr>')
     map("n", "<leader>fdv", ':lua require"telescope".extensions.dap.variables{}<cr>')
     map("n", "<leader>fdf", ':lua require"telescope".extensions.dap.frames{}<cr>')
+
+    -- load dap configs
+    require("dap.python")
   end,
 }
 return packer_opts

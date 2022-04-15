@@ -73,6 +73,7 @@ vim.g.gruvbox_baby_highlights = {
   fugitiveStagedSection = { fg = gb_colors.pink },
   fugitiveSymbolicRef = { fg = gb_colors.magenta },
   LightspeedCursor = { fg = gb_colors.background_dark, bg = gb_colors.pink },
+  debugPc = { bg = gb_colors.background },
 }
 
 -- kanagawa setup
