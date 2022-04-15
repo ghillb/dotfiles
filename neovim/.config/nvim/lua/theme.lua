@@ -62,6 +62,7 @@ vim.g.gruvbox_baby_highlights = {
   TSConstructor = { fg = gb_colors.clean_green },
   TSPunctBracket = { fg = gb_colors.orange },
   Boolean = { fg = gb_colors.pink },
+  Keyword = { fg = gb_colors.bright_yellow },
   MatchParen = { fg = gb_colors.background_dark, bg = gb_colors.orange },
   fugitiveUntrackedHeading = { fg = gb_colors.background_dark, bg = gb_colors.orange },
   fugitiveUntrackedModifier = { fg = gb_colors.orange },
