@@ -1,11 +1,10 @@
 local packer_opts = {
   "nvim-treesitter/nvim-treesitter",
   config = function()
-    local ok, nvim_treesitter_configs = pcall(require, 'nvim-treesitter.configs')
-    if not ok then
+    local ok, nvim_treesitter_configs = pcall(require, "nvim-treesitter.configs")
+    if not ok or vim.g.vscode then
       return
     end
-
 
     local config = {
       highlight = {

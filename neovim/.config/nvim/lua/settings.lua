@@ -1,8 +1,5 @@
 local opt = vim.opt
 
-vim.cmd("filetype plugin indent on")
-vim.cmd("syntax enable")
-
 vim.env.NVIM_CONFIG                    = vim.fn.stdpath('config')
 
 opt.shell                              = 'dash'

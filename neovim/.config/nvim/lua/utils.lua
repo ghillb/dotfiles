@@ -157,40 +157,40 @@ function _G.CreateOrGoToFile()
 end
 
 function _G.SetRoot(...)
-  if #(...) < 1 then
+  if #(...) < 1 or vim.g.vscode then
     return
   end
   local target, echo = ...
 
   if target == "git_worktree" then
     if _G.IsGitWorkTree() then
-      vim.env.VIM_ROOT = vim.fn.FugitiveWorkTree()
+      vim.g.nvim_root = vim.fn.FugitiveWorkTree()
     else
       print("not a git repo!")
       return
     end
   end
   if target == "parent_dir" then
-    vim.env.VIM_ROOT = vim.fn.fnamemodify(vim.env.VIM_ROOT, ":h")
+    vim.g.nvim_root = vim.fn.fnamemodify(vim.g.nvim_root, ":h")
   end
   if target == "file_dir" then
-    vim.env.VIM_ROOT = vim.fn.expand("%:p:h")
+    vim.g.nvim_root = vim.fn.expand("%:p:h")
   end
   if target == "start_dir" then
     if _G.IsGitWorkTree() then
       _G.SetRoot("git_worktree", echo)
       return
     else
-      vim.env.VIM_ROOT = vim.fn.fnamemodify(vim.env.VIM_ROOT, ":p:h")
+      vim.g.nvim_root = vim.fn.fnamemodify(vim.g.nvim_root, ":p:h")
     end
   end
   if target == "origin" then
-    vim.env.VIM_ROOT = vim.env.PWD
+    vim.g.nvim_root = vim.env.PWD
   end
-  if vim.fn.isdirectory(vim.env.VIM_ROOT) == 1 then
-    vim.cmd("silent chdir " .. vim.env.VIM_ROOT)
+  if vim.fn.isdirectory(vim.g.nvim_root) == 1 then
+    vim.cmd("silent chdir " .. vim.g.nvim_root)
     if echo then
-      print(vim.fn.substitute(target, "_", " ", "") .. " rooted " .. " -> " .. vim.env.VIM_ROOT)
+      print(vim.fn.substitute(target, "_", " ", "") .. " rooted " .. " -> " .. vim.g.nvim_root)
     end
   else
     print("directory doesn't exist")

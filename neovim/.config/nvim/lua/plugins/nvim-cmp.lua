@@ -68,7 +68,7 @@ local packer_opts = {
       window = {
         documentation = {
           border = nil,
-          winhighlight = nil,
+          winhighlight = "Normal:Pmenu,FloatBorder:CmpCompletionBorder,CursorLine:PmenuSel,Search:None",
         },
       },
       experimental = {

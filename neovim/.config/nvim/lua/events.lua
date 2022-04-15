@@ -22,7 +22,7 @@ aucmd({ "TermEnter", "TermOpen" }, { command = "set ft=terminal" })
 
 aucmd("DirChanged", {
   callback = function()
-    local root_config_path = vim.env.VIM_ROOT .. "/.nvim.lua"
+    local root_config_path = vim.fn.getcwd() .. "/.nvim.lua"
     if _G.filereadable(root_config_path) then
       vim.cmd("source " .. root_config_path)
     end

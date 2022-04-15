@@ -59,10 +59,10 @@ vim.g.gruvbox_baby_highlights = {
   Identifier = { fg = gb_colors.pink },
   PreProc = { fg = gb_colors.dark_gray },
   QuickFixLine = { fg = gb_colors.dark_gray, bg = gb_colors.medium_gray },
-  TSConstructor= { fg = gb_colors.clean_green },
-  TSPunctBracket= { fg = gb_colors.orange },
+  TSConstructor = { fg = gb_colors.clean_green },
+  TSPunctBracket = { fg = gb_colors.orange },
   Boolean = { fg = gb_colors.pink },
-  MatchParen = { fg = gb_colors.background_dark, bg = gb_colors.milk },
+  MatchParen = { fg = gb_colors.background_dark, bg = gb_colors.orange },
   fugitiveUntrackedHeading = { fg = gb_colors.background_dark, bg = gb_colors.orange },
   fugitiveUntrackedModifier = { fg = gb_colors.orange },
   fugitiveUntrackedSection = { fg = gb_colors.pink },
@@ -71,6 +71,7 @@ vim.g.gruvbox_baby_highlights = {
   fugitiveStagedHeading = { fg = gb_colors.background_dark, bg = gb_colors.forest_green },
   fugitiveStagedSection = { fg = gb_colors.pink },
   fugitiveSymbolicRef = { fg = gb_colors.magenta },
+  LightspeedCursor = { fg = gb_colors.background_dark, bg = gb_colors.pink },
 }
 
 -- kanagawa setup
