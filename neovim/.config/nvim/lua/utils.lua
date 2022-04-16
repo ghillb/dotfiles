@@ -29,6 +29,14 @@ function _G.CloseView()
   end
 end
 
+function _G.ToggleFugitive()
+  vim.cmd(":Neotree close")
+  if vim.bo.filetype == "fugitive" then
+    vim.fn.feedkeys("gq")
+  end
+  vim.cmd(":G")
+end
+
 function _G.TelescopeOmniFiles()
   -- git submodule status more stable?
   local builtin = require("telescope.builtin")
