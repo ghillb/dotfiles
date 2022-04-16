@@ -25,7 +25,7 @@ local packer_opts = {
           return buffer.is_focused and get_hex("Normal", "fg") or get_hex("Comment", "fg")
         end,
         bg = function(buffer)
-          return buffer.is_focused and get_hex("Visual", "bg") or get_hex("Normal", "bg")
+          return buffer.is_focused and get_hex("StatusLine", "bg") or get_hex("Normal", "bg")
         end,
       },
       components = {
@@ -47,7 +47,7 @@ local packer_opts = {
         filetype = "neo-tree",
         components = {
           {
-            text = " ",
+            text = " Tree",
             fg = get_hex("Normal", "fg"),
             bg = get_hex("Normal", "bg"),
             style = "bold",

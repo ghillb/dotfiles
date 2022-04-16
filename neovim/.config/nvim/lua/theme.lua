@@ -50,6 +50,7 @@ local gb_colors = gruvbox_colors.config()
 vim.g.gruvbox_baby_transparent_mode = 1
 vim.g.gruvbox_baby_background_color = "dark"
 vim.g.gruvbox_baby_highlights = {
+  Cursor = { fg = gb_colors.background_dark, bg = gb_colors.pink },
   Search = { fg = gb_colors.background_dark, bg = gb_colors.bright_yellow, style = "NONE" },
   IncSearch = { fg = gb_colors.background_dark, bg = gb_colors.blue_gray },
   SpellBad = { style = "undercurl" },
@@ -72,7 +73,6 @@ vim.g.gruvbox_baby_highlights = {
   fugitiveStagedHeading = { fg = gb_colors.background_dark, bg = gb_colors.forest_green },
   fugitiveStagedSection = { fg = gb_colors.pink },
   fugitiveSymbolicRef = { fg = gb_colors.magenta },
-  LightspeedCursor = { fg = gb_colors.background_dark, bg = gb_colors.pink },
   debugPc = { bg = gb_colors.background },
 }
 
