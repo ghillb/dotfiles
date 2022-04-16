@@ -1,5 +1,6 @@
 local packer_opts = {
   "williamboman/nvim-lsp-installer",
+  requires = { "folke/lua-dev.nvim" },
   config = function()
     local ok, nvim_lsp_installer = pcall(require, "nvim-lsp-installer")
     if not ok then
@@ -20,13 +21,7 @@ local packer_opts = {
       local opts = {}
 
       if server.name == "sumneko_lua" then
-        opts.settings = {
-          Lua = {
-            diagnostics = {
-              globals = { "vim", "packer_plugins" },
-            },
-          },
-        }
+        opts = require("lua-dev").setup({})
         opts.on_attach = function(client)
           client.resolved_capabilities.document_formatting = false
           client.resolved_capabilities.document_range_formatting = false
