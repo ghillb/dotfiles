@@ -46,7 +46,7 @@ return require("packer").startup({
     plug({ config = "sniprun" })
     plug({ config = "nvim-luapad" })
     plug({ remote = "chaoren/vim-wordmotion" })
-    plug({ remote = "arthurxavierx/vim-caser" })
+    plug({ config = "vim-caser" })
     plug({ config = "lightspeed" })
     plug({ config = "vsnip" })
     plug({ config = "vim-illuminate" })
