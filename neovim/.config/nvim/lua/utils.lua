@@ -148,7 +148,7 @@ end
 function _G.TmuxSwitchPane(direction)
   local wnr = vim.fn.winnr()
   vim.fn.execute("wincmd " .. direction)
-  if wnr == vim.fn.winnr() then
+  if wnr == vim.fn.winnr() and vim.env.TMUX then
     vim.fn.system("tmux select-pane -" .. vim.fn.tr(direction, "phjkl", "lLDUR"))
   end
 end

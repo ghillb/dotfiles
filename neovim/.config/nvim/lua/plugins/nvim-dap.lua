@@ -63,6 +63,7 @@ local packer_opts = {
 
     -- load dap configs
     require("dap.python")
+    require("dap.go")
   end,
 }
 return packer_opts
