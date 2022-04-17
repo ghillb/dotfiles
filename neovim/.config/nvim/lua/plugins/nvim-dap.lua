@@ -3,6 +3,7 @@ local packer_opts = {
   requires = {
     "rcarriga/nvim-dap-ui",
     "theHamsta/nvim-dap-virtual-text",
+    "jbyuki/one-small-step-for-vimkind",
   },
   config = function()
     local ok, dap_ui = pcall(require, "dapui")
@@ -64,6 +65,7 @@ local packer_opts = {
     -- load dap configs
     require("dap.python")
     require("dap.go")
+    require("dap.lua")
   end,
 }
 return packer_opts
