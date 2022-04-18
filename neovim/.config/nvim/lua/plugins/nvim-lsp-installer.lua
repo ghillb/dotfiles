@@ -23,8 +23,8 @@ local packer_opts = {
       if server.name == "sumneko_lua" then
         opts = require("lua-dev").setup({})
         opts.on_attach = function(client)
-          client.resolved_capabilities.document_formatting = false
-          client.resolved_capabilities.document_range_formatting = false
+          client.server_capabilities.documentFormattingProvider = false
+          client.server_capabilities.documentRangeFormattingProvider = false
         end
       end
 

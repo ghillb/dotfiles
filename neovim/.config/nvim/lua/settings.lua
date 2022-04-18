@@ -54,7 +54,9 @@ opt.wildignore                         = '*.o,*~,*.pyc,*.pyo,__pycache__,*/venv/
 opt.completeopt                        = 'menu,menuone,noselect,noinsert'
 opt.complete                           = '.,w,b,u,t,kspell'
 opt.shortmess                          = 'filnxtToOFIc'
-vim.opt.fillchars                      = { eob = '·'}
+opt.fillchars                          = { eob = '·'}
+opt.grepprg                            ="rg --vimgrep $* /dev/null"
+opt.grepformat                         ="%f:%l:%c:%m"
 
 -- netrw settings
 vim.g.netrw_banner                     = 0
@@ -75,11 +77,11 @@ vim.diagnostic.config({
 })
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = "single",
+  border = nil,
 })
 
 vim.lsp.handlers["textDocument/signtureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-  border = "single",
+  border = nil,
 })
 
 _G.DiagnosticSigns = { Error = " ", Warn = " ", Hint = " ", Info = " " } --
