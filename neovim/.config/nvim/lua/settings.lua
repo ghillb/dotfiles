@@ -26,7 +26,7 @@ opt.textwidth                          = 100
 opt.wrapmargin                         = 0
 opt.scrolloff                          = 5
 opt.colorcolumn                        = ''
-opt.signcolumn                         = 'yes'
+opt.signcolumn                         = 'auto:1-2'
 opt.formatoptions                      = 'jcroql'
 opt.wrap                               = true
 opt.linebreak                          = true
@@ -55,8 +55,8 @@ opt.completeopt                        = 'menu,menuone,noselect,noinsert'
 opt.complete                           = '.,w,b,u,t,kspell'
 opt.shortmess                          = 'filnxtToOFIc'
 opt.fillchars                          = { eob = '·'}
-opt.grepprg                            ="rg --vimgrep $* /dev/null"
-opt.grepformat                         ="%f:%l:%c:%m"
+opt.grepprg                            = "rg --vimgrep $* /dev/null"
+opt.grepformat                         = "%f:%l:%c:%m"
 
 -- netrw settings
 vim.g.netrw_banner                     = 0
@@ -73,7 +73,7 @@ vim.diagnostic.config({
   severity_sort = true,
   update_in_insert = false,
   underline = true,
-  float = { show_header = false, border = "single", source = "always", focusable = false, header = "", prefix = "" },
+  float = { show_header = false, border = nil, source = "always", focusable = false, header = "", prefix = "" },
 })
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {

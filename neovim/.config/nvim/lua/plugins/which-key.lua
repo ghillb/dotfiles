@@ -12,7 +12,7 @@ local packer_opts = {
 
     local config = {
       window = {
-        border = "single",
+        border = "none",
       },
     }
 

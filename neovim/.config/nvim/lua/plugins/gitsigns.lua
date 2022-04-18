@@ -19,6 +19,9 @@ local packer_opts = {
       diff_opts = {
         internal = true,
       },
+      preview_config = {
+        border = "none",
+      },
       keymaps = {
         noremap = true,
         buffer = true,

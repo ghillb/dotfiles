@@ -17,6 +17,13 @@ local packer_opts = {
       },
     })
 
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "lsp-installer",
+      callback = function()
+        vim.api.nvim_win_set_config(0, { border = "none" })
+      end,
+    })
+
     nvim_lsp_installer.on_server_ready(function(server)
       local opts = {}
 

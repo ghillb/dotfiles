@@ -21,7 +21,6 @@ local function set_theme()
   set_hl("Border", { fg = palette.darkgray })
   set_hl("EndOfBuffer", { fg = palette.darkgray })
   set_hl("VertSplit", { bg = nil, fg = palette.darkgray })
-  set_hl("NormalFloat", { bg = nil })
   set_hl("TabLineFill", { bg = nil })
   set_hl("DiagnosticError", { fg = palette.red })
   -- plugin highlight groups
@@ -54,6 +53,7 @@ vim.g.gruvbox_baby_highlights = {
   Search = { fg = gb_colors.background_dark, bg = gb_colors.bright_yellow, style = "NONE" },
   IncSearch = { fg = gb_colors.background_dark, bg = gb_colors.blue_gray },
   SpellBad = { style = "undercurl" },
+  NormalFloat = { bg = gb_colors.bg_light },
   diffLine = { fg = gb_colors.dark_gray },
   DiffDelete = { fg = gb_colors.red },
   DiffAdd = { fg = gb_colors.forest_green },

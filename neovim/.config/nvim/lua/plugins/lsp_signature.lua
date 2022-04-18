@@ -15,11 +15,11 @@ local packer_opts = {
       hint_prefix = "-> ",
       hint_scheme = "String",
       use_lspsaga = false,
-      hi_parameter = "Search",
+      hi_parameter = "IncSearch",
       max_height = 12,
       max_width = 120,
       handler_opts = {
-        border = "single",
+        border = nil,
       },
       extra_trigger_chars = {},
     }
