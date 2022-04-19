@@ -281,7 +281,7 @@ function _G.tab_binding()
   elseif vim.fn["vsnip#available"](1) ~= 0 then
     return replace_keycodes("<plug>(vsnip-expand-or-jump)")
   else
-    return replace_keycodes("<plug>(Tabout)")
+    return replace_keycodes("<tab>")
   end
 end
 
@@ -293,6 +293,6 @@ function _G.s_tab_binding()
   elseif vim.fn["vsnip#jumpable"](-1) ~= 0 then
     return replace_keycodes("<plug>(vsnip-jump-prev)")
   else
-    return replace_keycodes("<plug>(TaboutBack)")
+    return replace_keycodes("<c-d>")
   end
 end
