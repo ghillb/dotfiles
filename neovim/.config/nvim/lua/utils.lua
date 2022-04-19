@@ -135,7 +135,7 @@ function _G.NewTerminal()
 end
 
 function _G.ToggleGutter()
-  if vim.wo.scl:find("yes") then
+  if vim.wo.scl ~= "no" then
     vim.g._scl = vim.wo.scl
     vim.wo.scl = "no"
   else
