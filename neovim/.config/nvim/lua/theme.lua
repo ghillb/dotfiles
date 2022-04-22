@@ -44,36 +44,37 @@ if not ok then
   return
 end
 
-local gb_colors = gruvbox_colors.config()
+local gbc = gruvbox_colors.config()
 
 vim.g.gruvbox_baby_transparent_mode = 1
 vim.g.gruvbox_baby_background_color = "dark"
 vim.g.gruvbox_baby_highlights = {
-  Cursor = { fg = gb_colors.background_dark, bg = gb_colors.pink },
-  Search = { fg = gb_colors.background_dark, bg = gb_colors.bright_yellow, style = "NONE" },
-  IncSearch = { fg = gb_colors.background_dark, bg = gb_colors.blue_gray },
+  Cursor = { fg = gbc.background_dark, bg = gbc.pink },
+  Search = { fg = gbc.background_dark, bg = gbc.bright_yellow, style = "NONE" },
+  IncSearch = { fg = gbc.background_dark, bg = gbc.blue_gray },
   SpellBad = { style = "undercurl" },
-  NormalFloat = { bg = gb_colors.bg_light },
-  diffLine = { fg = gb_colors.dark_gray },
-  DiffDelete = { fg = gb_colors.red },
-  DiffAdd = { fg = gb_colors.forest_green },
-  Identifier = { fg = gb_colors.pink },
-  PreProc = { fg = gb_colors.dark_gray },
-  QuickFixLine = { fg = gb_colors.dark_gray, bg = gb_colors.medium_gray },
-  TSConstructor = { fg = gb_colors.clean_green },
-  TSPunctBracket = { fg = gb_colors.orange },
-  Boolean = { fg = gb_colors.pink },
-  Keyword = { fg = gb_colors.bright_yellow },
-  MatchParen = { fg = gb_colors.background_dark, bg = gb_colors.orange },
-  fugitiveUntrackedHeading = { fg = gb_colors.background_dark, bg = gb_colors.orange },
-  fugitiveUntrackedModifier = { fg = gb_colors.orange },
-  fugitiveUntrackedSection = { fg = gb_colors.pink },
-  fugitiveUnstagedHeading = { fg = gb_colors.background_dark, bg = gb_colors.soft_yellow },
-  fugitiveUnstagedSection = { fg = gb_colors.pink },
-  fugitiveStagedHeading = { fg = gb_colors.background_dark, bg = gb_colors.forest_green },
-  fugitiveStagedSection = { fg = gb_colors.pink },
-  fugitiveSymbolicRef = { fg = gb_colors.magenta },
-  debugPc = { bg = gb_colors.background },
+  NormalFloat = { bg = gbc.bg_light },
+  diffLine = { fg = gbc.dark_gray },
+  DiffDelete = { fg = gbc.red },
+  DiffAdd = { fg = gbc.forest_green },
+  Identifier = { fg = gbc.pink },
+  PreProc = { fg = gbc.dark_gray },
+  QuickFixLine = { fg = gbc.dark_gray, bg = gbc.medium_gray },
+  TSConstructor = { fg = gbc.clean_green },
+  TSPunctBracket = { fg = gbc.orange },
+  Boolean = { fg = gbc.pink },
+  Keyword = { fg = gbc.bright_yellow },
+  MatchParen = { fg = gbc.background_dark, bg = gbc.orange },
+  Visual = { bg = gbc.medium_gray },
+  fugitiveUntrackedHeading = { fg = gbc.background_dark, bg = gbc.orange },
+  fugitiveUntrackedModifier = { fg = gbc.orange },
+  fugitiveUntrackedSection = { fg = gbc.pink },
+  fugitiveUnstagedHeading = { fg = gbc.background_dark, bg = gbc.soft_yellow },
+  fugitiveUnstagedSection = { fg = gbc.pink },
+  fugitiveStagedHeading = { fg = gbc.background_dark, bg = gbc.forest_green },
+  fugitiveStagedSection = { fg = gbc.pink },
+  fugitiveSymbolicRef = { fg = gbc.magenta },
+  debugPc = { bg = gbc.background },
 }
 
 -- kanagawa setup
