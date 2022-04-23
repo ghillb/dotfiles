@@ -12,7 +12,7 @@ _G.palette = {
   darkgray = "#3c3836",
 }
 
-local function set_theme()
+local function set_global_theme()
   local function set_hl(hl_group, value)
     vim.api.nvim_set_hl(0, hl_group, value)
   end
@@ -34,11 +34,11 @@ end
 
 vim.api.nvim_create_autocmd("colorscheme", {
   callback = function()
-    set_theme()
+    set_global_theme()
   end,
 })
 
--- gruvbox setup
+-- gruvbox
 local ok, gruvbox_colors = pcall(require, "gruvbox-baby.colors")
 if not ok then
   return
@@ -77,8 +77,8 @@ vim.g.gruvbox_baby_highlights = {
   debugPc = { bg = gbc.background },
 }
 
--- kanagawa setup
-local config = {
+-- kanagawa
+require("kanagawa").setup({
   undercurl = true,
   commentStyle = "italic",
   functionStyle = "NONE",
@@ -91,30 +91,23 @@ local config = {
   transparent = true,
   colors = {},
   overrides = {},
-}
+})
 
-require("kanagawa").setup(config)
-
--- onedark setup
+-- onedark
 require("onedark").setup({
   style = "darker",
   transparent = true,
 })
 
--- nightfox setup
+-- nightfox
 require("nightfox").setup({
   options = {
     transparent = true,
   },
 })
 
--- tokyonight setup
-vim.g.tokyonight_style = "night"
-vim.g.tokyonight_transparent = true
-
 -- enable colorscheme
 vim.cmd([[ silent! colorscheme gruvbox-baby ]])
 -- vim.cmd([[ silent! colorscheme kanagawa ]])
 -- vim.cmd([[ silent! colorscheme onedark ]])
 -- vim.cmd([[ silent! colorscheme nightfox ]])
--- vim.cmd([[ silent! colorscheme tokyonight ]])

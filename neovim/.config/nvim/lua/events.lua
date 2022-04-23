@@ -1,14 +1,14 @@
 local aucmd = vim.api.nvim_create_autocmd
 local augrp = vim.api.nvim_create_augroup
 
-local ag_vim_enter = augrp("VimEnterGroup", { clear = true })
-local ag_binary = augrp("Binary", { clear = true })
+local _vim_enter = augrp("VimEnterGroup", { clear = true })
+local _binary_edit = augrp("Binary", { clear = true })
 
 aucmd("VimEnter", {
   callback = function()
     _G.SetRoot("start_dir", false)
   end,
-  group = ag_vim_enter,
+  group = _vim_enter,
 })
 
 aucmd("BufEnter", { callback = PopulateInfo })
@@ -57,7 +57,7 @@ aucmd("BufReadPost", {
     vim.bo.filetype = "xxd"
   end,
   pattern = "*.bin",
-  group = ag_binary,
+  group = _binary_edit,
 })
 
 aucmd("BufWritePre", {
@@ -65,7 +65,7 @@ aucmd("BufWritePre", {
     vim.cmd("%!xxd -r")
   end,
   pattern = "*.bin",
-  group = ag_binary,
+  group = _binary_edit,
 })
 
 aucmd("BufWritePost", {
@@ -74,5 +74,5 @@ aucmd("BufWritePost", {
     vim.opt.mod = false
   end,
   pattern = "*.bin",
-  group = ag_binary,
+  group = _binary_edit,
 })

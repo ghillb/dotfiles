@@ -2,10 +2,17 @@ local packer_opts = {
   "folke/todo-comments.nvim",
   requires = { "nvim-lua/plenary.nvim" },
   config = function()
-    local ok, todo_comments = pcall(require, 'todo-comments')
+    local ok, todo_comments = pcall(require, "todo-comments")
     if not ok then
       return
     end
+    -- examples:
+    -- TODO:
+    -- WARN:
+    -- HACK:
+    -- FIXME:
+    -- OPTIMIZE:
+    -- NOTE:
 
     local config = {
       signs = true,
@@ -33,11 +40,11 @@ local packer_opts = {
         exclude = {},
       },
       colors = {
-        error = { "DiagnosticError", "ErrorMsg", "#DC2626" },
-        warning = { "DiagnosticWarning", "WarningMsg", "#FBBF24" },
-        info = { "DiagnosticInformation", "#2563EB" },
-        hint = { "DiagnosticHint", "#10B981" },
-        default = { "Identifier", "#7C3AED" },
+        error = { "DiagnosticError" },
+        warning = { "DiagnosticWarn", "#FBBF24" },
+        info = { "#10B981" },
+        hint = { "#7C3AED" },
+        default = { "Identifier" },
       },
       search = {
         command = "rg",
