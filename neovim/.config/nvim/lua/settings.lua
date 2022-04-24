@@ -1,72 +1,85 @@
-local opt = vim.opt
+local o = vim.opt
 
-vim.env.NVIM_CONFIG                    = vim.fn.stdpath('config')
+vim.env.NVIM_CONFIG                   = vim.fn.stdpath('config')
 
-opt.shell                              = 'dash'
-opt.encoding                           = 'utf-8'
-opt.fileencoding                       = 'utf-8'
-opt.clipboard                          = 'unnamedplus'
-opt.mouse                              = 'nvi'
-opt.backspace                          = 'indent,eol,start'
-opt.whichwrap                          = 'b,s,<,>,h,l,[,]'
-opt.spelllang                          = 'en_us,de_de'
-opt.spell                              = false
-opt.termguicolors                      = true
-opt.autochdir                          = false
-opt.confirm                            = true
-opt.backup                             = false
-opt.swapfile                           = false
-opt.autoindent                         = true
-opt.smartindent                        = true
-opt.expandtab                          = true
-opt.tabstop                            = 2
-opt.shiftwidth                         = 2
-opt.softtabstop                        = 2
-opt.textwidth                          = 100
-opt.wrapmargin                         = 0
-opt.scrolloff                          = 5
-opt.colorcolumn                        = ''
-opt.signcolumn                         = 'yes'
-opt.formatoptions                      = 'jcroql'
-opt.wrap                               = true
-opt.linebreak                          = true
-opt.foldmethod                         = 'syntax'
-opt.foldnestmax                        = 1
-opt.hlsearch                           = true
-opt.ignorecase                         = true
-opt.incsearch                          = true
-opt.smartcase                          = true
-opt.background                         = 'dark'
-opt.number                             = true
-opt.relativenumber                     = true
-opt.showmode                           = false
-opt.visualbell                         = true
-opt.splitbelow                         = true
-opt.splitright                         = true
-opt.showtabline                        = 0
-opt.updatetime                         = 100
-opt.hidden                             = true
-opt.title                              = true
-opt.undofile                           = true
-opt.undodir                            = vim.env.NVIM_CONFIG .. '/undodir'
-opt.wildmode                           = 'longest:full,full'
-opt.wildignore                         = '*.o,*~,*.pyc,*.pyo,__pycache__,*/venv/*'
-opt.completeopt                        = 'menu,menuone,noselect,noinsert'
-opt.complete                           = '.,w,b,u,t,kspell'
-opt.shortmess                          = 'filnxtToOFIc'
-opt.fillchars                          = { eob = '·'}
-opt.grepprg                            = "rg --vimgrep $* /dev/null"
-opt.grepformat                         = "%f:%l:%c:%m"
+o.shell                               = 'dash'
+o.encoding                            = 'utf-8'
+o.fileencoding                        = 'utf-8'
+o.clipboard                           = 'unnamedplus'
+o.mouse                               = 'nvi'
+o.backspace                           = 'indent,eol,start'
+o.whichwrap                           = 'b,s,<,>,h,l,[,]'
+o.spelllang                           = 'en_us,de_de'
+o.spell                               = false
+o.termguicolors                       = true
+o.autochdir                           = false
+o.confirm                             = true
+o.backup                              = false
+o.swapfile                            = false
+o.autoindent                          = true
+o.smartindent                         = true
+o.expandtab                           = true
+o.tabstop                             = 2
+o.shiftwidth                          = 2
+o.softtabstop                         = 2
+o.textwidth                           = 100
+o.wrapmargin                          = 0
+o.scrolloff                           = 5
+o.colorcolumn                         = ''
+o.signcolumn                          = 'yes'
+o.formatoptions                       = 'jcroql'
+o.wrap                                = true
+o.linebreak                           = true
+o.hlsearch                            = true
+o.ignorecase                          = true
+o.incsearch                           = true
+o.smartcase                           = true
+o.background                          = 'dark'
+o.number                              = true
+o.relativenumber                      = true
+o.showmode                            = false
+o.visualbell                          = true
+o.splitbelow                          = true
+o.splitright                          = true
+o.showtabline                         = 0
+o.updatetime                          = 100
+o.hidden                              = true
+o.title                               = true
+o.undofile                            = true
+o.undodir                             = vim.env.NVIM_CONFIG .. '/undodir'
+o.wildmode                            = 'longest:full,full'
+o.wildignore                          = '*.o,*~,*.pyc,*.pyo,__pycache__,*/venv/*'
+o.completeopt                         = 'menu,menuone,noselect,noinsert'
+o.complete                            = '.,w,b,u,t,kspell'
+o.shortmess                           = 'filnxtToOFIc'
+o.fillchars                           = { eob = '·'}
+o.grepprg                             = "rg --vimgrep $* /dev/null"
+o.grepformat                          = "%f:%l:%c:%m"
+-- fold settings
+o.foldmethod                          = "expr"
+o.foldexpr                            = "nvim_treesitter#foldexpr()"
+o.foldtext                            = [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)']]
+o.fillchars                           = "fold: "
+o.foldnestmax                         = 3
+o.foldminlines                        = 1
 
 -- netrw settings
-vim.g.netrw_banner                     = 0
-vim.g.netrw_liststyle                  = 0
-vim.g.netrw_browse_split               = 0
-vim.g.netrw_winsize                    = 25
-vim.g.netrw_altv                       = 1
-vim.g.netrw_fastbrowse                 = 0
+vim.g.netrw_banner                    = 0
+vim.g.netrw_liststyle                 = 0
+vim.g.netrw_browse_split              = 0
+vim.g.netrw_winsize                   = 25
+vim.g.netrw_altv                      = 1
+vim.g.netrw_fastbrowse                = 0
 
 -- lsp and diagnostics settings
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+  border = nil,
+})
+
+vim.lsp.handlers["textDocument/signtureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+  border = nil,
+})
+
 vim.diagnostic.config({
   virtual_text = false,
   signs = true,
@@ -74,14 +87,6 @@ vim.diagnostic.config({
   update_in_insert = false,
   underline = true,
   float = { show_header = false, border = nil, source = "always", focusable = false, header = "", prefix = "" },
-})
-
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = nil,
-})
-
-vim.lsp.handlers["textDocument/signtureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-  border = nil,
 })
 
 _G.DiagnosticSigns = { Error = " ", Warn = " ", Hint = " ", Info = " " } --
