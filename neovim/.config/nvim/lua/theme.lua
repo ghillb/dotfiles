@@ -53,6 +53,7 @@ vim.g.gruvbox_baby_highlights = {
   Search = { fg = gbc.background_dark, bg = gbc.bright_yellow, style = "NONE" },
   IncSearch = { fg = gbc.background_dark, bg = gbc.blue_gray },
   SpellBad = { style = "undercurl" },
+  MsgArea = { fg = gbc.milk },
   NormalFloat = { bg = gbc.bg_light },
   diffLine = { fg = gbc.dark_gray },
   DiffDelete = { fg = gbc.red },
