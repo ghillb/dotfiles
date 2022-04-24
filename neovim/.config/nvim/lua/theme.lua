@@ -74,6 +74,9 @@ vim.g.gruvbox_baby_highlights = {
   fugitiveStagedHeading = { fg = gbc.background_dark, bg = gbc.forest_green },
   fugitiveStagedSection = { fg = gbc.pink },
   fugitiveSymbolicRef = { fg = gbc.magenta },
+  gitcommitHeader = { fg = gbc.dark_gray },
+  gitcommitBranch = { fg = gbc.magenta },
+  gitcommitFile = { fg = gbc.pink },
   debugPc = { bg = gbc.background },
 }
 
