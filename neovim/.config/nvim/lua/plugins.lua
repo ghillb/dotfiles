@@ -84,7 +84,6 @@ return require("packer").startup({
     plug({ config = "rust-tools" })
     plug({ remote = "chrisbra/csv.vim" })
     plug({ config = "nnn" })
-    plug({ config = "tabout" })
     plug({ remote = "wellle/targets.vim" })
     plug({ remote = "p00f/nvim-ts-rainbow" })
     plug({ config = "qf_helper" })
