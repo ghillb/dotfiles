@@ -11,6 +11,8 @@ map("c", "<tab>", "<nop>")
 map("c", "<s-tab>", "<nop>")
 map("i", "<tab>", "v:lua.tab_binding()", { expr = true })
 map("i", "<s-tab>", "v:lua.s_tab_binding()", { expr = true })
+map("i", "<c-tab>", "<nop>" )
+map("i", "<c-s-tab>", "<nop>" )
 
 map({ "n", "v" }, "H", "^")
 map({ "n", "v" }, "L", "g_")
