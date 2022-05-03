@@ -30,7 +30,7 @@ local packer_opts = {
         ["<c-d>"] = cmp.mapping.scroll_docs(4),
         ["<c-u>"] = cmp.mapping.scroll_docs(-4),
         ["<a-cr>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-        ["<c-q>"] = cmp.mapping(cmp.mapping.close(), { "i", "c" }),
+        ["<c-c>"] = cmp.mapping(cmp.mapping.close(), { "i", "c" }),
         ["<cr>"] = cmp.mapping(
           cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Replace,

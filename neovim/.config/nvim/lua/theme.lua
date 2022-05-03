@@ -19,6 +19,7 @@ local function set_global_theme()
 
   -- vim highlight groups
   set_hl("Border", { fg = palette.darkgray })
+  set_hl("FloatBorder", { fg = palette.darkgray })
   set_hl("EndOfBuffer", { fg = palette.darkgray })
   set_hl("VertSplit", { bg = nil, fg = palette.darkgray })
   set_hl("TabLineFill", { bg = nil })
