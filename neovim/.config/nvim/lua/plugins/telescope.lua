@@ -148,6 +148,7 @@ local packer_opts = {
     map({ "n", "v" }, "<c-_>", builtin.current_buffer_fuzzy_find)
     map({ "n", "v" }, "<c-e>", builtin.find_files)
     map({ "n", "v" }, "<c-a-e>", TelescopeOmniFiles)
+    map("c", "<c-a-r>", "<Plug>(TelescopeFuzzyCommandSearch)")
     map({ "n", "v" }, "<c-p>", function()
       telescope.extensions.live_grep_raw.live_grep_raw({
         vimgrep_arguments = rg_config,
