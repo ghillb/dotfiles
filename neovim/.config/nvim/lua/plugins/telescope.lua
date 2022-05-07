@@ -143,7 +143,7 @@ local packer_opts = {
     local map = vim.keymap.set
     local builtin = require("telescope.builtin")
 
-    map({ "n", "v" }, "<c-h>", builtin.resume)
+    map({ "n", "v" }, "<c-bs>", builtin.resume)
     map({ "n", "v" }, "<c-b>", builtin.buffers)
     map({ "n", "v" }, "<c-_>", builtin.current_buffer_fuzzy_find)
     map({ "n", "v" }, "<c-e>", builtin.find_files)
@@ -171,6 +171,8 @@ local packer_opts = {
     map("n", "<leader>ff", telescope.extensions.frecency.frecency)
     map("n", "<leader>ft", telescope.extensions.asynctasks.all)
     map("n", "<leader>fy", telescope.extensions.neoclip.plus)
+    map("n", "<leader>f:", builtin.command_history)
+    -- map("n", "<leader>f<space>", ?)
     map("n", "<leader>fz", ":Telescope cheat fd<cr>")
     map("n", "<esc><esc>", function()
       telescope.extensions.project.project({ display_type = "full" })

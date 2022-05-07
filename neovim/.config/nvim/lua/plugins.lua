@@ -68,6 +68,7 @@ return require("packer").startup({
     plug({ config = "autopairs" })
     plug({ config = "gitsigns" })
     plug({ config = "diffview" })
+    plug({ config = "git-conflict" })
     plug({ config = "toggleterm" })
     plug({ config = "indent-blankline" })
     plug({ config = "trouble" })
