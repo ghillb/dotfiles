@@ -100,6 +100,7 @@ return require("packer").startup({
       open_fn = function()
         return require("packer.util").float({ border = "none" })
       end,
+      prompt_border = "none",
     },
   },
 })

@@ -7,7 +7,7 @@ local packer_opts = {
       return
     end
 
-    nvim_lsp_installer.settings({
+    local config = {
       ui = {
         icons = {
           server_installed = "✓",
@@ -15,7 +15,10 @@ local packer_opts = {
           server_uninstalled = "✗",
         },
       },
-    })
+      ensure_installed = false,
+    }
+
+    nvim_lsp_installer.setup(config)
 
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "lsp-installer",
@@ -24,8 +27,12 @@ local packer_opts = {
       end,
     })
 
-    nvim_lsp_installer.on_server_ready(function(server)
+    -- lsp-config
+    local lspconfig = require("lspconfig")
+    for _, server in ipairs(nvim_lsp_installer.get_installed_servers()) do
       local opts = {}
+      opts.capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+      -- opts.capabilities.textDocument.completion.completionItem.snippetSupport = true -- not needed?
 
       if server.name == "sumneko_lua" then
         opts = require("lua-dev").setup({})
@@ -75,35 +82,16 @@ local packer_opts = {
         }
       end
 
-      if server.name == "rust_analyzer" then
-        local _, rust_tools = pcall(require, "rust-tools")
-
-        local rust_tools_opts = {
-          tools = {
-            autoSetHints = true,
-            hover_with_actions = true,
-            runnables = {
-              use_telescope = true,
-            },
-            debuggables = {
-              use_telescope = true,
-            },
-            inlay_hints = {
-              show_parameter_hints = true,
-              parameter_hints_prefix = "<-",
-              other_hints_prefix = "=>",
-            },
-          },
-          server = server:get_default_options(),
-        }
-        rust_tools.setup(rust_tools_opts)
-      end
-
-      opts.capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
-      opts.capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-      server:setup(opts)
-    end)
+      lspconfig[server.name].setup({
+        settings = opts.settings,
+        filetypes = opts.filetypes,
+        on_attach = opts.on_attach,
+        flags = {
+          debounce_text_changes = 150,
+        },
+        capabilities = opts.capabilities,
+      })
+    end
   end,
 }
 return packer_opts

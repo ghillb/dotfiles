@@ -1,8 +1,18 @@
 local packer_opts = {
   "nvim-pack/nvim-spectre",
   config = function()
-    vim.keymap.set({ "n", "v" }, "<leader>?", "<cmd>lua require('spectre').open_visual({select_word=true})<cr>:wincmd o<cr>", { silent = true })
-    vim.keymap.set("n", "<leader>/", "viw:lua require('spectre').open_file_search()<cr>:wincmd o<cr>", { silent = true })
+    vim.keymap.set(
+      { "n", "v" },
+      "<leader>?",
+      "<cmd>lua require('spectre').open_visual({select_word=true})<cr>:wincmd o<cr>",
+      { silent = true }
+    )
+    vim.keymap.set(
+      "n",
+      "<leader>/",
+      "viw:lua require('spectre').open_file_search()<cr>:wincmd o<cr>",
+      { silent = true }
+    )
     local config = {
       color_devicons = true,
       open_cmd = "vnew",
