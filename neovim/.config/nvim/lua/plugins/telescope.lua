@@ -25,8 +25,9 @@ local packer_opts = {
       "--with-filename",
       "--line-number",
       "--column",
-      "--smart-case",
+      "--smart-case", -- -s sensitive -i ignore case
       "--hidden",
+      "--no-ignore",
       "--glob",
       "!.git/",
     }
