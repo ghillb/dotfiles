@@ -35,10 +35,10 @@ local packer_opts = {
     nvim_treesitter_configs.setup(config)
 
     local parsers = require("nvim-treesitter.parsers")
-    parsers.filetype_to_parsername["ansible.yaml"] = "yaml"
-    parsers.filetype_to_parsername["kubernetes.yaml"] = "yaml"
-    parsers.filetype_to_parsername["docker-compose.yaml"] = "yaml"
-    parsers.filetype_to_parsername["gitlab-ci.yaml"] = "yaml"
+    local yml_filetypes = { "ansible", "kubernetes", "docker-compose", "gitlab-ci" }
+    for _, ft in ipairs(yml_filetypes) do
+      parsers.filetype_to_parsername[ft .. ".yaml"] = "yaml"
+    end
 
     parsers.get_parser_configs().norg = {
       install_info = {

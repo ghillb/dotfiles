@@ -10,7 +10,7 @@ local packer_opts = {
     vim.keymap.set(
       "n",
       "<leader>/",
-      "viw:lua require('spectre').open_file_search()<cr>:wincmd o<cr>",
+      "<cmd>lua require('spectre').open_file_search()<cr>:wincmd o<cr>",
       { silent = true }
     )
     local config = {
@@ -64,14 +64,19 @@ local packer_opts = {
           desc = "update change when vim write file.",
         },
         ["toggle_ignore_case"] = {
-          map = "ti",
+          map = "tc",
           cmd = "<cmd>lua require('spectre').change_options('ignore-case')<CR>",
           desc = "toggle ignore case",
         },
         ["toggle_ignore_hidden"] = {
           map = "th",
-          cmd = "<cmd>lua require('spectre').change_options('hidden')<CR>",
-          desc = "toggle search hidden",
+          cmd = "<cmd>lua require('spectre').change_options('ignore-hidden')<CR>",
+          desc = "toggle include hidden",
+        },
+        ["toggle_ignored_files"] = {
+          map = "ti",
+          cmd = "<cmd>lua require('spectre').change_options('show-ignored')<CR>",
+          desc = "toggle include ignored",
         },
       },
       find_engine = {
@@ -87,32 +92,18 @@ local packer_opts = {
           options = {
             ["ignore-case"] = {
               value = "--ignore-case",
-              icon = "[IC]",
-              desc = "ignore case",
+              icon = "[C]",
+              desc = "toggle case",
             },
-            ["hidden"] = {
+            ["ignore-hidden"] = {
               value = "--hidden",
-              desc = "hidden file",
+              desc = "toggle hidden",
               icon = "[H]",
             },
-          },
-        },
-        ["ag"] = {
-          cmd = "ag",
-          args = {
-            "--vimgrep",
-            "-s",
-          },
-          options = {
-            ["ignore-case"] = {
-              value = "-i",
-              icon = "[IC]",
-              desc = "ignore case",
-            },
-            ["hidden"] = {
-              value = "--hidden",
-              desc = "hidden file",
-              icon = "[H]",
+            ["show-ignored"] = {
+              value = "--no-ignore",
+              desc = "toggle ignored",
+              icon = "[I]",
             },
           },
         },
@@ -122,18 +113,12 @@ local packer_opts = {
           cmd = "sed",
           args = nil,
         },
-        options = {
-          ["ignore-case"] = {
-            value = "--ignore-case",
-            icon = "[IC]",
-            desc = "ignore case",
-          },
-        },
+        options = {},
       },
       default = {
         find = {
           cmd = "rg",
-          options = { "ignore-case", "hidden" },
+          options = { "ignore-case", "ignore-hidden", "show-ignored" },
         },
         replace = {
           cmd = "sed",
