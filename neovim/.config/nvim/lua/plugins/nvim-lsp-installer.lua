@@ -35,11 +35,24 @@ local packer_opts = {
       -- opts.capabilities.textDocument.completion.completionItem.snippetSupport = true -- not needed?
 
       if server.name == "sumneko_lua" then
-        opts = require("lua-dev").setup({})
-        opts.on_attach = function(client)
-          client.server_capabilities.documentFormattingProvider = false
-          client.server_capabilities.documentRangeFormattingProvider = false
-        end
+        opts = require("lua-dev").setup({
+          lspconfig = {
+            settings = {
+              Lua = {
+                runtime = {
+                  version = "LuaJIT",
+                },
+                telemetry = {
+                  enable = false,
+                },
+              },
+            },
+            on_attach = function(client)
+              client.server_capabilities.documentFormattingProvider = false
+              client.server_capabilities.documentRangeFormattingProvider = false
+            end,
+          },
+        })
       end
 
       if server.name == "ansiblels" then
