@@ -1,3 +1,5 @@
+_G.P = vim.pretty_print
+
 function _G.DrawerToggle()
   local lib = require("diffview.lib")
   local view = lib.get_current_view()
@@ -242,10 +244,6 @@ function _G.filereadable(path)
   else
     return false
   end
-end
-
-function _G.P(table)
-  print(vim.inspect(table))
 end
 
 function _G.switch(param, cases)
