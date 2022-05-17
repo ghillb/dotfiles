@@ -32,6 +32,7 @@ alias icat="kitty +kitten icat"
 alias e='nnn -e -P p'
 alias E='sudo -E nnn -deCH -P p'
 alias ee='xplr'
+alias ft='fasttyper'
 alias n='navi --cheatsh'
 alias tree='tree --du -h'
 alias open='dopen'

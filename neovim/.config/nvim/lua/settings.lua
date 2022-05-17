@@ -52,14 +52,13 @@ o.wildignore                          = '*.o,*~,*.pyc,*.pyo,__pycache__,*/venv/*
 o.completeopt                         = 'menu,menuone,noselect,noinsert'
 o.complete                            = '.,w,b,u,t,kspell'
 o.shortmess                           = 'filnxtToOFIc'
-o.fillchars                           = { eob = '·'}
+o.fillchars                           = { eob = '·', fold = ' ' }
 o.grepprg                             = "rg --vimgrep $* /dev/null"
 o.grepformat                          = "%f:%l:%c:%m"
 -- fold settings
 o.foldmethod                          = "expr"
 o.foldexpr                            = "nvim_treesitter#foldexpr()"
 o.foldtext                            = [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)']]
-o.fillchars                           = "fold: "
 o.foldnestmax                         = 3
 o.foldminlines                        = 1
 
