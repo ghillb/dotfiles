@@ -95,6 +95,11 @@ local packer_opts = {
         }
       end
 
+      if server.name == "terraformls" then
+        opts.filetypes = { "tf", "hcl", "terraform" }
+        opts.settings = {}
+      end
+
       lspconfig[server.name].setup({
         settings = opts.settings,
         filetypes = opts.filetypes,
