@@ -60,8 +60,8 @@ end
 function _G.PopulateInfo()
   local is_git_worktree = _G.IsGitWorkTree()
   _G.SetGitModifiedCount(is_git_worktree)
-  _G.SetBreadcrumbs()
   _G.SetTitleString()
+  _G.SetWinBar()
 end
 
 function _G.IsGitWorkTree()
@@ -87,14 +87,6 @@ function _G.SetGitModifiedCount(is_git_worktree)
   end
 end
 
-function _G.SetBreadcrumbs()
-  if vim.bo.filetype == "neoterm" then
-    vim.g.breadcrumbs = vim.fn.expand("%:t")
-  else
-    vim.g.breadcrumbs = vim.fn.substitute(vim.fn.expand("%:p"), vim.env.HOME, "~", "")
-  end
-end
-
 function _G.SetTitleString()
   local titlestring
   if _G.IsGitWorkTree() then
@@ -103,6 +95,38 @@ function _G.SetTitleString()
     titlestring = vim.fn.substitute(vim.fn.expand("%:p:h:t"), vim.env.HOME, "~", "")
   end
   vim.opt.titlestring = "[" .. titlestring .. "]"
+end
+
+function _G.SetWinBar()
+  local skip_excluded = function()
+    local excluded_filetypes = {
+      "help",
+      "git",
+      "packer",
+      "neo-tree",
+      "fugitive",
+      "gitcommit",
+      "Trouble",
+      "spectre_panel",
+      "neoterm",
+    }
+
+    local isfloat = vim.api.nvim_win_get_config(0).relative ~= ""
+    if vim.tbl_contains(excluded_filetypes, vim.bo.filetype) or vim.bo.buftype == "nofile" or isfloat then
+      vim.opt_local.winbar = nil
+      return true
+    end
+    return false
+  end
+
+  if skip_excluded() then
+    return
+  end
+
+  local ok, _ = pcall(vim.api.nvim_set_option_value, "winbar", "%=%f", { scope = "local" })
+  if not ok then
+    return
+  end
 end
 
 function _G.GetLinePercent()
@@ -328,8 +352,9 @@ local function wininput(opts, on_confirm, win_opts)
   vim.cmd("startinsert")
   vim.defer_fn(function()
     vim.api.nvim_buf_set_text(buf, 0, #prompt, 0, #prompt, { default_text })
+    vim.bo.filetype = "prompt"
     vim.cmd("startinsert!")
-  end, 5)
+  end, 25)
 end
 
 vim.ui.input = function(opts, on_confirm)

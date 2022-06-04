@@ -46,11 +46,20 @@ local packer_opts = {
               info = _G.DiagnosticSigns.Info,
             },
           },
-          "g:breadcrumbs",
         },
         lualine_x = { GetIndicators, "encoding", "filetype" },
-        lualine_y = { GetLinePercent },
-        lualine_z = { "location" },
+        lualine_y = { GetLinePercent, "location" },
+        lualine_z = {
+          {
+            "tabs",
+            max_length = vim.o.columns / 3,
+            mode = 0,
+            tabs_color = {
+              active = "lualine_a_normal",
+              inactive = "lualine_a_inactive",
+            },
+          },
+        },
       },
       inactive_sections = {
         lualine_a = {},

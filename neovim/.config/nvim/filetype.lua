@@ -21,3 +21,11 @@ vim.filetype.add({
     [".*docker[-]compose.*.yml"] = "docker-compose.yaml",
   },
 })
+
+vim.api.nvim_create_autocmd("BufEnter", {
+  callback = function()
+    if vim.bo.filetype == "" then
+      vim.bo.filetype = "plain"
+    end
+  end,
+})
