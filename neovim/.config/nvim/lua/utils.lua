@@ -61,7 +61,7 @@ function _G.PopulateInfo()
   local is_git_worktree = _G.IsGitWorkTree()
   _G.SetGitModifiedCount(is_git_worktree)
   _G.SetTitleString()
-  _G.SetWinBar()
+  -- _G.SetWinBar()
 end
 
 function _G.IsGitWorkTree()
