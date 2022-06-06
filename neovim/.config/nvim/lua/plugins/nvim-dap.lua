@@ -6,12 +6,23 @@ local packer_opts = {
     "jbyuki/one-small-step-for-vimkind",
   },
   config = function()
-    local ok, dap_ui = pcall(require, "dapui")
+    local ok, dap = pcall(require, "dap")
     if not ok then
       return
     end
 
     -- nvim-dap-ui setup
+    local dap_ui = require("dapui")
+    dap.listeners.after.event_initialized["dapui_config"] = function()
+      dap_ui.open()
+    end
+    dap.listeners.before.event_terminated["dapui_config"] = function()
+      dap_ui.close()
+    end
+    dap.listeners.before.event_exited["dapui_config"] = function()
+      dap_ui.close()
+    end
+
     local config_dap_ui = {
       tray = {
         elements = { "repl" },

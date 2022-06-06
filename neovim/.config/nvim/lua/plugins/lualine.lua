@@ -76,7 +76,7 @@ local packer_opts = {
     local gruvbox = require("lualine.themes.gruvbox")
 
     gruvbox.terminal = {
-      a = { bg = palette.pink, fg = palette.black, gui = "bold" },
+      a = { bg = palette.magenta, fg = palette.black, gui = "bold" },
       b = { bg = palette.gray, fg = palette.ivory },
       c = { bg = palette.darkgray, fg = palette.lightgray },
     }

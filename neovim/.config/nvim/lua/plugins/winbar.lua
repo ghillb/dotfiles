@@ -12,14 +12,14 @@ local packer_opts = {
       show_symbols = true,
 
       colors = {
-        path = _G.palette.pink,
+        path = _G.palette.magenta,
         file_name = _G.palette.aqua,
         symbols = "",
       },
 
       icons = {
         file_icon_default = "",
-        seperator = ">",
+        seperator = "",
         editor_state = "●",
         lock_icon = "",
       },
