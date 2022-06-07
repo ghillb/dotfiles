@@ -1,5 +1,6 @@
 local packer_opts = {
   "nvim-treesitter/nvim-treesitter",
+  requires = { "nvim-treesitter/nvim-treesitter-context" },
   config = function()
     local ok, nvim_treesitter_configs = pcall(require, "nvim-treesitter.configs")
     if not ok or vim.g.vscode then
@@ -47,6 +48,25 @@ local packer_opts = {
         branch = "main",
       },
     }
+
+    require("treesitter-context").setup({
+      enable = true,
+      max_lines = 0,
+      patterns = {
+        default = {
+          "class",
+          "function",
+          "method",
+          -- 'for',
+          -- 'while',
+          -- 'if',
+          -- 'switch',
+          -- 'case',
+        },
+      },
+      exact_patterns = {},
+      zindex = 20,
+    })
   end,
 }
 return packer_opts

@@ -16,6 +16,12 @@ local packer_opts = {
     end
 
     neotest.setup({
+      floating = { border = "none" },
+      output = {
+        enabled = true,
+        open_on_run = true,
+      },
+      diagnostic = { enabled = true },
       adapters = {
         require("neotest-python")({
           dap = { justMyCode = false },
@@ -27,16 +33,16 @@ local packer_opts = {
       },
     })
 
-    vim.keymap.set("n", "<c-t><c-f>", function()
+    vim.keymap.set("n", "<c-t>f", function()
       require("neotest").run.run(vim.fn.expand("%"))
     end)
-    vim.keymap.set("n", "<c-t><c-t>", function()
+    vim.keymap.set("n", "<c-t>t", function()
       require("neotest").run.run()
     end) -- run nearest test
-    vim.keymap.set("n", "<c-t><c-d>", function()
+    vim.keymap.set("n", "<c-t>d", function()
       require("neotest").run.run({ strategy = "dap" })
     end) -- debug nearest test
-    vim.keymap.set("n", "<c-t><c-n>", function()
+    vim.keymap.set("n", "<c-t>s", function()
       require("neotest").run.stop()
     end)
     vim.keymap.set("n", "<leader>ts", function()
