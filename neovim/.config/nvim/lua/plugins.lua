@@ -58,7 +58,7 @@ return require("packer").startup({
     plug({ config = "null_ls" })
     plug({ config = "treesitter" })
     plug({ config = "nvim-dap" })
-    plug({ config = "vim-ultest" })
+    plug({ config = "neotest" })
     plug({ config = "telescope" })
     plug({ config = "nvim-cmp" })
     plug({ remote = "onsails/lspkind-nvim" })

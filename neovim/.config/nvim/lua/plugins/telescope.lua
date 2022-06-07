@@ -6,7 +6,7 @@ local packer_opts = {
     { "nvim-telescope/telescope-project.nvim" },
     { "nvim-telescope/telescope-ui-select.nvim" },
     { "nvim-telescope/telescope-dap.nvim" },
-    { "nvim-telescope/telescope-rg.nvim" },
+    { "nvim-telescope/telescope-live-grep-args.nvim" },
     { "nvim-telescope/telescope-frecency.nvim", requires = { "tami5/sqlite.lua" } },
     { "nvim-telescope/telescope-cheat.nvim", requires = { "tami5/sqlite.lua" } },
     { "GustavoKatel/telescope-asynctasks.nvim" },
@@ -138,7 +138,7 @@ local packer_opts = {
     telescope.load_extension("dap")
     telescope.load_extension("frecency")
     telescope.load_extension("cheat")
-    telescope.load_extension("live_grep_raw")
+    telescope.load_extension("live_grep_args")
 
     -- telescope mappings
     local map = vim.keymap.set
@@ -151,7 +151,7 @@ local packer_opts = {
     map({ "n", "v" }, "<c-a-e>", TelescopeOmniFiles)
     map("c", "<c-a-r>", "<Plug>(TelescopeFuzzyCommandSearch)")
     map({ "n", "v" }, "<c-p>", function()
-      telescope.extensions.live_grep_raw.live_grep_raw({
+      telescope.extensions.live_grep_args.live_grep_args({
         vimgrep_arguments = rg_config,
         prompt_title = "Grep",
       })
