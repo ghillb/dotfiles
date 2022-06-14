@@ -33,6 +33,7 @@ local function set_global_theme()
   set_hl("TelescopePromptBorder", { fg = palette.darkgray })
   set_hl("TelescopeResultsBorder", { fg = palette.darkgray })
   set_hl("TelescopePreviewBorder", { fg = palette.darkgray })
+  set_hl("Focus", { fg = palette.ivory, bg = palette.gray })
 end
 
 vim.api.nvim_create_autocmd("colorscheme", {
@@ -87,12 +88,6 @@ vim.g.gruvbox_baby_highlights = {
 -- kanagawa
 require("kanagawa").setup({
   undercurl = true,
-  commentStyle = "italic",
-  functionStyle = "NONE",
-  keywordStyle = "italic",
-  statementStyle = "bold",
-  typeStyle = "NONE",
-  variablebuiltinStyle = "italic",
   specialReturn = true,
   specialException = true,
   transparent = true,

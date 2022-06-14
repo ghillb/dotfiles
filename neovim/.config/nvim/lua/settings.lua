@@ -42,6 +42,7 @@ o.visualbell                          = true
 o.splitbelow                          = true
 o.splitright                          = true
 o.showtabline                         = 0
+o.cmdheight                           = 0
 o.updatetime                          = 100
 o.hidden                              = true
 o.title                               = true
