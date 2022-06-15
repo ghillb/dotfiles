@@ -33,7 +33,6 @@ local function set_global_theme()
   set_hl("TelescopePromptBorder", { fg = palette.darkgray })
   set_hl("TelescopeResultsBorder", { fg = palette.darkgray })
   set_hl("TelescopePreviewBorder", { fg = palette.darkgray })
-  set_hl("Focus", { fg = palette.ivory, bg = palette.gray })
 end
 
 vim.api.nvim_create_autocmd("colorscheme", {
