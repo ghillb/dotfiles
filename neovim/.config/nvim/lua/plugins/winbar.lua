@@ -25,7 +25,6 @@ local packer_opts = {
       },
 
       exclude_filetype = {
-        "help",
         "git",
         "fugitive",
         "alpha",
