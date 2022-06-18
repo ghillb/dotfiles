@@ -96,3 +96,9 @@ for type, icon in pairs(_G.DiagnosticSigns) do
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
+-- activate kitty's (v>=24.0) extende keyboard protocol, enables more possible mappings
+if vim.env.TERM == "xterm-kitty" then
+  vim.cmd([[autocmd UIEnter * if v:event.chan ==# 0 | call chansend(v:stderr, "\x1b[>1u") | endif]])
+  vim.cmd([[autocmd UILeave * if v:event.chan ==# 0 | call chansend(v:stderr, "\x1b[<1u") | endif]])
+end
+
