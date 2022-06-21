@@ -24,10 +24,25 @@ local packer_opts = {
     end
 
     local config_dap_ui = {
-      tray = {
-        elements = { "repl" },
-        size = 10,
-        position = "bottom",
+      layouts = {
+        {
+          elements = {
+            "scopes",
+            "breakpoints",
+            "stacks",
+            "watches",
+          },
+          size = 40,
+          position = "left",
+        },
+        {
+          elements = {
+            "repl",
+            "console",
+          },
+          size = math.ceil(vim.o.lines * 0.25) - 1,
+          position = "bottom",
+        },
       },
     }
     dap_ui.setup(config_dap_ui)
