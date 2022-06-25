@@ -67,6 +67,7 @@
           - pre-commit
           - yamllint
           - ansible-lint
+          # - zoxide
         update_cache: true
         state: present
       tags:

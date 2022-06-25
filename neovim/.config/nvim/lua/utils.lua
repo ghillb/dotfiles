@@ -135,7 +135,7 @@ end
 
 function _G.GetIndicators()
   local indicators = ""
-  if vim.b.copilot_enabled == nil or vim.b.copilot_enabled == true then
+  if vim.g.copilot_globally_enabled == nil or vim.g.copilot_globally_enabled == true then
     indicators = indicators .. "C"
   end
   return indicators
@@ -280,12 +280,12 @@ function _G.switch(param, cases)
 end
 
 function _G.toggle_variable(args)
-  local ok, val = pcall(vim.api.nvim_buf_get_var, 0, args.var)
+  local ok, val = pcall(vim.api.nvim_get_var, args.var)
   if not ok then
-    vim.api.nvim_buf_set_var(0, args.var, args.default)
+    vim.api.nvim_set_var(args.var, args.default)
     return
   end
-  vim.api.nvim_buf_set_var(0, args.var, not val)
+  vim.api.nvim_set_var(args.var, not val)
 end
 
 -- tab key overload
