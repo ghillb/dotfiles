@@ -49,6 +49,8 @@ aucmd("BufWritePre", {
   end,
 })
 
+aucmd("BufWritePost", { pattern = "init.lua", command = "source $MYVIMRC" })
+
 -- binary edit auto cmds
 
 aucmd("BufReadPost", {

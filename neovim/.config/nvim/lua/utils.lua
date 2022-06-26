@@ -279,6 +279,11 @@ function _G.switch(param, cases)
   return def and def() or nil
 end
 
+function _G.reload(mod)
+  package.loaded[mod] = nil
+  require(mod)
+end
+
 function _G.toggle_variable(args)
   local ok, val = pcall(vim.api.nvim_get_var, args.var)
   if not ok then
