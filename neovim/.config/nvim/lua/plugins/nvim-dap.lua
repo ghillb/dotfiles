@@ -40,7 +40,7 @@ local packer_opts = {
             "repl",
             "console",
           },
-          size = math.ceil(vim.o.lines * 0.25) - 1,
+          size = 0.25,
           position = "bottom",
         },
       },
