@@ -106,3 +106,33 @@
       tags:
         - desktop-utilities
         - terminal-utilities
+
+- name: Install (user) packages
+  connection: local
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Get nvm install script
+      get_url:
+        url: https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh
+        dest: /tmp/nvm.sh
+        mode: 0777
+      tags:
+        - desktop-utilities
+        - terminal-utilities
+
+    - name: Install nvm
+      command: bash /tmp/nvm.sh
+      tags:
+        - desktop-utilities
+        - terminal-utilities
+
+    - name: Install node
+      shell: |
+        . $HOME/.nvm/nvm.sh
+        nvm install 16
+      args:
+        executable: /bin/bash
+      tags:
+        - desktop-utilities
+        - terminal-utilities
