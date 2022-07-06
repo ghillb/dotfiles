@@ -65,7 +65,7 @@ function _G.PopulateInfo()
 end
 
 function _G.IsGitWorkTree()
-  return vim.fn.exists("*FugitiveIsGitDir") and vim.fn.FugitiveIsGitDir() == 1
+  return vim.fn.exists("*FugitiveIsGitDir") == 1 and vim.fn.FugitiveIsGitDir() == 1
   -- non-vim-fugitive
   -- vim.fn.system('git rev-parse --is-inside-work-tree')
   -- return vim.v.shell_error
