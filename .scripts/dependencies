@@ -41,6 +41,7 @@
           - htop
           - docker.io
           - docker-compose
+          - podman
           - ripgrep
           - silversearcher-ag
           - visidata

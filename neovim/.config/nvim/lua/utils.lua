@@ -81,7 +81,8 @@ end
 
 function _G.SetGitModifiedCount(is_git_worktree)
   if is_git_worktree then
-    vim.g.git_modified_count = vim.fn.system('git diff --numstat | wc -l | tr -d "\n"')
+    local gitdiffnumstat = tonumber(vim.fn.system('git diff --numstat | wc -l | tr -d "\n"'))
+    vim.g.git_modified_count = gitdiffnumstat or ""
   else
     vim.g.git_modified_count = ""
   end
