@@ -41,6 +41,7 @@ o.showmode                            = false
 o.visualbell                          = true
 o.splitbelow                          = true
 o.splitright                          = true
+-- o.splitscroll                         = false
 o.showtabline                         = 0
 o.cmdheight                           = 1
 o.updatetime                          = 100
@@ -94,11 +95,5 @@ _G.DiagnosticSigns = { Error = " ", Warn = " ", Hint = " ", Info = "
 for type, icon in pairs(_G.DiagnosticSigns) do
   local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-end
-
--- activate kitty's (v>=24.0) extende keyboard protocol, enables more possible mappings
-if vim.env.TERM == "xterm-kitty" then
-  vim.cmd([[autocmd UIEnter * if v:event.chan ==# 0 | call chansend(v:stderr, "\x1b[>1u") | endif]])
-  vim.cmd([[autocmd UILeave * if v:event.chan ==# 0 | call chansend(v:stderr, "\x1b[<1u") | endif]])
 end
 

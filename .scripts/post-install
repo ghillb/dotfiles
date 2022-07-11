@@ -10,6 +10,7 @@ mkdir -p "$HOME/code" # otherwise nvim complains
 pip install --user neovim
 $(which nvim) --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 $(which nvim) --headless +"TSInstallSync all" +"q"
+$(which nvim) --headless +"LspInstall --sync pylsp" +"q"
 
 # add completion
 mkdir ~/.bash_completion.d -p
