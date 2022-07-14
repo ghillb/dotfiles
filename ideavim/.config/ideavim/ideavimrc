@@ -1,5 +1,5 @@
 set clipboard+=unnamedplus
-set relativenumber number
+"set relativenumber number
 
 set ideajoin
 set surround
@@ -13,8 +13,8 @@ no X "_X
 no Y yg_
 no vv V
 no V vg_
-xn p "_dp
-vn p "_dp
+vn p "_dP
+no gp viw"_dP
 vm s <plug>VSurround
 nn yil ^vg_y
 nn vil ^vg_
