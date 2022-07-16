@@ -20,15 +20,15 @@ local packer_opts = {
     }
 
     dashboard.section.buttons.val = {
-      dashboard.button("r", "  > Recent files", ":Telescope oldfiles<cr>"),
-      dashboard.button("e", "+  > Edit new", ":ene <BAR> startinsert <cr>"),
-      dashboard.button("l", "  > Load session", ":lua require('persistence').load({ last = true })<cr>"),
-      dashboard.button("n", "🗎  > Notes", ":VimwikiIndex<cr>"),
-      dashboard.button("p", "  > Projects", ":Telescope project<cr>"),
-      dashboard.button("u", "  > Update", ":PackerSync<cr>"),
-      dashboard.button("s", "  > Settings", ":chdir $DOTFILES <bar> Telescope find_files<cr>"),
-      dashboard.button("h", "?  > Help", ":h ref | wincmd o<cr>"),
-      dashboard.button("q", "  > Quit", ":bd<cr>"),
+      dashboard.button("r", "  >  Recent files", ":Telescope oldfiles<cr>"),
+      dashboard.button("e", "+  >  Edit new", ":ene <BAR> startinsert <cr>"),
+      dashboard.button("l", "  >  Load session", ":lua require('persistence').load({ last = true })<cr>"),
+      dashboard.button("n", "ℵ  >  Notes", ":VimwikiIndex<cr>"),
+      dashboard.button("p", "  >  Projects", ":Telescope project<cr>"),
+      dashboard.button("u", "  >  Update", ":PackerSync<cr>"),
+      dashboard.button("s", "  >  Settings", ":chdir $DOTFILES <bar> Telescope find_files<cr>"),
+      dashboard.button("h", "?  >  Help", ":h ref | wincmd o<cr>"),
+      dashboard.button("q", "  >  Quit", ":bd<cr>"),
     }
 
     dashboard.section.footer.val = fortune()
