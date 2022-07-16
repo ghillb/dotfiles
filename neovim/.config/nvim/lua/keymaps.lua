@@ -27,6 +27,14 @@ map({ "n", "v" }, "gK", "K")
 map("n", "vv", "V")
 map("n", "V", "vg_")
 map("n", "Y", "yg_")
+map("n", "dd", function()
+  if vim.api.nvim_get_current_line():match("^%s*$") then
+    print("Empty line")
+    return '"_dd'
+  else
+    return "dd"
+  end
+end, { expr = true })
 map({ "n", "v" }, "x", '"_x')
 map({ "n", "v" }, "X", '"_X')
 map({ "n", "v" }, "j", "gj")
