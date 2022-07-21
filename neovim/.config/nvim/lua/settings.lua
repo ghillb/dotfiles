@@ -1,6 +1,7 @@
 local o = vim.opt
 
 vim.env.NVIM_CONFIG                   = vim.fn.stdpath('config')
+vim.env.NVIM_EMBEDDED                 = vim.g.vscode == 1
 
 o.shell                               = 'dash'
 o.encoding                            = 'utf-8'

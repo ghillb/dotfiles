@@ -1,5 +1,6 @@
 local packer_opts = {
   "rcarriga/neotest",
+  disable = vim.env.NVIM_EMBEDDED == "true",
   requires = {
     "rcarriga/neotest-vim-test",
     "rcarriga/neotest-python",

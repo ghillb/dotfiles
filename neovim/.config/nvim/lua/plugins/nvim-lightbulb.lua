@@ -1,5 +1,6 @@
 local packer_opts = {
   "kosayoda/nvim-lightbulb",
+  disable = vim.env.NVIM_EMBEDDED == "true",
   config = function()
     local ok, lightbulb = pcall(require, "nvim-lightbulb")
     if not ok then

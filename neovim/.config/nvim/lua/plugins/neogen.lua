@@ -1,5 +1,6 @@
 local packer_opts = {
   "danymat/neogen",
+  disable = vim.env.NVIM_EMBEDDED == "true",
   config = function()
     local ok, neogen = pcall(require, "neogen")
     if not ok then

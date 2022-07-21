@@ -1,5 +1,6 @@
 local packer_opts = {
   "nvim-neo-tree/neo-tree.nvim",
+  disable = vim.env.NVIM_EMBEDDED == "true",
   branch = "main",
   requires = {
     "nvim-lua/plenary.nvim",

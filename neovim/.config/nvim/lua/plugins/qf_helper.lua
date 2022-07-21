@@ -1,4 +1,5 @@
 local packer_opts = {
+  disable = vim.env.NVIM_EMBEDDED == "true",
   "stevearc/qf_helper.nvim",
   config = function()
     local ok, qf_helper = pcall(require, 'qf_helper')

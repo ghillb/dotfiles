@@ -1,5 +1,6 @@
 local packer_opts = {
   "akinsho/toggleterm.nvim",
+  disable = vim.env.NVIM_EMBEDDED == "true",
   config = function()
     local ok, toggleterm = pcall(require, "toggleterm")
     if not ok then

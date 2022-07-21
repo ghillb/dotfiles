@@ -1,5 +1,6 @@
 local packer_opts = {
   "folke/todo-comments.nvim",
+  disable = vim.env.NVIM_EMBEDDED == "true",
   requires = { "nvim-lua/plenary.nvim" },
   config = function()
     local ok, todo_comments = pcall(require, "todo-comments")

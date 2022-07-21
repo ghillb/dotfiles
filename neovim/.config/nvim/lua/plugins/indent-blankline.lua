@@ -1,5 +1,6 @@
 local packer_opts = {
   "lukas-reineke/indent-blankline.nvim",
+  disable = vim.env.NVIM_EMBEDDED == "true",
   config = function()
     local ok, indent_blankline = pcall(require, "indent_blankline")
     if not ok then

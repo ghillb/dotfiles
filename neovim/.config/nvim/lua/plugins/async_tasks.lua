@@ -1,5 +1,6 @@
 local packer_opts = {
   "skywind3000/asynctasks.vim",
+  disable = vim.env.NVIM_EMBEDDED == "true",
   requires = { "skywind3000/asyncrun.vim" },
   config = function()
     vim.g.asyncrun_open = 10

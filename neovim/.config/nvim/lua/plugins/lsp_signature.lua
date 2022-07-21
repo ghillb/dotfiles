@@ -1,5 +1,6 @@
 local packer_opts = {
   "ray-x/lsp_signature.nvim",
+  disable = vim.env.NVIM_EMBEDDED == "true",
   config = function()
     local ok, lsp_signature = pcall(require, "lsp_signature")
     if not ok then

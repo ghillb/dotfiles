@@ -1,5 +1,6 @@
 local packer_opts = {
   "ggandor/lightspeed.nvim",
+  disable = vim.env.NVIM_EMBEDDED == "true",
   requires = { "tpope/vim-repeat" },
   config = function()
     local ok, lightspeed = pcall(require, "lightspeed")

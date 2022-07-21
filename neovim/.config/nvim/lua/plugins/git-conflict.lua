@@ -1,5 +1,6 @@
 local packer_opts = {
   "akinsho/git-conflict.nvim",
+  disable = vim.env.NVIM_EMBEDDED == "true",
   config = function()
     local ok, git_conflict = pcall(require, "git-conflict")
     if not ok then

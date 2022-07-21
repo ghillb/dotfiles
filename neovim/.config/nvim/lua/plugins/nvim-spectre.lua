@@ -1,5 +1,6 @@
 local packer_opts = {
   "nvim-pack/nvim-spectre",
+  disable = vim.env.NVIM_EMBEDDED == "true",
   config = function()
     vim.keymap.set(
       { "n", "v" },

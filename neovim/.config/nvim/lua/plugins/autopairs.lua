@@ -1,5 +1,6 @@
 local packer_opts = {
   "windwp/nvim-autopairs",
+  disable = vim.env.NVIM_EMBEDDED == "true",
   config = function()
     local ok, nvim_autopairs = pcall(require, "nvim-autopairs")
     if not ok then

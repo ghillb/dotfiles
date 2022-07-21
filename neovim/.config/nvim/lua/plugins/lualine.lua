@@ -1,5 +1,6 @@
 local packer_opts = {
   "nvim-lualine/lualine.nvim",
+  disable = vim.env.NVIM_EMBEDDED == "true",
   opt = false,
   config = function()
     local ok, lualine = pcall(require, "lualine")

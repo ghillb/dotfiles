@@ -1,5 +1,6 @@
 local packer_opts = {
   "folke/zen-mode.nvim",
+  disable = vim.env.NVIM_EMBEDDED == "true",
   config = function()
     local ok, zen_mode = pcall(require, "zen_mode")
     if not ok then

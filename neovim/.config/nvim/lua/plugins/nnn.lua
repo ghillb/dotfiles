@@ -1,5 +1,6 @@
 local packer_opts = {
   "mcchrish/nnn.vim",
+  disable = vim.env.NVIM_EMBEDDED == "true",
   config = function()
     local ok, nnn = pcall(require, "nnn")
     if not ok then

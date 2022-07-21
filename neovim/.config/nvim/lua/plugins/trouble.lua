@@ -1,5 +1,6 @@
 local packer_opts = {
   "folke/trouble.nvim",
+  disable = vim.env.NVIM_EMBEDDED == "true",
   requires = { "kyazdani42/nvim-web-devicons" },
   config = function()
     local ok, trouble = pcall(require, 'trouble')

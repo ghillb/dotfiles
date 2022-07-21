@@ -1,5 +1,6 @@
 local packer_opts = {
   "williamboman/nvim-lsp-installer",
+  disable = vim.env.NVIM_EMBEDDED == "true",
   requires = { "folke/lua-dev.nvim" },
   config = function()
     local ok, nvim_lsp_installer = pcall(require, "nvim-lsp-installer")

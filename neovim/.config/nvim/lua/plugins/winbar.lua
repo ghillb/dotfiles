@@ -1,5 +1,6 @@
 local packer_opts = {
   "fgheng/winbar.nvim",
+  disable = vim.env.NVIM_EMBEDDED == "true",
   config = function()
     local ok, winbar = pcall(require, "winbar")
     if not ok then

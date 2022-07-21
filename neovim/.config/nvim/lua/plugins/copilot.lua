@@ -1,5 +1,6 @@
 local packer_opts = {
   "github/copilot.vim",
+  disable = vim.env.NVIM_EMBEDDED == "true",
   config = function()
     vim.g.copilot_globally_enabled = true
     vim.g.copilot_no_tab_map = true

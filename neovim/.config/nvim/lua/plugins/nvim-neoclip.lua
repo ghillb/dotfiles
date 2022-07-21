@@ -1,5 +1,6 @@
 local packer_opts = {
   "AckslD/nvim-neoclip.lua",
+  disable = vim.env.NVIM_EMBEDDED == "true",
   config = function()
     local ok, neoclip = pcall(require, "neoclip")
     if not ok then

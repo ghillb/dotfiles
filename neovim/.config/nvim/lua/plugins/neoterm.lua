@@ -1,5 +1,6 @@
 local packer_opts = {
   "kassio/neoterm",
+  disable = vim.env.NVIM_EMBEDDED == "true",
   config = function()
     vim.g.neoterm_default_mod = "belowright"
     vim.g.neoterm_autoscroll = true

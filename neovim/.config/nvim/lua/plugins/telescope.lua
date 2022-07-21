@@ -1,5 +1,6 @@
 local packer_opts = {
   "nvim-telescope/telescope.nvim",
+  disable = vim.env.NVIM_EMBEDDED == "true",
   requires = {
     { "nvim-lua/popup.nvim" },
     { "nvim-lua/plenary.nvim" },
