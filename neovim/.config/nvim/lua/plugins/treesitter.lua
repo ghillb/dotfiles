@@ -1,6 +1,5 @@
 local packer_opts = {
   "nvim-treesitter/nvim-treesitter",
-  disable = vim.env.NVIM_EMBEDDED == "true",
   requires = { "nvim-treesitter/nvim-treesitter-context", "p00f/nvim-ts-rainbow" },
   config = function()
     local ok, nvim_treesitter_configs = pcall(require, "nvim-treesitter.configs")
