@@ -93,6 +93,7 @@ local packer_opts = {
     require("dap.python")
     require("dap.go")
     require("dap.lua")
+    require("dap.cpp")
   end,
 }
 return packer_opts
