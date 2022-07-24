@@ -82,6 +82,7 @@ return require("packer").startup({
     plug({ config = "lualine" })
     plug({ config = "winbar" })
     plug({ config = "neo-tree" })
+    plug({ config = "cybu" })
     plug({ config = "rust-tools" })
     plug({ remote = "chrisbra/csv.vim" })
     plug({ remote = "tpope/vim-dadbod"})
