@@ -54,7 +54,7 @@ return require("packer").startup({
     plug({ config = "mvvis" })
     plug({ config = "async_tasks" })
     plug({ remote = "neovim/nvim-lspconfig" })
-    plug({ config = "nvim-lsp-installer" })
+    plug({ config = "mason" })
     plug({ config = "null_ls" })
     plug({ config = "treesitter" })
     plug({ config = "nvim-dap" })

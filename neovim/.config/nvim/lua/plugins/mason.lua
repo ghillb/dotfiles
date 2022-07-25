@@ -1,9 +1,9 @@
 local packer_opts = {
-  "williamboman/nvim-lsp-installer",
+  "williamboman/mason.nvim",
   disable = vim.env.NVIM_EMBEDDED == "true",
-  requires = { "folke/lua-dev.nvim" },
+  requires = { "folke/lua-dev.nvim", "williamboman/mason-lspconfig.nvim", "neovim/nvim-lspconfig" },
   config = function()
-    local ok, nvim_lsp_installer = pcall(require, "nvim-lsp-installer")
+    local ok, mason = pcall(require, "mason")
     if not ok then
       return
     end
@@ -11,31 +11,29 @@ local packer_opts = {
     local config = {
       ui = {
         icons = {
-          server_installed = "✓",
-          server_pending = "➜",
-          server_uninstalled = "✗",
+          package_installed = "✓",
+          package_pending = "➜",
+          package_uninstalled = "✗",
         },
       },
-      ensure_installed = false,
     }
 
-    nvim_lsp_installer.setup(config)
+    mason.setup(config)
 
-    vim.api.nvim_create_autocmd("FileType", {
-      pattern = "lsp-installer",
-      callback = function()
-        vim.api.nvim_win_set_config(0, { border = "none" })
-      end,
+    local mason_lspconfig = require("mason-lspconfig")
+
+    mason_lspconfig.setup({
+      ensure_installed = { "sumneko_lua" },
     })
 
     -- lsp-config
     local lspconfig = require("lspconfig")
-    for _, server in ipairs(nvim_lsp_installer.get_installed_servers()) do
+    for _, server in ipairs(mason_lspconfig.get_installed_servers()) do
       local opts = {}
       opts.capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
       -- opts.capabilities.textDocument.completion.completionItem.snippetSupport = true -- not needed?
 
-      if server.name == "sumneko_lua" then
+      if server == "sumneko_lua" then
         opts = require("lua-dev").setup({
           lspconfig = {
             settings = {
@@ -56,7 +54,7 @@ local packer_opts = {
         })
       end
 
-      if server.name == "ansiblels" then
+      if server == "ansiblels" then
         opts.filetypes = { "ansible.yaml" }
         opts.settings = {
           ansible = {
@@ -77,7 +75,7 @@ local packer_opts = {
         }
       end
 
-      if server.name == "yamlls" then
+      if server == "yamlls" then
         opts.filetypes = { "yaml", "yml", "gitlab-ci.yaml", "ansible.yaml", "docker-compose.yaml", "kubernetes.yaml" }
         opts.settings = {
           yaml = {
@@ -96,12 +94,12 @@ local packer_opts = {
         }
       end
 
-      if server.name == "terraformls" then
+      if server == "terraformls" then
         opts.filetypes = { "tf", "hcl", "terraform" }
         opts.settings = {}
       end
 
-      lspconfig[server.name].setup({
+      lspconfig[server].setup({
         settings = opts.settings,
         filetypes = opts.filetypes,
         on_attach = opts.on_attach,
