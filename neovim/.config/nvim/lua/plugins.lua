@@ -95,6 +95,7 @@ return require("packer").startup({
     plug({ config = "glow" })
     plug({ config = "neogen" })
     plug({ config = "nvim-neoclip" })
+    plug({ config = "nvim-osc52" })
     plug({ config = "comment" })
   end,
   config = {
