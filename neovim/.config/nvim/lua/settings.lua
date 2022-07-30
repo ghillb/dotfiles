@@ -54,7 +54,7 @@ o.wildmode                            = 'longest:full,full'
 o.wildignore                          = '*.o,*~,*.pyc,*.pyo,__pycache__,*/venv/*'
 o.completeopt                         = 'menu,menuone,noselect,noinsert'
 o.complete                            = '.,w,b,u,t,kspell'
-o.shortmess                           = 'filnxtToOFIc'
+o.shortmess                           = 'filnxtToOFIcS'
 o.fillchars                           = { eob = '·', fold = ' ' }
 o.grepprg                             = "rg --vimgrep $* /dev/null"
 o.grepformat                          = "%f:%l:%c:%m"

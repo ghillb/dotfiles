@@ -24,6 +24,19 @@ local packer_opts = {
       filetypes = { "neo-tree" },
     }
 
+    local function search_count()
+      if vim.api.nvim_get_vvar("hlsearch") == 1 then
+        local res = vim.fn.searchcount({ maxcount = 999, timeout = 50 })
+
+        if res.total > 0 then
+          -- return string.format("[%s:%d/%d]", vim.fn.getreg("/"), res.current, res.total)
+          return string.format("match: %d/%d", res.current, res.total)
+        end
+      end
+
+      return ""
+    end
+
     local config = {
       options = {
         icons_enabled = true,
@@ -47,6 +60,7 @@ local packer_opts = {
               info = _G.DiagnosticSigns.Info,
             },
           },
+          { search_count, type = "lua_expr" },
         },
         lualine_x = { GetIndicators, "encoding", "filetype" },
         lualine_y = { GetLinePercent, "location" },

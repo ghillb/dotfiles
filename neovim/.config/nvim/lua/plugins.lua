@@ -53,6 +53,7 @@ return require("packer").startup({
     plug({ remote = "rafamadriz/friendly-snippets" })
     plug({ config = "mvvis" })
     plug({ config = "async_tasks" })
+    plug({ config = "overseer" })
     plug({ remote = "neovim/nvim-lspconfig" })
     plug({ config = "mason" })
     plug({ config = "null_ls" })
