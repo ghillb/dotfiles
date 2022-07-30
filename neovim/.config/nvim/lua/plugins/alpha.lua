@@ -21,6 +21,7 @@ local packer_opts = {
     }
 
     dashboard.section.buttons.val = {
+      dashboard.button("w", "פּ  >  Workdir files", ":Telescope find_files<cr>"),
       dashboard.button("r", "  >  Recent files", ":Telescope oldfiles<cr>"),
       dashboard.button("e", "+  >  Edit new", ":ene <BAR> startinsert <cr>"),
       dashboard.button("l", "  >  Load session", ":lua require('persistence').load({ last = true })<cr>"),
@@ -29,7 +30,7 @@ local packer_opts = {
       dashboard.button("u", "  >  Update", ":PackerSync<cr>"),
       dashboard.button("s", "  >  Settings", ":chdir $DOTFILES <bar> Telescope find_files<cr>"),
       dashboard.button("h", "?  >  Help", ":h ref | wincmd o<cr>"),
-      dashboard.button("q", "  >  Quit", ":bd<cr>"),
+      dashboard.button("q", "  >  Quit", ":qall<cr>"),
     }
 
     dashboard.section.footer.val = fortune()
