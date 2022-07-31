@@ -34,7 +34,7 @@ local packer_opts = {
         ["<c-c>"] = cmp.mapping(cmp.mapping.close(), { "i", "c" }),
         ["<cr>"] = cmp.mapping(
           cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Replace,
+            behavior = cmp.ConfirmBehavior.Insert,
             select = true,
           }),
           { "i", "c" }

@@ -1,14 +1,11 @@
 local aucmd = vim.api.nvim_create_autocmd
 local augrp = vim.api.nvim_create_augroup
 
-local _vim_enter = augrp("VimEnterGroup", { clear = true })
-local _binary_edit = augrp("Binary", { clear = true })
-
 aucmd("VimEnter", {
   callback = function()
     _G.SetRoot("start_dir", false)
   end,
-  group = _vim_enter,
+  group = augrp("VimEnterGroup", { clear = true }),
 })
 
 aucmd("BufEnter", { callback = PopulateInfo })
@@ -45,13 +42,16 @@ aucmd("TextYankPost", {
 
 aucmd("BufWritePre", {
   callback = function()
-    vim.lsp.buf.formatting_seq_sync(nil, 2000)
+    -- vim.lsp.buf.formatting_seq_sync(nil, 2000)
+    vim.lsp.buf.format({ async = true })
   end,
 })
 
 aucmd("BufWritePost", { pattern = "init.lua", command = "source $MYVIMRC" })
 
 -- binary edit auto cmds
+
+local _binary_edit = augrp("Binary", { clear = true })
 
 aucmd("BufReadPost", {
   callback = function()
@@ -78,3 +78,31 @@ aucmd("BufWritePost", {
   pattern = "*.bin",
   group = _binary_edit,
 })
+
+-- Auto run on save
+local attach_to_buffer = function(output_bufnr, pattern, command)
+  vim.api.nvim_create_autocmd("BufWritePost", {
+    group = vim.api.nvim_create_augroup("autorun", { clear = true }),
+    pattern = pattern,
+    callback = function()
+      local append_data = function(_, data)
+        if data then
+          vim.api.nvim_buf_set_lines(output_bufnr, -1, -1, false, data)
+        end
+      end
+      vim.api.nvim_buf_set_lines(output_bufnr, 0, -1, false, { "AutoRun:" })
+      vim.fn.jobstart(command, {
+        stdout_buffered = true,
+        on_stdout = append_data,
+        on_stderr = append_data,
+      })
+    end,
+  })
+end
+
+vim.api.nvim_create_user_command("AutoRun", function()
+  local bufnr = vim.fn.input("Enter buffer number: ")
+  local pattern = vim.fn.input("Enter pattern: ")
+  local command = vim.split(vim.fn.input("Enter command: "), " ")
+  attach_to_buffer(tonumber(bufnr), pattern, command)
+end, {})
