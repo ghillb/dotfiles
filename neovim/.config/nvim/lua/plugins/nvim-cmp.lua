@@ -87,7 +87,7 @@ local packer_opts = {
 
     cmp.setup.cmdline(":", {
       sources = {
-        { name = "cmdline" },
+        { name = "cmdline", keyword_pattern = [=[[^[:blank:]\!]*]=], keyword_length = 3 },
         { name = "path", option = {
           trailing_slash = true,
         } },
