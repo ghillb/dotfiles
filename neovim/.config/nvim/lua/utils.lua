@@ -1,4 +1,5 @@
 _G.P = vim.pretty_print
+_G.Indicators = {}
 
 function _G.DrawerToggle()
   local lib = require("diffview.lib")
@@ -136,8 +137,8 @@ end
 
 function _G.GetIndicators()
   local indicators = ""
-  if vim.g.copilot_globally_enabled == nil or vim.g.copilot_globally_enabled == true then
-    indicators = indicators .. "C"
+  for _, indicator in pairs(Indicators) do
+    indicators = indicators .. indicator
   end
   return indicators
 end

@@ -1,4 +1,5 @@
 local dap = require("dap")
+local e = vim.fn.expand
 
 local setupCommands = {
   {
@@ -9,7 +10,7 @@ local setupCommands = {
 }
 
 local preLaunchTask = function()
-  return string.format("g++ -g %s -o %s.out", vim.fn.expand("%:p"), vim.fn.expand("%:p:r"))
+  return string.format("g++ -g %s -o %s.out", e("%:p"), e("%:p:r"))
 end
 
 dap.adapters.cppdbg = function(cb, config)
