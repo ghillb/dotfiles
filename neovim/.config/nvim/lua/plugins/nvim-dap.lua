@@ -70,6 +70,9 @@ local packer_opts = {
     local map = vim.keymap.set
 
     map("n", "<F1>", ":lua require('dap').continue()<cr>")
+    map("n", "<F13>", function()
+      dap.run(dap.configurations.cpp[1])
+    end)
     map("n", "<F2>", ":lua require('dap').step_over()<cr>")
     map("n", "<F14>", ":lua require('dap').step_back()<cr>")
     map("n", "<F3>", ":lua require('dap').step_into()<cr>")

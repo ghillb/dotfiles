@@ -5,6 +5,8 @@ local packer_opts = {
     if not ok then
       return
     end
+    local e = vim.fn.expand
+
     overseer.setup({
       strategy = "terminal",
       templates = { "builtin" },
@@ -134,14 +136,15 @@ local packer_opts = {
     -- })
 
     overseer.register_template({
-      name = "Compile C++",
+      name = "Compile C++ with gdb flag",
       builder = function(params)
         return {
           cmd = {
             "g++",
-            "-o",
-            string.format("%s.out", vim.api.nvim_buf_get_name(0)),
+            "-g",
             vim.api.nvim_buf_get_name(0),
+            "-o",
+            string.format("%s.out", e("%:p:r")),
           },
         }
       end,
@@ -154,11 +157,11 @@ local packer_opts = {
     })
 
     overseer.register_template({
-      name = "Run Binary",
+      name = "Run binary",
       builder = function(params)
         return {
           cmd = {
-            string.format("%s.%s", vim.api.nvim_buf_get_name(0), params.extension),
+            string.format("%s.%s", e("%:p:r"), params.extension),
           },
         }
       end,
