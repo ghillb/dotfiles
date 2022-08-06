@@ -146,6 +146,7 @@ local packer_opts = {
     local builtin = require("telescope.builtin")
 
     map({ "n", "v" }, "<c-bs>", builtin.resume)
+    map({ "n", "v" }, "<c-F20>", "<c-bs>", { remap = true }) -- emulate on win term
     map({ "n", "v" }, "<c-b>", builtin.buffers)
     map({ "n", "v" }, "<c-_>", builtin.current_buffer_fuzzy_find)
     map({ "n", "v" }, "<c-e>", builtin.find_files)

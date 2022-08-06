@@ -69,6 +69,7 @@ map("n", "<c-l>", ':let @/=""<cr>:e %<cr><c-l>')
 map({ "n", "v", "i" }, "<c-s>", "<esc>:w<cr>")
 map({ "n", "v", "i" }, "<c-q>", "<esc>:x<cr>")
 map("i", "<c-bs>", "<c-o>db<c-o>x", { remap = true })
+map("i", "<c-F20>", "<c-bs>", { remap = true }) -- emulate on win term
 map("i", "<c-w>", "<c-bs>", { remap = true })
 map("i", "<c-l>", "<c-o>dl", { remap = true })
 map("i", "<c-del>", "<c-o>de", { remap = true })

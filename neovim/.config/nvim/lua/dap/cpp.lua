@@ -1,23 +1,53 @@
 local dap = require("dap")
-dap.adapters.cpp = {
-  type = "executable",
-  command = "lldb-vscode-14",
-  env = {
-    LLDB_LAUNCH_FLAG_LAUNCH_IN_TTY = "NO",
+local setupCommands = {
+  {
+    text = "-enable-pretty-printing",
+    description = "enable pretty printing",
+    ignoreFailures = false,
   },
-  name = "lldb",
+}
+
+dap.adapters.cppdbg = {
+  id = "cppdbg",
+  type = "executable",
+  command = "OpenDebugAD7",
 }
 
 dap.configurations.cpp = {
   {
-    name = "Launch",
-    type = "cpp",
+    name = "Launch current file",
+    type = "cppdbg",
+    request = "launch",
+    program = function()
+      return vim.fn.expand("%:p:r") .. ".out"
+    end,
+    cwd = "${workspaceFolder}",
+    stopOnEntry = true,
+    setupCommands = setupCommands,
+  },
+  {
+    name = "Launch file",
+    type = "cppdbg",
     request = "launch",
     program = function()
       return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
     end,
     cwd = "${workspaceFolder}",
-    args = {},
+    stopOnEntry = true,
+    setupCommands = setupCommands,
+  },
+  {
+    name = "Attach to gdbserver :1234",
+    type = "cppdbg",
+    request = "launch",
+    MIMode = "gdb",
+    miDebuggerServerAddress = "localhost:1234",
+    miDebuggerPath = "/usr/bin/gdb",
+    cwd = "${workspaceFolder}",
+    program = function()
+      return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+    end,
+    setupCommands = setupCommands,
   },
 }
 

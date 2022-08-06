@@ -12,6 +12,10 @@ local packer_opts = {
       return
     end
 
+    vim.fn.sign_define("DapBreakpoint", { text = "●", texthl = "Define", linehl = "", numhl = "" })
+    vim.fn.sign_define("DapBreakpointCondition", { text = "◯", texthl = "Define", linehl = "", numhl = "" })
+    vim.fn.sign_define("DapStopped", { text = "→", texthl = "Define", linehl = "", numhl = "" })
+
     -- nvim-dap-ui setup
     local dap_ui = require("dapui")
     dap.listeners.after.event_initialized["dapui_config"] = function()
@@ -28,12 +32,12 @@ local packer_opts = {
       layouts = {
         {
           elements = {
-            "scopes",
-            "breakpoints",
-            "stacks",
-            "watches",
+            { id = "scopes", size = 0.5 },
+            { id = "breakpoints", size = 0.125 },
+            { id = "stacks", size = 0.125 },
+            { id = "watches", size = 0.25 },
           },
-          size = 40,
+          size = 50,
           position = "left",
         },
         {
@@ -52,7 +56,7 @@ local packer_opts = {
 
     -- nvim-dap-virtual-text setup
     local config_dap_vt = {
-      enabled = true,
+      enabled = false,
       enabled_commands = true,
       highlight_changed_variables = true,
       highlight_new_as_changed = false,
@@ -67,22 +71,14 @@ local packer_opts = {
 
     map("n", "<F1>", ":lua require('dap').continue()<cr>")
     map("n", "<F2>", ":lua require('dap').step_over()<cr>")
+    map("n", "<F14>", ":lua require('dap').step_back()<cr>")
     map("n", "<F3>", ":lua require('dap').step_into()<cr>")
     map("n", "<F4>", ":lua require('dap').step_out()<cr>")
     map("n", "<F5>", ":lua require('dap').toggle_breakpoint()<cr>")
+    map("n", "<F17>", ":lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>")
+    map("n", "<F29>", ":lua require('dap').set_breakpoint({ nil, nil, vim.fn.input('Log point message: ')})<cr>")
     map("n", "<F10>", ":lua require('dapui').toggle()<cr>")
-
-    map("n", "<leader>dbc", ":lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>")
-    map("n", "<leader>dbm", ":lua require('dap').set_breakpoint({ nil, nil, vim.fn.input('Log point message: ')})<cr>")
-
-    map("n", "<leader>dsc", ":lua require('dap').continue()<cr>")
-    map("n", "<leader>dsv", ":lua require('dap').step_over()<cr>")
-    map("n", "<leader>dsi", ":lua require('dap').step_into()<cr>")
-    map("n", "<leader>dso", ":lua require('dap').step_out()<cr>")
-
-    map("n", "<leader>dtr", ":lua require('dap').repl.open()<cr>")
-    map("n", "<leader>dtu", ":lua require('dapui').toggle()<cr>")
-    map("n", "<leader>dtv", ":lua local widgets=require('dap.ui.widgets');widgets.centered_float(widgets.scopes)<cr>")
+    map("n", "<F22>", ":lua require('dap').repl.toggle()<cr>")
 
     map("n", "<leader>fdc", ':lua require"telescope".extensions.dap.commands{}<cr>')
     map("n", "<leader>fdb", ':lua require"telescope".extensions.dap.list_breakpoints{}<cr>')
