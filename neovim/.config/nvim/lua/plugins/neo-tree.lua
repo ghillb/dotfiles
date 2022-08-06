@@ -74,7 +74,10 @@ local packer_opts = {
           ["F"] = "add_directory",
           ["x"] = "delete",
           ["r"] = "rename",
-          ["y"] = "copy_to_clipboard",
+          ["Y"] = "copy_to_clipboard",
+          ["yy"] = "copy_file_name",
+          ["yr"] = "copy_file_path_relative",
+          ["ya"] = "copy_file_path_absolute",
           ["d"] = "cut_to_clipboard",
           ["p"] = "paste_from_clipboard",
           ["c"] = "copy",
@@ -84,6 +87,22 @@ local packer_opts = {
       },
       nesting_rules = {},
       filesystem = {
+        commands = {
+          copy_file_name = function(state)
+            local node = state.tree:get_node()
+            vim.fn.setreg("*", node.name, "c")
+          end,
+          copy_file_path_absolute = function(state)
+            local node = state.tree:get_node()
+            vim.fn.setreg("*", node.path, "c")
+          end,
+          copy_file_path_relative = function(state)
+            local node = state.tree:get_node()
+            local full_path = node.path
+            local relative_path = full_path:sub(#state.path + 2)
+            vim.fn.setreg("*", relative_path, "c")
+          end,
+        },
         filtered_items = {
           visible = true,
           hide_dotfiles = false,
