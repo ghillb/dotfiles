@@ -81,7 +81,8 @@ return require("packer").startup({
     plug({ config = "zen-mode" })
     plug({ config = "nvim-colorizer" })
     plug({ config = "lualine" })
-    plug({ config = "winbar" })
+    -- plug({ config = "winbar" }) -- disabled until https://github.com/neovim/neovim/issues/19458
+    -- is fixed more info: https://github.com/MunifTanjim/nui.nvim/issues/172
     plug({ config = "neo-tree" })
     plug({ config = "cybu" })
     plug({ config = "rust-tools" })
