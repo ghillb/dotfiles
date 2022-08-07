@@ -37,6 +37,18 @@ local packer_opts = {
       return ""
     end
 
+    local function get_indicators()
+      local indicators = ""
+      for _, indicator in pairs(Indicators) do
+        indicators = indicators .. indicator
+      end
+      return indicators
+    end
+
+    local function get_line_percent()
+      return math.floor(vim.fn.line(".") * 100 / vim.fn.line("$")) .. "%%"
+    end
+
     local config = {
       options = {
         icons_enabled = true,
@@ -50,6 +62,7 @@ local packer_opts = {
         lualine_a = { "mode" },
         lualine_b = { "branch", "g:git_modified_count", "diff" },
         lualine_c = {
+          { "overseer" },
           {
             "diagnostics",
             sources = { "nvim_diagnostic" },
@@ -62,8 +75,8 @@ local packer_opts = {
           },
           { search_count, type = "lua_expr" },
         },
-        lualine_x = { GetIndicators, "encoding", "filetype" },
-        lualine_y = { GetLinePercent, "location" },
+        lualine_x = { get_indicators, "encoding", "filetype" },
+        lualine_y = { get_line_percent, "location" },
         lualine_z = {
           {
             "tabs",

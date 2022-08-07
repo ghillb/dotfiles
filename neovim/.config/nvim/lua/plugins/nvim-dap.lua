@@ -71,7 +71,7 @@ local packer_opts = {
 
     map("n", "<F1>", ":lua require('dap').continue()<cr>")
     map("n", "<F13>", function()
-      dap.run(dap.configurations.cpp[1])
+      dap.run(dap.configurations[vim.bo.filetype][1])
     end)
     map("n", "<F2>", ":lua require('dap').step_over()<cr>")
     map("n", "<F14>", ":lua require('dap').step_back()<cr>")

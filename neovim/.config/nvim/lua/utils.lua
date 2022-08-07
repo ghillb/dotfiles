@@ -131,18 +131,6 @@ function _G.SetWinBar()
   end
 end
 
-function _G.GetLinePercent()
-  return math.floor(vim.fn.line(".") * 100 / vim.fn.line("$")) .. "%%"
-end
-
-function _G.GetIndicators()
-  local indicators = ""
-  for _, indicator in pairs(Indicators) do
-    indicators = indicators .. indicator
-  end
-  return indicators
-end
-
 function _G.GetActiveBuffers()
   local active_buffers = {}
   for k, value in ipairs(vim.api.nvim_list_bufs()) do

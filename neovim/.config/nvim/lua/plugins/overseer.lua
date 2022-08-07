@@ -5,6 +5,7 @@ local packer_opts = {
     if not ok then
       return
     end
+
     local e = vim.fn.expand
 
     overseer.setup({
@@ -17,7 +18,7 @@ local packer_opts = {
         max_width = { 100, 0.2 },
         min_width = { 40, 0.1 },
         separator = "────────────────────────────────────────",
-        direction = "left",
+        direction = "right",
         bindings = {
           ["?"] = "ShowHelp",
           ["<CR>"] = "RunAction",
@@ -117,42 +118,6 @@ local packer_opts = {
           filename = "overseer.log",
           level = vim.log.levels.WARN,
         },
-      },
-    })
-
-    -- overseer.new_task({
-    --   name = "Example Task",
-    --   strategy = {
-    --     "orchestrator",
-    --     tasks = {
-    --       { "shell", cmd = "ls" },
-    --       {
-    --         { "shell", cmd = "pwd" },
-    --         { "shell", cmd = "ls -a" },
-    --       },
-    --       { "shell", cmd = "echo 'HURRA'" },
-    --     },
-    --   },
-    -- })
-
-    overseer.register_template({
-      name = "Compile C++ with gdb flag",
-      builder = function(params)
-        return {
-          cmd = {
-            "g++",
-            "-g",
-            vim.api.nvim_buf_get_name(0),
-            "-o",
-            string.format("%s.out", e("%:p:r")),
-          },
-        }
-      end,
-      tags = { overseer.TAG.BUILD },
-      params = {},
-      priority = 50,
-      condition = {
-        filetype = { "c", "cpp" },
       },
     })
 
