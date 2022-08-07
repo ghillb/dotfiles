@@ -6,6 +6,7 @@ local packer_opts = {
       return
     end
 
+    _G.run_overseer = {}
     local e = vim.fn.expand
 
     overseer.setup({
@@ -144,6 +145,12 @@ local packer_opts = {
         filetype = { "c", "cpp" },
       },
     })
+
+    vim.keymap.set("n", "<a-s-o>", function()
+      _G.run_overseer[vim.bo.filetype]()
+    end)
+    vim.keymap.set("n", "<a-bs>", ":OverseerToggle<cr>")
+
   end,
 }
 return packer_opts

@@ -25,7 +25,7 @@ overseer.register_template({
   },
 })
 
-local run_template = function()
+_G.run_overseer.cpp = function()
   overseer.run_template({ name = "Run binary", autostart = false }, function(task)
     if task then
       task:add_component({
@@ -36,9 +36,8 @@ local run_template = function()
         sequential = true,
       })
       task:start()
+      overseer.run_action(task, 'open hsplit')
       vim.cmd("OverseerOpen!")
     end
   end)
 end
-
-vim.keymap.set("n", "<a-s-o>", run_template)
