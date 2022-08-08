@@ -77,11 +77,6 @@ map("i", "<c-right>", "<c-\\><c-o>w")
 map("i", "<c-left>", "<c-\\><c-o>b")
 
 -- terminal control mappings
-map("n", "<a-s-r>", ":AsyncTask file-run<cr>")
-map("n", "<a-s-t>", ":AsyncTask file-test<cr>")
-map("n", "<a-s-b>", ":AsyncTask file-build<cr>")
-map("n", "<a-s-p>", ":AsyncTask project-run<cr>")
-map("n", "<c-a-p>", ":AsyncTask project-stop<cr>")
 map("n", "<a-esc>", ":Ttoggle<cr><c-w>wa", { silent = true })
 map("t", "<a-esc>", "<c-\\><c-n>:Ttoggle<cr>", { silent = true })
 map("n", "<a-`>", "<a-esc>", { remap = true })

@@ -6,7 +6,8 @@ local packer_opts = {
       return
     end
 
-    _G.run_overseer = {}
+    _G.overseer_config = { run = {}, test = {}, build = {} }
+
     local e = vim.fn.expand
 
     overseer.setup({
@@ -145,10 +146,20 @@ local packer_opts = {
       },
     })
 
-    vim.keymap.set("n", "<a-s-o>", function()
-      _G.run_overseer[vim.bo.filetype]()
-    end)
     vim.keymap.set("n", "<a-bs>", ":OverseerToggle<cr>")
+    vim.keymap.set("n", "<a-s-r>", function()
+      _G.overseer_config.run[vim.bo.filetype]()
+    end)
+
+    vim.keymap.set("n", "<a-s-t>", function()
+      _G.overseer_config.test[vim.bo.filetype]()
+    end)
+    vim.keymap.set("n", "<a-s-b>", function()
+      _G.overseer_config.build[vim.bo.filetype]()
+    end)
+    vim.keymap.set("n", "<a-s-p>", function()
+      _G.overseer_config.project()
+    end)
   end,
 }
 return packer_opts

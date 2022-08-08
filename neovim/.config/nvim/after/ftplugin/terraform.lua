@@ -33,7 +33,7 @@ overseer.register_template({
   },
 })
 
-_G.run_overseer.terraform = function()
+_G.overseer_config.run.terraform = function()
   overseer.run_template({ name = "Terraform", autostart = false, prompt = "always" }, function(task)
     if task then
       task:start()

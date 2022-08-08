@@ -28,7 +28,7 @@ overseer.register_template({
   },
 })
 
-_G.run_overseer.dockerfile = function()
+_G.overseer_config.run.dockerfile = function()
   overseer.run_template({ name = "Docker build", autostart = false, prompt = "always" }, function(task)
     if task then
       task:start()

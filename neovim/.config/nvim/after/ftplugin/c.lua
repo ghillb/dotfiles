@@ -25,7 +25,7 @@ overseer.register_template({
   },
 })
 
-_G.run_overseer.cpp = function()
+_G.overseer_config.run.cpp = function()
   overseer.run_template({ name = "Run binary", autostart = false }, function(task)
     if task then
       task:add_component({

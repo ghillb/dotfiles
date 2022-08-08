@@ -52,7 +52,6 @@ return require("packer").startup({
     plug({ config = "vim-illuminate" })
     plug({ remote = "rafamadriz/friendly-snippets" })
     plug({ config = "mvvis" })
-    plug({ config = "async_tasks" })
     plug({ config = "overseer" })
     plug({ remote = "neovim/nvim-lspconfig" })
     plug({ config = "mason" })
