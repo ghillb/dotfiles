@@ -131,7 +131,6 @@ local packer_opts = {
           },
         }
       end,
-      tags = { overseer.TAG.BUILD },
       params = {
         extension = {
           type = "string",
@@ -150,7 +149,6 @@ local packer_opts = {
       _G.run_overseer[vim.bo.filetype]()
     end)
     vim.keymap.set("n", "<a-bs>", ":OverseerToggle<cr>")
-
   end,
 }
 return packer_opts
