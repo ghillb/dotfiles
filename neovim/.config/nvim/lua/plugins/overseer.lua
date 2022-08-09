@@ -39,7 +39,21 @@ local packer_opts = {
           ["}"] = "NextTask",
         },
       },
-      actions = {},
+      actions = {
+        ["open tab"] = {
+          desc = "open terminal in a new brackground tab",
+          condition = function(task)
+            local bufnr = task:get_bufnr()
+            return bufnr and vim.api.nvim_buf_is_valid(bufnr)
+          end,
+          run = function(task)
+            local t = vim.api.nvim_get_current_tabpage()
+            vim.cmd([[tabnew]])
+            vim.api.nvim_win_set_buf(0, task:get_bufnr())
+            vim.api.nvim_set_current_tabpage(t)
+          end,
+        },
+      },
       form = {
         border = "none",
         zindex = 40,
