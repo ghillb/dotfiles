@@ -41,3 +41,14 @@ _G.overseer_config.run.cpp = function()
     end
   end)
 end
+
+_G.overseer_config.build.cpp = function()
+  overseer.run_template({ name = "Compile C++ with gdb flag", autostart = false }, function(task)
+    if task then
+      task:start()
+      overseer.run_action(task, 'open hsplit')
+      vim.cmd("OverseerOpen!")
+    end
+  end)
+end
+

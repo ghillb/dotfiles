@@ -41,7 +41,7 @@ local packer_opts = {
       },
       actions = {},
       form = {
-        border = "rounded",
+        border = "none",
         zindex = 40,
         min_width = 80,
         max_width = 0.9,
