@@ -36,7 +36,10 @@ _G.overseer_config.run.cpp = function()
         sequential = true,
       })
       task:start()
-      overseer.run_action(task, 'open hsplit')
+      task:subscribe("on_start", function()
+        overseer.run_action(task, "open hsplit")
+        return false -- this will unsubscribe the callback
+      end)
       vim.cmd("OverseerOpen!")
     end
   end)
