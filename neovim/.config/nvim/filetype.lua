@@ -31,5 +31,9 @@ vim.api.nvim_create_autocmd("BufEnter", {
     if vim.bo.filetype == "" then
       vim.bo.filetype = "plain"
     end
+    if vim.bo.buftype == "terminal" then
+      vim.bo.filetype = "terminal"
+    end
   end,
+  group = vim.api.nvim_create_augroup("BufEnterFTGroup", { clear = true }),
 })

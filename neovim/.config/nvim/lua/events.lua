@@ -8,14 +8,13 @@ aucmd("VimEnter", {
   group = augrp("VimEnterGroup", { clear = true }),
 })
 
-aucmd("BufEnter", { callback = PopulateInfo })
+aucmd("BufEnter", { callback = PopulateInfo, group = augrp("BufEnterGroup", { clear = true }) })
 
-aucmd(
-  "BufUnload",
-  { pattern = "<buffer>", command = "call timer_start(1, { tid -> execute('lua SetRoot(\"git_worktree\")')})" }
-)
-
-aucmd({ "TermEnter", "TermOpen" }, { command = "set ft=terminal" })
+aucmd("BufUnload", {
+  pattern = "<buffer>",
+  command = "call timer_start(1, { tid -> execute('lua SetRoot(\"git_worktree\")')})",
+  group = augrp("BufUnloadGroup", { clear = true }),
+})
 
 aucmd("DirChanged", {
   callback = function()
@@ -24,6 +23,7 @@ aucmd("DirChanged", {
       vim.cmd("source " .. root_config_path)
     end
   end,
+  group = augrp("DirChangedGroup", { clear = true }),
 })
 
 aucmd({ "TextChanged", "TextChangedI" }, {
@@ -32,12 +32,14 @@ aucmd({ "TextChanged", "TextChangedI" }, {
       vim.cmd("silent write")
     end
   end,
+  group = augrp("TextChangedGroup", { clear = true }),
 })
 
 aucmd("TextYankPost", {
   callback = function()
     vim.highlight.on_yank({ higroup = "IncSearch", timeout = 500 })
   end,
+  group = augrp("TextYankPostGroup", { clear = true }),
 })
 
 aucmd("BufWritePre", {
@@ -45,9 +47,13 @@ aucmd("BufWritePre", {
     -- vim.lsp.buf.formatting_seq_sync(nil, 2000)
     vim.lsp.buf.format({ async = true })
   end,
+  group = augrp("BufWritePreGroup", { clear = true }),
 })
 
-aucmd("BufWritePost", { pattern = "init.lua", command = "source $MYVIMRC" })
+aucmd(
+  "BufWritePost",
+  { pattern = "init.lua", command = "source $MYVIMRC", group = augrp("BufWritePostGroup", { clear = true }) }
+)
 
 -- binary edit auto cmds
 
