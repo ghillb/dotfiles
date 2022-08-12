@@ -157,7 +157,7 @@ local packer_opts = {
     end
 
     local telesecope_switch_git_branch = function()
-      vim.fn.user.set_root("git_worktree")
+      user.fn.set_root("git_worktree")
       vim.cmd("Git fetch --prune --verbose --all")
       require("telescope.builtin").git_branches()
     end

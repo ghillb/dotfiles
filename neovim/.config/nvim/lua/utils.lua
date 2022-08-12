@@ -1,8 +1,7 @@
 _G.P = vim.pretty_print
-_G.Indicators = {}
-vim.fn.user = {}
+_G.user = { indicators = {}, fn = {} }
 
-function vim.fn.user.drawer_toggle()
+function user.fn.drawer_toggle()
   local lib = require("diffview.lib")
   local view = lib.get_current_view()
   if view then
@@ -16,7 +15,7 @@ function vim.fn.user.drawer_toggle()
   end
 end
 
-function vim.fn.user.toggle_fugitive()
+function user.fn.toggle_fugitive()
   vim.cmd(":Neotree close")
   if vim.bo.filetype == "fugitive" then
     vim.fn.feedkeys("gq")
@@ -24,7 +23,7 @@ function vim.fn.user.toggle_fugitive()
   vim.cmd(":G")
 end
 
-function vim.fn.user.close_view()
+function user.fn.close_view()
   local lib = require("diffview.lib")
   local view = lib.get_current_view()
   if view then
@@ -41,42 +40,31 @@ function vim.fn.user.close_view()
   end
 end
 
-function vim.fn.user.populate_info()
-  local is_git_worktree = vim.fn.user.is_git_work_tree()
-  vim.fn.user.set_git_modified_count(is_git_worktree)
-  vim.fn.user.set_title_string()
-  -- vim.fn.user.set_win_bar()
+function user.fn.populate_info()
+  user.fn.set_title_string()
+  -- user.fn.set_win_bar()
 end
 
-function vim.fn.user.is_git_work_tree()
+function user.fn.is_git_work_tree()
   vim.fn.system("git rev-parse --is-inside-work-tree")
   return vim.v.shell_error == 0
 end
 
-function vim.fn.user.get_git_work_tree_path()
+function user.fn.get_git_work_tree_path()
   return vim.fn.trim((vim.fn.system("git rev-parse --show-toplevel 2>/dev/null")))
 end
 
-function vim.fn.user.set_git_modified_count(is_git_worktree)
-  if is_git_worktree then
-    local gitdiffnumstat = tonumber(vim.fn.system('git diff --numstat | wc -l | tr -d "\n"'))
-    vim.g.git_modified_count = gitdiffnumstat or ""
-  else
-    vim.g.git_modified_count = ""
-  end
-end
-
-function vim.fn.user.set_title_string()
+function user.fn.set_title_string()
   local titlestring
-  if vim.fn.user.is_git_work_tree() then
-    titlestring = vim.fn.fnamemodify(vim.fn.user.get_git_work_tree_path(), ":t")
+  if user.fn.is_git_work_tree() then
+    titlestring = vim.fn.fnamemodify(user.fn.get_git_work_tree_path(), ":t")
   else
     titlestring = vim.fn.substitute(vim.fn.expand("%:p:h:t"), vim.env.HOME, "~", "")
   end
   vim.opt.titlestring = "[" .. titlestring .. "]"
 end
 
-function vim.fn.user.set_win_bar()
+function user.fn.set_win_bar()
   local skip_excluded = function()
     local excluded_filetypes = {
       "help",
@@ -108,7 +96,7 @@ function vim.fn.user.set_win_bar()
   end
 end
 
-function vim.fn.user.new_terminal()
+function user.fn.new_terminal()
   if vim.api.nvim_buf_get_name(0):find("term://") then
     vim.cmd(":Tnew")
     vim.cmd(":Tnext")
@@ -117,7 +105,7 @@ function vim.fn.user.new_terminal()
   vim.api.nvim_feedkeys(vim.api.nvim_eval('"\\<c-w>ji"'), "m", true)
 end
 
-function vim.fn.user.toggle_gutter()
+function user.fn.toggle_gutter()
   if vim.wo.scl ~= "no" then
     vim.g._scl = vim.wo.scl
     vim.wo.scl = "no"
@@ -128,7 +116,7 @@ function vim.fn.user.toggle_gutter()
   vim.wo.nu = not vim.wo.nu
 end
 
-function vim.fn.user.tmux_switch_pane(direction)
+function user.fn.tmux_switch_pane(direction)
   local wnr = vim.fn.winnr()
   vim.fn.execute("wincmd " .. direction)
   if wnr == vim.fn.winnr() and vim.env.TMUX then
@@ -136,7 +124,7 @@ function vim.fn.user.tmux_switch_pane(direction)
   end
 end
 
-function vim.fn.user.create_or_go_to_file()
+function user.fn.create_or_go_to_file()
   local node_path = vim.fn.expand(vim.fn.expand("<cfile>"))
   if vim.fn.filereadable(node_path) == 0 and vim.fn.isdirectory(node_path) == 0 then
     local choice = vim.fn.confirm("Create new file: " .. node_path .. " ?", "&Yes\n&No", 1)
@@ -147,15 +135,15 @@ function vim.fn.user.create_or_go_to_file()
   vim.fn.execute("vsplit " .. node_path)
 end
 
-function vim.fn.user.set_root(...)
+function user.fn.set_root(...)
   if #(...) < 1 or vim.g.vscode then
     return
   end
   local target, echo = ...
 
   if target == "git_worktree" then
-    if vim.fn.user.is_git_work_tree() then
-      vim.g.nvim_root = vim.fn.user.get_git_work_tree_path()
+    if user.fn.is_git_work_tree() then
+      vim.g.nvim_root = user.fn.get_git_work_tree_path()
     else
       print("not a git repo!")
       return
@@ -168,8 +156,8 @@ function vim.fn.user.set_root(...)
     vim.g.nvim_root = vim.fn.expand("%:p:h")
   end
   if target == "start_dir" then
-    if vim.fn.user.is_git_work_tree() then
-      vim.fn.user.set_root("git_worktree", echo)
+    if user.fn.is_git_work_tree() then
+      user.fn.set_root("git_worktree", echo)
       return
     else
       vim.g.nvim_root = vim.fn.fnamemodify(vim.g.nvim_root, ":p:h")
@@ -188,7 +176,7 @@ function vim.fn.user.set_root(...)
   end
 end
 
-function vim.fn.user.disable_telescope_mappings()
+function user.fn.disable_telescope_mappings()
   vim.api.nvim_buf_set_keymap(0, "", "<c-p>", "<nop>", { noremap = false, silent = true })
   vim.api.nvim_buf_set_keymap(0, "", "<c-e>", "<nop>", { noremap = false, silent = true })
   vim.api.nvim_buf_set_keymap(0, "", "<c-b>", "<nop>", { noremap = false, silent = true })
@@ -217,7 +205,7 @@ function table.split_string_into_table(inputstr, sep)
   return t
 end
 
-function vim.fn.user.filereadable(path)
+function user.fn.filereadable(path)
   local f = io.open(path, "r")
   if f ~= nil then
     io.close(f)
@@ -236,12 +224,12 @@ function _G.switch(param, cases)
   return def and def() or nil
 end
 
-function vim.fn.user.reload(mod)
+function user.fn.reload(mod)
   package.loaded[mod] = nil
   require(mod)
 end
 
-function vim.fn.user.toggle_variable(args)
+function user.fn.toggle_variable(args)
   local ok, val = pcall(vim.api.nvim_get_var, args.var)
   if not ok then
     vim.api.nvim_set_var(args.var, args.default)
@@ -253,7 +241,7 @@ end
 -- tab key overload
 local _, neogen = pcall(require, "neogen")
 
-function vim.fn.user.tab_binding()
+function user.fn.tab_binding()
   if vim.fn.pumvisible() ~= 0 then
     return "<C-n>"
   elseif neogen.jumpable() then
@@ -265,7 +253,7 @@ function vim.fn.user.tab_binding()
   end
 end
 
-function vim.fn.user.s_tab_binding()
+function user.fn.s_tab_binding()
   if vim.fn.pumvisible() ~= 0 then
     return "<C-p>"
   elseif neogen.jumpable() then

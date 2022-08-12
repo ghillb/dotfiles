@@ -37,9 +37,17 @@ local packer_opts = {
       return ""
     end
 
+    local function git_modified_files_count()
+      if user.fn.is_git_work_tree() then
+        return tonumber(vim.fn.system('git diff --numstat | wc -l | tr -d "\n"')) or ""
+      else
+        return ""
+      end
+    end
+
     local function get_indicators()
       local indicators = ""
-      for _, indicator in pairs(Indicators) do
+      for _, indicator in pairs(user.indicators) do
         indicators = indicators .. indicator
       end
       return indicators
@@ -60,7 +68,7 @@ local packer_opts = {
       },
       sections = {
         lualine_a = { "mode" },
-        lualine_b = { "branch", "g:git_modified_count", "diff" },
+        lualine_b = { "branch", { git_modified_files_count, type = "lua_expr" }, "diff" },
         lualine_c = {
           { "overseer" },
           {
