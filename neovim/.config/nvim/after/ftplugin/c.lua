@@ -1,5 +1,11 @@
-vim.g.asynctasks_profile = "vim"
-vim.opt_local.cmdheight = 0
+-- supress clangd warning about multiple different client offset_encodings
+local notify = vim.notify
+vim.notify = function(msg, ...)
+    if msg:match("warning: multiple different client offset_encodings") then
+        return
+    end
+    notify(msg, ...)
+end
 
 local e = vim.fn.expand
 local _, overseer = pcall(require, "overseer")
