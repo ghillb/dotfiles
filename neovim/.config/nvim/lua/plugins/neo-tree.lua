@@ -146,7 +146,7 @@ local packer_opts = {
           handler = function(arg)
             vim.opt_local.signcolumn = "auto"
             vim.opt_local.fillchars = "eob: "
-            DisableTelescopeMappings()
+            vim.fn.user.disable_telescope_mappings()
           end,
         },
       },

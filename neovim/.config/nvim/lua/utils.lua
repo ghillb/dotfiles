@@ -1,7 +1,8 @@
 _G.P = vim.pretty_print
 _G.Indicators = {}
+vim.fn.user = {}
 
-function _G.DrawerToggle()
+function vim.fn.user.drawer_toggle()
   local lib = require("diffview.lib")
   local view = lib.get_current_view()
   if view then
@@ -15,7 +16,15 @@ function _G.DrawerToggle()
   end
 end
 
-function _G.CloseView()
+function vim.fn.user.toggle_fugitive()
+  vim.cmd(":Neotree close")
+  if vim.bo.filetype == "fugitive" then
+    vim.fn.feedkeys("gq")
+  end
+  vim.cmd(":G")
+end
+
+function vim.fn.user.close_view()
   local lib = require("diffview.lib")
   local view = lib.get_current_view()
   if view then
@@ -32,55 +41,23 @@ function _G.CloseView()
   end
 end
 
-function _G.ToggleFugitive()
-  vim.cmd(":Neotree close")
-  if vim.bo.filetype == "fugitive" then
-    vim.fn.feedkeys("gq")
-  end
-  vim.cmd(":G")
+function vim.fn.user.populate_info()
+  local is_git_worktree = vim.fn.user.is_git_work_tree()
+  vim.fn.user.set_git_modified_count(is_git_worktree)
+  vim.fn.user.set_title_string()
+  -- vim.fn.user.set_win_bar()
 end
 
-function _G.TelescopeOmniFiles()
-  -- git submodule status more stable?
-  local builtin = require("telescope.builtin")
-  local utils = require("telescope.utils")
-  local _, res, _ = utils.get_os_command_output({ "git", "rev-parse", "--is-inside-work-tree" })
-  if res == 0 then
-    builtin.git_files()
-  else
-    builtin.find_files()
-  end
+function vim.fn.user.is_git_work_tree()
+  vim.fn.system("git rev-parse --is-inside-work-tree")
+  return vim.v.shell_error == 0
 end
 
-function _G.SwitchGitBranch()
-  _G.SetRoot("git_worktree")
-  vim.cmd("Git fetch --prune --verbose --all")
-  require("telescope.builtin").git_branches()
+function vim.fn.user.get_git_work_tree_path()
+  return vim.fn.trim((vim.fn.system("git rev-parse --show-toplevel 2>/dev/null")))
 end
 
-function _G.PopulateInfo()
-  local is_git_worktree = _G.IsGitWorkTree()
-  _G.SetGitModifiedCount(is_git_worktree)
-  _G.SetTitleString()
-  -- _G.SetWinBar()
-end
-
-function _G.IsGitWorkTree()
-  return vim.fn.exists("*FugitiveIsGitDir") == 1 and vim.fn.FugitiveIsGitDir() == 1
-  -- non-vim-fugitive
-  -- vim.fn.system('git rev-parse --is-inside-work-tree')
-  -- return vim.v.shell_error
-end
-
-function _G.SetCurrentGitBranch(is_git_worktree)
-  if is_git_worktree then
-    vim.g.current_git_branch = " " .. vim.fn.FugitiveHead()
-  else
-    vim.g.current_git_branch = ""
-  end
-end
-
-function _G.SetGitModifiedCount(is_git_worktree)
+function vim.fn.user.set_git_modified_count(is_git_worktree)
   if is_git_worktree then
     local gitdiffnumstat = tonumber(vim.fn.system('git diff --numstat | wc -l | tr -d "\n"'))
     vim.g.git_modified_count = gitdiffnumstat or ""
@@ -89,17 +66,17 @@ function _G.SetGitModifiedCount(is_git_worktree)
   end
 end
 
-function _G.SetTitleString()
+function vim.fn.user.set_title_string()
   local titlestring
-  if _G.IsGitWorkTree() then
-    titlestring = vim.fn.fnamemodify(vim.fn.FugitiveWorkTree(), ":t")
+  if vim.fn.user.is_git_work_tree() then
+    titlestring = vim.fn.fnamemodify(vim.fn.user.get_git_work_tree_path(), ":t")
   else
     titlestring = vim.fn.substitute(vim.fn.expand("%:p:h:t"), vim.env.HOME, "~", "")
   end
   vim.opt.titlestring = "[" .. titlestring .. "]"
 end
 
-function _G.SetWinBar()
+function vim.fn.user.set_win_bar()
   local skip_excluded = function()
     local excluded_filetypes = {
       "help",
@@ -131,17 +108,7 @@ function _G.SetWinBar()
   end
 end
 
-function _G.GetActiveBuffers()
-  local active_buffers = {}
-  for k, value in ipairs(vim.api.nvim_list_bufs()) do
-    if vim.api.nvim_buf_is_valid(value) and vim.api.nvim_buf_is_loaded(value) then
-      active_buffers[tostring(k)] = vim.api.nvim_buf_get_name(value)
-    end
-  end
-  return active_buffers
-end
-
-function _G.NewTerminal()
+function vim.fn.user.new_terminal()
   if vim.api.nvim_buf_get_name(0):find("term://") then
     vim.cmd(":Tnew")
     vim.cmd(":Tnext")
@@ -150,7 +117,7 @@ function _G.NewTerminal()
   vim.api.nvim_feedkeys(vim.api.nvim_eval('"\\<c-w>ji"'), "m", true)
 end
 
-function _G.ToggleGutter()
+function vim.fn.user.toggle_gutter()
   if vim.wo.scl ~= "no" then
     vim.g._scl = vim.wo.scl
     vim.wo.scl = "no"
@@ -161,7 +128,7 @@ function _G.ToggleGutter()
   vim.wo.nu = not vim.wo.nu
 end
 
-function _G.TmuxSwitchPane(direction)
+function vim.fn.user.tmux_switch_pane(direction)
   local wnr = vim.fn.winnr()
   vim.fn.execute("wincmd " .. direction)
   if wnr == vim.fn.winnr() and vim.env.TMUX then
@@ -169,7 +136,7 @@ function _G.TmuxSwitchPane(direction)
   end
 end
 
-function _G.CreateOrGoToFile()
+function vim.fn.user.create_or_go_to_file()
   local node_path = vim.fn.expand(vim.fn.expand("<cfile>"))
   if vim.fn.filereadable(node_path) == 0 and vim.fn.isdirectory(node_path) == 0 then
     local choice = vim.fn.confirm("Create new file: " .. node_path .. " ?", "&Yes\n&No", 1)
@@ -180,15 +147,15 @@ function _G.CreateOrGoToFile()
   vim.fn.execute("vsplit " .. node_path)
 end
 
-function _G.SetRoot(...)
+function vim.fn.user.set_root(...)
   if #(...) < 1 or vim.g.vscode then
     return
   end
   local target, echo = ...
 
   if target == "git_worktree" then
-    if _G.IsGitWorkTree() then
-      vim.g.nvim_root = vim.fn.FugitiveWorkTree()
+    if vim.fn.user.is_git_work_tree() then
+      vim.g.nvim_root = vim.fn.user.get_git_work_tree_path()
     else
       print("not a git repo!")
       return
@@ -201,8 +168,8 @@ function _G.SetRoot(...)
     vim.g.nvim_root = vim.fn.expand("%:p:h")
   end
   if target == "start_dir" then
-    if _G.IsGitWorkTree() then
-      _G.SetRoot("git_worktree", echo)
+    if vim.fn.user.is_git_work_tree() then
+      vim.fn.user.set_root("git_worktree", echo)
       return
     else
       vim.g.nvim_root = vim.fn.fnamemodify(vim.g.nvim_root, ":p:h")
@@ -221,7 +188,7 @@ function _G.SetRoot(...)
   end
 end
 
-function _G.DisableTelescopeMappings()
+function vim.fn.user.disable_telescope_mappings()
   vim.api.nvim_buf_set_keymap(0, "", "<c-p>", "<nop>", { noremap = false, silent = true })
   vim.api.nvim_buf_set_keymap(0, "", "<c-e>", "<nop>", { noremap = false, silent = true })
   vim.api.nvim_buf_set_keymap(0, "", "<c-b>", "<nop>", { noremap = false, silent = true })
@@ -239,7 +206,7 @@ function table.merge(...)
   return result
 end
 
-function _G.SplitStringIntoTable(inputstr, sep)
+function table.split_string_into_table(inputstr, sep)
   if sep == nil then
     sep = "%s"
   end
@@ -250,7 +217,7 @@ function _G.SplitStringIntoTable(inputstr, sep)
   return t
 end
 
-function _G.filereadable(path)
+function vim.fn.user.filereadable(path)
   local f = io.open(path, "r")
   if f ~= nil then
     io.close(f)
@@ -269,12 +236,12 @@ function _G.switch(param, cases)
   return def and def() or nil
 end
 
-function _G.reload(mod)
+function vim.fn.user.reload(mod)
   package.loaded[mod] = nil
   require(mod)
 end
 
-function _G.toggle_variable(args)
+function vim.fn.user.toggle_variable(args)
   local ok, val = pcall(vim.api.nvim_get_var, args.var)
   if not ok then
     vim.api.nvim_set_var(args.var, args.default)
@@ -284,32 +251,28 @@ function _G.toggle_variable(args)
 end
 
 -- tab key overload
-local function replace_keycodes(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
 local _, neogen = pcall(require, "neogen")
 
-function _G.tab_binding()
+function vim.fn.user.tab_binding()
   if vim.fn.pumvisible() ~= 0 then
-    return replace_keycodes("<C-n>")
+    return "<C-n>"
   elseif neogen.jumpable() then
-    return replace_keycodes("<cmd>lua require('neogen').jump_next()<cr>")
+    return "<cmd>lua require('neogen').jump_next()<cr>"
   elseif vim.fn["vsnip#available"](1) ~= 0 then
-    return replace_keycodes("<plug>(vsnip-expand-or-jump)")
+    return "<plug>(vsnip-expand-or-jump)"
   else
-    return replace_keycodes("<tab>")
+    return "<tab>"
   end
 end
 
-function _G.s_tab_binding()
+function vim.fn.user.s_tab_binding()
   if vim.fn.pumvisible() ~= 0 then
-    return replace_keycodes("<C-p>")
+    return "<C-p>"
   elseif neogen.jumpable() then
-    return replace_keycodes("<cmd>lua require('neogen').jump_prev()<cr>")
+    return "<cmd>lua require('neogen').jump_prev()<cr>"
   elseif vim.fn["vsnip#jumpable"](-1) ~= 0 then
-    return replace_keycodes("<plug>(vsnip-jump-prev)")
+    return "<plug>(vsnip-jump-prev)"
   else
-    return replace_keycodes("<c-d>")
+    return "<c-d>"
   end
 end

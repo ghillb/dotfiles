@@ -3,23 +3,23 @@ local augrp = vim.api.nvim_create_augroup
 
 aucmd("VimEnter", {
   callback = function()
-    _G.SetRoot("start_dir", false)
+    vim.fn.user.set_root("start_dir", false)
   end,
   group = augrp("VimEnterGroup", { clear = true }),
 })
 
-aucmd("BufEnter", { callback = PopulateInfo, group = augrp("BufEnterGroup", { clear = true }) })
+aucmd("BufEnter", { callback = vim.fn.user.populate_info, group = augrp("BufEnterGroup", { clear = true }) })
 
 aucmd("BufUnload", {
   pattern = "<buffer>",
-  command = "call timer_start(1, { tid -> execute('lua SetRoot(\"git_worktree\")')})",
+  command = "call timer_start(1, { tid -> execute('lua vim.fn.user.set_root(\"git_worktree\")')})",
   group = augrp("BufUnloadGroup", { clear = true }),
 })
 
 aucmd("DirChanged", {
   callback = function()
     local root_config_path = vim.fn.getcwd() .. "/.nvim.lua"
-    if _G.filereadable(root_config_path) then
+    if vim.fn.user.filereadable(root_config_path) then
       vim.cmd("source " .. root_config_path)
     end
   end,
@@ -28,7 +28,7 @@ aucmd("DirChanged", {
 
 aucmd({ "TextChanged", "TextChangedI" }, {
   callback = function()
-    if _G.filereadable(vim.api.nvim_buf_get_name(0)) and not vim.o.readonly then
+    if vim.fn.user.filereadable(vim.api.nvim_buf_get_name(0)) and not vim.o.readonly then
       vim.cmd("silent write")
     end
   end,

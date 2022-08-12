@@ -53,6 +53,18 @@ local packer_opts = {
             vim.api.nvim_set_current_tabpage(t)
           end,
         },
+        ["open hsplit, no focus"] = {
+          desc = "open terminal in a horizontal split",
+          condition = function(task)
+            local bufnr = task:get_bufnr()
+            return bufnr and vim.api.nvim_buf_is_valid(bufnr)
+          end,
+          run = function(task)
+            vim.cmd([[split]])
+            vim.api.nvim_win_set_buf(0, task:get_bufnr())
+            vim.cmd([[wincmd k]])
+          end,
+        },
       },
       form = {
         border = "none",

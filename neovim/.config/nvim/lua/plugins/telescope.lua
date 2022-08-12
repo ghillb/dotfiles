@@ -145,12 +145,29 @@ local packer_opts = {
     local map = vim.keymap.set
     local builtin = require("telescope.builtin")
 
+    local telescope_omni_files = function()
+      -- git submodule status more stable?
+      local utils = require("telescope.utils")
+      local _, res, _ = utils.get_os_command_output({ "git", "rev-parse", "--is-inside-work-tree" })
+      if res == 0 then
+        builtin.git_files()
+      else
+        builtin.find_files()
+      end
+    end
+
+    local telesecope_switch_git_branch = function()
+      vim.fn.user.set_root("git_worktree")
+      vim.cmd("Git fetch --prune --verbose --all")
+      require("telescope.builtin").git_branches()
+    end
+
     map({ "n", "v" }, "<c-bs>", builtin.resume)
     map({ "n", "v" }, "<c-F20>", "<c-bs>", { remap = true }) -- emulate on win term
     map({ "n", "v" }, "<c-b>", builtin.buffers)
     map({ "n", "v" }, "<c-_>", builtin.current_buffer_fuzzy_find)
     map({ "n", "v" }, "<c-e>", builtin.find_files)
-    map({ "n", "v" }, "<c-a-e>", TelescopeOmniFiles)
+    map({ "n", "v" }, "<c-a-e>", telescope_omni_files)
     map("c", "<c-a-r>", "<Plug>(TelescopeFuzzyCommandSearch)")
     map({ "n", "v" }, "<c-p>", function()
       telescope.extensions.live_grep_args.live_grep_args({
@@ -164,7 +181,7 @@ local packer_opts = {
     map({ "n", "v" }, "<c-a-g>", function()
       builtin.git_commits({ git_command = git_log_cmd })
     end)
-    map("n", "<leader>fg", SwitchGitBranch)
+    map("n", "<leader>fg", telesecope_switch_git_branch)
     map("n", "<leader>fp", builtin.builtin)
     map("n", "<leader>fk", builtin.keymaps)
     map("n", "<leader>fc", builtin.commands)

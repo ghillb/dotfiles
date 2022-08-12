@@ -37,7 +37,7 @@ _G.overseer_config.run.cpp = function()
       })
       task:start()
       task:subscribe("on_start", function()
-        overseer.run_action(task, "open hsplit")
+        overseer.run_action(task, "open hsplit, no focus")
         return false -- this will unsubscribe the callback
       end)
       vim.cmd("OverseerOpen!")
@@ -49,7 +49,7 @@ _G.overseer_config.build.cpp = function()
   overseer.run_template({ name = "Compile C++ with gdb flag", autostart = false }, function(task)
     if task then
       task:start()
-      overseer.run_action(task, 'open hsplit')
+      overseer.run_action(task, 'open hsplit, no focus')
       vim.cmd("OverseerOpen!")
     end
   end)
