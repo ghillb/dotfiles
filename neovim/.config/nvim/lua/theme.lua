@@ -60,7 +60,7 @@ vim.g.gruvbox_baby_highlights = {
   NormalFloat = { bg = gbc.background_light },
   diffLine = { fg = gbc.dark_gray },
   DiffDelete = { fg = gbc.red },
-  DiffAdd = { fg = gbc.forest_green },
+  GitSignsAddLn = { fg = gbc.forest_green },
   Identifier = { fg = gbc.pink },
   PreProc = { fg = gbc.dark_gray },
   QuickFixLine = { fg = gbc.dark_gray, bg = gbc.medium_gray },
