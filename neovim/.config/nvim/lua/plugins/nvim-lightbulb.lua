@@ -7,7 +7,7 @@ local packer_opts = {
       return
     end
 
-    local lightbulb_sign = "" --
+    local lightbulb_sign = "" --
 
     vim.fn.sign_define("LightBulbSign", { text = lightbulb_sign, texthl = "", linehl = "", numhl = "" })
 
@@ -20,8 +20,8 @@ local packer_opts = {
     local config = {
       ignore = { "null-ls" },
       sign = {
-        enabled = true,
-        priority = 1,
+        enabled = false,
+        priority = 15,
       },
       float = {
         enabled = false,
@@ -34,7 +34,7 @@ local packer_opts = {
         hl_mode = "replace",
       },
       status_text = {
-        enabled = false,
+        enabled = true,
         text = lightbulb_sign,
         text_unavailable = "",
       },

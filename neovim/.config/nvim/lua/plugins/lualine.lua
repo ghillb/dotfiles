@@ -72,6 +72,12 @@ local packer_opts = {
         lualine_c = {
           { "overseer" },
           {
+            function()
+              return require("nvim-lightbulb").get_status_text()
+            end,
+            type = "lua_expr",
+          },
+          {
             "diagnostics",
             sources = { "nvim_diagnostic" },
             symbols = {

@@ -15,6 +15,7 @@ local packer_opts = {
         topdelete = { hl = "GitSignsDelete", text = "‾", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
         changedelete = { hl = "GitSignsDelete", text = "~", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
       },
+      sign_priority = 1,
       numhl = false,
       linehl = false,
       diff_opts = {
@@ -48,7 +49,6 @@ local packer_opts = {
         interval = 1000,
         follow_files = true,
       },
-      sign_priority = 6,
       update_debounce = 100,
       status_formatter = nil,
       word_diff = false,

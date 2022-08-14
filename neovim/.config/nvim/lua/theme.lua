@@ -22,11 +22,13 @@ local function set_global_theme()
   set_hl("Border", { fg = palette.darkgray })
   set_hl("FloatBorder", { fg = palette.darkgray })
   set_hl("EndOfBuffer", { fg = palette.darkgray })
+  set_hl("FoldColumn", { fg = palette.gray })
   set_hl("VertSplit", { bg = nil, fg = palette.darkgray })
   set_hl("TabLineFill", { bg = nil })
   set_hl("DiagnosticError", { fg = palette.red })
   -- plugin highlight groups
   set_hl("GitSignsAdd", { bg = nil, fg = palette.green })
+  set_hl("GitSignsAddLn", { bg = nil, fg = palette.green })
   set_hl("GitSignsChange", { bg = nil, fg = palette.blue })
   set_hl("GitSignsDelete", { bg = nil, fg = palette.red })
   set_hl("GitSignsDeleteLn", { bg = nil, fg = palette.red })
@@ -60,7 +62,6 @@ vim.g.gruvbox_baby_highlights = {
   NormalFloat = { bg = gbc.background_light },
   diffLine = { fg = gbc.dark_gray },
   DiffDelete = { fg = gbc.red },
-  GitSignsAddLn = { fg = gbc.forest_green },
   Identifier = { fg = gbc.pink },
   PreProc = { fg = gbc.dark_gray },
   QuickFixLine = { fg = gbc.dark_gray, bg = gbc.medium_gray },
@@ -82,6 +83,7 @@ vim.g.gruvbox_baby_highlights = {
   gitcommitBranch = { fg = gbc.magenta },
   gitcommitFile = { fg = gbc.pink },
   debugPc = { bg = gbc.background },
+  cppTSVariable = { fg = gbc.light_blue },
 }
 
 -- kanagawa
