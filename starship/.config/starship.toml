@@ -10,6 +10,7 @@ $git_commit\
 $git_state\
 $git_status\
 $python\
+$conda\
 $package\
 $env_var\
 $cmd_duration\
@@ -57,3 +58,5 @@ threshold = 1
 [python]
 format = 'via [$virtualenv ]($style)'
 
+[conda]
+format = "[$symbol$environment](green) "

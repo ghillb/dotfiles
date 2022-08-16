@@ -80,14 +80,13 @@ return require("packer").startup({
     plug({ config = "zen-mode" })
     plug({ config = "nvim-colorizer" })
     plug({ config = "lualine" })
-    -- plug({ config = "winbar" }) -- disabled until https://github.com/neovim/neovim/issues/19458
-    -- is fixed more info: https://github.com/MunifTanjim/nui.nvim/issues/172
+    plug({ config = "winbar" })
     plug({ config = "neo-tree" })
     plug({ config = "cybu" })
     plug({ config = "rust-tools" })
     plug({ remote = "chrisbra/csv.vim" })
-    plug({ remote = "tpope/vim-dadbod"})
-    plug({ remote = "kristijanhusak/vim-dadbod-ui"})
+    plug({ remote = "tpope/vim-dadbod" })
+    plug({ remote = "kristijanhusak/vim-dadbod-ui" })
     plug({ config = "nnn" })
     plug({ remote = "wellle/targets.vim" })
     plug({ config = "qf_helper" })
