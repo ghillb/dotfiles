@@ -9,6 +9,7 @@ overseer.register_template({
         "terraform",
         params.action,
       },
+      cwd = e("%:p:h"),
     }
   end,
   params = {
