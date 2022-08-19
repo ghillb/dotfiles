@@ -1,10 +1,10 @@
 -- supress clangd warning about multiple different client offset_encodings
 local notify = vim.notify
 vim.notify = function(msg, ...)
-    if msg:match("warning: multiple different client offset_encodings") then
-        return
-    end
-    notify(msg, ...)
+  if msg:match("warning: multiple different client offset_encodings") then
+    return
+  end
+  notify(msg, ...)
 end
 
 local e = vim.fn.expand
@@ -46,7 +46,7 @@ _G.overseer_config.run.cpp = function()
         overseer.run_action(task, "open hsplit, no focus")
         return false -- this will unsubscribe the callback
       end)
-      vim.cmd("OverseerOpen!")
+      vim.cmd.OverseerOpen({ bang = true })
     end
   end)
 end
@@ -55,9 +55,8 @@ _G.overseer_config.build.cpp = function()
   overseer.run_template({ name = "Compile C++ with gdb flag", autostart = false }, function(task)
     if task then
       task:start()
-      overseer.run_action(task, 'open hsplit, no focus')
-      vim.cmd("OverseerOpen!")
+      overseer.run_action(task, "open hsplit, no focus")
+      vim.cmd.OverseerOpen({ bang = true })
     end
   end)
 end
-
