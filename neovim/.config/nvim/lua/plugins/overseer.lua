@@ -172,6 +172,39 @@ local packer_opts = {
       },
     })
 
+    overseer.register_template({
+      name = "AWS: Change instance state",
+      builder = function(params)
+        return {
+          cmd = {
+            "aws",
+            "ec2",
+            string.format("%s-instances", params.action),
+            "--instance-ids",
+            params.instance_id,
+          },
+        }
+      end,
+      params = {
+        action = {
+          type = "enum",
+          name = "Action",
+          optional = false,
+          choices = {
+            "start",
+            "stop",
+          },
+        },
+        instance_id = {
+          type = "string",
+          name = "Instance ID",
+          optional = false,
+          default = vim.env.AWS_INSTANCE_ID,
+        },
+      },
+      priority = 1000,
+    })
+
     vim.keymap.set("n", "<a-bs>", ":OverseerToggle<cr>")
     vim.keymap.set("n", "<a-s-r>", function()
       _G.overseer_config.run[vim.bo.filetype]()

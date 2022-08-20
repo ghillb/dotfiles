@@ -11,11 +11,11 @@ map("c", "<tab>", "<nop>")
 map("c", "<s-tab>", "<nop>")
 map("i", "<tab>", "v:lua.user.fn.tab_binding()", { expr = true })
 map("i", "<s-tab>", "v:lua.user.fn.s_tab_binding()", { expr = true })
-map({ "n", "v", "i" }, "<a-tab>", "<esc><plug>(CybuLastusedNext)")
-map({ "n", "v", "i" }, "<a-s-tab>", "<esc><plug>(CybuLastusedPrev)")
-map({ "n", "v" }, "<tab>", "<esc><plug>(CybuLastusedNext)")
-map({ "n", "v" }, "<s-tab>", "<esc><plug>(CybuLastusedPrev)")
-map({ "n", "v" }, "<c-i>", "<c-i>") -- separate <c-i> from <tab>
+map({ "n", "v" }, "<c-i>", "<c-i>") -- separate <c-i> from <tab>, does not work in ms terminal
+map({ "n", "v" }, "]b", "<esc><plug>(CybuLastusedNext)") -- ms term can not differentiate between <c-i> and <tab>
+map({ "n", "v" }, "[b", "<esc><plug>(CybuLastusedPrev)")
+map({ "n", "v", "i" }, "<a-tab>", "<nop>")
+map({ "n", "v", "i" }, "<a-s-tab>", "<nop>")
 map("i", "<c-tab>", "<nop>")
 map("i", "<c-s-tab>", "<nop>")
 map("n", "<s-space>", "<nop>")

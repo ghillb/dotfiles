@@ -35,6 +35,9 @@ local function set_global_theme()
   set_hl("TelescopePromptBorder", { fg = palette.darkgray })
   set_hl("TelescopeResultsBorder", { fg = palette.darkgray })
   set_hl("TelescopePreviewBorder", { fg = palette.darkgray })
+  set_hl("IlluminatedWordText", { bg = palette.darkgray })
+  set_hl("IlluminatedWordRead", { bg = palette.darkgray })
+  set_hl("IlluminatedWordWrite", { bg = palette.darkgray })
 end
 
 vim.api.nvim_create_autocmd("colorscheme", {
