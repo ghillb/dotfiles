@@ -46,7 +46,7 @@ return require("packer").startup({
     plug({ config = "sniprun" })
     plug({ config = "nvim-luapad" })
     plug({ config = "vim-caser" })
-    plug({ config = "lightspeed" })
+    plug({ config = "leap" })
     plug({ config = "vsnip" })
     plug({ config = "vim-illuminate" })
     plug({ remote = "rafamadriz/friendly-snippets" })
