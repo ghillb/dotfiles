@@ -36,6 +36,7 @@ local packer_opts = {
         "terminal",
         "neoterm",
         "qf",
+        "glowpreview",
       },
     })
   end,
