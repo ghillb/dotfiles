@@ -112,6 +112,7 @@ function user.fn.toggle_gutter()
   else
     vim.wo.scl = vim.g._scl
   end
+  vim.wo.foldcolumn = vim.wo.scl == "no" and "0" or "1"
   vim.wo.rnu = not vim.wo.rnu
   vim.wo.nu = not vim.wo.nu
 end
