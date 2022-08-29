@@ -11,6 +11,7 @@ local packer_opts = {
       ["spectre_panel"] = false,
       ["prompt"] = false,
       ["dap-repl"] = false,
+      ["vimwiki"] = false,
     }
     vim.api.nvim_set_keymap("i", "<s-cr>", 'copilot#Accept("")', { expr = true, silent = true })
     vim.api.nvim_set_keymap("n", "<a-c>", ":Copilot<cr>", {})
