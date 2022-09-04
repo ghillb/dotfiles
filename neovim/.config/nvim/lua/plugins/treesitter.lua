@@ -50,7 +50,7 @@ local packer_opts = {
     }
 
     require("treesitter-context").setup({
-      enable = true,
+      enable = false,
       max_lines = 0,
       patterns = {
         default = {

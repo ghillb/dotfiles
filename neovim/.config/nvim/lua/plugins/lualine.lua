@@ -57,14 +57,46 @@ local packer_opts = {
       return math.floor(vim.fn.line(".") * 100 / vim.fn.line("$")) .. "%%"
     end
 
+    local breadcrump_sep = "  "
+    local filename_extension = {
+      "filename",
+      path = 1,
+      separator = vim.trim(breadcrump_sep),
+      fmt = function(str)
+        local path_separator = package.config:sub(1, 1)
+        return str:gsub(path_separator, breadcrump_sep)
+      end,
+      color = { fg = nil, bg = nil, gui = "italic" },
+    }
+
     local config = {
       options = {
         icons_enabled = true,
         theme = "gruvbox",
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
-        disabled_filetypes = { "" },
+        disabled_filetypes = {
+          statusline = {},
+          winbar = {
+            "git",
+            "fugitive",
+            "alpha",
+            "packer",
+            "neo-tree",
+            "Trouble",
+            "spectre_panel",
+            "terminal",
+            "neoterm",
+            "qf",
+            "glowpreview",
+          },
+        },
         globalstatus = true,
+        refresh = {
+          statusline = 1000,
+          tabline = 1000,
+          winbar = 1000,
+        },
       },
       sections = {
         lualine_a = { "mode" },
@@ -112,6 +144,19 @@ local packer_opts = {
         lualine_z = {},
       },
       tabline = {},
+      winbar = {
+        lualine_b = {
+          filename_extension,
+          { "aerial", sep = breadcrump_sep, color = { fg = _G.palette.pink, bg = nil, gui = "italic,bold" } },
+        },
+      },
+      inactive_winbar = {
+        lualine_c = {
+          filename_extension,
+          { "aerial", sep = breadcrump_sep, color = { fg = nil, bg = nil, gui = "italic,bold" } },
+        },
+      },
+
       extensions = { terminal_extension, neotree_extension, "fugitive", "quickfix" },
     }
 

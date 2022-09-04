@@ -79,7 +79,6 @@ return require("packer").startup({
     plug({ config = "zen-mode" })
     plug({ config = "nvim-colorizer" })
     plug({ config = "lualine" })
-    plug({ config = "winbar" })
     plug({ config = "neo-tree" })
     plug({ config = "cybu" })
     plug({ config = "rust-tools" })
