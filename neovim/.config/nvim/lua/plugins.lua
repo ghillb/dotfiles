@@ -77,7 +77,7 @@ return require("packer").startup({
     plug({ config = "nvim-spectre" })
     plug({ config = "twilight" })
     plug({ config = "zen-mode" })
-    plug({ config = "nvim-colorizer" })
+    plug({ config = "nvim-highlight-colors" })
     plug({ config = "lualine" })
     plug({ config = "neo-tree" })
     plug({ config = "cybu" })

@@ -66,8 +66,18 @@ local packer_opts = {
         local path_separator = package.config:sub(1, 1)
         return str:gsub(path_separator, breadcrump_sep)
       end,
-      color = { fg = nil, bg = nil, gui = "italic" },
+      color = { fg = nil, bg = nil, gui = nil },
     }
+    local filename_extension_active = table.deep_copy(filename_extension)
+    local filename_extension_inactive = table.deep_copy(filename_extension)
+    filename_extension_active.color = { fg = _G.palette.ivory, bg = nil, gui = nil }
+    filename_extension_inactive.color = { fg = _G.palette.lightgray, bg = nil, gui = nil }
+
+    local aerial_extension = { "aerial", sep = breadcrump_sep, color = { fg = nil, bg = nil, gui = nil } }
+    local aerial_extension_active = table.deep_copy(aerial_extension)
+    local aerial_extension_inactive = table.deep_copy(aerial_extension)
+    aerial_extension_active.color = { fg = _G.palette.magenta, bg = nil, gui = nil }
+    aerial_extension_inactive.color = { fg = _G.palette.pink, bg = nil, gui = nil }
 
     local config = {
       options = {
@@ -81,6 +91,7 @@ local packer_opts = {
             "git",
             "fugitive",
             "alpha",
+            "aerial",
             "packer",
             "neo-tree",
             "Trouble",
@@ -89,6 +100,7 @@ local packer_opts = {
             "neoterm",
             "qf",
             "glowpreview",
+            "OverseerList",
           },
         },
         globalstatus = true,
@@ -145,15 +157,15 @@ local packer_opts = {
       },
       tabline = {},
       winbar = {
-        lualine_b = {
-          filename_extension,
-          { "aerial", sep = breadcrump_sep, color = { fg = _G.palette.pink, bg = nil, gui = "italic,bold" } },
+        lualine_c = {
+          filename_extension_active,
+          aerial_extension_active,
         },
       },
       inactive_winbar = {
         lualine_c = {
-          filename_extension,
-          { "aerial", sep = breadcrump_sep, color = { fg = nil, bg = nil, gui = "italic,bold" } },
+          filename_extension_inactive,
+          aerial_extension_inactive,
         },
       },
 
