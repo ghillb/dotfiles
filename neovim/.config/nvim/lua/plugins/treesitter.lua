@@ -10,7 +10,8 @@ local packer_opts = {
     local config = {
       highlight = {
         enable = true,
-        disable = { "vim" },
+        disable = { "vim", "latex" },
+        additional_vim_regex_highlighting = { "latex" },
       },
       indent = {
         enable = true,
