@@ -38,6 +38,7 @@
           - inetutils-ping
           - neovim
           - tmux
+          - tig
           - htop
           - docker.io
           - docker-compose
