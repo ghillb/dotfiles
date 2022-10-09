@@ -5,7 +5,33 @@ local packer_opts = {
     require("notify").setup({
       background_colour = "#1E1E1E",
     })
-    require("noice").setup()
+    require("noice").setup({
+      views = {
+        cmdline_popup = {
+          border = {
+            style = "none",
+          },
+          filter_options = {},
+          win_options = {
+            winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+          },
+        },
+      },
+      popupmenu = {
+        enabled = false,
+        backend = "cmp",
+      },
+      cmdline = {
+        enabled = true,
+        view = "cmdline_popup",
+        opts = { buf_options = { filetype = "vim" } },
+        icons = {
+          ["/"] = { icon = " ", hl_group = "DiagnosticWarn" },
+          ["?"] = { icon = " ", hl_group = "DiagnosticWarn" },
+          [":"] = { icon = "⮞ ", hl_group = "DiagnosticError", firstc = false },
+        },
+      },
+    })
   end,
   requires = {
     "MunifTanjim/nui.nvim",
