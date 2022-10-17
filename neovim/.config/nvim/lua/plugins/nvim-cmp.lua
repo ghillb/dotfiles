@@ -9,7 +9,6 @@ local packer_opts = {
     { "hrsh7th/cmp-cmdline" },
     -- { "hrsh7th/cmp-copilot" },
   },
-  disable = vim.env.NVIM_EMBEDDED == "true",
   config = function()
     local ok, cmp = pcall(require, "cmp")
     if not ok then

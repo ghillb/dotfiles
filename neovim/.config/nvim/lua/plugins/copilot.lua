@@ -1,6 +1,5 @@
 local packer_opts = {
   "github/copilot.vim",
-  disable = vim.env.NVIM_EMBEDDED == "true",
   config = function()
     local copilot_enabled = true
     user.indicators.copilot = "C"

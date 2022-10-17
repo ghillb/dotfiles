@@ -1,6 +1,5 @@
 local packer_opts = {
   "jose-elias-alvarez/null-ls.nvim",
-  disable = vim.env.NVIM_EMBEDDED == "true",
   requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
   config = function()
     local ok, null_ls = pcall(require, 'null-ls')

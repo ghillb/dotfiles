@@ -1,6 +1,5 @@
 local packer_opts = {
   "stevearc/aerial.nvim",
-  disable = vim.env.NVIM_EMBEDDED == "true",
   config = function()
     local ok, aerial = pcall(require, "aerial")
     if not ok then

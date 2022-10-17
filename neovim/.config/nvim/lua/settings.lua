@@ -1,9 +1,12 @@
 local o = vim.opt
 
 vim.env.NVIM_CONFIG                   = vim.fn.stdpath('config')
-vim.env.NVIM_EMBEDDED                 = vim.g.vscode == 1
 
-o.shell                               = 'dash'
+if vim.fn.has("unix") == 1 then
+  o.spell                             = true
+  o.shell                             = "dash"
+end
+
 o.encoding                            = 'utf-8'
 o.fileencoding                        = 'utf-8'
 o.clipboard                           = 'unnamedplus'
@@ -11,7 +14,6 @@ o.mouse                               = 'nvi'
 o.backspace                           = 'indent,eol,start'
 o.whichwrap                           = 'b,s,<,>,h,l,[,]'
 o.spelllang                           = 'en_us,de_de'
-o.spell                               = true
 o.termguicolors                       = true
 o.autochdir                           = false
 o.confirm                             = true

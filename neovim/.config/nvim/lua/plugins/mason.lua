@@ -1,6 +1,5 @@
 local packer_opts = {
   "williamboman/mason.nvim",
-  disable = vim.env.NVIM_EMBEDDED == "true",
   requires = { "folke/lua-dev.nvim", "williamboman/mason-lspconfig.nvim", "neovim/nvim-lspconfig" },
   config = function()
     local ok, mason = pcall(require, "mason")

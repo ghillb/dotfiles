@@ -1,6 +1,5 @@
 local packer_opts = {
   "mfussenegger/nvim-dap",
-  disable = vim.env.NVIM_EMBEDDED == "true",
   requires = {
     "rcarriga/nvim-dap-ui",
     "theHamsta/nvim-dap-virtual-text",

@@ -1,6 +1,5 @@
 local packer_opts = {
   "ggandor/leap.nvim",
-  disable = vim.env.NVIM_EMBEDDED == "true",
   requires = { "tpope/vim-repeat" },
   config = function()
     local ok, leap = pcall(require, "leap")

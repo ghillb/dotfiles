@@ -1,6 +1,5 @@
 local packer_opts = {
   "brenoprata10/nvim-highlight-colors",
-  disable = vim.env.NVIM_EMBEDDED == "true",
   config = function()
     local ok, colorizer = pcall(require, "nvim-highlight-colors")
     if not ok then

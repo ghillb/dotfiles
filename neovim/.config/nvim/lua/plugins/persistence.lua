@@ -1,5 +1,4 @@
 local packer_opts = {
-  disable = vim.env.NVIM_EMBEDDED == "true",
   "folke/persistence.nvim",
   event = "BufReadPre",
   module = "persistence",

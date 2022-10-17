@@ -1,6 +1,5 @@
 local packer_opts = {
   "vimwiki/vimwiki",
-  disable = vim.env.NVIM_EMBEDDED == "true",
   config = function()
     vim.g.vimwiki_list = {
       {

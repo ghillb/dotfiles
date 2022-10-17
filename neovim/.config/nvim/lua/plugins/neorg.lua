@@ -1,7 +1,6 @@
 local packer_opts = {
   "nvim-neorg/neorg",
   requires = { "nvim-lua/plenary.nvim" },
-  disable = vim.env.NVIM_EMBEDDED == "true",
   config = function()
     local ok, neorg = pcall(require, "neorg")
     if not ok then

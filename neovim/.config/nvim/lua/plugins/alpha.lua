@@ -1,6 +1,5 @@
 local packer_opts = {
   "goolord/alpha-nvim",
-  disable = vim.env.NVIM_EMBEDDED == "true",
   config = function()
     local ok, alpha = pcall(require, 'alpha')
     if not ok then

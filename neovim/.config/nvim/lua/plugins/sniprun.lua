@@ -1,6 +1,5 @@
 local packer_opts = {
   "michaelb/sniprun",
-  disable = vim.env.NVIM_EMBEDDED == "true",
   run = "bash ./install.sh",
   config = function()
     local ok, sniprun = pcall(require, "sniprun")

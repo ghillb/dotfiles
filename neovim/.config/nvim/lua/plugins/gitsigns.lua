@@ -1,6 +1,5 @@
 local packer_opts = {
   "lewis6991/gitsigns.nvim",
-  disable = vim.env.NVIM_EMBEDDED == "true",
   config = function()
     local ok, gitsigns = pcall(require, "gitsigns")
     if not ok then

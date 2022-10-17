@@ -1,6 +1,5 @@
 local packer_opts = {
   "folke/twilight.nvim",
-  disable = vim.env.NVIM_EMBEDDED == "true",
   config = function()
     local ok, twilight = pcall(require, 'twilight')
     if not ok then

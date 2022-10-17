@@ -1,6 +1,5 @@
 local packer_opts = {
   "ellisonleao/glow.nvim",
-  disable = vim.env.NVIM_EMBEDDED == "true",
   config = function()
     local ok, glow = pcall(require, "glow")
     if not ok then

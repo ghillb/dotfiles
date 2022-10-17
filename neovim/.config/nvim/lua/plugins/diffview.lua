@@ -1,6 +1,5 @@
 local packer_opts = {
   "sindrets/diffview.nvim",
-  disable = vim.env.NVIM_EMBEDDED == "true",
   config = function()
     local ok, diffview = pcall(require, "diffview")
     if not ok then

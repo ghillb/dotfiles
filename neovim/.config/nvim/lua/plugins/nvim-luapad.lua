@@ -1,6 +1,5 @@
 local packer_opts = {
   "rafcamlet/nvim-luapad",
-  disable = vim.env.NVIM_EMBEDDED == "true",
   config = function()
     local ok, luapad = pcall(require, "luapad")
     if not ok then

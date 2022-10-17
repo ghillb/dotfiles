@@ -1,6 +1,5 @@
 local packer_opts = {
   "Jorengarenar/vim-MvVis",
-  disable = vim.env.NVIM_EMBEDDED == "true",
   config = function()
     vim.g.MvVis_mappings = 0
 

@@ -1,6 +1,5 @@
 local packer_opts = {
   "RRethy/vim-illuminate",
-  disable = vim.env.NVIM_EMBEDDED == "true",
   config = function()
     local ok, illuminate = pcall(require, "illuminate")
     if not ok then

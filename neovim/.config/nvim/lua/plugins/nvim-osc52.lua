@@ -1,6 +1,5 @@
 local packer_opts = {
   "ojroques/nvim-osc52",
-  disable = vim.env.NVIM_EMBEDDED == "true",
   config = function()
     local ok, osc52 = pcall(require, "osc52")
     if not ok then
