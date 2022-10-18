@@ -29,28 +29,26 @@ local packer_opts = {
     local lspconfig = require("lspconfig")
     for _, server in ipairs(mason_lspconfig.get_installed_servers()) do
       local opts = {}
-      opts.capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
-      -- opts.capabilities.textDocument.completion.completionItem.snippetSupport = true -- not needed?
+      opts.capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
       if server == "sumneko_lua" then
-        opts = require("lua-dev").setup({
-          lspconfig = {
-            settings = {
-              Lua = {
-                runtime = {
-                  version = "LuaJIT",
-                },
-                telemetry = {
-                  enable = false,
-                },
+        require("neodev").setup({})
+        opts = {
+          settings = {
+            Lua = {
+              runtime = {
+                version = "LuaJIT",
+              },
+              telemetry = {
+                enable = false,
               },
             },
-            on_attach = function(client)
-              client.server_capabilities.documentFormattingProvider = false
-              client.server_capabilities.documentRangeFormattingProvider = false
-            end,
           },
-        })
+          on_attach = function(client)
+            client.server_capabilities.documentFormattingProvider = false
+            client.server_capabilities.documentRangeFormattingProvider = false
+          end,
+        }
       end
 
       if server == "ansiblels" then
