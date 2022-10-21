@@ -9,34 +9,45 @@ local packer_opts = {
       views = {
         cmdline_popup = {
           border = {
-            style = "none",
+            style = "single",
           },
           filter_options = {},
           win_options = {
-            winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+            winhighlight = { Normal = "Normal", FloatBorder = "FloatBorder" },
           },
         },
       },
       popupmenu = {
         enabled = false,
-        backend = "cmp",
+        backend = "nui",
+      },
+      messages = {
+        enabled = true,
+        view = "split",
+        view_error = "split",
+        view_warn = "split",
+        view_history = "split",
+        view_search = "virtualtext",
       },
       cmdline = {
         enabled = true,
         view = "cmdline_popup",
         opts = { buf_options = { filetype = "vim" } },
-        icons = {
-          ["/"] = { icon = " ", hl_group = "DiagnosticWarn" },
-          ["?"] = { icon = " ", hl_group = "DiagnosticWarn" },
-          [":"] = { icon = "⮞ ", hl_group = "DiagnosticError", firstc = false },
+        format = {
+          cmdline = { pattern = "^:", icon = "" },
+          search_down = { kind = "search", pattern = "^/", icon = "", ft = "regex" },
+          search_up = { kind = "search", pattern = "^%?", icon = "", ft = "regex" },
+          filter = { pattern = "^:%s*!", icon = "$", ft = "sh" },
+          lua = { pattern = "^:%s*lua%s+", icon = "", ft = "lua" },
         },
       },
     })
+
+    vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderCmdline", { link = "Normal" })
   end,
   requires = {
     "MunifTanjim/nui.nvim",
     "rcarriga/nvim-notify",
-    "hrsh7th/nvim-cmp",
   },
 }
 return packer_opts
