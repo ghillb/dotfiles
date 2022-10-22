@@ -6,29 +6,6 @@ local packer_opts = {
       background_colour = "#1E1E1E",
     })
     require("noice").setup({
-      views = {
-        cmdline_popup = {
-          border = {
-            style = "single",
-          },
-          filter_options = {},
-          win_options = {
-            winhighlight = { Normal = "Normal", FloatBorder = "FloatBorder" },
-          },
-        },
-      },
-      popupmenu = {
-        enabled = false,
-        backend = "nui",
-      },
-      messages = {
-        enabled = true,
-        view = "split",
-        view_error = "split",
-        view_warn = "split",
-        view_history = "split",
-        view_search = "virtualtext",
-      },
       cmdline = {
         enabled = true,
         view = "cmdline_popup",
@@ -39,6 +16,22 @@ local packer_opts = {
           search_up = { kind = "search", pattern = "^%?", icon = "", ft = "regex" },
           filter = { pattern = "^:%s*!", icon = "$", ft = "sh" },
           lua = { pattern = "^:%s*lua%s+", icon = "", ft = "lua" },
+        },
+      },
+      popupmenu = {
+        enabled = false,
+      },
+      messages = {
+        enabled = false,
+      },
+      views = {
+        cmdline_popup = {
+          border = {
+            style = "single",
+          },
+          win_options = {
+            winhighlight = { Normal = "Normal", FloatBorder = "FloatBorder" },
+          },
         },
       },
     })

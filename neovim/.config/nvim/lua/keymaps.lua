@@ -233,8 +233,7 @@ map("n", "[d", vim.diagnostic.goto_prev)
 map({ "n", "v" }, "gF", vim.lsp.buf.format)
 map("n", "<a-space>", vim.diagnostic.open_float)
 map("n", "<a-bs>", "<cmd>TroubleToggle document_diagnostics<cr>")
-map("n", "<a-cr>", ":lua vim.lsp.buf.code_action()<cr>")
-map("v", "<a-cr>", ":lua vim.lsp.buf.range_code_action()<cr>")
+map({ "n", "v" }, "<a-cr>", vim.lsp.buf.code_action)
 
 -- pseudo text objects
 map("x", "il", "g_o^")

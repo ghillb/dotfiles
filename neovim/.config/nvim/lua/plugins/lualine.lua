@@ -56,7 +56,7 @@ local packer_opts = {
       return math.floor(vim.fn.line(".") * 100 / vim.fn.line("$")) .. "%%"
     end
 
-    local breadcrump_sep = "  "
+    local breadcrump_sep = "  " -- 
     local filename_extension = {
       "filename",
       path = 1,
