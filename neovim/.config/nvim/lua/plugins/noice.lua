@@ -22,7 +22,17 @@ local packer_opts = {
         enabled = false,
       },
       messages = {
-        enabled = false,
+        enabled = true,
+        view = "mini",
+        view_error = "mini",
+        view_warn = "mini",
+        view_history = "split",
+        view_search = "virtualtext",
+      },
+      lsp_progress = {
+        enabled = true,
+        throttle = 250,
+        view = "mini",
       },
       views = {
         cmdline_popup = {
@@ -37,6 +47,7 @@ local packer_opts = {
     })
 
     vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderCmdline", { link = "Normal" })
+    vim.api.nvim_set_hl(0, "NoiceMini", { link = "NormalFloat" })
   end,
   requires = {
     "MunifTanjim/nui.nvim",
