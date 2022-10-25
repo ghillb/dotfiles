@@ -1,4 +1,5 @@
 -- supress clangd warning about multiple different client offset_encodings
+-- https://github.com/folke/noice.nvim/discussions
 local notify = vim.notify
 vim.notify = function(msg, ...)
   if msg:match("warning: multiple different client offset_encodings") then

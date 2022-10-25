@@ -34,6 +34,10 @@ local packer_opts = {
         throttle = 250,
         view = "mini",
       },
+      notify = {
+        enabled = true,
+        view = "mini",
+      },
       views = {
         cmdline_popup = {
           border = {
