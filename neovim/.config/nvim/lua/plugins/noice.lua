@@ -48,6 +48,13 @@ local packer_opts = {
           },
         },
       },
+      routes = {
+        {
+          -- supress clangd warning about multiple different client offset_encodings
+          filter = { event = "notify", find = "warning: multiple different client offset_encodings" },
+          opts = { skip = true },
+        },
+      },
     })
 
     vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderCmdline", { link = "Normal" })
