@@ -21,6 +21,26 @@ overseer.register_template({
   },
 })
 
+overseer.register_template({
+  name = "Build with cargo",
+  builder = function(params)
+    return {
+      cmd = {
+        "cargo",
+        "build",
+        "--manifest-path",
+        string.format("%s/Cargo.toml", e("%:h:h")),
+      },
+    }
+  end,
+  tags = { overseer.TAG.BUILD },
+  params = {},
+  priority = 50,
+  condition = {
+    filetype = { "rust" },
+  },
+})
+
 _G.overseer_config.run.rust = function()
   overseer.run_template({ name = "Run binary", autostart = false }, function(task)
     if task then
@@ -41,7 +61,7 @@ _G.overseer_config.run.rust = function()
 end
 
 _G.overseer_config.build.rust = function()
-  overseer.run_template({ name = "Compile rust file", autostart = false }, function(task)
+  overseer.run_template({ name = "Build with cargo", autostart = false }, function(task)
     if task then
       task:start()
       overseer.run_action(task, "open hsplit, no focus")
