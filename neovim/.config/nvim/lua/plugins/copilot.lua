@@ -12,8 +12,13 @@ local packer_opts = {
       ["dap-repl"] = false,
       ["vimwiki"] = false,
     }
-    vim.api.nvim_set_keymap("i", "<s-cr>", 'copilot#Accept("")', { expr = true, silent = true })
-    vim.api.nvim_set_keymap("n", "<a-c>", ":Copilot<cr>", {})
+
+    vim.keymap.set("i", "<s-cr>", function()
+      return vim.fn["copilot#Accept"]("<cr>")
+    end, { expr = true, silent = true })
+    vim.keymap.set("n", "<a-c>", function()
+      vim.cmd("Copilot")
+    end, {})
 
     function _G.ToggleCopilot()
       if copilot_enabled then
