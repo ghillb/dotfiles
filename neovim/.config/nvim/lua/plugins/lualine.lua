@@ -81,6 +81,7 @@ local packer_opts = {
             "git",
             "fugitive",
             "alpha",
+            "noice",
             "aerial",
             "packer",
             "neo-tree",
