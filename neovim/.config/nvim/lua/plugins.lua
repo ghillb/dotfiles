@@ -63,7 +63,6 @@ return require("packer").startup({
       plug({ config = "telescope" })
       plug({ config = "nvim-cmp" })
       plug({ remote = "onsails/lspkind-nvim" })
-      plug({ config = "lsp_signature" })
       plug({ config = "nvim-lightbulb" })
       plug({ config = "aerial" })
       plug({ config = "autopairs" })
