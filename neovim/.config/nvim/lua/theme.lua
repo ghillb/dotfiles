@@ -89,22 +89,6 @@ vim.g.gruvbox_baby_highlights = {
   cppTSVariable = { fg = gbc.light_blue },
 }
 
--- kanagawa
-require("kanagawa").setup({
-  undercurl = true,
-  specialReturn = true,
-  specialException = true,
-  transparent = true,
-  colors = {},
-  overrides = {},
-})
-
--- onedark
-require("onedark").setup({
-  style = "darker",
-  transparent = true,
-})
-
 -- nightfox
 require("nightfox").setup({
   options = {
@@ -112,8 +96,11 @@ require("nightfox").setup({
   },
 })
 
+require("tokyonight").setup({
+  style = "storm",
+  transparent = false,
+})
 -- enable colorscheme
-vim.cmd([[ silent! colorscheme gruvbox-baby ]])
--- vim.cmd([[ silent! colorscheme kanagawa ]])
--- vim.cmd([[ silent! colorscheme onedark ]])
--- vim.cmd([[ silent! colorscheme nightfox ]])
+vim.api.nvim_cmd({ cmd = "colorscheme", args = { "gruvbox-baby" } }, { output = false })
+-- vim.api.nvim_cmd({ cmd = "colorscheme", args = { "nightfox" } }, { output = false })
+-- vim.api.nvim_cmd({ cmd = "colorscheme", args = { "tokyonight" } }, { output = false })

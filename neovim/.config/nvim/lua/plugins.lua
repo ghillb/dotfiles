@@ -31,8 +31,6 @@ return require("packer").startup({
     if vim.fn.has("unix") == 1 then
       plug({ remote = "luisiacc/gruvbox-baby" })
       plug({ remote = "EdenEast/nightfox.nvim" })
-      plug({ remote = "rebelot/kanagawa.nvim" })
-      plug({ remote = "navarasu/onedark.nvim" })
       plug({ remote = "folke/tokyonight.nvim" })
       plug({ remote = "tpope/vim-fugitive" })
       plug({ remote = "will133/vim-dirdiff" })
