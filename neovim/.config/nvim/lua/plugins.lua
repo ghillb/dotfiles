@@ -28,6 +28,8 @@ return require("packer").startup({
     end
 
     plug({ remote = "wbthomason/packer.nvim" })
+    plug({ remote = "tpope/vim-surround" })
+    plug({ config = "comment" })
     if vim.fn.has("unix") == 1 then
       plug({ remote = "luisiacc/gruvbox-baby" })
       plug({ remote = "EdenEast/nightfox.nvim" })
@@ -35,7 +37,6 @@ return require("packer").startup({
       plug({ remote = "tpope/vim-fugitive" })
       plug({ remote = "will133/vim-dirdiff" })
       plug({ remote = "junegunn/gv.vim" })
-      plug({ remote = "tpope/vim-surround" })
       plug({ config = "vimwiki" })
       plug({ config = "vimtex" })
       plug({ config = "neorg" })
@@ -94,7 +95,6 @@ return require("packer").startup({
       plug({ config = "neogen" })
       plug({ config = "nvim-neoclip" })
       plug({ config = "nvim-osc52" })
-      plug({ config = "comment" })
     end
   end,
   config = {

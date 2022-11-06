@@ -1,4 +1,3 @@
-vim.g.do_filetype_lua = 1 -- remove when 0.8 is released
 vim.filetype.add({
   extension = {
     tf = "terraform",
