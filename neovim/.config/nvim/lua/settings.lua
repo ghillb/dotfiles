@@ -76,6 +76,10 @@ vim.g.netrw_winsize                   = 25
 vim.g.netrw_altv                      = 1
 vim.g.netrw_fastbrowse                = 0
 
+-- load local and project specific settings
+user.fn.load_local_config()
+user.fn.load_project_config()
+
 -- lsp and diagnostics settings
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
   border = nil,

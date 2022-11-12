@@ -291,8 +291,9 @@ function user.fn.load_project_config()
   local project_config = vim.fn.getcwd() .. "/.nvim.lua"
   if vim.loop.fs_stat(project_config) then
     vim.notify("Found project config file: " .. project_config)
-    if vim.fn.input("Load project config file?", " y") == " y" then
+    if _G.auto_load_project_settings or vim.fn.input("Load project config file?", " y") == " y" then
       vim.cmd("luafile " .. project_config)
+      vim.notify("Loaded project config file: " .. project_config)
     end
   end
 end

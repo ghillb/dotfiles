@@ -10,6 +10,12 @@ aucmd("VimEnter", {
 
 aucmd("BufEnter", { callback = user.fn.populate_info, group = augrp("BufEnterGroup", { clear = true }) })
 
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = "*",
+  group = vim.api.nvim_create_augroup("SetProjectSettings", { clear = true }),
+  callback = _G.set_project_settings or function() end,
+})
+
 aucmd("BufUnload", {
   pattern = "<buffer>",
   command = "call timer_start(1, { tid -> execute('lua user.fn.set_root(\"git_worktree\")')})",
