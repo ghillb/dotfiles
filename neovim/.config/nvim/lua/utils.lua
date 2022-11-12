@@ -279,3 +279,20 @@ function user.fn.s_tab_binding()
     return "<c-d>"
   end
 end
+
+function user.fn.load_local_config()
+  local ok, localrc = pcall(require, "localrc")
+  if ok then
+    localrc.settings.load()
+  end
+end
+
+function user.fn.load_project_config()
+  local project_config = vim.fn.getcwd() .. "/.nvim.lua"
+  if vim.loop.fs_stat(project_config) then
+    vim.notify("Found project config file: " .. project_config)
+    if vim.fn.input("Load project config file?", " y") == " y" then
+      vim.cmd("luafile " .. project_config)
+    end
+  end
+end

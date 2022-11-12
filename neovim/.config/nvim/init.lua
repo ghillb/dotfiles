@@ -4,8 +4,5 @@ require("events")
 require("plugins")
 require("theme")
 require("keymaps")
-
-local ok, localrc = pcall(require, "localrc")
-if ok then
-  localrc.settings.load()
-end
+user.fn.load_local_config()
+user.fn.load_project_config()
