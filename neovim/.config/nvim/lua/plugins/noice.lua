@@ -44,6 +44,11 @@ local packer_opts = {
             style = "single",
           },
         },
+        popup = {
+          border = {
+            style = "none",
+          },
+        },
         cmdline_popup = {
           border = {
             style = "single",
@@ -59,15 +64,16 @@ local packer_opts = {
           filter = { event = "notify", find = "warning: multiple different client offset_encodings" },
           opts = { skip = true },
         },
-        {
-          view = "notify",
-          filter = { event = "msg_show", min_height = 3 },
-        },
+        -- {
+        --   view = "notify",
+        --   filter = { event = "msg_show", min_height = 3 },
+        -- },
       },
     })
 
     vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderCmdline", { link = "Normal" })
     vim.api.nvim_set_hl(0, "NoiceMini", { link = "NormalFloat" })
+
 
     vim.keymap.set("n", "<c-d>", function()
       if not require("noice.lsp").scroll(4) then

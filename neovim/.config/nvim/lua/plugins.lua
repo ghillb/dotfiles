@@ -75,7 +75,7 @@ return require("packer").startup({
       plug({ config = "which-key" })
       plug({ config = "persistence" })
       plug({ config = "nvim-spectre" })
-      plug({ config = "noice" })
+      -- plug({ config = "noice" })
       plug({ config = "scrollbar" })
       plug({ config = "twilight" })
       plug({ config = "zen-mode" })
