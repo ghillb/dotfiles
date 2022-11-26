@@ -15,7 +15,7 @@ local packer_opts = {
 
     vim.keymap.set("i", "<s-cr>", function()
       return vim.fn["copilot#Accept"]("<cr>")
-    end, { expr = true, silent = true })
+    end, { expr = true, silent = true, replace_keycodes = false })
     vim.keymap.set("n", "<a-c>", function()
       vim.cmd("Copilot")
     end, {})
