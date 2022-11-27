@@ -15,7 +15,7 @@ export EDITOR=$VISUAL
 export DOTFILES=$HOME/.files
 export CODE=$HOME/code
 export GOPATH=$HOME/.go
-export PATH="$PATH:$HOME/code/scripts/bash:$HOME/code/scripts/ansible:$HOME/.cargo/bin:$GOPATH/bin"
+export PATH="$PATH:$HOME/code/scripts/bash:$HOME/code/scripts/ansible:$HOME/.cargo/bin:$GOPATH/bin:$HOME/.local/bin"
 export LC_ALL=C.UTF-8
 export HISTSIZE=HISTFILESIZE='INFINITY'
 export HISTIGNORE="pwd:df:du:cd:ls:ll:gpl:gps:gs:gd:gdu:gds:gl:glo:gls:glu:v"
