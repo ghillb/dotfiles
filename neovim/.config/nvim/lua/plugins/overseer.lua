@@ -134,7 +134,6 @@ local packer_opts = {
           "on_complete_dispose",
         },
       },
-      pre_task_hook = function(task_defn, util) end,
       preload_components = {},
       log = {
         {
