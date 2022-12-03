@@ -8,8 +8,17 @@ esac
 stty -ixon # forces control sequences to reach the terminal application (e.g. vi)
 stty werase ^H # enable ctrl-backspace previous word kill
 set bell-style none
+
+# if kitty available set TERM accordingly
 if [ $KITTY_WINDOW_ID ]; then export TERM="xterm-kitty"; else export TERM=xterm-256color; fi
-export DISPLAY=:0 #set display for VcXsrv
+
+# set WSL specific env vars
+if [[ "$(</proc/version)" == *microsoft* ]];then
+  export DISPLAY=$(ip route list default | awk '{print $3}'):0
+  export LIBGL_ALWAYS_INDIRECT=1
+  export TERM='ms-terminal'
+fi
+
 export VISUAL=$(command -v nvim &>/dev/null && echo "nvim" || echo "vi")
 export EDITOR=$VISUAL
 export DOTFILES=$HOME/.files
