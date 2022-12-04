@@ -2,7 +2,20 @@
 set -eu
 
 dotfiles=$HOME/.files
-sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get install -y git make
-git clone https://github.com/ghillb/dotfiles.git $dotfiles
-cd $dotfiles && make
+
+if [ -f /etc/redhat-release ]; then
+  pkgman=dnf
+fi
+
+if [ -f /etc/lsb-release ]; then
+  pkgman=apt-get
+fi
+
+sudo $pkgman -y update && sudo $pkgman upgrade -y && sudo $pkgman install -y \
+    git \
+    make \
+    ansible
+
+# git clone https://github.com/ghillb/dotfiles.git $dotfiles
+# cd $dotfiles && make
 

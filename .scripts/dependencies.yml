@@ -7,18 +7,26 @@
   become: true
   become_method: sudo
   become_user: root
-  gather_facts: false
+  gather_facts: true
 
   tasks:
 
-    - name: Install pre-requisites via apt
-      apt:
-        pkg:
+    - name: Install pre-requisites
+      ansible.builtin.package:
+        name:
+          - make
           - stow
           - git
-          - software-properties-common
-        update_cache: true
         state: present
+      tags:
+        - pre-requisites
+
+    - name: Install pre-requisites (Ubuntu)
+      ansible.builtin.package:
+        name:
+          - software-properties-common
+        state: present
+      when: ansible_distribution == 'Ubuntu'
       tags:
         - pre-requisites
 
@@ -26,25 +34,22 @@
       ansible.builtin.apt_repository:
         repo: ppa:neovim-ppa/unstable
         state: present
+      when: ansible_distribution == 'Ubuntu'
       tags:
         - terminal-utilities
 
-    - name: Install terminal-utilities via apt
-      apt:
-        pkg:
+    - name: Install terminal-utilities
+      ansible.builtin.package:
+        name:
           - curl
           - wget
           - rsync
-          - inetutils-ping
           - neovim
           - tmux
           - tig
           - htop
-          - docker.io
-          - docker-compose
           - podman
           - ripgrep
-          - silversearcher-ag
           - visidata
           - sshfs
           - nnn
@@ -59,43 +64,54 @@
           - ncdu
           - direnv
           - gcc
-          - make
           - perl
-          - python3-venv
-          - python3-pip
-          - python3-dev
+          - sqlite
+          - sqlite-devel
           - golang
-          - sqlite3
-          - libsqlite3-dev
           - pre-commit
           - yamllint
           - ansible-lint
-          # - zoxide
-        update_cache: true
+          - zoxide
+          - dash
         state: present
       tags:
         - terminal-utilities
 
-    - name: Install desktop-utilities via apt
-      apt:
-        pkg:
-          - spectrwm
-          - fonts-firacode
-          - ttf-ancient-fonts
-          - picom
-          - feh
+    - name: Install terminal-utilities (Ubuntu)
+      ansible.builtin.package:
+        name:
+          - docker.io
+          - docker-compose
+          - python3-venv
+          - python3-pip
+          - python3-dev
+          - sqlite3
+          - libsqlite3-dev
+          - silversearcher-ag
+          - inetutils-ping
+        state: present
+      when: ansible_distribution == 'Ubuntu'
+      tags:
+        - terminal-utilities
+
+    - name: Install desktop-utilities
+      ansible.builtin.package:
+        name:
+          # - picom
+          # - feh
+          - sway
+          - fira-code-fonts
           - xdotool
           - wmctrl
-          - xsel
-          - rofi
+          # - xsel
+          # - rofi
           - kitty
           - nnn
           - zathura
-          - scrot
-        update_cache: true
+          # - scrot
         state: present
       tags:
-        - desktop-utilities
+        - desktop-utilities-t
 
     - name: Install utilities via git
       become: false
