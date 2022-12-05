@@ -1,0 +1,11 @@
+[Unit]
+Description=load kb layout with kmonad
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/env kmonad /etc/kmonad/kblayout.kmonad.cfg
+Restart=Always
+PIDFile=/tmp/kmonad_pid
+
+[Install]
+WantedBy=default.target

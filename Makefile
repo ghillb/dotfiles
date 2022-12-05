@@ -22,7 +22,7 @@ setup-desktop: prepare install-dots install-terminal install-desktop post-instal
 
 prepare:
 	@echo ">>[ $(HINT_TEXT)$@ ]<<\n"
-	@bash -c "$(DOT_SCRIPTS)/dependencies $(PASS_PROMPT) --tags pre-requisites"
+	@bash -c "$(DOT_SCRIPTS)/dependencies.yml $(PASS_PROMPT) --tags pre-requisites"
 
 install-dots: check_stow
 	@echo ">>[ $(HINT_TEXT)$@ ]<<\n"
