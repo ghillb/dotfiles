@@ -16,6 +16,6 @@ sudo $pkgman -y update && sudo $pkgman upgrade -y && sudo $pkgman install -y \
     make \
     ansible
 
-# git clone https://github.com/ghillb/dotfiles.git $dotfiles
-# cd $dotfiles && make
+git clone https://github.com/ghillb/dotfiles.git $dotfiles
+cd $dotfiles && make
 

@@ -65,8 +65,6 @@
           - direnv
           - gcc
           - perl
-          - sqlite
-          - sqlite-devel
           - golang
           - pre-commit
           - yamllint
@@ -76,6 +74,16 @@
         state: present
       tags:
         - terminal-utilities
+
+    - name: Install terminal-utilities (Fedora)
+      ansible.builtin.package:
+        name:
+          - sqlite
+          - sqlite-devel
+        state: present
+      tags:
+        - terminal-utilities
+      when: ansible_distribution == 'Fedora'
 
     - name: Install terminal-utilities (Ubuntu)
       ansible.builtin.package:
@@ -111,7 +119,7 @@
           # - scrot
         state: present
       tags:
-        - desktop-utilities-t
+        - desktop-utilities
 
     - name: Install utilities via git
       become: false
