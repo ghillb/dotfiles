@@ -2,7 +2,7 @@
 set -eu
 
 PACKAGES=$(ls -d $DOTFILES/*/ | awk -F "/" '{ print $(NF-1) }')
-SYSTEM_PACKAGES='bin systemd kmonad xkb'
+SYSTEM_PACKAGES='bin systemd kmonad'
 
 for P in $PACKAGES ; do
     if [[ " $SYSTEM_PACKAGES " =~ " $P " ]]; then

@@ -1,3 +1,0 @@
-eval $(ssh-agent)
-setxkbmap -layout ansi_hybrid -variant 5layer
-exec spectrwm
