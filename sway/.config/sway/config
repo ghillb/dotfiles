@@ -16,6 +16,7 @@ set $browser firefox
 default_border none
 default_floating_border none
 gaps inner 3
+font Fira Code Retina Nerd Font Complete 16
 
 # Output configuration (swaymsg -t get_outputs)
 output eDP-1 resolution 2560x1440 position 2560,0 scale 1.75
@@ -145,13 +146,15 @@ mode "POWER" {
 bindsym $mod+Shift+p mode "POWER"
 
 # Status bar (man sway-bar)
+set $status_cmd echo " ' '$(cat /sys/class/power_supply/BAT*/capacity)%'     ' ' '$(date +'%Y-%m-%d %H:%M:%S')' '"
+
 bar {
     position top
     mode hide
     modifier Mod4
 
     # Battery cat /sys/class/power_supply/BAT*/capacity
-    status_command while date +'%Y-%m-%d %H:%M:%S'; do sleep 1; done
+    status_command while $status_cmd ; do sleep 1; done
 
     colors {
         statusline #ebdbb2
