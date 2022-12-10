@@ -105,14 +105,12 @@
     - name: Install desktop-utilities
       ansible.builtin.package:
         name:
-          # - picom
-          # - feh
           - sway
+          - wl-clipboard  # wl version of xsel
           - fira-code-fonts
-          - xdotool
-          - wmctrl
-          # - xsel
-          # - rofi
+          - xdotool  # X only
+          - wmctrl  # X only
+          - rofi
           - kitty
           - nnn
           - zathura

@@ -9,15 +9,7 @@ local packer_opts = {
     local dashboard = require("alpha.themes.dashboard")
     local fortune = require("alpha.fortune")
 
-    dashboard.section.header.val = {
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-    }
+    dashboard.section.header.val = {}
 
     dashboard.section.buttons.val = {
       dashboard.button("w", "פּ  >  Workdir files", ":Telescope find_files<cr>"),
