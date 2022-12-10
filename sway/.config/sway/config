@@ -16,7 +16,7 @@ set $browser firefox
 default_border none
 default_floating_border none
 gaps inner 3
-font Fira Code Retina Nerd Font Complete 16
+font pango:Fira Code Retina Nerd Font Complete 16
 
 # Output configuration (swaymsg -t get_outputs)
 output eDP-1 resolution 2560x1440 position 2560,0 scale 1.75
@@ -65,10 +65,10 @@ bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
 
 ## Resize windows
-bindsym $mod+Left resize shrink width 50px
-bindsym $mod+Down resize grow height 50px
-bindsym $mod+Up   resize shrink height 50px
-bindsym $mod+Right resize grow width 50px
+bindsym $mod+Left  resize shrink width 100px
+bindsym $mod+Down  resize grow height 100px
+bindsym $mod+Up    resize shrink height 100px
+bindsym $mod+Right resize grow width 100px
 
 # Workspaces:
 ## Switch to workspaces
@@ -121,14 +121,14 @@ bindsym $mod+Shift+Return scratchpad show
 
 # Modes
 mode "RESIZE" {
-    bindsym $left resize shrink width 50px
-    bindsym $down resize grow height 50px
-    bindsym $up resize shrink height 50px
+    bindsym $left  resize shrink width 50px
+    bindsym $down  resize grow height 50px
+    bindsym $up    resize shrink height 50px
     bindsym $right resize grow width 50px
 
-    bindsym Left resize shrink width 50px
-    bindsym Down resize grow height 50px
-    bindsym Up resize shrink height 50px
+    bindsym Left  resize shrink width 50px
+    bindsym Down  resize grow height 50px
+    bindsym Up    resize shrink height 50px
     bindsym Right resize grow width 50px
     bindsym Escape mode "default"
 }
@@ -151,11 +151,12 @@ set $status_cmd echo " ' '$(cat /sys/class/power_supply/BAT*/capacity)%'     
 bar {
     position top
     mode hide
-    modifier Mod4
+    modifier Mod4+Shift
+    gaps 3 3
 
-    # Battery cat /sys/class/power_supply/BAT*/capacity
     status_command while $status_cmd ; do sleep 1; done
 
+    workspace_min_width 40
     colors {
         statusline #ebdbb2
         background #504945
