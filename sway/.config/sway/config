@@ -8,8 +8,8 @@ set $right l
 
 ## Programs
 set $term kitty
-set $run rofi -show run
-set $drun rofi -show drun
+set $run wofi --show run
+set $drun wofi --show drun
 set $browser firefox
 
 # Style
@@ -40,7 +40,13 @@ input type:keyboard {
 
 # Various
 bindsym $mod+Shift+c reload
-bindsym $mod+Shift+q kill
+bindsym $mod+q kill
+bindsym $mod+Shift+q exit
+bindsym $mod+Shift+p exec ~/.config/wofi/powermenu.sh
+bindsym $mod+Shift+s exec grim -g "$(slurp)"
+bindsym $mod+s exec grim
+# copy straight to clipboard
+# bindsym $mod+Shift+s exec grim -g "$(slurp -d)" - | wl-copy -t image/png
 
 ## Launch programs
 bindsym $mod+Return exec $term
@@ -103,7 +109,7 @@ bindsym $mod+Shift+0 move container to workspace number 10
 bindsym $mod+Mod1+s splith
 bindsym $mod+Mod1+v splitv
 
-bindsym $mod+Shift+s layout stacking
+# bindsym $mod+Shift+s layout stacking
 bindsym $mod+Shift+t layout tabbed
 bindsym $mod+Ctrl+Space layout toggle split
 bindsym $mod+Shift+Space floating toggle
@@ -135,15 +141,13 @@ mode "RESIZE" {
 
 bindsym $mod+Shift+r mode "RESIZE"
 
-mode "POWER" {
+mode "POWERNAG" {
     bindsym e exec swaynag -t warning -m "[EXIT] Are you sure?" -b "Yes" 'swaymsg exit', mode "default"
     bindsym o exec swaynag -t warning -m "[REBOOT] Are you sure?" -b "Yes" reboot, mode "default"
     bindsym h exec swaynag -t warning -m "[HIBERNATE] Are you sure?" -b "Yes" hibernate, mode "default"
     bindsym p exec swaynag -t warning -m "[POWEROFF] Are you sure?" -b "Yes" poweroff, mode "default"
     bindsym Escape mode "default"
 }
-
-bindsym $mod+Shift+p mode "POWER"
 
 # Status bar (man sway-bar)
 set $status_cmd echo " ' '$(cat /sys/class/power_supply/BAT*/capacity)%'     ' ' '$(date +'%Y-%m-%d %H:%M:%S')' '"

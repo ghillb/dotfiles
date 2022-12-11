@@ -110,12 +110,11 @@
           - fira-code-fonts
           - xdotool  # X only
           - wmctrl  # X only
-          - rofi
+          - wofi
           - kitty
           - nnn
           - rclone
           - zathura
-          # - scrot
         state: present
       tags:
         - desktop-utilities
