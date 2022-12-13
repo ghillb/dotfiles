@@ -19,6 +19,8 @@ $jobs\
 $status\
 $character"""
 
+command_timeout = 1000
+
 [character]
 success_symbol = "[⮞](bold purple)"
 error_symbol = "[◯](bold red)"
