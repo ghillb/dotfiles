@@ -19,8 +19,13 @@ gaps inner 3
 font pango:Fira Code Retina Nerd Font Complete 16
 
 # Output configuration (swaymsg -t get_outputs)
-output eDP-1 resolution 2560x1440 position 2560,0 scale 1.75
+set $laptop eDP-1
+output $laptop resolution 2560x1440 position 2560,0 scale 1.75
 output * bg ~/.config/sway/wallpaper.jpg fill
+
+## turn off/on laptop screen if lid closed/open
+bindswitch --reload --locked lid:on output $laptop disable
+bindswitch --reload --locked lid:off output $laptop enable
 
 # Idle configuration
 set $screenlock swaylock -f -c 000000
@@ -172,7 +177,7 @@ bar {
     colors {
         statusline #ebdbb2
         background #504945
-        inactive_workspace #5c5c5c #5c5c5c #ebdbb2
+        inactive_workspace #ebdbb2 #5c5c5c #ebdbb2
         active_workspace #ebdbb2 #5c5c5c #5c5c5c
         focused_workspace #ebdbb2 #ebdbb2 #5c5c5c
     }
