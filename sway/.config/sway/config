@@ -135,8 +135,9 @@ bindsym $mod+Shift+Down focus child
 bindsym $mod+Shift+f fullscreen
 
 ## Scratchpad:
-bindsym $mod+Mod1+Return move scratchpad
-bindsym $mod+Shift+Return scratchpad show
+bindsym $mod+Shift+Return [title="scratchterm"] scratchpad show
+bindsym $mod+Mod1+Return scratchpad show
+bindsym $mod+Ctrl+Mod1+Return move scratchpad
 
 # Modes
 mode "RESIZE" {
@@ -184,10 +185,16 @@ bar {
 }
 
 # Window events
-for_window [app_id="kitty" floating] resize set 1200 600
+for_window [title="scratchterm"] {
+  floating enable
+  resize set height 90 ppt
+  resize set width 90 ppt
+  move scratchpad
+}
 
 # https://github.com/swaywm/sway/wiki#gtk-applications-take-20-seconds-to-start
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec_always $term --title scratchterm
 
 # Include additional configs
-include @sysconfdir@/sway/config.d/*
+include ~/.config/sway/config.d/*
