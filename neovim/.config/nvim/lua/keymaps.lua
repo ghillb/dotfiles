@@ -59,8 +59,6 @@ map("n", "gf", user.fn.create_or_go_to_file, { silent = true })
 map("x", "s", "<Plug>VSurround")
 
 map("n", "<c-c>", "ciw", { remap = true })
-map("n", "<c-d>", "<c-d>zz")
-map("n", "<c-u>", "<c-u>zz")
 map("n", "<c-j>", "<c-e>")
 map("n", "<c-k>", "<c-y>")
 map("n", "<c-y>", "<c-b>")

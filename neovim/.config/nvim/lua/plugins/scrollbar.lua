@@ -7,7 +7,12 @@ local packer_opts = {
       return
     end
 
-    local config = {}
+    local config = {
+      excluded_buftypes = {
+        "terminal",
+        "nofile"
+      },
+    }
 
     scrollbar.setup(config)
 
