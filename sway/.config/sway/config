@@ -42,6 +42,11 @@ input type:keyboard {
     xkb_layout us-umlauts
 }
 
+input type:pointer {
+    accel_profile flat
+    pointer_accel 1
+}
+
 # Various
 bindsym $mod+Shift+c reload
 bindsym $mod+q kill

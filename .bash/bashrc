@@ -19,6 +19,14 @@ if [[ "$(</proc/version)" == *microsoft* ]];then
   export TERM='ms-terminal'
 fi
 
+if [ -f /etc/redhat-release ]; then
+  export "PKG_MANAGER=dnf"
+fi
+
+if [ -f /etc/lsb-release ]; then
+  export "PKG_MANAGER=apt"
+fi
+
 export VISUAL=$(command -v nvim &>/dev/null && echo "nvim" || echo "vi")
 export EDITOR=$VISUAL
 export DOTFILES=$HOME/.files

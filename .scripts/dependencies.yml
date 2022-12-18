@@ -70,6 +70,7 @@
           - yamllint
           - ansible-lint
           - zoxide
+          - keychain
           - dash
         state: present
       tags:
