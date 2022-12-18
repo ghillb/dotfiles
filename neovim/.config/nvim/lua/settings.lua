@@ -90,12 +90,16 @@ vim.lsp.handlers["textDocument/signtureHelp"] = vim.lsp.with(vim.lsp.handlers.si
 })
 
 vim.diagnostic.config({
-  virtual_text = false,
-  signs = true,
+  signs = false,
   severity_sort = true,
   update_in_insert = false,
   underline = true,
   float = { show_header = false, border = nil, source = "always", focusable = false, header = "", prefix = "" },
+  virtual_text = {
+    format = function() -- diagnostic
+      return ""
+    end,
+  },
 })
 
 _G.DiagnosticSigns = { Error = " ", Warn = " ", Hint = " ", Info = " " } --
@@ -105,56 +109,4 @@ for type, icon in pairs(_G.DiagnosticSigns) do
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
----Filters diagnostigs leaving only the most severe per line.
----@param diagnostics table[]
----@return table[]
----@see https://www.reddit.com/r/neovim/comments/mvhfw7/can_built_in_lsp_diagnostics_be_limited_to_show_a/gvd8rb9/
----@see https://github.com/neovim/neovim/issues/15770
----@see https://github.com/lucasvianav/nvim/blob/8f763b85e2da9ebd4656bf732cbdd7410cc0e4e4/lua/v/settings/handlers.lua#L18-L48
----@see `:h diagnostic-handlers`
-local filter_diagnostics = function(diagnostics)
-    if not diagnostics then
-        return {}
-    end
-
-    -- find the "worst" diagnostic per line
-    local most_severe = {}
-    for _, cur in pairs(diagnostics) do
-        local max = most_severe[cur.lnum]
-
-        -- higher severity has lower value (`:h diagnostic-severity`)
-        if not max or cur.severity < max.severity then
-            most_severe[cur.lnum] = cur
-        end
-    end
-
-    -- return list of diagnostics
-    return vim.tbl_values(most_severe)
-end
-
----custom namespace
-local ns = vim.api.nvim_create_namespace('severe-diagnostics')
-
----reference to the original handler
-local orig_signs_handler = vim.diagnostic.handlers.signs
-
----Overriden diagnostics signs helper to only show the single most relevant sign
----@see `:h diagnostic-handlers`
-vim.diagnostic.handlers.signs = {
-    show = function(_, bufnr, _, opts)
-        -- get all diagnostics from the whole buffer rather
-        -- than just the diagnostics passed to the handler
-        local diagnostics = vim.diagnostic.get(bufnr)
-
-        local filtered_diagnostics = filter_diagnostics(diagnostics)
-
-        -- pass the filtered diagnostics (with the
-        -- custom namespace) to the original handler
-        orig_signs_handler.show(ns, bufnr, filtered_diagnostics, opts)
-    end,
-
-    hide = function(_, bufnr)
-        orig_signs_handler.hide(ns, bufnr)
-    end,
-}
 

@@ -4,6 +4,7 @@
         "missing-parameter"
     ],
     "Lua.diagnostics.globals": [
-        "packer_plugins"
+        "packer_plugins",
+        "vim"
     ]
 }
