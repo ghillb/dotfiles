@@ -91,9 +91,3 @@ aucmd("BufWritePost", {
   group = _binary_edit,
 })
 
--- aucmd("CursorHold", {
---   pattern = "*",
---   callback = function()
---     vim.diagnostic.open_float({ scope = "line" })
---   end,
--- })
