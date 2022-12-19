@@ -99,6 +99,7 @@ vim.diagnostic.config({
     format = function() -- diagnostic
       return ""
     end,
+    prefix = "●"
   },
 })
 
