@@ -59,7 +59,7 @@ include /usr/lib/git-core/git-sh-prompt; include /usr/lib/git/git-sh-prompt; inc
 include $CODE/scripts/bash/utils.sh
 
 # scripted behavior
-if [[ -z "$TMUX" && ("$SSH_CONNECTION" != "" || -f "/etc/wsl.conf") ]]; then initbash; fi
+if [[ -z "$TMUX" && -z $TERM_PROGRAM && ("$SSH_CONNECTION" != "" || -f "/etc/wsl.conf") ]]; then initbash; fi
 if [[ "$SSH_CONNECTION" != "" ]]; then trap "kill -9 $(pidof ssh-agent)&>/dev/null" 0; fi
 
 # key binds
