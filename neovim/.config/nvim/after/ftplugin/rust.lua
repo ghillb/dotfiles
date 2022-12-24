@@ -1,4 +1,3 @@
-local e = vim.fn.expand
 local _, overseer = pcall(require, "overseer")
 
 overseer.register_template({
@@ -9,7 +8,7 @@ overseer.register_template({
         "rustc",
         vim.api.nvim_buf_get_name(0),
         "-o",
-        string.format("%s.out", e("%:p:r")),
+        string.format("%s.out", vim.fn.expand("%:p:r")),
       },
     }
   end,
@@ -29,7 +28,7 @@ overseer.register_template({
         "cargo",
         "build",
         "--manifest-path",
-        string.format("%s/Cargo.toml", e("%:h:h")),
+        vim.fs.find("Cargo.toml", { path = vim.fn.getcwd() })[1],
       },
     }
   end,

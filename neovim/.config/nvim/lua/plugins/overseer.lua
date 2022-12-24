@@ -167,7 +167,7 @@ local packer_opts = {
       },
       priority = 50,
       condition = {
-        filetype = { "c", "cpp" },
+        filetype = { "c", "cpp", "rust" },
       },
     })
 
@@ -204,7 +204,9 @@ local packer_opts = {
       priority = 1000,
     })
 
-    vim.keymap.set("n", "<a-bs>", ":OverseerToggle<cr>")
+    vim.keymap.set("n", "<a-|>", vim.cmd.OverseerRun)
+    vim.keymap.set("n", "<a-bs>", vim.cmd.OverseerToggle)
+
     vim.keymap.set("n", "<a-s-r>", function()
       _G.overseer_config.run[vim.bo.filetype]()
     end)
