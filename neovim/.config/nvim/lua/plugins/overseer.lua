@@ -204,7 +204,7 @@ local packer_opts = {
       priority = 1000,
     })
 
-    vim.keymap.set("n", "<a-|>", vim.cmd.OverseerRun)
+    vim.keymap.set("n", "<a-\\>", vim.cmd.OverseerRun)
     vim.keymap.set("n", "<a-bs>", vim.cmd.OverseerToggle)
 
     vim.keymap.set("n", "<a-s-r>", function()
