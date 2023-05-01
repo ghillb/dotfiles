@@ -6,5 +6,6 @@
     "Lua.diagnostics.globals": [
         "packer_plugins",
         "vim"
-    ]
+    ],
+    "workspace.checkThirdParty": false
 }

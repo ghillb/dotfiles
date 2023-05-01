@@ -22,7 +22,7 @@ local packer_opts = {
     local mason_lspconfig = require("mason-lspconfig")
 
     mason_lspconfig.setup({
-      ensure_installed = { "sumneko_lua" },
+      ensure_installed = { "lua_ls" },
     })
 
     -- lsp-config
@@ -31,7 +31,7 @@ local packer_opts = {
       local opts = {}
       opts.capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-      if server == "sumneko_lua" then
+      if server == "lua_ls" then
         require("neodev").setup({})
         opts = {
           settings = {

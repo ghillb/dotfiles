@@ -6,7 +6,7 @@ local packer_opts = {
       return
     end
 
-    aerial.setup({})
+    aerial.setup()
 
     -- set keys
     vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>")

@@ -39,7 +39,7 @@ return require("packer").startup({
       plug({ remote = "junegunn/gv.vim" })
       plug({ config = "vimwiki" })
       plug({ config = "vimtex" })
-      plug({ config = "neorg" })
+      -- plug({ config = "neorg" })
       plug({ remote = "mbbill/undotree" })
       plug({ config = "neoterm" })
       plug({ config = "copilot" })
