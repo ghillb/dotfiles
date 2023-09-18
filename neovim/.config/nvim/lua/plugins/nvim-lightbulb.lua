@@ -17,7 +17,7 @@ local packer_opts = {
     })
 
     local config = {
-      ignore = { "null-ls" },
+      ignore = { ft = {"null-ls"} },
       sign = {
         enabled = false,
         priority = 15,
