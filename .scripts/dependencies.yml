@@ -45,6 +45,7 @@
           - wget
           - rsync
           - neovim
+          - python3-neovim
           - tmux
           - tig
           - htop
@@ -55,7 +56,6 @@
           - nnn
           - jq
           - bat
-          - exa
           - gron
           - curl
           - shellcheck
