@@ -16,7 +16,6 @@ if [ "$KITTY_WINDOW_ID" ]; then export TERM="xterm-kitty"; else export TERM=xter
 if [[ "$(</proc/version)" == *microsoft* ]];then
   export DISPLAY=$(ip route list default | awk '{print $3}'):0
   export LIBGL_ALWAYS_INDIRECT=1
-  export TERM='ms-terminal'
 fi
 
 if [ -f /etc/redhat-release ]; then
