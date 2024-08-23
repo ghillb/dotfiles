@@ -12,12 +12,6 @@ set bell-style none
 # if kitty available set TERM accordingly
 if [ "$KITTY_WINDOW_ID" ]; then export TERM="xterm-kitty"; else export TERM=xterm-256color; fi
 
-# set WSL specific env vars
-if [[ "$(</proc/version)" == *microsoft* ]];then
-  export DISPLAY=$(ip route list default | awk '{print $3}'):0
-  export LIBGL_ALWAYS_INDIRECT=1
-fi
-
 if [ -f /etc/redhat-release ]; then
   export "PKG_MANAGER=dnf"
 fi
