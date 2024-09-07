@@ -138,7 +138,30 @@ ped() {
   nvim +$LINE_POS $FILE_PATH
 }
 
-ns () {
+ns() {
   grep -C 5 "$*" ~/.notes/* -r --exclude-dir={html,resources};
 }
 
+gitignore() {
+  git_root=$(git rev-parse --show-toplevel)
+  gitignore_file="$git_root/.gitignore"
+
+  if [ ! -f "$gitignore_file" ]; then
+    echo "Warning: .gitignore file does not exist."
+    read -p "Do you want to create one? (y/n): " create_gitignore
+    if [ "$create_gitignore" != "y" ]; then
+      echo "Aborting."
+      return
+    else
+      touch "$gitignore_file"
+      echo ".gitignore file created."
+    fi
+  fi
+
+  if ! grep -qxF "$1" "$gitignore_file"; then
+    echo "$1" >> "$gitignore_file"
+    echo "$1 added to .gitignore."
+  else
+    echo "$1 is already in .gitignore."
+  fi
+}
