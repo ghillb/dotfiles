@@ -30,13 +30,6 @@
       tags:
         - pre-requisites
 
-    - name: Add neovim-ppa repository
-      ansible.builtin.apt_repository:
-        repo: ppa:neovim-ppa/unstable
-        state: present
-      when: ansible_distribution == 'Ubuntu'
-      tags:
-        - terminal-utilities
 
     - name: Install terminal-utilities
       ansible.builtin.package:
@@ -44,8 +37,6 @@
           - curl
           - wget
           - rsync
-          - neovim
-          - python3-neovim
           - tmux
           - tig
           - htop
