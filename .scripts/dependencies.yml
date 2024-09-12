@@ -38,6 +38,7 @@
           - wget
           - rsync
           - tmux
+          - neovim
           - tig
           - htop
           - podman
