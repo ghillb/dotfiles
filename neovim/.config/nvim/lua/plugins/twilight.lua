@@ -1,6 +1,5 @@
-local packer_opts = {
-  "folke/twilight.nvim",
-  config = function()
+
+return function()
     local ok, twilight = pcall(require, 'twilight')
     if not ok then
       return
@@ -22,6 +21,4 @@ local packer_opts = {
     }
 
     twilight.setup(config)
-  end,
-}
-return packer_opts
+end

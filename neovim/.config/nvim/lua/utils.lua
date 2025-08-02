@@ -2,47 +2,25 @@ _G.P = vim.pretty_print
 _G.user = { indicators = {}, fn = {} }
 
 function user.fn.drawer_toggle()
-  local lib = require("diffview.lib")
-  local view = lib.get_current_view()
-  if view then
-    if vim.bo.filetype == "DiffviewFiles" then
-      vim.cmd(":DiffviewToggleFiles")
-    else
-      vim.cmd(":DiffviewFocusFiles")
-    end
-  else
-    vim.cmd(":Neotree toggle reveal")
-  end
-end
 
-function user.fn.toggle_fugitive()
-  vim.cmd(":Neotree close")
-  if vim.bo.filetype == "fugitive" then
-    vim.fn.feedkeys("gq")
-  end
-  vim.cmd(":G")
+  vim.cmd(":Neotree toggle reveal")
 end
 
 function user.fn.close_view()
-  local lib = require("diffview.lib")
-  local view = lib.get_current_view()
-  if view then
-    vim.cmd(":DiffviewClose")
+
+  if packer_plugins["neo-tree.nvim"] then
+    vim.cmd(":Neotree close")
+  end
+  if vim.bo.filetype == "vim" then
+    vim.cmd(":q")
   else
-    if packer_plugins["neo-tree.nvim"] then
-      vim.cmd(":Neotree close")
-    end
-    if vim.bo.filetype == "vim" then
-      vim.cmd(":q")
-    else
-      vim.cmd(":bdelete")
-    end
+    vim.cmd(":bdelete")
   end
 end
 
 function user.fn.populate_info()
   user.fn.set_title_string()
-  -- user.fn.set_win_bar()
+
 end
 
 function user.fn.is_git_work_tree()
@@ -94,15 +72,6 @@ function user.fn.set_win_bar()
   if not ok then
     return
   end
-end
-
-function user.fn.new_terminal()
-  if vim.api.nvim_buf_get_name(0):find("term://") then
-    vim.cmd(":Tnew")
-    vim.cmd(":Tnext")
-  end
-  vim.cmd(":Ttoggle")
-  vim.api.nvim_feedkeys(vim.api.nvim_eval('"\\<c-w>ji"'), "m", true)
 end
 
 function user.fn.toggle_gutter()
@@ -177,14 +146,6 @@ function user.fn.set_root(...)
   end
 end
 
-function user.fn.disable_telescope_mappings()
-  vim.api.nvim_buf_set_keymap(0, "", "<c-p>", "<nop>", { noremap = false, silent = true })
-  vim.api.nvim_buf_set_keymap(0, "", "<c-e>", "<nop>", { noremap = false, silent = true })
-  vim.api.nvim_buf_set_keymap(0, "", "<c-b>", "<nop>", { noremap = false, silent = true })
-  vim.api.nvim_buf_set_keymap(0, "", "<c-g>", "<nop>", { noremap = false, silent = true })
-  vim.api.nvim_buf_set_keymap(0, "", "<c-/>", "<nop>", { noremap = false, silent = true })
-end
-
 function table.merge(...)
   local result = {}
   for _, t in ipairs({ ... }) do
@@ -251,33 +212,6 @@ function user.fn.toggle_variable(args)
     return
   end
   vim.api.nvim_set_var(args.var, not val)
-end
-
--- tab key overload
-local _, neogen = pcall(require, "neogen")
-
-function user.fn.tab_binding()
-  if vim.fn.pumvisible() ~= 0 then
-    return "<C-n>"
-  elseif neogen.jumpable() then
-    return "<cmd>lua require('neogen').jump_next()<cr>"
-  elseif vim.fn["vsnip#available"](1) ~= 0 then
-    return "<plug>(vsnip-expand-or-jump)"
-  else
-    return "<tab>"
-  end
-end
-
-function user.fn.s_tab_binding()
-  if vim.fn.pumvisible() ~= 0 then
-    return "<C-p>"
-  elseif neogen.jumpable() then
-    return "<cmd>lua require('neogen').jump_prev()<cr>"
-  elseif vim.fn["vsnip#jumpable"](-1) ~= 0 then
-    return "<plug>(vsnip-jump-prev)"
-  else
-    return "<c-d>"
-  end
 end
 
 function user.fn.load_local_config()

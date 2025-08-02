@@ -1,6 +1,7 @@
 require("utils")
 require("settings")
 require("events")
+require("bootstrap")
 require("plugins")
 require("theme")
 require("keymaps")

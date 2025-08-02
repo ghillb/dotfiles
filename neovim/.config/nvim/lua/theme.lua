@@ -18,7 +18,6 @@ local function set_global_theme()
     vim.api.nvim_set_hl(0, hl_group, value)
   end
 
-  -- vim highlight groups
   set_hl("Border", { fg = palette.darkgray })
   set_hl("FloatBorder", { fg = palette.darkgray })
   set_hl("EndOfBuffer", { fg = palette.darkgray })
@@ -26,18 +25,18 @@ local function set_global_theme()
   set_hl("VertSplit", { bg = nil, fg = palette.darkgray })
   set_hl("TabLineFill", { bg = nil })
   set_hl("DiagnosticError", { fg = palette.red })
-  -- plugin highlight groups
-  set_hl("GitSignsAdd", { bg = nil, fg = palette.green })
-  set_hl("GitSignsAddPreview", { link = "GitSignsAdd" })
-  set_hl("GitSignsAddInline", { bg = palette.green, fg = palette.black })
-  set_hl("GitSignsChange", { bg = nil, fg = palette.blue })
-  set_hl("GitSignsDelete", { bg = nil, fg = palette.red })
-  set_hl("TelescopePromptBorder", { fg = palette.darkgray })
-  set_hl("TelescopeResultsBorder", { fg = palette.darkgray })
-  set_hl("TelescopePreviewBorder", { fg = palette.darkgray })
+
   set_hl("IlluminatedWordText", { bg = palette.darkgray })
   set_hl("IlluminatedWordRead", { bg = palette.darkgray })
   set_hl("IlluminatedWordWrite", { bg = palette.darkgray })
+
+  set_hl("Normal", { bg = "none" })
+  set_hl("NormalFloat", { bg = "none" })
+  set_hl("SignColumn", { bg = "none" })
+  set_hl("LineNr", { bg = "none" })
+  set_hl("CursorLineNr", { bg = "none" })
+  set_hl("StatusLine", { bg = "none" })
+  set_hl("StatusLineNC", { bg = "none" })
 end
 
 vim.api.nvim_create_autocmd("colorscheme", {
@@ -46,61 +45,24 @@ vim.api.nvim_create_autocmd("colorscheme", {
   end,
 })
 
--- gruvbox
-local ok, gruvbox_colors = pcall(require, "gruvbox-baby.colors")
-if not ok then
-  return
-end
+vim.cmd.colorscheme("default")
 
-local gbc = gruvbox_colors.config()
-
-vim.g.gruvbox_baby_transparent_mode = 1
-vim.g.gruvbox_baby_background_color = "dark"
-vim.g.gruvbox_baby_highlights = {
-  Cursor = { fg = gbc.background_dark, bg = gbc.pink },
-  Search = { fg = gbc.background_dark, bg = gbc.bright_yellow, style = "NONE" },
-  IncSearch = { fg = gbc.background_dark, bg = gbc.blue_gray },
-  SpellBad = { style = "undercurl" },
-  MsgArea = { fg = gbc.milk },
-  NormalFloat = { bg = gbc.background_light },
-  diffLine = { fg = gbc.dark_gray },
-  DiffDelete = { fg = gbc.red },
-  Identifier = { fg = gbc.pink },
-  PreProc = { fg = gbc.dark_gray },
-  QuickFixLine = { fg = gbc.dark_gray, bg = gbc.medium_gray },
-  TSConstructor = { fg = gbc.clean_green },
-  TSPunctBracket = { fg = gbc.orange },
-  Boolean = { fg = gbc.pink },
-  Keyword = { fg = gbc.bright_yellow },
-  MatchParen = { fg = gbc.background_dark, bg = gbc.orange },
-  Visual = { bg = gbc.medium_gray },
-  fugitiveUntrackedHeading = { fg = gbc.background_dark, bg = gbc.orange },
-  fugitiveUntrackedModifier = { fg = gbc.orange },
-  fugitiveUntrackedSection = { fg = gbc.pink },
-  fugitiveUnstagedHeading = { fg = gbc.background_dark, bg = gbc.soft_yellow },
-  fugitiveUnstagedSection = { fg = gbc.pink },
-  fugitiveStagedHeading = { fg = gbc.background_dark, bg = gbc.forest_green },
-  fugitiveStagedSection = { fg = gbc.pink },
-  fugitiveSymbolicRef = { fg = gbc.magenta },
-  gitcommitHeader = { fg = gbc.dark_gray },
-  gitcommitBranch = { fg = gbc.magenta },
-  gitcommitFile = { fg = gbc.pink },
-  debugPc = { bg = gbc.background },
-  cppTSVariable = { fg = gbc.light_blue },
-}
-
--- nightfox
-require("nightfox").setup({
-  options = {
-    transparent = true,
-  },
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    vim.cmd([[
+      highlight Normal guibg=NONE ctermbg=NONE
+      highlight NormalFloat guibg=NONE ctermbg=NONE
+      highlight SignColumn guibg=NONE ctermbg=NONE
+      highlight LineNr guibg=NONE ctermbg=NONE
+      highlight CursorLineNr guibg=NONE ctermbg=NONE
+      highlight StatusLine guibg=NONE ctermbg=NONE
+      highlight StatusLineNC guibg=NONE ctermbg=NONE
+      highlight EndOfBuffer guibg=NONE ctermbg=NONE
+      highlight TabLineFill guibg=NONE ctermbg=NONE
+      highlight NonText guibg=NONE ctermbg=NONE
+      highlight VertSplit guibg=NONE ctermbg=NONE
+      highlight Folded guibg=NONE ctermbg=NONE
+      highlight FoldColumn guibg=NONE ctermbg=NONE
+    ]])
+  end
 })
-
-require("tokyonight").setup({
-  style = "storm",
-  transparent = false,
-})
--- enable colorscheme
-vim.api.nvim_cmd({ cmd = "colorscheme", args = { "gruvbox-baby" } }, { output = false })
--- vim.api.nvim_cmd({ cmd = "colorscheme", args = { "nightfox" } }, { output = false })
--- vim.api.nvim_cmd({ cmd = "colorscheme", args = { "tokyonight" } }, { output = false })

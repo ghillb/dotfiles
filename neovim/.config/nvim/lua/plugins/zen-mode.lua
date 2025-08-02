@@ -1,7 +1,6 @@
-local packer_opts = {
-  "folke/zen-mode.nvim",
-  config = function()
-    local ok, zen_mode = pcall(require, "zen_mode")
+
+return function()
+    local ok, zen_mode = pcall(require, "zen-mode")
     if not ok then
       return
     end
@@ -18,7 +17,7 @@ local packer_opts = {
           cursorline = false,
           cursorcolumn = false,
           foldcolumn = "0",
-          list = false, -- disable whitespace characters
+          list = false,
         },
       },
       plugins = {
@@ -35,12 +34,10 @@ local packer_opts = {
           font = "+2",
         },
       },
-      -- callbacks
+
       on_open = function(win) end,
       on_close = function() end,
     }
 
     zen_mode.setup(config)
-  end,
-}
-return packer_opts
+end
