@@ -107,4 +107,12 @@ for type, icon in pairs(_G.DiagnosticSigns) do
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
+-- Disable treesitter highlighting for lua files to avoid query errors
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "lua",
+  callback = function()
+    vim.treesitter.stop()
+  end,
+})
+
 
