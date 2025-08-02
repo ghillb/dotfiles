@@ -7,10 +7,9 @@ function user.fn.drawer_toggle()
 end
 
 function user.fn.close_view()
-
-  if packer_plugins["neo-tree.nvim"] then
-    vim.cmd(":Neotree close")
-  end
+  -- Try to close neo-tree if it's open
+  pcall(vim.cmd, "Neotree close")
+  
   if vim.bo.filetype == "vim" then
     vim.cmd(":q")
   else

@@ -73,20 +73,6 @@ return function()
     },
     nesting_rules = {},
     filesystem = {
-      filtered_items = {
-        visible = false,
-        hide_dotfiles = true,
-        hide_gitignored = true,
-        hide_by_name = {
-          ".DS_Store",
-          "thumbs.db",
-          "node_modules",
-        },
-        never_show = {
-          ".DS_Store",
-          "thumbs.db",
-        },
-      },
       follow_current_file = {
         enabled = true,
       },
@@ -139,7 +125,6 @@ return function()
         handler = function(arg)
           vim.opt_local.signcolumn = "auto"
           vim.opt_local.fillchars = "eob: "
-          user.fn.disable_telescope_mappings()
         end,
       },
     },

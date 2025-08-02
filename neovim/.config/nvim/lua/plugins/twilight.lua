@@ -21,4 +21,7 @@ return function()
     }
 
     twilight.setup(config)
+    
+    -- Keybinding
+    vim.keymap.set("n", "<leader>tw", ":Twilight<cr>", { silent = true })
 end

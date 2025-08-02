@@ -11,4 +11,8 @@ return function()
   }
 
   trouble.setup(config)
+  
+  -- Keybindings
+  vim.keymap.set("n", "<leader>tt", "<cmd>TroubleToggle<cr>")
+  vim.keymap.set("n", "<a-bs>", "<cmd>TroubleToggle document_diagnostics<cr>")
 end

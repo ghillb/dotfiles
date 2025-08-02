@@ -40,4 +40,7 @@ return function()
     }
 
     zen_mode.setup(config)
+    
+    -- Keybinding
+    vim.keymap.set("n", "<leader>tz", ":ZenMode<cr>", { silent = true })
 end

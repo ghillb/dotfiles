@@ -55,4 +55,10 @@ return function()
       vim.notify("Cybu: Not active in '" .. vim.bo.filetype .. "' filetype.", vim.log.levels.INFO)
     end,
   })
+  
+  -- Keybindings
+  vim.keymap.set({ "n", "v" }, "]b", "<esc><plug>(CybuLastusedNext)")
+  vim.keymap.set({ "n", "v" }, "[b", "<esc><plug>(CybuLastusedPrev)")
+  vim.keymap.set("n", "<up>", "<plug>(CybuPrev)")
+  vim.keymap.set("n", "<down>", "<plug>(CybuNext)")
 end

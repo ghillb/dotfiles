@@ -4,23 +4,24 @@ local M = {}
 local plugins = {
 
   ["vim-surround"] = "https://github.com/tpope/vim-surround",
-
   ["vim-illuminate"] = "https://github.com/RRethy/vim-illuminate",
   ["lualine.nvim"] = "https://github.com/nvim-lualine/lualine.nvim",
   ["cybu.nvim"] = "https://github.com/ghillb/cybu.nvim",
-
-  -- Folke's plugins
   ["trouble.nvim"] = "https://github.com/folke/trouble.nvim",
   ["todo-comments.nvim"] = "https://github.com/folke/todo-comments.nvim",
   ["which-key.nvim"] = "https://github.com/folke/which-key.nvim",
   ["persistence.nvim"] = "https://github.com/folke/persistence.nvim",
   ["twilight.nvim"] = "https://github.com/folke/twilight.nvim",
   ["zen-mode.nvim"] = "https://github.com/folke/zen-mode.nvim",
-
   ["neo-tree.nvim"] = "https://github.com/nvim-neo-tree/neo-tree.nvim",
   ["plenary.nvim"] = "https://github.com/nvim-lua/plenary.nvim",
   ["nvim-web-devicons"] = "https://github.com/nvim-tree/nvim-web-devicons",
   ["nui.nvim"] = "https://github.com/MunifTanjim/nui.nvim",
+  ["neogit"] = "https://github.com/NeogitOrg/neogit",
+  
+  -- Fuzzy finder
+  ["telescope.nvim"] = "https://github.com/nvim-telescope/telescope.nvim",
+  ["telescope-fzf-native.nvim"] = "https://github.com/nvim-telescope/telescope-fzf-native.nvim",
 }
 
 -- Clone a plugin if it doesn't exist
@@ -33,6 +34,16 @@ local function ensure_plugin(name, url)
       print("Failed to clone " .. name)
     else
       print("Successfully cloned " .. name)
+      -- Build telescope-fzf-native if it was just cloned
+      if name == "telescope-fzf-native.nvim" then
+        print("Building telescope-fzf-native...")
+        vim.fn.system({"make", "-C", install_path})
+        if vim.v.shell_error == 0 then
+          print("Successfully built telescope-fzf-native")
+        else
+          print("Failed to build telescope-fzf-native (make sure you have a C compiler installed)")
+        end
+      end
     end
   end
 end
@@ -72,6 +83,8 @@ function M.setup()
   load_plugin_config("lualine")
   load_plugin_config("neo-tree")
   load_plugin_config("cybu")
+  load_plugin_config("neogit")
+  load_plugin_config("telescope")
 end
 
 vim.api.nvim_create_user_command("UpdatePlugins", function()
