@@ -7,6 +7,7 @@ end
 
 vim.opt.encoding                            = 'utf-8'
 vim.opt.fileencoding                        = 'utf-8'
+vim.opt.fileformats                         = 'unix,dos'
 vim.opt.clipboard                           = 'unnamedplus'
 vim.opt.mouse                               = 'nvi'
 vim.opt.backspace                           = 'indent,eol,start'
@@ -115,4 +116,20 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- Format command to clean up files
+vim.api.nvim_create_user_command('Format', function()
+  -- Save cursor position
+  local cursor = vim.api.nvim_win_get_cursor(0)
+  
+  -- Remove Windows line endings (^M)
+  vim.cmd("silent! %s/\\r//ge")
+  
+  -- Remove trailing whitespace
+  vim.cmd("silent! %s/\\s\\+$//ge")
+  
+  -- Restore cursor position
+  pcall(vim.api.nvim_win_set_cursor, 0, cursor)
+  
+  print("Formatted: removed ^M, trailing whitespace, and trailing blank lines")
+end, { desc = "Format file: remove ^M, trailing whitespace, and trailing blank lines" })
 

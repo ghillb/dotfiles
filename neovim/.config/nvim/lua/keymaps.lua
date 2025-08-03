@@ -136,6 +136,7 @@ map("n", "<leader>p", "o<esc>p")
 map("n", "<leader>P", "O<esc>P")
 map("n", "<leader>o", "o<esc>")
 map("n", "<leader>O", "O<esc>")
+map("n", "<leader>f", "<cmd>Format<cr>", { desc = "Format file" })
 
 map("n", "<localleader><cr>", ":lua user.fn.set_root('git_worktree', true)<cr>", { silent = true })
 map("n", "<localleader><bs>", ":lua user.fn.set_root('parent_dir', true)<cr>", { silent = true })
