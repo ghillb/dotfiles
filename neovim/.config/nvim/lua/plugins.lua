@@ -20,6 +20,9 @@ local plugins = {
   ["neogit"] = "https://github.com/NeogitOrg/neogit",
   ["gitsigns.nvim"] = "https://github.com/lewis6991/gitsigns.nvim",
   
+  -- Treesitter for syntax highlighting
+  ["nvim-treesitter"] = "https://github.com/nvim-treesitter/nvim-treesitter",
+  
   -- Fuzzy finder
   ["telescope.nvim"] = "https://github.com/nvim-telescope/telescope.nvim",
   ["telescope-fzf-native.nvim"] = "https://github.com/nvim-telescope/telescope-fzf-native.nvim",
@@ -86,6 +89,7 @@ function M.setup()
   load_plugin_config("cybu")
   load_plugin_config("neogit")
   load_plugin_config("gitsigns")
+  load_plugin_config("nvim-treesitter")
   load_plugin_config("telescope")
 end
 

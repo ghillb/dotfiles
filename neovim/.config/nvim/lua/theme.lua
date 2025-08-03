@@ -37,6 +37,24 @@ local function set_global_theme()
   set_hl("CursorLineNr", { bg = "none" })
   set_hl("StatusLine", { bg = "none" })
   set_hl("StatusLineNC", { bg = "none" })
+  set_hl("NonText", { bg = "none" })
+  set_hl("Folded", { bg = "none" })
+  
+  -- Fix diff colors for better readability
+  set_hl("DiffAdd", { fg = "#ffffff", bg = "#50a050" })
+  set_hl("DiffChange", { fg = "#ffffff", bg = "#808020" })
+  set_hl("DiffDelete", { fg = "#ffffff", bg = "#a05050" })
+  set_hl("DiffText", { fg = "#ffffff", bg = "#a0a020" })
+  
+  -- Neogit specific highlight groups (aligned with habamax)
+  set_hl("NeogitDiffAdd", { fg = "#bcbcbc", bg = "#2d3d2d" })
+  set_hl("NeogitDiffDelete", { fg = "#bcbcbc", bg = "#3d2d2d" })
+  set_hl("NeogitDiffContext", { fg = "#767676", bg = "none" })
+  set_hl("NeogitDiffAddHighlight", { fg = "#ffffff", bg = "#3d4d3d" })
+  set_hl("NeogitDiffDeleteHighlight", { fg = "#ffffff", bg = "#4d3d3d" })
+  set_hl("NeogitDiffContextHighlight", { fg = "#bcbcbc", bg = "#262626" })
+  set_hl("NeogitHunkHeader", { fg = "#af87af", bg = "#2a2a2a" })
+  set_hl("NeogitHunkHeaderHighlight", { fg = "#ffffff", bg = "#3a3a3a" })
 end
 
 vim.api.nvim_create_autocmd("colorscheme", {
@@ -45,24 +63,12 @@ vim.api.nvim_create_autocmd("colorscheme", {
   end,
 })
 
-vim.cmd.colorscheme("default")
+-- Options: habamax, lunaperche, retrobox, wildcharm, zaibatsu
+vim.cmd.colorscheme("habamax")
 
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
-    vim.cmd([[
-      highlight Normal guibg=NONE ctermbg=NONE
-      highlight NormalFloat guibg=NONE ctermbg=NONE
-      highlight SignColumn guibg=NONE ctermbg=NONE
-      highlight LineNr guibg=NONE ctermbg=NONE
-      highlight CursorLineNr guibg=NONE ctermbg=NONE
-      highlight StatusLine guibg=NONE ctermbg=NONE
-      highlight StatusLineNC guibg=NONE ctermbg=NONE
-      highlight EndOfBuffer guibg=NONE ctermbg=NONE
-      highlight TabLineFill guibg=NONE ctermbg=NONE
-      highlight NonText guibg=NONE ctermbg=NONE
-      highlight VertSplit guibg=NONE ctermbg=NONE
-      highlight Folded guibg=NONE ctermbg=NONE
-      highlight FoldColumn guibg=NONE ctermbg=NONE
-    ]])
+    -- Apply theme overrides after everything is loaded
+    set_global_theme()
   end
 })
