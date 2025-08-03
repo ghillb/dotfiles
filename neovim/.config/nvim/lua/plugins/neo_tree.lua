@@ -14,6 +14,7 @@ return function()
       follow_current_file = {
         enabled = true,
       },
+      hijack_netrw_behavior = "open_current",
     },
     event_handlers = {
       {

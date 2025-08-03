@@ -1,9 +1,23 @@
 local aucmd = vim.api.nvim_create_autocmd
 local augrp = vim.api.nvim_create_augroup
 
+vim.g.opened_with_dir = false
+
 aucmd("VimEnter", {
   callback = function()
-    user.fn.set_root("start_dir", false)
+    local arg = vim.fn.argv(0)
+    if arg ~= "" and vim.fn.isdirectory(arg) == 1 then
+      local abs_path = vim.fn.fnamemodify(arg, ":p")
+      -- Set nvim_root to prevent set_root from changing it
+      vim.g.nvim_root = abs_path
+      vim.g.opened_with_dir = true
+      -- Defer the cd to happen after all other initialization
+      vim.defer_fn(function()
+        vim.cmd("cd " .. vim.fn.fnameescape(abs_path))
+      end, 100)
+    elseif arg == "" or vim.fn.isdirectory(arg) == 0 then
+      user.fn.set_root("start_dir", false)
+    end
   end,
   group = augrp("VimEnterGroup", { clear = true }),
 })
@@ -18,7 +32,13 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 aucmd("BufUnload", {
   pattern = "<buffer>",
-  command = "call timer_start(1, { tid -> execute('lua user.fn.set_root(\"git_worktree\")')})",
+  callback = function()
+    if not vim.g.opened_with_dir then
+      vim.fn.timer_start(1, function()
+        user.fn.set_root("git_worktree")
+      end)
+    end
+  end,
   group = augrp("BufUnloadGroup", { clear = true }),
 })
 
