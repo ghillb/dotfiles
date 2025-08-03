@@ -18,6 +18,7 @@ local plugins = {
   ["nvim-web-devicons"] = "https://github.com/nvim-tree/nvim-web-devicons",
   ["nui.nvim"] = "https://github.com/MunifTanjim/nui.nvim",
   ["neogit"] = "https://github.com/NeogitOrg/neogit",
+  ["gitsigns.nvim"] = "https://github.com/lewis6991/gitsigns.nvim",
   
   -- Fuzzy finder
   ["telescope.nvim"] = "https://github.com/nvim-telescope/telescope.nvim",
@@ -84,6 +85,7 @@ function M.setup()
   load_plugin_config("neo-tree")
   load_plugin_config("cybu")
   load_plugin_config("neogit")
+  load_plugin_config("gitsigns")
   load_plugin_config("telescope")
 end
 
