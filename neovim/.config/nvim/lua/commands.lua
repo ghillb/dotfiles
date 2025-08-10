@@ -45,7 +45,7 @@ vim.api.nvim_create_user_command('CommitMsg', function()
   
   table.insert(lines, '')
   
-  vim.api.nvim_put(lines, 'l', true, true)
+  vim.api.nvim_put(lines, 'c', false, true)
   
   vim.notify("Commit message generated successfully!", vim.log.levels.INFO)
 end, {
