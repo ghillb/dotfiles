@@ -149,6 +149,7 @@ map("n", "<localleader>dw", ":%s/\\s\\+$//e<cr>")
 map("n", "<localleader>ve", ":e $MYVIMRC<cr>")
 map("n", "<localleader>vr", ":source $MYVIMRC<cr>")
 map("n", "<localleader>vs", ":source %<cr>")
+map("n", "<localleader>gc", "<cmd>CommitMsg<cr>", { desc = "Generate commit message" })
 
 map("n", "<localleader>pu", ":UpdatePlugins<cr>")
 
