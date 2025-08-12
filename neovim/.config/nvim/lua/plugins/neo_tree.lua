@@ -1,7 +1,12 @@
 return function()
   vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
-  require("neo-tree").setup({
+  local ok, neotree = pcall(require, "neo-tree")
+  if not ok then
+    return
+  end
+
+  neotree.setup({
     close_if_last_window = true,
     window = {
       width = 32,
