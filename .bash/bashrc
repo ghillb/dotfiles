@@ -48,6 +48,11 @@ export ENABLE_BACKGROUND_TASKS=1
 source $DOTFILES/.bash/functions.sh
 source $DOTFILES/.bash/aliases.sh
 source $DOTFILES/.bash/completion.sh
+
+# Initialize Starship prompt if available
+if command -v starship &>/dev/null; then
+    eval "$(starship init bash)"
+fi
 include /usr/lib/git-core/git-sh-prompt; include /usr/lib/git/git-sh-prompt; include /usr/share/git-core/contrib/completion/git-prompt.sh
 include $CODE/scripts/bash/utils.sh
 
@@ -74,6 +79,5 @@ bind "set completion-ignore-case on"
 bind "set menu-complete-display-prefix on"
 
 
-if command -v starship &> /dev/null; then eval "$(starship init bash)"; fi
 if command -v direnv &>/dev/null; then eval "$(direnv hook bash)"; fi
 if command -v zoxide &>/dev/null; then eval "$(zoxide init --cmd cd bash)"; fi

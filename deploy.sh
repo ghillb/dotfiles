@@ -97,6 +97,14 @@ if [[ "$SKIP_PACKAGES" == false ]]; then
         fd-find
     )
     
+    # Install Starship prompt if not already installed
+    if ! command -v starship &>/dev/null; then
+        print_info "Installing Starship prompt..."
+        curl -sS https://starship.rs/install.sh | sh
+    else
+        print_info "Starship already installed"
+    fi
+    
     for pkg in "${PACKAGES[@]}"; do
         if apt-cache show "$pkg" &>/dev/null; then
             sudo apt-get install -y "$pkg" || print_warn "Failed to install $pkg"
