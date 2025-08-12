@@ -134,8 +134,8 @@ print_info "Installing dotfiles with stow..."
 # Get all package directories (excluding hidden directories and files)
 PACKAGES=$(find . -maxdepth 1 -type d ! -path . ! -path './.git' ! -path './.git/*' ! -path './.*' -exec basename {} \;)
 
-# System packages that need sudo
-SYSTEM_PACKAGES="bin"
+# System packages that need sudo (none currently)
+SYSTEM_PACKAGES=""
 
 for package in $PACKAGES; do
     if [[ " $SYSTEM_PACKAGES " =~ " $package " ]]; then
