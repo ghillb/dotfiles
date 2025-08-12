@@ -72,7 +72,6 @@ if [[ "$SKIP_PACKAGES" == false ]]; then
     # Install packages that are available
     PACKAGES=(
         tmux
-        neovim
         ripgrep
         bat
         jq
@@ -96,6 +95,16 @@ if [[ "$SKIP_PACKAGES" == false ]]; then
         fzf
         fd-find
     )
+    
+    # Install Neovim 0.11+ via snap
+    if ! command -v nvim &>/dev/null; then
+        print_info "Installing Neovim via snap..."
+        sudo snap install nvim --classic
+    else
+        # Check version if already installed
+        NVIM_VERSION=$(nvim --version | head -1 | grep -oP '\d+\.\d+' | head -1)
+        print_info "Neovim $NVIM_VERSION already installed"
+    fi
     
     # Install Starship prompt if not already installed
     if ! command -v starship &>/dev/null; then
