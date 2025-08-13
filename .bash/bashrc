@@ -49,6 +49,10 @@ source $DOTFILES/.bash/functions.sh
 source $DOTFILES/.bash/aliases.sh
 source $DOTFILES/.bash/completion.sh
 
+if command -v fzf &>/dev/null; then
+    eval "$(fzf --bash)"
+fi
+
 # Initialize Starship prompt if available
 if command -v starship &>/dev/null; then
     eval "$(starship init bash)"
@@ -63,11 +67,10 @@ if [[ "$SSH_CONNECTION" != "" ]]; then trap "kill -9 $(pidof ssh-agent)&>/dev/nu
 # key binds
 bind -x '"\C-b": "cd .."'
 bind -x '"\C-j": "cd ~/"'
-bind -x '"\C-t": "tx"'
-bind -x '"\C-p": fzf-file-widget'
-bind -x '"\C-e": $(__fzf_cd__)'
-bind -x '"\C-r": __fzf_history__'
 bind -x '"\C-o": "todo"'
+if [[ -z "$TMUX" ]]; then
+    bind -x '"\e\C-t": "tx"'
+fi
 bind -x '"\C-l": clear'
 bind -x '"\C-y": fg'
 bind -x '"\e[21~": "htop"' #F10
