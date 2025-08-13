@@ -1,0 +1,21 @@
+# Ignore plugin directories that are cloned locally
+pack/
+plugin/
+
+# Ignore temporary and generated files
+*.swp
+*.swo
+*~
+.netrwhist
+tags
+.tags
+
+# Ignore session files
+Session.vim
+
+# Ignore lazy.nvim lockfile if you ever switch to it
+lazy-lock.json
+
+# Ignore any local override files
+*.local.lua
+local/
