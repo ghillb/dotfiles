@@ -60,4 +60,12 @@ return function()
   })
 
   vim.keymap.set("n", "<a-g>", "<cmd>Neogit<cr>", { desc = "Neogit status" })
+  
+  -- Add Ctrl+Q to quit Neovim entirely when in Neogit buffer
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = "NeogitStatus",
+    callback = function()
+      vim.keymap.set("n", "<C-q>", "<cmd>qa<cr>", { buffer = true, desc = "Quit Neovim" })
+    end,
+  })
 end
