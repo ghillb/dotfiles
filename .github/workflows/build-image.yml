@@ -29,7 +29,8 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: .docker
+          context: .
+          file: .docker/Dockerfile
           push: true
           tags: ghillb/devcon:latest
           build-args: |

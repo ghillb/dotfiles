@@ -3,7 +3,7 @@ USER root
 ENV DEBIAN_FRONTEND="noninteractive" TZ="Europe/Berlin"
 ENV CI=true
 RUN apt-get update && apt-get upgrade -y && \
-    apt-get install -y tzdata sudo git curl wget
+    apt-get install -y tzdata sudo git curl wget gnupg lsb-release
 RUN useradd --create-home --shell /bin/bash dv
 RUN adduser dv sudo
 RUN echo 'dv:changeme' | chpasswd
@@ -12,4 +12,4 @@ USER dv
 ENV USER=dv
 WORKDIR /home/dv
 COPY --chown=dv:dv . /home/dv/.files
-RUN cd .files && chmod +x deploy.sh && ./deploy.sh
+RUN cd /home/dv/.files && chmod +x deploy.sh && ./deploy.sh

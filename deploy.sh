@@ -34,9 +34,9 @@ while [[ $# -gt 0 ]]; do
             echo "Usage: $0 [OPTIONS]"
             echo ""
             echo "Options:"
-            echo "  --skip-packages    Skip package installation"
-            echo "  --skip-node        Skip nvm/node installation"
-            echo "  --help             Show this help message"
+            echo "  --skip-packages       Skip package installation"
+            echo "  --skip-node           Skip nvm/node installation"
+            echo "  --help                Show this help message"
             exit 0
             ;;
         *)
@@ -96,10 +96,14 @@ if [[ "$SKIP_PACKAGES" == false ]]; then
         fd-find
     )
     
-    # Install Neovim 0.11+ via snap
+    # Install Neovim 0.11+ via PPA (works everywhere including Docker)
     if ! command -v nvim &>/dev/null; then
-        print_info "Installing Neovim via snap..."
-        sudo snap install nvim --classic
+        print_info "Installing Neovim from PPA..."
+        # Add Neovim PPA (key from https://launchpad.net/~neovim-ppa/+archive/ubuntu/unstable)
+        curl -fsSL 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x9DBB0BE9366964F134855E2255F96FCF8231B6DD' | sudo gpg --dearmor -o /usr/share/keyrings/neovim-ppa.gpg
+        echo "deb [signed-by=/usr/share/keyrings/neovim-ppa.gpg] https://ppa.launchpadcontent.net/neovim-ppa/unstable/ubuntu $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/neovim-ppa.list
+        sudo apt-get update
+        sudo apt-get install -y neovim
     else
         # Check version if already installed
         NVIM_VERSION=$(nvim --version | head -1 | grep -oP '\d+\.\d+' | head -1)
@@ -109,7 +113,8 @@ if [[ "$SKIP_PACKAGES" == false ]]; then
     # Install Starship prompt if not already installed
     if ! command -v starship &>/dev/null; then
         print_info "Installing Starship prompt..."
-        curl -sS https://starship.rs/install.sh | sh
+        # Use --force flag for non-interactive environments like Docker
+        curl -sS https://starship.rs/install.sh | sh -s -- --force || print_warn "Failed to install Starship"
     else
         print_info "Starship already installed"
     fi
