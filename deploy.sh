@@ -89,10 +89,8 @@ if [[ "$SKIP_PACKAGES" == false ]]; then
         python3-dev
         sqlite3
         libsqlite3-dev
-        silversearcher-ag
         git-lfs
         tig
-        fzf
         fd-find
     )
     
@@ -110,11 +108,9 @@ if [[ "$SKIP_PACKAGES" == false ]]; then
         print_info "Neovim $NVIM_VERSION already installed"
     fi
     
-    # Install Starship prompt if not already installed
     if ! command -v starship &>/dev/null; then
         print_info "Installing Starship prompt..."
-        # Use --force flag for non-interactive environments like Docker
-        curl -sS https://starship.rs/install.sh | sh -s -- --force || print_warn "Failed to install Starship"
+        curl -sS https://starship.rs/install.sh | sudo sh -s -- --force || print_warn "Failed to install Starship"
     else
         print_info "Starship already installed"
     fi
@@ -179,17 +175,12 @@ print_info "Creating necessary directories..."
 mkdir -p "$HOME/code"
 mkdir -p "$HOME/.bash_completion.d"
 
-# Install fzf from git if not installed via package manager
-if ! command -v fzf &>/dev/null; then
-    if [[ ! -d "$HOME/.fzf" ]]; then
-        print_info "Installing fzf from git..."
-        git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME/.fzf"
-        "$HOME/.fzf/install" --all --no-update-rc --no-fish --no-zsh
-    else
-        print_info "fzf already installed from git"
-    fi
+if [[ ! -d "$HOME/.fzf" ]]; then
+    print_info "Installing fzf from git..."
+    git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME/.fzf"
+    "$HOME/.fzf/install" --all --no-update-rc --no-fish --no-zsh
 else
-    print_info "fzf already installed via package manager"
+    print_info "fzf already installed from git"
 fi
 
 # Setup bash configuration
