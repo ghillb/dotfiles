@@ -61,18 +61,14 @@ return function()
 
   vim.keymap.set("n", "<a-g>", "<cmd>Neogit<cr>", { desc = "Neogit status" })
   
-  -- Add Ctrl+Q to quit Neovim entirely when in Neogit buffer
-  -- Add C to stage all, generate commit message, and commit
   vim.api.nvim_create_autocmd("FileType", {
     pattern = "NeogitStatus",
     callback = function()
       vim.keymap.set("n", "<C-q>", "<cmd>qa<cr>", { buffer = true, desc = "Quit Neovim" })
       
-      -- Capital C: Generate AI commit message and commit staged changes
       vim.keymap.set("n", "C", function()
         vim.notify("Generating commit message and committing...", vim.log.levels.INFO)
         
-        -- Use the shared function from utils.lua with commit=true
         user.fn.generate_commit_msg({
           commit = true,
           callback = function(success, result)
@@ -86,7 +82,6 @@ return function()
             end
             
             vim.notify("Committed successfully!", vim.log.levels.INFO)
-            -- Refresh Neogit
             require('neogit').refresh()
           end
         })
