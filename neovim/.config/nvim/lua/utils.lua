@@ -220,3 +220,84 @@ function user.fn.load_local_config()
   end
 end
 
+-- Generate AI commit message for staged git changes
+-- Options:
+--   callback: function to call with (success, result) when done
+--   commit: boolean - if true, commits automatically after generating message
+function user.fn.generate_commit_msg(opts)
+  opts = opts or {}
+  
+  -- Check for staged changes first
+  local diff = vim.fn.system('git diff --staged --no-color')
+  
+  if vim.v.shell_error ~= 0 then
+    if opts.callback then
+      opts.callback(false, "Failed to get git diff. Are you in a git repository?")
+    end
+    return
+  end
+  
+  if diff == nil or diff:match("^%s*$") then
+    if opts.callback then
+      opts.callback(false, "No staged changes found. Stage some changes first with 'git add'")
+    end
+    return
+  end
+  
+  -- Build the prompt
+  local prompt = "Write a professional conventional commit message for these staged changes. " ..
+                 "Use one of these types: feat, fix, docs, style, refactor, perf, test, chore, build, ci. " ..
+                 "Format: type(scope): description. Keep it concise and clear. " ..
+                 "If there's a breaking change, add BREAKING CHANGE in the body. " ..
+                 "IMPORTANT: Output ONLY the commit message text itself - no code blocks, no backticks, no markdown formatting, no explanations. " ..
+                 "Just the plain commit message that will be used directly in git commit. " ..
+                 "Here are the staged changes:\n\n" .. diff
+  
+  -- Use vim.system for async execution
+  vim.system(
+    {'claude', '-p', prompt},
+    {text = true},
+    function(result)
+      vim.schedule(function()
+        if result.code ~= 0 then
+          if opts.callback then
+            opts.callback(false, "Failed to generate commit message. Make sure AI is available.")
+          end
+          return
+        end
+        
+        local commit_msg = result.stdout
+        if commit_msg == nil or commit_msg:match("^%s*$") then
+          if opts.callback then
+            opts.callback(false, "AI returned empty response. Please try again.")
+          end
+          return
+        end
+        
+        -- Remove trailing newline
+        commit_msg = commit_msg:gsub('\n$', '')
+        
+        if opts.commit then
+          -- Commit with the generated message
+          local commit_result = vim.fn.system('git commit -m ' .. vim.fn.shellescape(commit_msg))
+          
+          if vim.v.shell_error ~= 0 then
+            if opts.callback then
+              opts.callback(false, "Commit failed: " .. commit_result)
+            end
+          else
+            if opts.callback then
+              opts.callback(true, "Committed successfully!")
+            end
+          end
+        else
+          -- Just return the message
+          if opts.callback then
+            opts.callback(true, commit_msg)
+          end
+        end
+      end)
+    end
+  )
+end
+
