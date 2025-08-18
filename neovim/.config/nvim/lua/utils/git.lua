@@ -37,10 +37,11 @@ function M.generate_commit_msg(opts)
                  "Here are the staged changes:\n\n" .. diff
   
   vim.system(
-    {'claude', '-p', prompt},
-    {text = true},
+    {'claude', '-p'},
+    {text = true, stdin = prompt},
     function(result)
       vim.schedule(function()
+        
         if result.code ~= 0 then
           if opts.callback then
             opts.callback(false, "Failed to generate commit message. Make sure AI is available.")
