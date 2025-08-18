@@ -28,6 +28,43 @@ function M.generate_commit_msg(opts)
     return
   end
   
+  local git_root = vim.fn.trim(vim.fn.system('git rev-parse --show-toplevel 2>/dev/null'))
+  if vim.v.shell_error ~= 0 then
+    git_root = '.'
+  end
+  
+  -- Check for pre-commit hooks
+  local has_precommit = vim.fn.executable('pre-commit') == 1
+  local has_precommit_config = vim.fn.filereadable(git_root .. '/.pre-commit-config.yaml') == 1 or 
+                                vim.fn.filereadable(git_root .. '/.pre-commit-config.yml') == 1
+  
+  if has_precommit and has_precommit_config then
+    -- Check if hooks are actually installed
+    local hooks_installed = vim.fn.filereadable(git_root .. '/.git/hooks/pre-commit') == 1
+    if not hooks_installed then
+      if opts.callback then
+        opts.callback(false, "Pre-commit config found but hooks not installed. Run: pre-commit install")
+      end
+      return
+    end
+    vim.notify("Running pre-commit hooks...", vim.log.levels.INFO)
+    local precommit_result = vim.fn.system('PRE_COMMIT_NO_CONCURRENCY=1 pre-commit run')
+    local precommit_exit_code = vim.v.shell_error
+    
+    if precommit_exit_code == 1 then
+      vim.notify("Pre-commit output:\n" .. precommit_result, vim.log.levels.INFO)
+      if opts.callback then
+        opts.callback(false, "Pre-commit checks failed. Please review.")
+      end
+      return
+    elseif precommit_exit_code ~= 0 then
+      if opts.callback then
+        opts.callback(false, "Pre-commit hooks failed: " .. precommit_result)
+      end
+      return
+    end
+  end
+  
   local prompt = "Write a professional conventional commit message for these staged changes. " ..
                  "Use one of these types: feat, fix, docs, style, refactor, perf, test, chore, build, ci. " ..
                  "Format: type(scope): description. Keep it concise and clear. " ..
