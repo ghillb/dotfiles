@@ -51,7 +51,6 @@ return function()
     },
     display_time = 750,
     exclude = {
-      "neo-tree",
       "fugitive",
       "terminal",
       "qf",

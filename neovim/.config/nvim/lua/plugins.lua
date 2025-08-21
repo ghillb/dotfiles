@@ -13,12 +13,11 @@ local plugins = {
   ["persistence.nvim"] = "https://github.com/folke/persistence.nvim",
   ["twilight.nvim"] = "https://github.com/folke/twilight.nvim",
   ["zen-mode.nvim"] = "https://github.com/folke/zen-mode.nvim",
-  ["neo-tree.nvim"] = "https://github.com/nvim-neo-tree/neo-tree.nvim",
   ["plenary.nvim"] = "https://github.com/nvim-lua/plenary.nvim",
   ["nvim-web-devicons"] = "https://github.com/nvim-tree/nvim-web-devicons",
-  ["nui.nvim"] = "https://github.com/MunifTanjim/nui.nvim",
   ["neogit"] = "https://github.com/NeogitOrg/neogit",
   ["gitsigns.nvim"] = "https://github.com/lewis6991/gitsigns.nvim",
+  ["oil.nvim"] = "https://github.com/stevearc/oil.nvim",
   
   -- Treesitter for syntax highlighting
   ["nvim-treesitter"] = "https://github.com/nvim-treesitter/nvim-treesitter",
@@ -75,7 +74,6 @@ function M.setup()
 
   load_plugin_config("plenary")
   load_plugin_config("nvim-web-devicons")
-  load_plugin_config("nui")
 
   load_plugin_config("vim-illuminate")
   load_plugin_config("trouble")
@@ -85,10 +83,10 @@ function M.setup()
   load_plugin_config("twilight")
   load_plugin_config("zen-mode")
   load_plugin_config("lualine")
-  load_plugin_config("neo-tree")
   load_plugin_config("cybu")
   load_plugin_config("neogit")
   load_plugin_config("gitsigns")
+  load_plugin_config("oil")
   load_plugin_config("nvim-treesitter")
   load_plugin_config("telescope")
 end

@@ -14,11 +14,11 @@ return function()
     filetypes = { "terminal" },
   }
 
-  local neotree_extension = {
+  local misc_extension = {
     sections = {
       lualine_a = { { "filename", file_status = false, path = 0 } },
     },
-    filetypes = { "neo-tree", "packer", "qf" },
+    filetypes = { "qf" },
   }
 
   local config = {
@@ -60,7 +60,7 @@ return function()
     tabline = {},
     winbar = {},
     inactive_winbar = {},
-    extensions = { terminal_extension, neotree_extension },
+    extensions = { terminal_extension, misc_extension },
   }
 
   lualine.setup(config)

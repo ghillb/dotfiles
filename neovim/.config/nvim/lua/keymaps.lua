@@ -67,7 +67,13 @@ map({ "n", "v", "i" }, "<c-s>", function()
   vim.cmd("w")
 end)
 map({ "n", "v", "i" }, "<c-q>", function()
-  vim.cmd('execute "normal ZZ"')
+  if vim.bo.modified and vim.api.nvim_buf_get_name(0) == "" then
+    -- New buffer with changes but no filename - just quit without saving
+    vim.cmd("q!")
+  else
+    -- Normal ZZ behavior (save and quit if modified, or just quit)
+    vim.cmd('execute "normal ZZ"')
+  end
 end)
 map("i", "<c-bs>", "<c-o>db<c-o>x", { remap = true })
 map("i", "<c-F20>", "<c-bs>", { remap = true })

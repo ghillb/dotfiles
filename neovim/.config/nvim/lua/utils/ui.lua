@@ -1,13 +1,25 @@
 local M = {}
 
 function M.drawer_toggle()
-  vim.cmd(":Neotree toggle reveal")
+  if vim.bo.filetype == "oil" then
+    if vim.bo.modified then
+      vim.cmd("write")
+    else
+      vim.api.nvim_buf_delete(0, { force = true })
+    end
+  else
+    require("oil").open_float()
+  end
 end
 
 function M.close_view()
-  pcall(vim.cmd, "Neotree close")
-  
-  if vim.bo.filetype == "vim" then
+  if vim.bo.filetype == "oil" then
+    if vim.bo.modified then
+      vim.cmd("write")
+    else
+      vim.api.nvim_buf_delete(0, { force = true })
+    end
+  elseif vim.bo.filetype == "vim" then
     vim.cmd(":q")
   else
     vim.cmd(":bdelete")
@@ -35,7 +47,6 @@ function M.set_win_bar()
       "help",
       "git",
       "packer",
-      "neo-tree",
       "fugitive",
       "gitcommit",
       "Trouble",
