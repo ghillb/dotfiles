@@ -45,23 +45,7 @@ return function()
       
       vim.keymap.set("n", "<Tab>", require("oil").select, { buffer = args.buf })
       
-      vim.keymap.set("n", "<C-s>", function()
-        local oil = require("oil")
-        local entry = oil.get_cursor_entry()
-        if entry and entry.type == "file" then
-          local file_path = oil.get_current_dir() .. entry.name
-          local result = vim.system({"git", "add", "-f", file_path}):wait()
-          
-          if result.code == 0 then
-            vim.notify("Staged: " .. entry.name, vim.log.levels.INFO)
-            require("utils.oil_git").refresh()
-          else
-            vim.notify("Failed to stage: " .. (result.stderr or "Unknown error"), vim.log.levels.ERROR)
-          end
-        else
-          vim.notify("Please select a file to stage", vim.log.levels.WARN)
-        end
-      end, { buffer = args.buf, desc = "Force stage file" })
+      vim.keymap.set("n", "<C-s>", require("utils.oil_git").toggle_stage_current_file, { buffer = args.buf, desc = "Toggle stage/unstage file" })
     end,
   })
   
