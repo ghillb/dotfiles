@@ -1,26 +1,46 @@
 local M = {}
 
 function M.is_git_work_tree()
-  vim.fn.system("git rev-parse --is-inside-work-tree")
-  return vim.v.shell_error == 0
+  local result = vim.system({'git', 'rev-parse', '--is-inside-work-tree'}):wait()
+  return result.code == 0
 end
 
 function M.get_git_work_tree_path()
-  return vim.fn.trim((vim.fn.system("git rev-parse --show-toplevel 2>/dev/null")))
+  local result = vim.system({'git', 'rev-parse', '--show-toplevel'}):wait()
+  if result.code == 0 then
+    return vim.trim(result.stdout)
+  end
+  return ""
 end
 
 function M.generate_commit_msg(opts)
   opts = opts or {}
   
-  local diff = vim.fn.system('git diff --staged --no-color')
+  local git_root_result = vim.system({'git', 'rev-parse', '--show-toplevel'}):wait()
+  local git_root
   
-  if vim.v.shell_error ~= 0 then
+  if git_root_result.code ~= 0 then
+    if opts.callback then
+      opts.callback(false, "Failed to find git repository. Are you in a git repository?")
+    end
+    return
+  end
+  
+  git_root = vim.trim(git_root_result.stdout)
+  
+  local diff_result = vim.system({'git', 'diff', '--staged', '--no-color'}, {
+    cwd = git_root,
+    text = true
+  }):wait()
+  
+  if diff_result.code ~= 0 then
     if opts.callback then
       opts.callback(false, "Failed to get git diff. Are you in a git repository?")
     end
     return
   end
   
+  local diff = diff_result.stdout
   if diff == nil or diff:match("^%s*$") then
     if opts.callback then
       opts.callback(false, "No staged changes found. Stage some changes first with 'git add'")
@@ -28,19 +48,25 @@ function M.generate_commit_msg(opts)
     return
   end
   
-  local git_root = vim.fn.trim(vim.fn.system('git rev-parse --show-toplevel 2>/dev/null'))
-  if vim.v.shell_error ~= 0 then
-    git_root = '.'
-  end
-  
-  -- Check for pre-commit hooks
   local has_precommit = vim.fn.executable('pre-commit') == 1
   local has_precommit_config = vim.fn.filereadable(git_root .. '/.pre-commit-config.yaml') == 1 or 
                                 vim.fn.filereadable(git_root .. '/.pre-commit-config.yml') == 1
   
   if has_precommit and has_precommit_config then
-    -- Check if hooks are actually installed
-    local hooks_installed = vim.fn.filereadable(git_root .. '/.git/hooks/pre-commit') == 1
+    local git_dir_result = vim.system({'git', 'rev-parse', '--git-dir'}, {
+      cwd = git_root,
+      text = true
+    }):wait()
+    
+    local hooks_installed = false
+    if git_dir_result.code == 0 then
+      local git_dir = vim.trim(git_dir_result.stdout)
+      if not vim.startswith(git_dir, '/') then
+        git_dir = git_root .. '/' .. git_dir
+      end
+      hooks_installed = vim.fn.filereadable(git_dir .. '/hooks/pre-commit') == 1
+    end
+    
     if not hooks_installed then
       if opts.callback then
         opts.callback(false, "Pre-commit config found but hooks not installed. Run: pre-commit install")
@@ -48,18 +74,22 @@ function M.generate_commit_msg(opts)
       return
     end
     vim.notify("Running pre-commit hooks...", vim.log.levels.INFO)
-    local precommit_result = vim.fn.system('PRE_COMMIT_NO_CONCURRENCY=1 pre-commit run')
-    local precommit_exit_code = vim.v.shell_error
     
-    if precommit_exit_code == 1 then
-      vim.notify("Pre-commit output:\n" .. precommit_result, vim.log.levels.INFO)
+    local precommit_result = vim.system({'pre-commit', 'run'}, {
+      cwd = git_root,
+      text = true,
+      env = { PRE_COMMIT_NO_CONCURRENCY = '1' }
+    }):wait()
+    
+    if precommit_result.code == 1 then
+      vim.notify("Pre-commit output:\n" .. (precommit_result.stdout or ""), vim.log.levels.INFO)
       if opts.callback then
         opts.callback(false, "Pre-commit checks failed. Please review.")
       end
       return
-    elseif precommit_exit_code ~= 0 then
+    elseif precommit_result.code ~= 0 then
       if opts.callback then
-        opts.callback(false, "Pre-commit hooks failed: " .. precommit_result)
+        opts.callback(false, "Pre-commit hooks failed: " .. (precommit_result.stderr or precommit_result.stdout or "Unknown error"))
       end
       return
     end
@@ -97,11 +127,14 @@ function M.generate_commit_msg(opts)
         commit_msg = commit_msg:gsub('\n$', '')
         
         if opts.commit then
-          local commit_result = vim.fn.system('git commit -m ' .. vim.fn.shellescape(commit_msg))
+          local commit_result = vim.system({'git', 'commit', '-m', commit_msg}, {
+            cwd = git_root,
+            text = true
+          }):wait()
           
-          if vim.v.shell_error ~= 0 then
+          if commit_result.code ~= 0 then
             if opts.callback then
-              opts.callback(false, "Commit failed: " .. commit_result)
+              opts.callback(false, "Commit failed: " .. (commit_result.stderr or commit_result.stdout or "Unknown error"))
             end
           else
             if opts.callback then
