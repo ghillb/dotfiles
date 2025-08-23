@@ -27,7 +27,7 @@ return function()
       border = "rounded",
     },
     keymaps = {
-      ["<C-h>"] = "actions.select_split",
+      ["<C-s>"] = "actions.select_split",
       ["<C-v>"] = "actions.select_vsplit",
       ["<C-t>"] = "actions.select_tab",
     },
@@ -58,7 +58,7 @@ return function()
       
       vim.keymap.set("n", "<Tab>", require("oil").select, { buffer = args.buf })
       
-      vim.keymap.set("n", "<C-s>", require("utils.oil_git").toggle_stage_current_file, { buffer = args.buf, desc = "Toggle stage/unstage file" })
+      vim.keymap.set("n", "s", require("utils.oil_git").toggle_stage_current_file, { buffer = args.buf, desc = "Toggle stage/unstage file" })
     end,
   })
   
