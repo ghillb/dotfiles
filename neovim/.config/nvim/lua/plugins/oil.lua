@@ -9,7 +9,7 @@ return function()
   
   oil.setup({
     default_file_explorer = true,
-    columns = { "icon" },
+    columns = { "icon", "permissions", "size", "mtime" },
     delete_to_trash = true,
     prompt_save_on_select_new_entry = false,
     win_options = {
@@ -26,7 +26,20 @@ return function()
       max_height = 20,
       border = "rounded",
     },
+    keymaps = {
+      ["<C-h>"] = "actions.select_split",
+      ["<C-v>"] = "actions.select_vsplit",
+      ["<C-t>"] = "actions.select_tab",
+    },
   })
+  
+  local function oil_detailed_split()
+    vim.cmd("vsplit")
+    require("oil").open()
+    require("oil").set_columns({ "icon", "permissions", "size", "mtime" })
+  end
+  
+  vim.keymap.set("n", "-", oil_detailed_split, { desc = "Oil detailed view in split" })
   
   vim.api.nvim_create_autocmd("FileType", {
     pattern = "oil",

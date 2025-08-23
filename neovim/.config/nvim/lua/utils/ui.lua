@@ -9,6 +9,7 @@ function M.drawer_toggle()
     end
   else
     require("oil").open_float()
+    require("oil").set_columns({ "icon" })
   end
 end
 
