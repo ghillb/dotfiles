@@ -1,17 +1,5 @@
 local M = {}
 
-function M.drawer_toggle()
-  if vim.bo.filetype == "oil" then
-    if vim.bo.modified then
-      vim.cmd("write")
-    else
-      vim.api.nvim_buf_delete(0, { force = true })
-    end
-  else
-    require("oil").open_float()
-    require("oil").set_columns({ "icon" })
-  end
-end
 
 function M.close_view()
   if vim.bo.filetype == "oil" then

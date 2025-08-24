@@ -9,7 +9,6 @@ local general = require('utils.general')
 
 require('utils.table')
 
-user.fn.drawer_toggle = ui.drawer_toggle
 user.fn.close_view = ui.close_view
 user.fn.populate_info = ui.populate_info
 user.fn.set_title_string = ui.set_title_string
