@@ -75,7 +75,7 @@ bind -x '"\C-l": clear'
 bind -x '"\C-y": fg'
 bind -x '"\e[21~": "htop"' #F10
 bind -x '"\ec": fzkill'
-bind '"\C-g": "git commit -am \"\""'
+bind '"\C-g": "git commit -m \"\""'
 bind '"\t":menu-complete'
 bind "set show-all-if-ambiguous on"
 bind "set completion-ignore-case on"

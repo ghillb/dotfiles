@@ -48,3 +48,21 @@ end, {
   desc = "Check status of commit message generation"
 })
 
+vim.api.nvim_create_user_command('CommitMsgCLI', function()
+  require("utils.git").generate_commit_msg({
+    callback = function(success, result)
+      if success then
+        print(result)
+      else
+        io.stderr:write("Error: " .. result .. "\n")
+        vim.cmd("quit 1")
+        return
+      end
+      vim.cmd("quit")
+    end,
+    commit = false
+  })
+end, {
+  desc = "Generate commit message and output to stdout for CLI use"
+})
+
