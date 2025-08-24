@@ -1,4 +1,4 @@
-add_newline =	true
+add_newline = true
 
 format = """
 $username\
@@ -9,7 +9,13 @@ $git_branch\
 $git_commit\
 $git_state\
 $git_status\
+$docker_context\
+$kubernetes\
+$terraform\
 $python\
+$nodejs\
+$rust\
+$golang\
 $conda\
 $package\
 $env_var\
@@ -19,7 +25,7 @@ $jobs\
 $status\
 $character"""
 
-command_timeout = 1000
+command_timeout = 500
 
 [character]
 success_symbol = "[⮞](bold purple)"
@@ -35,30 +41,93 @@ show_always = true
 [hostname]
 ssh_only = false
 disabled = true
-format =  "[$hostname ](green): "
+format = "[$hostname ](green): "
 
 [directory]
-style = "yellow"
-read_only = ":ro"
-read_only_style = "yellow"
-truncate_to_repo = false
-truncation_length = 4
+style = "yellow bold"
+read_only = " 🔒"
+read_only_style = "red"
+truncate_to_repo = true
+truncation_length = 8
 truncation_symbol = "…/"
+home_symbol = "~"
 
 [git_branch]
-style = "166"
-symbol = " "#
-format = ": [$symbol$branch]($style) "
+style = "202 bold"
+symbol = "⎇ "
+format = "[$symbol$branch]($style) "
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style) )'
+style = "cyan"
+conflicted = "💥"
+up_to_date = "✓"
+untracked = "?"
+modified = "!"
+staged = "+"
+renamed = "→"
+deleted = "d"
+ahead = "⇡${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+behind = "⇣${count}"
+
+[docker_context]
+format = "via [🐳 $context](blue bold) "
+only_with_files = true
+detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
+
+[kubernetes]
+format = 'on [⎈ $context\($namespace\)](dimmed green) '
+disabled = false
+detect_files = ["k8s", ".kube"]
+detect_folders = [".kube"]
+
+[terraform]
+format = "via [💠 $version$workspace]($style) "
+detect_extensions = ["tf", "tfplan", "tfstate"]
+detect_files = []
+
+[python]
+format = 'via [$symbol$pyenv_prefix$version(\($virtualenv\) )]($style)'
+symbol = " "
+style = "bold yellow"
+detect_extensions = ["py", "ipynb"]
+detect_files = ["requirements.txt", "pyproject.toml", "Pipfile", ".python-version", "tox.ini", "setup.py", "__init__.py"]
+detect_folders = [".venv", "venv", "env"]
+
+[nodejs]
+format = "via [⬢ $version](bold green) "
+detect_files = ["package.json", ".node-version", ".nvmrc"]
+detect_folders = ["node_modules"]
+detect_extensions = ["js", "mjs", "cjs", "ts", "mts", "cts"]
+
+[rust]
+format = "via [⚙️ $version](red bold) "
+detect_extensions = ["rs"]
+detect_files = ["Cargo.toml"]
+
+[golang]
+format = "via [🐹 $version](cyan bold) "
+detect_extensions = ["go"]
+detect_files = ["go.mod", "go.sum", "go.work", "glide.yaml", "Gopkg.yml", "Gopkg.lock", ".go-version"]
+
+[conda]
+format = "[$symbol$environment](green) "
+
+[package]
+format = "is [$symbol$version]($style) "
+symbol = "📦 "
+style = "208 bold"
+
+[cmd_duration]
+min_time = 2000
+format = "took [$duration]($style) "
+style = "yellow bold"
 
 [line_break]
 disabled = false
 
 [jobs]
-symbol = "◇"
-threshold = 1
-
-[python]
-format = 'via [$virtualenv ]($style)'
-
-[conda]
-format = "[$symbol$environment](green) "
+symbol = "+"
+number_threshold = 2
+symbol_threshold = 1

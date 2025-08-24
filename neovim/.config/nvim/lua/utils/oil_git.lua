@@ -119,14 +119,15 @@ end
 
 local git_signs = {
   OilGitAdded = { text = "+", texthl = "GitSignsAdd" },
-  OilGitModified = { text = "~", texthl = "GitSignsChange" },
+  OilGitModified = { text = "!", texthl = "GitSignsChange" },
   OilGitRenamed = { text = "→", texthl = "GitSignsChange" },
-  OilGitStaged = { text = "S", texthl = "GitSignsAdd" },
+  OilGitStaged = { text = "+", texthl = "GitSignsAdd" },
   OilGitUntracked = { text = "?", texthl = "Statement" },
   OilGitIgnored = { text = "!", texthl = "Comment" },
-  OilGitDirectory = { text = "~", texthl = "GitSignsChange" },
-  OilGitConflict = { text = "⇅", texthl = "DiagnosticError" },
+  OilGitDirectory = { text = "!", texthl = "GitSignsChange" },
+  OilGitConflict = { text = "💥", texthl = "DiagnosticError" },
   OilGitTypeChanged = { text = "T", texthl = "GitSignsChange" },
+  OilGitDeleted = { text = "d", texthl = "GitSignsDelete" },
 }
 
 local function setup_signs()
