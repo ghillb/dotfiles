@@ -165,3 +165,9 @@ gitignore() {
     echo "$1 is already in .gitignore."
   fi
 }
+
+_git_commit_with_msg() {
+    nvim --headless -c "CommitMsgCLI"
+    READLINE_LINE='git commit -m ""'
+    READLINE_POINT=$((${#READLINE_LINE} - 1))
+}

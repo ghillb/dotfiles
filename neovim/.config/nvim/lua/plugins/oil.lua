@@ -35,6 +35,7 @@ return function()
   
   local function oil_detailed_split()
     vim.cmd("vsplit")
+    vim.cmd("vertical resize " .. math.floor(vim.o.columns / 3))
     require("oil").open()
     require("oil").set_columns({ "icon", "permissions", "size", "mtime" })
   end

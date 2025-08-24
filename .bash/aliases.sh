@@ -96,4 +96,3 @@ if ! command -v nvim &>/dev/null; then alias v='vi -p'; else alias v='nvim -p'; 
 if ! command -v batcat &>/dev/null; then alias c='cat'; else alias c='batcat --pager=never --theme gruvbox-dark '; fi
 
 alias vv='nvim -c Neogit'
-alias gcmsg='nvim --headless -c "CommitMsgCLI"'
