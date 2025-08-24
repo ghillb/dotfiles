@@ -97,14 +97,16 @@ function M.generate_commit_msg(opts)
   
   local prompt = "Write a professional conventional commit message for these staged changes. " ..
                  "Use one of these types: feat, fix, docs, style, refactor, perf, test, chore, build, ci. " ..
-                 "Format: type(scope): description. Keep it concise and clear. " ..
+                 "Format: type(scope): concise description. Keep scope ONE WORD - use component names like 'auth', 'ui', 'config', 'api', etc. " ..
+                 "Examples: feat(auth): add login validation, fix(ui): resolve button spacing, refactor(config): simplify settings logic. " ..
+                 "Avoid long file paths in scope - use the logical component name instead. " ..
                  "If there's a breaking change, add BREAKING CHANGE in the body. " ..
                  "IMPORTANT: Output ONLY the commit message text itself - no code blocks, no backticks, no markdown formatting, no explanations. " ..
                  "Just the plain commit message that will be used directly in git commit. " ..
                  "Here are the staged changes:\n\n" .. diff
   
   vim.system(
-    {'claude', '-p'},
+    {'ollama', 'run', 'qwen2.5-coder:7b'},
     {text = true, stdin = prompt},
     function(result)
       vim.schedule(function()
