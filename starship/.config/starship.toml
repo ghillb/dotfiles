@@ -58,7 +58,7 @@ symbol = "⎇ "
 format = "[$symbol$branch]($style) "
 
 [git_status]
-format = '([\[$all_status$ahead_behind\]]($style) )'
+format = "([\\[$all_status$ahead_behind\\]]($style) )"
 style = "cyan"
 conflicted = "💥"
 up_to_date = "✓"
@@ -74,12 +74,12 @@ diverged = "⇕⇡${ahead_count}⇣${behind_count}"
 behind = "⇣${count}"
 
 [docker_context]
-format = "via [🐳 $context](blue bold) "
+format = "[🐳 $context](blue bold) "
 only_with_files = true
 detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
 
 [kubernetes]
-format = 'on [⎈ $context\($namespace\)](dimmed green) '
+format = "[⎈ $context\\($namespace\\)](dimmed green) "
 disabled = false
 detect_files = ["k8s", ".kube"]
 detect_folders = [".kube"]
@@ -90,9 +90,8 @@ detect_extensions = ["tf", "tfplan", "tfstate"]
 detect_files = []
 
 [python]
-format = '🐍 [$symbol$pyenv_prefix$version(\($virtualenv\) )]($style)'
+format = "[🐍 $pyenv_prefix$version( » $virtualenv )](bold yellow) "
 symbol = ""
-style = "bold yellow"
 detect_extensions = ["py", "ipynb"]
 detect_files = ["requirements.txt", "pyproject.toml", "Pipfile", ".python-version", "tox.ini", "setup.py", "__init__.py"]
 detect_folders = [".venv", "venv", "env"]
@@ -123,8 +122,7 @@ style = "208 bold"
 
 [cmd_duration]
 min_time = 2000
-format = "🕒 [$duration]($style) "
-style = "yellow bold"
+format = "🕒 [$duration](white) "
 
 [line_break]
 disabled = false
