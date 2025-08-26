@@ -13,6 +13,60 @@ function M.get_git_work_tree_path()
   return ""
 end
 
+local function truncate_diff_simple(diff, max_total_chars)
+  if string.len(diff) <= max_total_chars then
+    return diff
+  end
+  
+  local MAX_CHARS_PER_FILE = 500
+  local files = {}
+  local current_file = {}
+  local lines = vim.split(diff, '\n', {plain = true})
+  
+  for _, line in ipairs(lines) do
+    if line:match("^diff %-%-git") and #current_file > 0 then
+      table.insert(files, table.concat(current_file, '\n'))
+      current_file = {line}
+    else
+      table.insert(current_file, line)
+    end
+  end
+  if #current_file > 0 then
+    table.insert(files, table.concat(current_file, '\n'))
+  end
+  
+  local result = {}
+  local total_chars = 0
+  local truncated_files = 0
+  
+  for _, file_diff in ipairs(files) do
+    if total_chars >= max_total_chars then
+      break
+    end
+    
+    local remaining_budget = max_total_chars - total_chars
+    local file_limit = math.min(MAX_CHARS_PER_FILE, remaining_budget)
+    
+    if string.len(file_diff) <= file_limit then
+      table.insert(result, file_diff)
+      total_chars = total_chars + string.len(file_diff)
+    else
+      table.insert(result, file_diff:sub(1, file_limit))
+      total_chars = total_chars + file_limit
+      truncated_files = truncated_files + 1
+    end
+  end
+  
+  local truncated_diff = table.concat(result, '\n\n')
+  if truncated_files > 0 or #files > #result then
+    local omitted_files = #files - #result
+    truncated_diff = truncated_diff .. string.format("\n\n[... %d files truncated, %d files omitted due to size limits]", 
+                                                      truncated_files, omitted_files)
+  end
+  
+  return truncated_diff
+end
+
 function M.generate_commit_msg(opts)
   opts = opts or {}
   
@@ -95,6 +149,9 @@ function M.generate_commit_msg(opts)
     end
   end
   
+  local MAX_DIFF_CHARS = 10000
+  local processed_diff = truncate_diff_simple(diff, MAX_DIFF_CHARS)
+  
   local prompt = "Write a professional conventional commit message for these staged changes. " ..
                  "Use one of these types: feat, fix, docs, style, refactor, perf, test, chore, build, ci. " ..
                  "Format: type(scope): concise description. Keep scope ONE WORD - use component names like 'auth', 'ui', 'config', 'api', etc. " ..
@@ -103,7 +160,7 @@ function M.generate_commit_msg(opts)
                  "If there's a breaking change, add BREAKING CHANGE in the body. " ..
                  "IMPORTANT: Output ONLY the commit message text itself - no code blocks, no backticks, no markdown formatting, no explanations. " ..
                  "Just the plain commit message that will be used directly in git commit. " ..
-                 "Here are the staged changes:\n\n" .. diff
+                 "Here are the staged changes:\n\n" .. processed_diff
   
   vim.system(
     {'ollama', 'run', 'qwen2.5-coder:7b'},
