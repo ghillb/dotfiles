@@ -109,9 +109,10 @@ return function()
       
       vim.keymap.set({"n", "i", "v"}, "<a-q>", oil_save_and_close, { buffer = args.buf })
       
-      vim.keymap.set("n", "<BS>", "-", { buffer = args.buf, remap = true })
-      
-      vim.keymap.set("n", "<Tab>", require("oil").select, { buffer = args.buf })
+      vim.keymap.set("n", "<Left>", "-", { buffer = args.buf, remap = true })
+      vim.keymap.set("n", "<Right>", "<CR>", { buffer = args.buf, remap = true })
+      vim.keymap.set("n", "<Up>", "k", { buffer = args.buf, remap = true })
+      vim.keymap.set("n", "<Down>", "j", { buffer = args.buf, remap = true })
       
       vim.keymap.set("n", "s", require("utils.oil_git").toggle_stage_current_file, { buffer = args.buf, desc = "Toggle stage/unstage file" })
     end,

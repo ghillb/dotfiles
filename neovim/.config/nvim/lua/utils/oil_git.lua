@@ -2,7 +2,7 @@ local M = {}
 
 local CACHE_TTL = 5000    
 local DEBOUNCE_DELAY = 150 
-local GIT_CMD = {"git", "status", "--porcelain=v1", "-z", "--ignored"}
+local GIT_CMD = {"git", "status", "--porcelain=v1", "-z"}
 
 local Cache = {
   git_roots = {},
@@ -369,13 +369,13 @@ local function setup_autocmds()
     end,
   })
 
-  vim.api.nvim_create_autocmd("BufLeave", {
-    group = group,
-    pattern = "oil://*",
-    callback = clear_signs,
-  })
+  -- vim.api.nvim_create_autocmd("BufLeave", {
+  --   group = group,
+  --   pattern = "oil://*",
+  --   callback = clear_signs,
+  -- })
 
-  vim.api.nvim_create_autocmd({"BufWritePost", "TextChanged", "TextChangedI"}, {
+  vim.api.nvim_create_autocmd("BufWritePost", {
     group = group,
     pattern = "oil://*",
     callback = function()
@@ -494,3 +494,4 @@ function M.toggle_stage_current_file()
 end
 
 return M
+
