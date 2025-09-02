@@ -56,7 +56,7 @@ return function()
     },
   })
   
-  local function drawer_toggle(detailed)
+  local function oil_toggle(detailed, as_drawer)
     if vim.bo.filetype == "oil" then
       if vim.bo.modified then
         vim.cmd("write")
@@ -78,9 +78,12 @@ return function()
       else
         _oil_source_window = vim.api.nvim_get_current_win()
         
-        vim.cmd("rightbelow vsplit")
-        local width = math.floor(vim.o.columns / 3)
-        vim.cmd("vertical resize " .. width)
+        if as_drawer then
+          vim.cmd("rightbelow vsplit")
+          local width = math.floor(vim.o.columns / 3)
+          vim.cmd("vertical resize " .. width)
+        end
+        
         require("oil").open()
         if detailed then
           require("oil").set_columns({ "icon", "permissions", "size", "mtime" })
@@ -91,10 +94,10 @@ return function()
     end
   end
 
-  _G.oil_drawer_toggle = drawer_toggle
+  _G.oil_toggle = oil_toggle
 
-  vim.keymap.set("n", "<a-e>", function() drawer_toggle(false) end, { desc = "Toggle oil drawer (simple)" })
-  vim.keymap.set("n", "<a-E>", function() drawer_toggle(true) end, { desc = "Toggle oil drawer (detailed)" })
+  vim.keymap.set("n", "<a-e>", function() oil_toggle(false, false) end, { desc = "Toggle oil fullbuffer (simple)" })
+  vim.keymap.set("n", "<a-E>", function() oil_toggle(true, false) end, { desc = "Toggle oil fullbuffer (detailed)" })
   
   vim.api.nvim_create_autocmd("FileType", {
     pattern = "oil",
