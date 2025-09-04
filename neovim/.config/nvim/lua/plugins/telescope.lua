@@ -111,4 +111,12 @@ return function()
   local builtin = require("telescope.builtin")
   vim.keymap.set("n", "<C-e>", builtin.find_files, { desc = "Find files" })
   vim.keymap.set("n", "<C-f>", builtin.live_grep, { desc = "Live grep" })
+  
+  vim.keymap.set("n", "<C-A-e>", function()
+    builtin.find_files({
+      prompt_title = "Find Files (All)",
+      no_ignore = true,
+      hidden = true
+    })
+  end, { desc = "Find all files (including git-ignored)" })
 end
