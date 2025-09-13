@@ -18,16 +18,12 @@ local plugins = {
   ["neogit"] = "https://github.com/NeogitOrg/neogit",
   ["gitsigns.nvim"] = "https://github.com/lewis6991/gitsigns.nvim",
   ["oil.nvim"] = "https://github.com/stevearc/oil.nvim",
-  
-  -- Treesitter for syntax highlighting
   ["nvim-treesitter"] = "https://github.com/nvim-treesitter/nvim-treesitter",
-  
-  -- Fuzzy finder
+  ["nvim-lspconfig"] = "https://github.com/neovim/nvim-lspconfig",
   ["telescope.nvim"] = "https://github.com/nvim-telescope/telescope.nvim",
   ["telescope-fzf-native.nvim"] = "https://github.com/nvim-telescope/telescope-fzf-native.nvim",
 }
 
--- Clone a plugin if it doesn't exist
 local function ensure_plugin(name, url)
   local install_path = vim.fn.stdpath("config") .. "/pack/plugins/start/" .. name
   if vim.fn.isdirectory(install_path) == 0 then
@@ -89,6 +85,7 @@ function M.setup()
   load_plugin_config("oil")
   load_plugin_config("nvim-treesitter")
   load_plugin_config("telescope")
+  load_plugin_config("nvim-lspconfig")
 end
 
 vim.api.nvim_create_user_command("UpdatePlugins", function()
