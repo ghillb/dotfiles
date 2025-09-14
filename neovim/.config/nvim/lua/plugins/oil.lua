@@ -118,6 +118,8 @@ return function()
       vim.keymap.set("n", "<Down>", "j", { buffer = args.buf, remap = true })
       
       vim.keymap.set("n", "s", require("utils.oil_git").toggle_stage_current_file, { buffer = args.buf, desc = "Toggle stage/unstage file" })
+      
+      vim.keymap.set("v", "<C-v>", "<C-v>", { buffer = args.buf, desc = "Visual block selection" })
     end,
   })
   

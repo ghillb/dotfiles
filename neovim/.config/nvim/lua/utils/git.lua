@@ -177,7 +177,7 @@ function M.generate_commit_msg(opts)
                "CHANGES TO COMMIT:\n" .. processed_diff
   
   vim.system(
-    {'ollama', 'run', 'qwen3:8b'},
+    {'ollama', 'run', 'qwen3:1.7b'},
     {text = true, stdin = prompt},
     function(result)
       vim.schedule(function()
