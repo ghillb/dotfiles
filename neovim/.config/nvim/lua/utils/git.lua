@@ -161,10 +161,19 @@ function M.generate_commit_msg(opts)
                "5. Do NOT use JSON format, markdown, code blocks, or any special formatting\n" ..
                "6. Do NOT include explanations or additional text\n" ..
                "7. Output ONLY the plain commit message itself\n\n" ..
-               "EXAMPLES OF CORRECT OUTPUT:\n" ..
+               "EXAMPLES OF CORRECT OUTPUT (SINGLE LINE MESSAGES):\n" ..
                "feat(auth): add login validation\n" ..
                "fix(ui): resolve button spacing issue\n" ..
                "refactor(config): simplify settings logic\n\n" ..
+               "MULTI-LINE MESSAGES (for complex changes):\n" ..
+               "feat(auth): implement user authentication system\n\n" ..
+               "- Add JWT token validation middleware\n" ..
+               "- Implement password hashing utilities\n" ..
+               "- Create user session management\n" ..
+               "- Add login/logout endpoints\n\n" ..
+               "IMPORTANT: Use EITHER one single-line OR multi-line format, never both. Choose based on complexity.\n" ..
+               "For simple changes: ONE single line only.\n" ..
+               "For complex changes: Multi-line with bullet points.\n\n" ..
                "CHANGES TO COMMIT:\n" .. processed_diff
   
   vim.system(
