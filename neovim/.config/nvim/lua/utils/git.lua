@@ -122,12 +122,9 @@ function M.generate_commit_msg(opts)
     end
     
     if not hooks_installed then
-      if opts.callback then
-        opts.callback(false, "Pre-commit config found but hooks not installed. Run: pre-commit install")
-      end
-      return
-    end
-    vim.notify("Running pre-commit hooks...", vim.log.levels.INFO)
+      vim.notify("Pre-commit config found but hooks not installed. Skipping pre-commit checks. Run: pre-commit install", vim.log.levels.WARN)
+    else
+      vim.notify("Running pre-commit hooks...", vim.log.levels.INFO)
     
     local precommit_result = vim.system({'pre-commit', 'run'}, {
       cwd = git_root,
@@ -146,11 +143,11 @@ function M.generate_commit_msg(opts)
         opts.callback(false, "Pre-commit hooks failed: " .. (precommit_result.stderr or precommit_result.stdout or "Unknown error"))
       end
       return
+      end
     end
   end
   
-  local MAX_DIFF_CHARS = 15000
-  local processed_diff = truncate_diff_simple(diff, MAX_DIFF_CHARS)
+  local MAX_DIFF_CHARS = 15000  local processed_diff = truncate_diff_simple(diff, MAX_DIFF_CHARS)
   
   local prompt = "You are a git commit message generator. Your task is to write a single conventional commit message based on the provided changes.\n\n" ..
                "RULES:\n" ..
