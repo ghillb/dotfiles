@@ -16,6 +16,7 @@ local plugins = {
   ["plenary.nvim"] = "https://github.com/nvim-lua/plenary.nvim",
   ["nvim-web-devicons"] = "https://github.com/nvim-tree/nvim-web-devicons",
   ["neogit"] = "https://github.com/NeogitOrg/neogit",
+  ["diffview.nvim"] = "https://github.com/sindrets/diffview.nvim",
   ["gitsigns.nvim"] = "https://github.com/lewis6991/gitsigns.nvim",
   ["oil.nvim"] = "https://github.com/stevearc/oil.nvim",
   ["nvim-treesitter"] = "https://github.com/nvim-treesitter/nvim-treesitter",

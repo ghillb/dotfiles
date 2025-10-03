@@ -11,10 +11,16 @@ iploc() {
 tx() {
   if [ -z "$*" ] ; then
     tmux -2 attach -t $USER || tmux -2 new -s $USER;
-  elif [ $1 == "kitty-float" ]; then
-    tmux -2 attach -t $1 || tmux -2 new -s $1;
   else
     tmux -2 "$1";
+  fi
+}
+
+sshsel() {
+  local server
+  server=$(grep -E '^Host ' ~/.ssh/config | awk '{print $2}' | grep -v '\*' | tac | fzf --prompt="SSH > " --height=40% --reverse)
+  if [[ -n $server ]]; then
+    ssh $server
   fi
 }
 
