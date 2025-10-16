@@ -1,0 +1,12 @@
+#!/bin/bash
+
+output="${1:-/tmp/pasted_image.png}"
+
+if wl-paste --type image/png > "$output" 2>/dev/null; then
+    echo "$output"
+elif wl-paste --type image/bmp > "$output" 2>/dev/null; then
+    echo "$output"
+else
+    echo "Error: No image in clipboard" >&2
+    exit 1
+fi
