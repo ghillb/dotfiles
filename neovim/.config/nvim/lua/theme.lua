@@ -2,6 +2,7 @@ _G.palette = {
   black = "#282828",
   red = "#fb4934",
   yellow = "#fabd2f",
+  orange = "#ffb86c",
   blue = "#448488",
   green = "#989719",
   aqua = "#8ec07c",
@@ -45,6 +46,19 @@ local function set_global_theme()
   set_hl("DiffChange", { fg = "#ffffff", bg = "#808020" })
   set_hl("DiffDelete", { fg = "#ffffff", bg = "#a05050" })
   set_hl("DiffText", { fg = "#ffffff", bg = "#a0a020" })
+  
+  local treesitter_headings = {
+    "@markup.heading",
+    "@markup.heading.1",
+    "@markup.heading.2",
+    "@markup.heading.3",
+    "@markup.heading.4",
+    "@markup.heading.5",
+    "@markup.heading.6",
+  }
+  for _, group in ipairs(treesitter_headings) do
+    set_hl(group, { fg = palette.orange, bold = true })
+  end
   
   -- Neogit specific highlight groups (aligned with habamax)
   set_hl("NeogitDiffAdd", { fg = "#bcbcbc", bg = "#2d3d2d" })
