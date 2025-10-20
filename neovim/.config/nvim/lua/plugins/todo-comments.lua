@@ -1,11 +1,8 @@
-
-return function()
-  local ok, todo_comments = pcall(require, "todo-comments")
-  if not ok then
-    return
-  end
-
-  local config = {
+return {
+  "folke/todo-comments.nvim",
+  cmd = { "TodoTelescope", "TodoTrouble", "TodoQuickFix", "TodoLocList" },
+  dependencies = { "nvim-lua/plenary.nvim" },
+  opts = {
     signs = true,
     sign_priority = 8,
     keywords = {
@@ -48,7 +45,5 @@ return function()
       },
       pattern = [[\b(KEYWORDS):]],
     },
-  }
-
-  todo_comments.setup(config)
-end
+  },
+}

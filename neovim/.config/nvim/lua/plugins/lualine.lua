@@ -1,27 +1,24 @@
+local terminal_extension = {
+  sections = {
+    lualine_a = { "mode" },
+    lualine_b = { { "filename", file_status = false, path = 0 } },
+    lualine_y = { "filetype" },
+  },
+  filetypes = { "terminal" },
+}
 
-return function()
-  local ok, lualine = pcall(require, "lualine")
-  if not ok then
-    return
-  end
+local misc_extension = {
+  sections = {
+    lualine_a = { { "filename", file_status = false, path = 0 } },
+  },
+  filetypes = { "qf" },
+}
 
-  local terminal_extension = {
-    sections = {
-      lualine_a = { "mode" },
-      lualine_b = { { "filename", file_status = false, path = 0 } },
-      lualine_y = { "filetype" },
-    },
-    filetypes = { "terminal" },
-  }
-
-  local misc_extension = {
-    sections = {
-      lualine_a = { { "filename", file_status = false, path = 0 } },
-    },
-    filetypes = { "qf" },
-  }
-
-  local config = {
+return {
+  "nvim-lualine/lualine.nvim",
+  lazy = false,
+  dependencies = { "nvim-tree/nvim-web-devicons" },
+  opts = {
     options = {
       icons_enabled = true,
       theme = "auto",
@@ -61,7 +58,5 @@ return function()
     winbar = {},
     inactive_winbar = {},
     extensions = { terminal_extension, misc_extension },
-  }
-
-  lualine.setup(config)
-end
+  },
+}

@@ -1,14 +1,12 @@
-return function()
-  local ok, configs = pcall(require, "nvim-treesitter.configs")
-  if not ok then
-    return
-  end
-
-  configs.setup({
+return {
+  "nvim-treesitter/nvim-treesitter",
+  lazy = false,
+  build = ":TSUpdate",
+  main = "nvim-treesitter.configs",
+  opts = {
     auto_install = true,
-    
     highlight = {
       enable = true,
     },
-  })
-end
+  },
+}

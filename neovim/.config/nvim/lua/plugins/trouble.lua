@@ -1,18 +1,13 @@
-
-return function()
-  local ok, trouble = pcall(require, 'trouble')
-  if not ok then
-    return
-  end
-
-  local config = {
+return {
+  "folke/trouble.nvim",
+  cmd = { "Trouble", "TroubleToggle" },
+  keys = {
+    { "<leader>tt", "<cmd>TroubleToggle<cr>", desc = "Toggle Trouble" },
+    { "<a-bs>", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Toggle document diagnostics" },
+  },
+  dependencies = { "nvim-tree/nvim-web-devicons" },
+  opts = {
     use_diagnostic_signs = true,
     icons = false,
-  }
-
-  trouble.setup(config)
-  
-  -- Keybindings
-  vim.keymap.set("n", "<leader>tt", "<cmd>TroubleToggle<cr>")
-  vim.keymap.set("n", "<a-bs>", "<cmd>TroubleToggle document_diagnostics<cr>")
-end
+  },
+}

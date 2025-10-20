@@ -1,10 +1,7 @@
-return function()
-  local ok, gitsigns = pcall(require, "gitsigns")
-  if not ok then
-    return
-  end
-
-  gitsigns.setup({
+return {
+  "lewis6991/gitsigns.nvim",
+  lazy = false,
+  opts = {
     signs = {
       add          = { text = '│' },
       change       = { text = '│' },
@@ -73,5 +70,5 @@ return function()
       -- Text object
       map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = "Select hunk" })
     end
-  })
-end
+  },
+}

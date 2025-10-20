@@ -1,27 +1,21 @@
-
-return function()
-    local ok, twilight = pcall(require, 'twilight')
-    if not ok then
-      return
-    end
-
-    local config = {
-      dimming = {
-        alpha = 0.25,
-        color = { "Normal", "#ffffff" },
-      },
-      context = 10,
-      expand = {
-        "function",
-        "method",
-        "table",
-        "if_statement",
-      },
-      exclude = {},
-    }
-
-    twilight.setup(config)
-    
-    -- Keybinding
-    vim.keymap.set("n", "<leader>tw", ":Twilight<cr>", { silent = true })
-end
+return {
+  "folke/twilight.nvim",
+  cmd = "Twilight",
+  keys = {
+    { "<leader>tw", ":Twilight<cr>", desc = "Toggle Twilight", silent = true },
+  },
+  opts = {
+    dimming = {
+      alpha = 0.25,
+      color = { "Normal", "#ffffff" },
+    },
+    context = 10,
+    expand = {
+      "function",
+      "method",
+      "table",
+      "if_statement",
+    },
+    exclude = {},
+  },
+}
