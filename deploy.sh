@@ -214,10 +214,10 @@ if [[ "$SKIP_NODE" == false ]]; then
         export NVM_DIR="$HOME/.nvm"
         [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
         
-        print_info "Installing Node.js v16..."
-        nvm install 16
-        nvm use 16
-        nvm alias default 16
+        print_info "Installing Node.js v22 (LTS)..."
+        nvm install 22
+        nvm use 22
+        nvm alias default 22
     else
         print_info "nvm already installed"
     fi
