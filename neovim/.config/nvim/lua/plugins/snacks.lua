@@ -13,6 +13,9 @@ return {
     scope = { enabled = true },
     scroll = { enabled = true },
     statuscolumn = { enabled = true },
+    terminal = {
+      shell = "bash",
+    },
     words = { enabled = true },
   },
   keys = {
@@ -22,6 +25,7 @@ return {
     { "<leader>un", function() require("snacks").notifier.hide() end, desc = "Dismiss All Notifications" },
     { "]]", function() require("snacks").words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
     { "[[", function() require("snacks").words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },
+    { "<C-\\>", function() require("snacks").terminal.toggle() end, desc = "Toggle Terminal", mode = { "n", "t" } },
   },
   init = function()
     vim.api.nvim_create_autocmd("User", {
