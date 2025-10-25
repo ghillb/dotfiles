@@ -32,7 +32,7 @@ local function set_global_theme()
   set_hl("IlluminatedWordWrite", { bg = palette.darkgray })
 
   set_hl("Normal", { bg = "none" })
-  set_hl("NormalFloat", { bg = "none" })
+  set_hl("NormalFloat", { bg = palette.darkgray })
   set_hl("SignColumn", { bg = "none" })
   set_hl("LineNr", { bg = "none" })
   set_hl("CursorLineNr", { bg = "none" })
