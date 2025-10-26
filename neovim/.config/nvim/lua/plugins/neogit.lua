@@ -67,7 +67,7 @@ return {
     })
 
     vim.api.nvim_create_autocmd("FileType", {
-      pattern = "NeogitStatus",
+      pattern = { "NeogitStatus", "NeogitCommitView" },
       callback = function()
         vim.keymap.set("n", "<C-q>", "<cmd>qa<cr>", { buffer = true, desc = "Quit Neovim" })
 
