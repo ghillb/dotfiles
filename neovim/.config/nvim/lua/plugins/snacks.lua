@@ -6,7 +6,10 @@ return {
   opts = {
     bigfile = { enabled = true },
     dashboard = { enabled = true },
-    indent = { enabled = true },
+    indent = {
+      enabled = true,
+      animate = { enabled = false },
+    },
     input = { enabled = true },
     notifier = { enabled = true },
     quickfile = { enabled = true },
@@ -17,6 +20,18 @@ return {
       shell = "bash",
     },
     words = { enabled = true },
+    styles = {
+      notification = {
+        border = "none",
+        zindex = 100,
+        wo = {
+          winblend = 0,
+          wrap = false,
+          conceallevel = 2,
+          colorcolumn = "",
+        },
+      },
+    },
   },
   keys = {
     { "<leader>n", function() require("snacks").notifier.show_history() end, desc = "Notification History" },

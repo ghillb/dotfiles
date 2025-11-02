@@ -40,13 +40,13 @@ local function set_global_theme()
   set_hl("StatusLineNC", { bg = "none" })
   set_hl("NonText", { bg = "none" })
   set_hl("Folded", { bg = "none" })
-  
+
   -- Fix diff colors for better readability
   set_hl("DiffAdd", { fg = "#ffffff", bg = "#50a050" })
   set_hl("DiffChange", { fg = "#ffffff", bg = "#808020" })
   set_hl("DiffDelete", { fg = "#ffffff", bg = "#a05050" })
   set_hl("DiffText", { fg = "#ffffff", bg = "#a0a020" })
-  
+
   local treesitter_headings = {
     "@markup.heading",
     "@markup.heading.1",
@@ -59,7 +59,7 @@ local function set_global_theme()
   for _, group in ipairs(treesitter_headings) do
     set_hl(group, { fg = palette.orange, bold = true })
   end
-  
+
   -- Neogit specific highlight groups (aligned with habamax)
   set_hl("NeogitDiffAdd", { fg = "#bcbcbc", bg = "#2d3d2d" })
   set_hl("NeogitDiffDelete", { fg = "#bcbcbc", bg = "#3d2d2d" })
@@ -69,6 +69,16 @@ local function set_global_theme()
   set_hl("NeogitDiffContextHighlight", { fg = "#bcbcbc", bg = "#262626" })
   set_hl("NeogitHunkHeader", { fg = "#af87af", bg = "#2a2a2a" })
   set_hl("NeogitHunkHeaderHighlight", { fg = "#ffffff", bg = "#3a3a3a" })
+
+  -- Snacks highlight groups 
+  set_hl("SnacksNotifierMinimal", { bg = palette.darkgray })
+  set_hl("SnacksNotifierInfo", { bg = palette.darkgray })
+  set_hl("SnacksNotifierWarn", { bg = palette.darkgray })
+  set_hl("SnacksNotifierError", { bg = palette.darkgray })
+  set_hl("SnacksNotifierDebug", { bg = palette.darkgray })
+  set_hl("SnacksNotifierTrace", { bg = palette.darkgray })
+  set_hl("SnacksNotifierHistory", { bg = palette.darkgray })
+  set_hl("SnacksIndent", { fg = palette.gray })
 end
 
 vim.api.nvim_create_autocmd("colorscheme", {
