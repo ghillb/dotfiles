@@ -33,6 +33,19 @@ config.keys = {
     mods = 'CTRL|SHIFT',
     action = wezterm.action.CopyTo('Clipboard'),
   },
+  {
+    key = 'v',
+    mods = 'CTRL',
+    action = wezterm.action.PasteFrom('Clipboard'),
+  },
+  {
+    key = 's',
+    mods = 'CTRL|SHIFT',
+    action = wezterm.action.SpawnCommandInNewTab {
+      args = { 'wsl.exe', 'bash', '-c', 'SKIP_AUTO_TMUX=1 exec bash -ic sshsel' },
+      domain = { DomainName = 'local' },
+    },
+  },
 }
 
 wezterm.on('format-window-title', function(tab, pane)
@@ -40,7 +53,7 @@ wezterm.on('format-window-title', function(tab, pane)
 end)
 
 wezterm.on('window-config-reloaded', function(window, pane)
-  window:toast_notification('WezTerm', 'Configuration reloaded!', nil, 4000)
+  window:toast_notification('WezTerm', 'Config reloaded!', nil, 4000)
 end)
 
 return config
