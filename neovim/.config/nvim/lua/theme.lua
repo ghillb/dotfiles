@@ -1,6 +1,7 @@
 _G.palette = {
   black = "#282828",
   red = "#fb4934",
+  muted_red = "#cc6666",
   yellow = "#fabd2f",
   orange = "#ffb86c",
   blue = "#448488",
@@ -69,6 +70,7 @@ local function set_global_theme()
   set_hl("NeogitDiffContextHighlight", { fg = "#bcbcbc", bg = "#262626" })
   set_hl("NeogitHunkHeader", { fg = "#af87af", bg = "#2a2a2a" })
   set_hl("NeogitHunkHeaderHighlight", { fg = "#ffffff", bg = "#3a3a3a" })
+  set_hl("NeogitChangeDeleted", { fg = palette.muted_red, bold = true, italic = true })
 
   -- Snacks highlight groups 
   set_hl("SnacksNotifierMinimal", { bg = palette.darkgray })
