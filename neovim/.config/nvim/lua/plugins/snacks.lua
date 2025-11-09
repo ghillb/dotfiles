@@ -8,7 +8,7 @@ return {
     dashboard = { enabled = true },
     indent = {
       enabled = true,
-      animate = { enabled = false },
+      animate = { enabled = true },
     },
     input = { enabled = true },
     notifier = { enabled = true },
