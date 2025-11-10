@@ -46,6 +46,16 @@ config.keys = {
       domain = { DomainName = 'local' },
     },
   },
+  {
+    key = '[',
+    mods = 'CTRL|ALT',
+    action = wezterm.action.SendKey { key = '[', mods = 'CTRL|ALT' },
+  },
+  {
+    key = ']',
+    mods = 'CTRL|ALT',
+    action = wezterm.action.SendKey { key = ']', mods = 'CTRL|ALT' },
+  },
 }
 
 wezterm.on('format-window-title', function(tab, pane)
