@@ -120,21 +120,5 @@ aucmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
   group = augrp("CheckFileChanges", { clear = true }),
 })
 
-aucmd("FileChangedShell", {
-  callback = function()
-    local filename = vim.fn.expand("<afile>")
-    local choice = vim.fn.confirm(
-      string.format('File "%s" has changed on disk.\nReload and lose unsaved changes?', filename),
-      "&Yes\n&No",
-      2,
-      "Warning"
-    )
-    if choice == 1 then
-      vim.v.fcs_choice = "reload"
-    else
-      vim.v.fcs_choice = ""
-    end
-  end,
-  group = augrp("FileChangedPrompt", { clear = true }),
-})
+
 

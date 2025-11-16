@@ -60,7 +60,7 @@ vim.opt.wildignore                          = '*.o,*~,*.pyc,*.pyo,__pycache__,*/
 vim.opt.completeopt                         = 'menu,menuone,noselect,noinsert'
 vim.opt.complete                            = '.,w,b,u,t,kspell'
 vim.opt.shortmess                           = 'filnxtToOFIcS'
-vim.opt.autoread                            = false
+vim.opt.autoread                            = true
 vim.opt.fillchars                           = { eob = '·', fold = ' ', foldopen = '', foldsep = ' ', foldclose = '' }
 vim.opt.grepprg                             = "rg --vimgrep $* /dev/null"
 vim.opt.grepformat                          = "%f:%l:%c:%m"
