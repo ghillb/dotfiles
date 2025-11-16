@@ -27,9 +27,9 @@ return {
         kind = "split",
       },
       signs = {
-        section = { ">", "v" },
-        item = { ">", "v" },
-        hunk = { "", "" },
+        section = { "", "" },
+        item = { "", "" },
+        hunk = { "", "" },
       },
       integrations = {
         diffview = true,
@@ -69,6 +69,7 @@ return {
     vim.api.nvim_create_autocmd("FileType", {
       pattern = { "NeogitStatus", "NeogitCommitView" },
       callback = function()
+        vim.opt_local.statuscolumn = ""
         vim.keymap.set("n", "<C-q>", "<cmd>qa<cr>", { buffer = true, desc = "Quit Neovim" })
 
         vim.keymap.set("n", "C", function()
