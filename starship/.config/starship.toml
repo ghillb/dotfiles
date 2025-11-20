@@ -90,7 +90,7 @@ detect_extensions = ["tf", "tfplan", "tfstate"]
 detect_files = []
 
 [python]
-format = "[🐍 $pyenv_prefix$version( » $virtualenv )](bold yellow) "
+format = "[🐍 $pyenv_prefix$version( » $virtualenv )](bold yellow)"
 symbol = ""
 detect_extensions = ["py", "ipynb"]
 detect_files = ["requirements.txt", "pyproject.toml", "Pipfile", ".python-version", "tox.ini", "setup.py", "__init__.py"]
@@ -116,7 +116,7 @@ detect_files = ["go.mod", "go.sum", "go.work", "glide.yaml", "Gopkg.yml", "Gopkg
 format = "[$symbol$environment](green) "
 
 [package]
-format = " 📦 [$symbol$version]($style) "
+format = "📦 [$symbol$version]($style) "
 symbol = ""
 style = "208 bold"
 
