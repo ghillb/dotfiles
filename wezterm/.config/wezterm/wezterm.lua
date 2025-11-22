@@ -1,7 +1,10 @@
 local wezterm = require("wezterm")
 local config = {}
 
-config.font = wezterm.font 'Cascadia Code'
+config.font = wezterm.font_with_fallback {
+  'Cascadia Code',
+  'JetBrains Mono',
+}
 config.font_size = 12
 -- config.color_scheme = "Bamboo"
 config.color_scheme = 'GruvboxDarkHard'
