@@ -29,7 +29,7 @@ include () {
 }
 
 initbash() {
-  if ping -q -w 1 -c 1 1.1.1.1 > /dev/null; then git -C $DOTFILES pull; fi; tx
+  cd ~ && if ping -q -w 1 -c 1 1.1.1.1 > /dev/null; then git -C $DOTFILES pull; fi; tx
 }
 
 gsubrm() {
