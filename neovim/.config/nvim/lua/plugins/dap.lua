@@ -91,6 +91,26 @@ return {
         },
       }
 
+      -- Rust/C/C++ adapter (lldb-dap)
+      dap.adapters.lldb = {
+        type = "executable",
+        command = "lldb-dap",
+        name = "lldb",
+      }
+
+      dap.configurations.rust = {
+        {
+          type = "lldb",
+          request = "launch",
+          name = "Debug",
+          program = function()
+            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/debug/", "file")
+          end,
+          cwd = "${workspaceFolder}",
+          stopOnEntry = false,
+        },
+      }
+
       -- Signs
       vim.fn.sign_define("DapBreakpoint", { text = "B", texthl = "DiagnosticError" })
       vim.fn.sign_define("DapStopped", { text = ">", texthl = "DiagnosticInfo", linehl = "Visual" })
