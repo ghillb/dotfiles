@@ -147,35 +147,30 @@ function M.generate_commit_msg(opts)
     end
   end
   
-  local MAX_DIFF_CHARS = 15000  local processed_diff = truncate_diff_simple(diff, MAX_DIFF_CHARS)
+  local MAX_DIFF_CHARS = 15000
+  local processed_diff = truncate_diff_simple(diff, MAX_DIFF_CHARS)
   
-  local prompt = "You are a git commit message generator. Your task is to write a single conventional commit message based on the provided changes.\n\n" ..
-               "RULES:\n" ..
-               "1. Use conventional commit format: type(scope): description\n" ..
-               "2. Types: feat, fix, docs, style, refactor, perf, test, chore, build, ci\n" ..
-               "3. Scope should be ONE WORD component name like 'auth', 'ui', 'config', 'api'\n" ..
-               "4. Description should be concise and under 50 characters\n" ..
-               "5. Do NOT use JSON format, markdown, code blocks, or any special formatting\n" ..
-               "6. Do NOT include explanations or additional text\n" ..
-               "7. Output ONLY the plain commit message itself\n\n" ..
-               "EXAMPLES OF CORRECT OUTPUT (SINGLE LINE MESSAGES):\n" ..
+  local prompt = "Task: Generate a conventional commit message based on the provided code changes.\n\n" ..
+               "Follow the Conventional Commits specification:\n" ..
+               "Format: <type>[optional scope]: <description>\n\n" ..
+               "Types: feat, fix, refactor, perf, docs, style, test, build, ci, chore\n" ..
+               "Rules:\n" ..
+               "1. Use lowercase for type and description\n" ..
+               "2. Do not capitalize the first letter of description\n" ..
+               "3. Do not end description with a period\n" ..
+               "4. Use imperative present tense (add, not added)\n" ..
+               "5. Keep description under 50 characters\n" ..
+               "6. Add scope if relevant: type(scope): description\n" ..
+               "7. Output ONLY the commit message, no explanation\n\n" ..
+               "EXAMPLES:\n" ..
                "feat(auth): add login validation\n" ..
                "fix(ui): resolve button spacing issue\n" ..
                "refactor(config): simplify settings logic\n\n" ..
-               "MULTI-LINE MESSAGES (for complex changes):\n" ..
-               "feat(auth): implement user authentication system\n\n" ..
-               "- Add JWT token validation middleware\n" ..
-               "- Implement password hashing utilities\n" ..
-               "- Create user session management\n" ..
-               "- Add login/logout endpoints\n\n" ..
-               "IMPORTANT: Use EITHER one single-line OR multi-line format, never both. Choose based on complexity.\n" ..
-               "For simple changes: ONE single line only.\n" ..
-               "For complex changes: Multi-line with bullet points.\n\n" ..
-               "CHANGES TO COMMIT:\n" .. processed_diff
+               "CODE CHANGES:\n" .. processed_diff
   
   vim.system(
-    {'ollama', 'run', 'qwen3:1.7b'},
-    {text = true, stdin = prompt},
+    {'amp', '-x', prompt},
+    {text = true},
     function(result)
       vim.schedule(function()
         
@@ -195,7 +190,6 @@ function M.generate_commit_msg(opts)
         end
         
         commit_msg = commit_msg:gsub('\n$', '')
-        commit_msg = commit_msg:gsub('^Thinking%.%.%..-%.%.%.done thinking%.%s*', '')
         
         if opts.commit then
           local commit_result = vim.system({'git', 'commit', '-m', commit_msg}, {
