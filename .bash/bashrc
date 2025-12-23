@@ -27,7 +27,6 @@ export PATH="$PATH:$HOME/code/scripts/bash:$HOME/code/scripts/ansible:$HOME/.car
 export LC_ALL=C.UTF-8
 export HISTSIZE=HISTFILESIZE='INFINITY'
 export HISTIGNORE="pwd:df:du:cd:ls:ll:gpl:gps:gs:gd:gdu:gds:gl:glo:gls:glu:v"
-export PROMPT_COMMAND='history -a;history -r;hasjobs=$(jobs -p);echo -en "\033]0;${PWD##*/}\a"'
 export GPG_TTY=$(tty)
 export GIT_PS1_SHOWDIRTYSTATE=true
 export FZF_DEFAULT_OPTS='
@@ -46,15 +45,15 @@ export ENABLE_BACKGROUND_TASKS=1
 
 source $DOTFILES/.bash/functions.sh
 source $DOTFILES/.bash/aliases.sh
-source $DOTFILES/.bash/completion.sh
 
 if command -v fzf &>/dev/null; then
     eval "$(fzf --bash)"
 fi
 
-# Initialize Starship prompt if available
 if command -v starship &>/dev/null; then
     eval "$(starship init bash)"
+    # Append custom commands to starship's PROMPT_COMMAND
+    PROMPT_COMMAND="history -a;history -r;hasjobs=\$(jobs -p);echo -en \"\033]0;\${PWD##*/}\a\";${PROMPT_COMMAND}"
 fi
 include /usr/lib/git-core/git-sh-prompt; include /usr/lib/git/git-sh-prompt; include /usr/share/git-core/contrib/completion/git-prompt.sh
 include $CODE/scripts/bash/utils.sh

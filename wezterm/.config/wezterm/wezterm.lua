@@ -8,7 +8,9 @@ config.font = wezterm.font_with_fallback {
 config.font_size = 12
 -- config.color_scheme = "Bamboo"
 config.color_scheme = 'GruvboxDarkHard'
-config.default_prog = {"powershell.exe", "-NoLogo"}
+if wezterm.target_triple:find("windows") then
+  config.default_prog = {"powershell.exe", "-NoLogo"}
+end
 config.hide_tab_bar_if_only_one_tab = true
 
 config.keys = {

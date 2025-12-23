@@ -3,7 +3,7 @@ USER root
 ENV DEBIAN_FRONTEND="noninteractive" TZ="Europe/Berlin"
 ENV CI=true
 RUN apt-get update && apt-get upgrade -y && \
-    apt-get install -y tzdata sudo git curl wget gnupg lsb-release
+    apt-get install -y tzdata sudo git curl wget gnupg lsb-release stow
 RUN useradd --create-home --shell /bin/bash dv
 RUN adduser dv sudo
 RUN echo 'dv:changeme' | chpasswd
