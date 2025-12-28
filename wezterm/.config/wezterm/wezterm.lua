@@ -66,6 +66,20 @@ config.keys = {
     mods = 'SHIFT',
     action = wezterm.action { SendString = '\x1b\r' },
   },
+  {
+    key = 'v',
+    mods = 'CTRL|ALT',
+    action = wezterm.action_callback(function(window, pane)
+      local handle = io.popen(os.getenv("HOME") .. "/.local/bin/clip2path 2>/dev/null")
+      if handle then
+        local result = handle:read("*a") or ""
+        handle:close()
+        if result ~= "" then
+          pane:send_text(result)
+        end
+      end
+    end),
+  },
 }
 
 wezterm.on('format-window-title', function(tab, pane)
