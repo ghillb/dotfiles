@@ -67,8 +67,19 @@ wezterm.on('format-window-title', function(tab, pane)
   return 'tty'
 end)
 
+local marker = os.getenv("HOME") .. "/.cache/wezterm-loaded"
+local f = io.open(marker, "r")
+local is_reload = f ~= nil
+if f then f:close() end
+
+io.open(marker, "w"):close()
+
+local notified = false
 wezterm.on('window-config-reloaded', function(window, pane)
-  window:toast_notification('WezTerm', 'Config reloaded!', nil, 4000)
+  if is_reload and not notified then
+    window:toast_notification('WezTerm', 'Config reloaded ✓', nil, 1000)
+    notified = true
+  end
 end)
 
 return config
