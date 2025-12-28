@@ -83,7 +83,14 @@ config.keys = {
 }
 
 wezterm.on('format-window-title', function(tab, pane)
-  return 'tty'
+  if wezterm.target_triple:find("windows") then
+    return 'tty'
+  end
+  local title = pane:get_title()
+  if title and title ~= '' then
+    return title
+  end
+  return pane:get_foreground_process_name() or 'tty'
 end)
 
 return config
