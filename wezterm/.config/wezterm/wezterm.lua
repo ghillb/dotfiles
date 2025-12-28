@@ -61,6 +61,11 @@ config.keys = {
     mods = 'CTRL|ALT',
     action = wezterm.action.SendKey { key = ']', mods = 'CTRL|ALT' },
   },
+  {
+    key = 'Enter',
+    mods = 'SHIFT',
+    action = wezterm.action { SendString = '\x1b\r' },
+  },
 }
 
 wezterm.on('format-window-title', function(tab, pane)
