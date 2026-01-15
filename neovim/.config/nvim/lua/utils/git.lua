@@ -168,8 +168,18 @@ function M.generate_commit_msg(opts)
                "refactor(config): simplify settings logic\n\n" ..
                "CODE CHANGES:\n" .. processed_diff
   
+  local cmd = {}
+  if vim.fn.executable('copilot') == 1 then
+    cmd = {'copilot', '-p', prompt, '--silent', '--allow-all'}
+  else
+    if opts.callback then
+      opts.callback(false, "Agent executable not found.")
+    end
+    return
+  end
+  
   vim.system(
-    {'amp', '-x', prompt},
+    cmd,
     {text = true},
     function(result)
       vim.schedule(function()
