@@ -200,6 +200,8 @@ function M.generate_commit_msg(opts)
         end
         
         commit_msg = commit_msg:gsub('\n$', '')
+        commit_msg = commit_msg:gsub('^```[^\n]*\n', ''):gsub('\n```$', '')
+        commit_msg = commit_msg:gsub('^`+', ''):gsub('`+$', '')
         
         if opts.commit then
           local commit_result = vim.system({'git', 'commit', '-m', commit_msg}, {
