@@ -233,7 +233,7 @@ function M.generate_commit_msg(opts)
   
   local cmd = {}
   if vim.fn.executable('copilot') == 1 then
-    cmd = {'copilot', '-p', prompt, '--silent', '--allow-all'}
+    cmd = {'copilot', '--model', 'gpt-5-mini', '-s', '-p', prompt}
   else
     if opts.callback then
       opts.callback(false, "Agent executable not found.")
