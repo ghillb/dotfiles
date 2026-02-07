@@ -1,5 +1,5 @@
 #!/bin/bash
-FLOAT_TERM_SESSION="floating_term"
+FLOAT_TERM_SESSION="ft"
 STATE_FILE="/tmp/tmux_float_maximized"
 
 if [ "$(tmux display-message -p -F '#{session_name}')" = "$FLOAT_TERM_SESSION" ]; then

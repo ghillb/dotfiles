@@ -2,7 +2,7 @@
 
 DIRECTION=${1:-next}
 CURRENT=$(tmux display-message -p '#{session_name}')
-SESSIONS=$(tmux list-sessions -f '#{!=:#{session_name},floating_term}' -F '#{session_name}')
+SESSIONS=$(tmux list-sessions -f '#{!=:#{session_name},ft}' -F '#{session_name}')
 TOTAL=$(echo "$SESSIONS" | wc -l)
 
 # Get current session line number
