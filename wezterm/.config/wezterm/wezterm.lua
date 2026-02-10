@@ -12,6 +12,7 @@ if wezterm.target_triple:find("windows") then
   config.default_prog = {"powershell.exe", "-NoLogo"}
 end
 config.hide_tab_bar_if_only_one_tab = true
+config.enable_tab_bar = false
 
 config.keys = {
   {
