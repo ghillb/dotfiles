@@ -104,5 +104,6 @@ if ! command -v exa &>/dev/null; then alias ll='ls -alF'; else alias ll='exa -al
 if ! command -v nvim &>/dev/null; then alias v='vi -p'; else alias v='nvim -p'; fi
 if ! command -v batcat &>/dev/null; then alias c='cat'; else alias c='batcat --pager=never --theme gruvbox-dark '; fi
 
-alias vv='nvim -c Neogit'
+alias gg='nvim -c Neogit'
+alias vv='gg'
 alias vvv='nvim .'
