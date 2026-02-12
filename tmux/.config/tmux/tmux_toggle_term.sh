@@ -2,16 +2,17 @@
 # Toggle a floating terminal popup, keyed per base session.
 #
 # Usage:
-#   tmux_toggle_term.sh <prefix> [command] [toggle-size]
+#   tmux_toggle_term.sh <prefix> [command] [toggle-size] [prefill]
 #
 # Examples:
-#   tmux_toggle_term.sh ft                  # plain floating term
-#   tmux_toggle_term.sh ft "" toggle-size   # toggle size of floating term
-#   tmux_toggle_term.sh git "bash -i -c gg"  # floating neogit (always maximized)
+#   tmux_toggle_term.sh ft                    # plain floating term
+#   tmux_toggle_term.sh ft "" toggle-size     # toggle size of floating term
+#   tmux_toggle_term.sh git "" "" "gg "       # prefill "gg " in prompt (no auto-execute)
 
-PREFIX="${1:?usage: tmux_toggle_term.sh <prefix> [command] [toggle-size]}"
+PREFIX="${1:?usage: tmux_toggle_term.sh <prefix> [command] [toggle-size] [prefill]}"
 COMMAND="$2"
 ACTION="$3"
+PREFILL="$4"
 
 CURRENT_SESSION="$(tmux display-message -p -F '#{session_name}')"
 
@@ -40,18 +41,29 @@ if [ "$ACTION" = "toggle-size" ]; then
         touch "$STATE_FILE"
         SIZE_W="100%"; SIZE_H="100%"; BORDER="-B"
     fi
-elif [ -n "$COMMAND" ] || [ -f "$STATE_FILE" ]; then
-    # Sessions with a command (git) always start maximized; plain ft respects state
+elif [ -n "$COMMAND" ] || [ -n "$PREFILL" ] || [ -f "$STATE_FILE" ]; then
+    # Sessions with a command or prefill start maximized; plain ft respects state
     SIZE_W="100%"; SIZE_H="100%"; BORDER="-B"
 else
     SIZE_W="80%"; SIZE_H="80%"; BORDER=""
 fi
 
-# Build the attach-or-new command
+IS_NEW=0
+if ! tmux has-session -t "$TARGET_SESSION" 2>/dev/null; then
+    IS_NEW=1
+fi
+
 if [ -n "$COMMAND" ]; then
     SESSION_CMD="tmux attach-session -t '${TARGET_SESSION}' || tmux new-session -s '${TARGET_SESSION}' '${COMMAND}'"
 else
     SESSION_CMD="tmux attach-session -t '${TARGET_SESSION}' || tmux new-session -s '${TARGET_SESSION}'"
+fi
+
+# For prefill: create session detached, send keys, then attach inside popup
+if [ "$IS_NEW" = 1 ] && [ -n "$PREFILL" ]; then
+    tmux new-session -d -s "$TARGET_SESSION"
+    tmux send-keys -t "$TARGET_SESSION" "$PREFILL" ""
+    SESSION_CMD="tmux attach-session -t '${TARGET_SESSION}'"
 fi
 
 # shellcheck disable=SC2086

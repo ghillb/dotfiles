@@ -43,7 +43,7 @@ alias glo='git log --all --graph --oneline'
 alias gls='git log --all --graph --oneline --stat'
 alias glu='git log --stat @{u}..HEAD'
 alias glp='git log -p'
-alias gg='git status -s'
+alias gs='git status -s'
 alias gcb='git checkout $(git branch --sort=-committerdate | fzf --height=40% --layout=reverse)'
 alias gc='git checkout'
 alias gd='git diff'
@@ -104,6 +104,6 @@ if ! command -v exa &>/dev/null; then alias ll='ls -alF'; else alias ll='exa -al
 if ! command -v nvim &>/dev/null; then alias v='vi -p'; else alias v='nvim -p'; fi
 if ! command -v batcat &>/dev/null; then alias c='cat'; else alias c='batcat --pager=never --theme gruvbox-dark '; fi
 
-alias gg='nvim -c Neogit'
+function gg { local dir="${1:-.}"; nvim -c "cd $dir" -c Neogit; }
 alias vv='gg'
 alias vvv='nvim .'
