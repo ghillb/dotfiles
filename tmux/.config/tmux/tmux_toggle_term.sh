@@ -15,20 +15,62 @@ ACTION="$3"
 PREFILL="$4"
 
 CURRENT_SESSION="$(tmux display-message -p -F '#{session_name}')"
+CURRENT_CLIENT="$(tmux display-message -p -F '#{client_name}')"
+CURRENT_TTY="$(tmux display-message -p -F '#{client_tty}')"
 CURRENT_PATH="$(tmux display-message -p -F '#{pane_current_path}')"
+POPUP_CLIENT=""
+FLOAT_PREFIX=""
+BASE_SESSION="$CURRENT_SESSION"
+
+resolve_base_client() {
+    local base_session="$1"
+    local fallback_client=""
+    local client_name client_tty client_session
+
+    while IFS=$'\t' read -r client_name client_tty client_session; do
+        [ "$client_name" = "$CURRENT_CLIENT" ] && continue
+        [ "$client_session" = "$base_session" ] || continue
+
+        if [ "$client_tty" = "$CURRENT_TTY" ]; then
+            printf '%s\n' "$client_name"
+            return
+        fi
+
+        if [ -z "$fallback_client" ]; then
+            fallback_client="$client_name"
+        fi
+    done < <(tmux list-clients -F '#{client_name}\t#{client_tty}\t#{session_name}')
+
+    [ -n "$fallback_client" ] && printf '%s\n' "$fallback_client"
+}
+
+case "$CURRENT_SESSION" in
+    git-*)
+        FLOAT_PREFIX="git"
+        BASE_SESSION="${CURRENT_SESSION#git-}"
+        ;;
+    ft-*)
+        FLOAT_PREFIX="ft"
+        BASE_SESSION="${CURRENT_SESSION#ft-}"
+        ;;
+esac
 
 # If already inside a session with this prefix, detach
-if [[ "$CURRENT_SESSION" == ${PREFIX}-* ]]; then
+if [ "$FLOAT_PREFIX" = "$PREFIX" ]; then
     tmux detach-client
     exit 0
 fi
 
-if [[ "$CURRENT_SESSION" == ft-* || "$CURRENT_SESSION" == git-* ]]; then
-    tmux display-message "Nested floating terms are disabled"
-    exit 0
-fi
+if [ -n "$FLOAT_PREFIX" ]; then
+    BASE_CLIENT="$(resolve_base_client "$BASE_SESSION")"
+    if [ -n "$BASE_CLIENT" ]; then
+        POPUP_CLIENT="$BASE_CLIENT"
+        CURRENT_PATH="$(tmux display-message -c "$BASE_CLIENT" -p -F '#{pane_current_path}')"
+    fi
 
-BASE_SESSION="${CURRENT_SESSION}"
+    # Minimize current float before opening the other float.
+    tmux detach-client
+fi
 
 TARGET_SESSION="${PREFIX}-${BASE_SESSION}"
 STATE_FILE="/tmp/tmux_float_${PREFIX}_maximized"
@@ -64,4 +106,8 @@ fi
 SESSION_CMD="tmux attach-session -t '${TARGET_SESSION}'"
 
 # shellcheck disable=SC2086
-tmux popup -d '#{pane_current_path}' -w "$SIZE_W" -h "$SIZE_H" $BORDER -E "$SESSION_CMD"
+if [ -n "$POPUP_CLIENT" ]; then
+    tmux popup -c "$POPUP_CLIENT" -d "$CURRENT_PATH" -w "$SIZE_W" -h "$SIZE_H" $BORDER -E "$SESSION_CMD"
+else
+    tmux popup -d "$CURRENT_PATH" -w "$SIZE_W" -h "$SIZE_H" $BORDER -E "$SESSION_CMD"
+fi
