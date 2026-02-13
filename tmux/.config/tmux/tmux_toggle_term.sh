@@ -22,12 +22,12 @@ if [[ "$CURRENT_SESSION" == ${PREFIX}-* ]]; then
     exit 0
 fi
 
-# Strip any prefix from current session name to get the real base
-# (handles nested floating terms, e.g. being in ft-main and opening git)
+if [[ "$CURRENT_SESSION" == ft-* || "$CURRENT_SESSION" == git-* ]]; then
+    tmux display-message "Nested floating terms are disabled"
+    exit 0
+fi
+
 BASE_SESSION="${CURRENT_SESSION}"
-for p in ft git; do
-    BASE_SESSION="${BASE_SESSION#${p}-}"
-done
 
 TARGET_SESSION="${PREFIX}-${BASE_SESSION}"
 STATE_FILE="/tmp/tmux_float_${PREFIX}_maximized"
