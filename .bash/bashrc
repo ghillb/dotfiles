@@ -58,8 +58,8 @@ fi
 include /usr/lib/git-core/git-sh-prompt; include /usr/lib/git/git-sh-prompt; include /usr/share/git-core/contrib/completion/git-prompt.sh
 include $CODE/scripts/bash/utils.sh
 
-# scripted behavior
-if [[ -z "$TMUX" && -z "$SKIP_AUTO_TMUX" && "$TERM_PROGRAM" == "WezTerm" && (-n "$SSH_CONNECTION" || -f "/etc/wsl.conf") ]]; then initbash; fi
+# tmux auto-start behavior
+if [[ -z "$TMUX" && -z "$SKIP_AUTO_TMUX" && ( -n "$SSH_CONNECTION" || ( "$TERM_PROGRAM" == "WezTerm" && -f "/etc/wsl.conf" ) ) ]]; then initbash; fi
 if [[ "$SSH_CONNECTION" != "" ]]; then trap "kill -9 $(pidof ssh-agent)&>/dev/null" 0; fi
 
 # key binds
