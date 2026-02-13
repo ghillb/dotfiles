@@ -15,6 +15,7 @@ ACTION="$3"
 PREFILL="$4"
 
 CURRENT_SESSION="$(tmux display-message -p -F '#{session_name}')"
+CURRENT_PATH="$(tmux display-message -p -F '#{pane_current_path}')"
 
 # If already inside a session with this prefix, detach
 if [[ "$CURRENT_SESSION" == ${PREFIX}-* ]]; then
@@ -48,23 +49,19 @@ else
     SIZE_W="80%"; SIZE_H="80%"; BORDER=""
 fi
 
-IS_NEW=0
 if ! tmux has-session -t "$TARGET_SESSION" 2>/dev/null; then
-    IS_NEW=1
+    if [ -n "$COMMAND" ]; then
+        tmux new-session -d -s "$TARGET_SESSION" -c "$CURRENT_PATH" "$COMMAND"
+    else
+        tmux new-session -d -s "$TARGET_SESSION" -c "$CURRENT_PATH"
+    fi
+
+    if [ -n "$PREFILL" ]; then
+        tmux send-keys -t "$TARGET_SESSION" "$PREFILL" ""
+    fi
 fi
 
-if [ -n "$COMMAND" ]; then
-    SESSION_CMD="tmux attach-session -t '${TARGET_SESSION}' || tmux new-session -s '${TARGET_SESSION}' '${COMMAND}'"
-else
-    SESSION_CMD="tmux attach-session -t '${TARGET_SESSION}' || tmux new-session -s '${TARGET_SESSION}'"
-fi
-
-# For prefill: create session detached, send keys, then attach inside popup
-if [ "$IS_NEW" = 1 ] && [ -n "$PREFILL" ]; then
-    tmux new-session -d -s "$TARGET_SESSION"
-    tmux send-keys -t "$TARGET_SESSION" "$PREFILL" ""
-    SESSION_CMD="tmux attach-session -t '${TARGET_SESSION}'"
-fi
+SESSION_CMD="tmux attach-session -t '${TARGET_SESSION}'"
 
 # shellcheck disable=SC2086
 tmux popup -d '#{pane_current_path}' -w "$SIZE_W" -h "$SIZE_H" $BORDER -E "$SESSION_CMD"
