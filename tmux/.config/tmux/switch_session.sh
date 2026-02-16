@@ -8,16 +8,17 @@ CURRENT_TTY=$(tmux display-message -p '#{client_tty}')
 IS_FLOAT=false
 BASE_SESSION="$CURRENT_SESSION"
 case "$CURRENT_SESSION" in
-  git-*|ft-*)
+  git-*|ft-*|nvim-*)
     IS_FLOAT=true
     BASE_SESSION="${CURRENT_SESSION#git-}"
+    BASE_SESSION="${BASE_SESSION#nvim-}"
     BASE_SESSION="${BASE_SESSION#ft-}"
     ;;
 esac
 
 mapfile -t SESSIONS < <(
   tmux list-sessions \
-    -f '#{&&:#{!=:#{m:ft-*,#{session_name}},1},#{!=:#{m:git-*,#{session_name}},1}}' \
+    -f '#{&&:#{&&:#{!=:#{m:ft-*,#{session_name}},1},#{!=:#{m:git-*,#{session_name}},1}},#{!=:#{m:nvim-*,#{session_name}},1}}' \
     -F '#{session_name}'
 )
 

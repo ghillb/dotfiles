@@ -49,6 +49,10 @@ case "$CURRENT_SESSION" in
         FLOAT_PREFIX="git"
         BASE_SESSION="${CURRENT_SESSION#git-}"
         ;;
+    nvim-*)
+        FLOAT_PREFIX="nvim"
+        BASE_SESSION="${CURRENT_SESSION#nvim-}"
+        ;;
     ft-*)
         FLOAT_PREFIX="ft"
         BASE_SESSION="${CURRENT_SESSION#ft-}"
