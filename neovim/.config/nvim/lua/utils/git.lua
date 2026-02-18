@@ -222,7 +222,7 @@ function M.generate_commit_msg(opts)
   
   local MAX_DIFF_CHARS = 15000
   local processed_diff = truncate_diff_simple(diff, MAX_DIFF_CHARS)
-  
+
   local prompt = "Generate a conventional commit message for these changes.\n\n" ..
                "RULES:\n" ..
                "- Format: type(scope): description OR type: description\n" ..
@@ -232,8 +232,9 @@ function M.generate_commit_msg(opts)
                "Reply with ONLY the commit message, nothing else."
   
   local cmd = {}
+  local copilot_env = { COPILOT_MODEL = 'gpt-5-mini' }
   if vim.fn.executable('copilot') == 1 then
-    cmd = {'copilot', '--config-dir', '/dev/null', '--model', 'gpt-5-mini', '-s', '-p', prompt}
+    cmd = {'copilot', '-s', '-p', prompt}
   else
     if opts.callback then
       opts.callback(false, "Agent executable not found.")
@@ -243,7 +244,7 @@ function M.generate_commit_msg(opts)
   
   vim.system(
     cmd,
-    {text = true, timeout = 60000},
+    {text = true, timeout = 60000, env = copilot_env},
     function(result)
       vim.schedule(function()
         
