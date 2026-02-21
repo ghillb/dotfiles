@@ -233,8 +233,11 @@ function M.generate_commit_msg(opts)
   
   local cmd = {}
   local copilot_env = { COPILOT_MODEL = 'gpt-5-mini' }
+  local copilot_config_dir = ""
+
   if vim.fn.executable('copilot') == 1 then
-    cmd = {'copilot', '--config-dir', '/dev/null', '-s', '-p', prompt}
+    copilot_config_dir = vim.trim(vim.fn.system({'mktemp', '-d', '/dev/shm/copilot.XXXXXX'}))
+    cmd = {'copilot', '--config-dir', copilot_config_dir, '-s', '-p', prompt}
   else
     if opts.callback then
       opts.callback(false, "Agent executable not found.")
@@ -247,6 +250,9 @@ function M.generate_commit_msg(opts)
     {text = true, timeout = 60000, env = copilot_env},
     function(result)
       vim.schedule(function()
+        if copilot_config_dir ~= "" then
+          pcall(vim.fn.delete, copilot_config_dir, "rf")
+        end
         
         if result.code ~= 0 then
           if opts.callback then
