@@ -10,6 +10,34 @@ return {
   },
   config = function()
     local neogit = require("neogit")
+    local function start_commit_spinner()
+      local spinner_frames = { "◜", "◠", "◝", "◞", "◡", "◟" }
+      local spinner_idx = 1
+      local spinner_msg = "Generating commit message and committing..."
+      local notify_opts = { title = "Commit", timeout = false }
+      local notification_id = vim.notify(spinner_frames[spinner_idx] .. " " .. spinner_msg, vim.log.levels.INFO, notify_opts)
+      local uv = vim.uv or vim.loop
+      local spinner_timer = uv and uv.new_timer() or nil
+
+      if spinner_timer then
+        spinner_timer:start(100, 100, vim.schedule_wrap(function()
+          spinner_idx = (spinner_idx % #spinner_frames) + 1
+          notify_opts.id = notification_id
+          notification_id = vim.notify(spinner_frames[spinner_idx] .. " " .. spinner_msg, vim.log.levels.INFO, notify_opts)
+        end))
+      end
+
+      return function(msg, level)
+        if spinner_timer then
+          spinner_timer:stop()
+          spinner_timer:close()
+          spinner_timer = nil
+        end
+        notify_opts.id = notification_id
+        notify_opts.timeout = 3000
+        vim.notify(msg, level, notify_opts)
+      end
+    end
 
     neogit.setup({
       disable_signs = false,
@@ -73,21 +101,21 @@ return {
         vim.keymap.set("n", "<C-q>", "<cmd>qa<cr>", { buffer = true, desc = "Quit Neovim" })
 
         vim.keymap.set("n", "C", function()
-          vim.notify("Generating commit message and committing...", vim.log.levels.INFO)
+          local finish_notification = start_commit_spinner()
 
           user.fn.generate_commit_msg({
             commit = true,
             callback = function(success, result)
               if not success then
                 if result:match("No staged changes") then
-                  vim.notify("No staged changes found. Stage some changes first.", vim.log.levels.WARN)
+                  finish_notification("No staged changes found. Stage some changes first.", vim.log.levels.WARN)
                 else
-                  vim.notify(result, vim.log.levels.ERROR)
+                  finish_notification(result, vim.log.levels.ERROR)
                 end
                 return
               end
 
-              vim.notify("Committed successfully!", vim.log.levels.INFO)
+              finish_notification("Committed successfully!", vim.log.levels.INFO)
               require('neogit').refresh()
             end
           })
