@@ -45,6 +45,7 @@ return {
       disable_context_highlighting = false,
       disable_commit_confirmation = false,
       auto_refresh = true,
+      graph_style = "unicode",
       sort_branches = "-committerdate",
       disable_builtin_notifications = false,
       use_magit_keybindings = false,
