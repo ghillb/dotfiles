@@ -66,15 +66,15 @@ alias ci='tokei'
 alias sadd="eval \$(ssh-agent) ssh-add"
 alias lg='lazygit'
 alias ld='lazydocker'
-# Claude Code aliases
 alias cc='claude'
 alias ccc='claude --continue'
 alias ccr='claude --resume'
-
-# Codex aliases
 alias cx='codex'
 alias cxc='codex resume --last'
 alias cxr='codex resume'
+alias co='copilot'
+alias coc='copilot --continue'
+alias cor='copilot --resume'
 alias py='python3'
 alias jn='jupyter notebook'
 alias 0xf='curl -F"file=@$(find $HOME -type f | fzf)" 0x0.st | xsel --input --clipboard'
