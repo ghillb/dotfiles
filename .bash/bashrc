@@ -5,8 +5,10 @@ case $- in
       *) return;; # If not running interactively, don't do anything
 esac
 
-stty -ixon # forces control sequences to reach the terminal application (e.g. vi)
-stty werase ^H # enable ctrl-backspace previous word kill
+if [ -t 0 ]; then
+  stty -ixon # forces control sequences to reach the terminal application (e.g. vi)
+  stty werase ^H # enable ctrl-backspace previous word kill
+fi
 set bell-style audible
 
 export TERM=xterm-256color
@@ -45,10 +47,6 @@ export ENABLE_BACKGROUND_TASKS=1
 
 source $DOTFILES/.bash/functions.sh
 source $DOTFILES/.bash/aliases.sh
-
-if command -v fzf &>/dev/null; then
-    eval "$(fzf --bash)"
-fi
 
 if command -v starship &>/dev/null; then
     eval "$(starship init bash)"
