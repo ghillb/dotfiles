@@ -7,6 +7,7 @@ case "$session" in
     ft-*) echo "white"; exit ;;
     git-*) echo "colour208"; exit ;;
     nvim-*) echo "colour141"; exit ;;
+    bv-*) echo "colour45"; exit ;;
 esac
 palette=(colour2 colour3 colour4 colour5 colour6 colour13 colour14 colour130 colour166 colour172 colour208)
 hash=$(printf '%s' "$session" | cksum | awk '{print $1}')

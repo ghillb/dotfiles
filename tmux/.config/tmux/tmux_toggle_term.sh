@@ -8,6 +8,7 @@
 #   tmux_toggle_term.sh ft                    # plain floating term
 #   tmux_toggle_term.sh ft "" toggle-size     # toggle size of floating term
 #   tmux_toggle_term.sh git "" "" "gg "       # prefill "gg " in prompt (no auto-execute)
+#   tmux_toggle_term.sh bv "" "" "bv "        # prefill "bv " in prompt (no auto-execute)
 
 PREFIX="${1:?usage: tmux_toggle_term.sh <prefix> [command] [toggle-size] [prefill]}"
 COMMAND="$2"
@@ -52,6 +53,10 @@ case "$CURRENT_SESSION" in
     nvim-*)
         FLOAT_PREFIX="nvim"
         BASE_SESSION="${CURRENT_SESSION#nvim-}"
+        ;;
+    bv-*)
+        FLOAT_PREFIX="bv"
+        BASE_SESSION="${CURRENT_SESSION#bv-}"
         ;;
     ft-*)
         FLOAT_PREFIX="ft"
