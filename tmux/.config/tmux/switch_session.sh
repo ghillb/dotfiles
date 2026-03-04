@@ -59,6 +59,66 @@ show_ports_popup() {
     -E "bash -lc 'trap \"rm -f -- $tmp_file\" EXIT; less -SR -- $tmp_file'"
 }
 
+show_swarm_popup() {
+  local popup_w popup_h
+  local popup_title
+  local swarm_popup_bin
+  popup_w="${SWARM_POPUP_W:-}"
+  popup_h="${SWARM_POPUP_H:-}"
+  swarm_popup_bin="${SWARM_POPUP_BIN:-$HOME/.local/bin/swarm_tmux_popup}"
+  popup_title="$("$swarm_popup_bin" --title 2>/dev/null || true)"
+  [ -z "$popup_title" ] && popup_title="Swarm"
+
+  if [ -z "$popup_w" ] || [ -z "$popup_h" ]; then
+    local tmp_file
+    tmp_file="$(mktemp /tmp/tmux-swarm.XXXXXX)"
+
+    SWARM_NO_CLEAR=1 "$swarm_popup_bin" --once >"$tmp_file" 2>&1 || true
+
+    local line_count max_cols
+    line_count="$(wc -l < "$tmp_file" | tr -d ' ')"
+    max_cols="$(awk '{ if (length > m) m = length } END { print (m ? m : 1) }' "$tmp_file")"
+
+    [ -z "$line_count" ] && line_count=1
+    [ -z "$max_cols" ] && max_cols=1
+
+    local client_w client_h
+    client_w="$(tmux display-message -p '#{client_width}')"
+    client_h="$(tmux display-message -p '#{client_height}')"
+    [ -z "$client_w" ] && client_w=160
+    [ -z "$client_h" ] && client_h=48
+
+    local min_w=60 min_h=12
+    local max_w=$((client_w - 4))
+    local max_h=$((client_h - 4))
+    local desired_w=$((max_cols + 4))
+    local desired_h=$((line_count + 2))
+
+    [ "$max_w" -lt "$min_w" ] && max_w=$min_w
+    [ "$max_h" -lt "$min_h" ] && max_h=$min_h
+
+    [ "$desired_w" -lt "$min_w" ] && desired_w=$min_w
+    [ "$desired_w" -gt "$max_w" ] && desired_w=$max_w
+    [ "$desired_h" -lt "$min_h" ] && desired_h=$min_h
+    [ "$desired_h" -gt "$max_h" ] && desired_h=$max_h
+
+    if [ -z "$popup_w" ]; then
+      popup_w="$desired_w"
+    fi
+    if [ -z "$popup_h" ]; then
+      popup_h="$desired_h"
+    fi
+
+    rm -f -- "$tmp_file"
+  fi
+
+  tmux display-popup \
+    -T "$popup_title" \
+    -w "$popup_w" \
+    -h "$popup_h" \
+    -E "bash -lc '$swarm_popup_bin'"
+}
+
 case "$DIRECTION" in
   popup)
     show_workspaces_popup
@@ -66,6 +126,10 @@ case "$DIRECTION" in
     ;;
   ports)
     show_ports_popup
+    exit 0
+    ;;
+  swarm)
+    show_swarm_popup
     exit 0
     ;;
 esac
