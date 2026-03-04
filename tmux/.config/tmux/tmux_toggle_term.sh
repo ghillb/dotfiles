@@ -45,6 +45,137 @@ resolve_base_client() {
     [ -n "$fallback_client" ] && printf '%s\n' "$fallback_client"
 }
 
+normalize_path() {
+    local path="$1"
+    [ -z "$path" ] && {
+        printf '\n'
+        return
+    }
+
+    if command -v realpath >/dev/null 2>&1; then
+        realpath -m -- "$path" 2>/dev/null && return
+    fi
+
+    if [ -d "$path" ]; then
+        (cd "$path" 2>/dev/null && pwd -P) && return
+    fi
+
+    printf '%s\n' "${path%/}"
+}
+
+is_parent_path() {
+    local parent="$1"
+    local child="$2"
+
+    [ -z "$parent" ] && return 1
+    [ -z "$child" ] && return 1
+
+    [ "$parent" = "$child" ] && return 0
+    case "$child" in
+        "$parent"/*) return 0 ;;
+    esac
+    return 1
+}
+
+repo_root_for_path() {
+    local path="$1"
+    [ -z "$path" ] && {
+        printf '\n'
+        return
+    }
+    [ -d "$path" ] || {
+        printf '\n'
+        return
+    }
+
+    git -C "$path" rev-parse --show-toplevel 2>/dev/null || printf '\n'
+}
+
+focus_git_window_for_path() {
+    local target_session="$1"
+    local target_path="$2"
+
+    [ "$PREFIX" = "git" ] || return 0
+    [ -n "$target_path" ] || return 0
+
+    local target_path_normalized
+    target_path_normalized="$(normalize_path "$target_path")"
+    local target_base
+    target_base="$(basename "$target_path_normalized")"
+    local target_repo_root
+    target_repo_root="$(normalize_path "$(repo_root_for_path "$target_path_normalized")")"
+
+    local matched_pane=""
+    local matched_window_index=""
+    local pane_id window_index pane_path pane_path_normalized pane_repo_root
+    local pane_rows
+    pane_rows="$(tmux list-panes -s -t "$target_session" -F '#{pane_id}|#{window_index}|#{pane_current_path}')"
+
+    # 1) Exact normalized path match
+    while IFS='|' read -r pane_id window_index pane_path; do
+        pane_path_normalized="$(normalize_path "$pane_path")"
+        if [ "$pane_path_normalized" = "$target_path_normalized" ]; then
+            matched_pane="$pane_id"
+            matched_window_index="$window_index"
+            break
+        fi
+    done <<< "$pane_rows"
+
+    # 2) Parent-path match (pick the deepest ancestor for best locality)
+    if [ -z "$matched_pane" ]; then
+        local best_parent_len=0
+        local candidate_len=0
+        while IFS='|' read -r pane_id window_index pane_path; do
+            pane_path_normalized="$(normalize_path "$pane_path")"
+            if is_parent_path "$pane_path_normalized" "$target_path_normalized"; then
+                candidate_len=${#pane_path_normalized}
+                if [ "$candidate_len" -gt "$best_parent_len" ]; then
+                    best_parent_len="$candidate_len"
+                    matched_pane="$pane_id"
+                    matched_window_index="$window_index"
+                fi
+            fi
+        done <<< "$pane_rows"
+    fi
+
+    # 3) Same git repository root
+    if [ -z "$matched_pane" ] && [ -n "$target_repo_root" ]; then
+        while IFS='|' read -r pane_id window_index pane_path; do
+            pane_path_normalized="$(normalize_path "$pane_path")"
+            pane_repo_root="$(normalize_path "$(repo_root_for_path "$pane_path_normalized")")"
+            if [ -n "$pane_repo_root" ] && [ "$pane_repo_root" = "$target_repo_root" ]; then
+                matched_pane="$pane_id"
+                matched_window_index="$window_index"
+                break
+            fi
+        done <<< "$pane_rows"
+    fi
+
+    # 4) Basename fallback
+    if [ -z "$matched_pane" ]; then
+        while IFS='|' read -r pane_id window_index pane_path; do
+            if [ "$(basename "$(normalize_path "$pane_path")")" = "$target_base" ]; then
+                matched_pane="$pane_id"
+                matched_window_index="$window_index"
+                break
+            fi
+        done <<< "$pane_rows"
+    fi
+
+    if [ -z "$matched_pane" ]; then
+        local window_name
+        window_name="$target_base"
+        [ -n "$window_name" ] || window_name="shell"
+        matched_pane="$(tmux new-window -d -P -F '#{pane_id}' -t "$target_session" -c "$target_path" -n "$window_name")"
+        matched_window_index="$(tmux display-message -p -t "$matched_pane" '#{window_index}')"
+    fi
+
+    if [ -n "$matched_pane" ]; then
+        [ -n "$matched_window_index" ] && tmux select-window -t "${target_session}:${matched_window_index}"
+        tmux select-pane -t "$matched_pane"
+    fi
+}
+
 case "$CURRENT_SESSION" in
     git-*)
         FLOAT_PREFIX="git"
@@ -111,6 +242,8 @@ if ! tmux has-session -t "$TARGET_SESSION" 2>/dev/null; then
         tmux send-keys -t "$TARGET_SESSION" "$PREFILL" ""
     fi
 fi
+
+focus_git_window_for_path "$TARGET_SESSION" "$CURRENT_PATH"
 
 SESSION_CMD="tmux attach-session -t '${TARGET_SESSION}'"
 
