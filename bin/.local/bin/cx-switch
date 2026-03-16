@@ -1,0 +1,110 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+auth_profiles_dir="${HOME}/.codex-auth-profiles"
+current_file="${auth_profiles_dir}/.current"
+shared_home="${HOME}/.codex"
+shared_auth="${shared_home}/auth.json"
+
+usage() {
+  cat <<'EOF'
+Usage:
+  cx-switch use <name>
+  cx-switch current
+  cx-switch list
+  cx-switch status
+EOF
+}
+
+ensure_profile_auth() {
+  local name="$1"
+  local profile_auth="${auth_profiles_dir}/${name}.json"
+
+  if [ ! -e "$profile_auth" ] && [ -f "$shared_auth" ] && [ ! -L "$shared_auth" ]; then
+    cp "$shared_auth" "$profile_auth"
+  elif [ ! -e "$profile_auth" ] && [ -L "$shared_auth" ]; then
+    target="$(readlink -f "$shared_auth")"
+    if [ -n "${target:-}" ] && [ -f "$target" ]; then
+      cp "$target" "$profile_auth"
+    fi
+  fi
+}
+
+cmd="${1:-status}"
+
+case "$cmd" in
+  use)
+    name="${2:-}"
+    if [ -z "$name" ]; then
+      usage >&2
+      exit 1
+    fi
+    case "$name" in
+      *[!A-Za-z0-9._-]*)
+        echo "cx-switch: invalid profile name: $name" >&2
+        exit 1
+        ;;
+    esac
+    mkdir -p "$auth_profiles_dir" "$shared_home"
+    ensure_profile_auth "$name"
+    profile_auth="${auth_profiles_dir}/${name}.json"
+    printf '%s\n' "$name" > "$current_file"
+    if [ ! -e "$profile_auth" ]; then
+      echo "cx-switch: no auth stored yet for profile $name" >&2
+      echo "run: cx login" >&2
+      printf '{}' > "$profile_auth"
+    fi
+    ln -sfn "$profile_auth" "$shared_auth"
+    echo "active profile: $name"
+    echo "auth: $profile_auth"
+    ;;
+  current)
+    if [ -f "$current_file" ]; then
+      tr -d '[:space:]' < "$current_file"
+      printf '\n'
+    else
+      echo "unset"
+    fi
+    ;;
+  list)
+    mkdir -p "$auth_profiles_dir"
+    current=""
+    if [ -f "$current_file" ]; then
+      current="$(tr -d '[:space:]' < "$current_file")"
+    fi
+    found=0
+    for path in "$auth_profiles_dir"/*.json; do
+      if [ ! -f "$path" ]; then
+        continue
+      fi
+      found=1
+      name="$(basename "$path" .json)"
+      if [ "$name" = "$current" ]; then
+        echo "* $name"
+      else
+        echo "  $name"
+      fi
+    done
+    if [ "$found" -eq 0 ]; then
+      echo "no profiles"
+    fi
+    ;;
+  status)
+    if [ -f "$current_file" ]; then
+      name="$(tr -d '[:space:]' < "$current_file")"
+      echo "mode: auth-profile"
+      echo "profile: ${name:-unset}"
+      echo "auth: ${auth_profiles_dir}/${name}.json"
+      echo "state: ${shared_home}"
+    else
+      echo "mode: unset"
+      echo "profile: unset"
+      echo "auth: unset"
+      echo "state: ${shared_home}"
+    fi
+    ;;
+  *)
+    usage >&2
+    exit 1
+    ;;
+esac
