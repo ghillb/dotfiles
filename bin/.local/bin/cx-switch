@@ -16,20 +16,6 @@ Usage:
 EOF
 }
 
-ensure_profile_auth() {
-  local name="$1"
-  local profile_auth="${auth_profiles_dir}/${name}.json"
-
-  if [ ! -e "$profile_auth" ] && [ -f "$shared_auth" ] && [ ! -L "$shared_auth" ]; then
-    cp "$shared_auth" "$profile_auth"
-  elif [ ! -e "$profile_auth" ] && [ -L "$shared_auth" ]; then
-    target="$(readlink -f "$shared_auth")"
-    if [ -n "${target:-}" ] && [ -f "$target" ]; then
-      cp "$target" "$profile_auth"
-    fi
-  fi
-}
-
 cmd="${1:-status}"
 
 case "$cmd" in
@@ -46,7 +32,6 @@ case "$cmd" in
         ;;
     esac
     mkdir -p "$auth_profiles_dir" "$shared_home"
-    ensure_profile_auth "$name"
     profile_auth="${auth_profiles_dir}/${name}.json"
     printf '%s\n' "$name" > "$current_file"
     if [ ! -e "$profile_auth" ]; then
