@@ -62,7 +62,6 @@ if [[ "$SSH_CONNECTION" != "" ]]; then trap "kill -9 $(pidof ssh-agent)&>/dev/nu
 
 # key binds
 bind -x '"\C-b": "cd .."'
-bind -x '"\C-j": "cd ~/"'
 bind -x '"\C-o": "todo"'
 if [[ -z "$TMUX" ]]; then
     bind -x '"\e\C-t": "tx"'
