@@ -84,14 +84,6 @@ vim.g.netrw_fastbrowse                      = 0
 user.fn.load_local_config()
 
 -- lsp and diagnostics settings
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = nil,
-})
-
-vim.lsp.handlers["textDocument/signtureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-  border = nil,
-})
-
 vim.diagnostic.config({
   signs = false,
   severity_sort = true,
