@@ -9,6 +9,9 @@ shared_auth="${shared_home}/auth.json"
 usage() {
   cat <<'EOF'
 Usage:
+  cx-switch clear
+  cx-switch delete <name>
+  cx-switch save <name>
   cx-switch use <name>
   cx-switch current
   cx-switch list
@@ -124,6 +127,68 @@ fetch_limits_json() {
   printf '%s\n' "$result"
 }
 
+save_profile() {
+  local name="$1"
+  local profile_auth="${auth_profiles_dir}/${name}.json"
+  local tmp_auth
+
+  if [ ! -e "$shared_auth" ]; then
+    echo "cx-switch: no active auth to save" >&2
+    echo "run: cx login" >&2
+    exit 1
+  fi
+
+  mkdir -p "$auth_profiles_dir" "$shared_home"
+
+  tmp_auth="$(mktemp "${auth_profiles_dir}/.${name}.XXXXXX")"
+  cleanup_save() {
+    rm -f "$tmp_auth"
+  }
+  trap cleanup_save RETURN
+
+  cp "$shared_auth" "$tmp_auth"
+  chmod 600 "$tmp_auth"
+  mv -f "$tmp_auth" "$profile_auth"
+
+  echo "saved profile: $name"
+  echo "auth: $profile_auth"
+}
+
+clear_profile() {
+  rm -f "$shared_auth" "$current_file"
+  echo "cleared active profile"
+  echo "auth: ${shared_home}/auth.json"
+}
+
+delete_profile() {
+  local name="$1"
+  local profile_auth="${auth_profiles_dir}/${name}.json"
+  local current_profile
+
+  if [ ! -f "$profile_auth" ]; then
+    echo "cx-switch: no saved auth for profile $name" >&2
+    exit 1
+  fi
+
+  if [ -f "$current_file" ]; then
+    current_profile="$(tr -d '[:space:]' < "$current_file")"
+  else
+    current_profile="unset"
+  fi
+
+  rm -f "$profile_auth"
+
+  if [ "$current_profile" = "$name" ]; then
+    rm -f "$current_file" "$shared_auth"
+    echo "deleted profile: $name"
+    echo "cleared active profile"
+    echo "auth: ${shared_home}/auth.json"
+  else
+    echo "deleted profile: $name"
+    echo "auth: $profile_auth"
+  fi
+}
+
 print_limits() {
   local name="$1"
   local payload snapshot plan credits_has credits_unlimited credits_balance
@@ -171,6 +236,27 @@ print_limits() {
 cmd="${1:-status}"
 
 case "$cmd" in
+  clear)
+    clear_profile
+    ;;
+  delete)
+    name="${2:-}"
+    if [ -z "$name" ]; then
+      usage >&2
+      exit 1
+    fi
+    validate_profile_name "$name"
+    delete_profile "$name"
+    ;;
+  save)
+    name="${2:-}"
+    if [ -z "$name" ]; then
+      usage >&2
+      exit 1
+    fi
+    validate_profile_name "$name"
+    save_profile "$name"
+    ;;
   use)
     name="${2:-}"
     if [ -z "$name" ]; then
@@ -180,12 +266,12 @@ case "$cmd" in
     validate_profile_name "$name"
     mkdir -p "$auth_profiles_dir" "$shared_home"
     profile_auth="${auth_profiles_dir}/${name}.json"
-    printf '%s\n' "$name" > "$current_file"
     if [ ! -e "$profile_auth" ]; then
-      echo "cx-switch: no auth stored yet for profile $name" >&2
-      echo "run: cx login" >&2
-      printf '{}' > "$profile_auth"
+      echo "cx-switch: no saved auth for profile $name" >&2
+      echo "run: cx login, then cx-switch save $name" >&2
+      exit 1
     fi
+    printf '%s\n' "$name" > "$current_file"
     ln -sfn "$profile_auth" "$shared_auth"
     echo "active profile: $name"
     echo "auth: $profile_auth"
