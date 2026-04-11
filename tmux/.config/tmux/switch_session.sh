@@ -4,6 +4,12 @@ DIRECTION=${1:-next}
 CURRENT_SESSION=$(tmux display-message -p '#{session_name}')
 CURRENT_CLIENT=$(tmux display-message -p '#{client_name}')
 CURRENT_TTY=$(tmux display-message -p '#{client_tty}')
+session_option() {
+  local session_name="$1"
+  local option_name="$2"
+  tmux show-options -t "$session_name" -v "$option_name" 2>/dev/null || true
+}
+
 SESSION_FILTER='#{&&:#{&&:#{&&:#{!=:#{m:ft-*,#{session_name}},1},#{!=:#{m:git-*,#{session_name}},1}},#{!=:#{m:nvim-*,#{session_name}},1}},#{!=:#{m:bv-*,#{session_name}},1}}'
 WORKSPACE_FORMAT='#{session_name} | #{?session_attached,ATTACHED,DETACHED} | #{?#{==:#{session_path},},-,#{b:session_path}} | win #{session_windows} | last #{t/p:session_activity}'
 
@@ -139,10 +145,11 @@ BASE_SESSION="$CURRENT_SESSION"
 case "$CURRENT_SESSION" in
   git-*|ft-*|nvim-*|bv-*)
     IS_FLOAT=true
-    BASE_SESSION="${CURRENT_SESSION#git-}"
-    BASE_SESSION="${BASE_SESSION#nvim-}"
-    BASE_SESSION="${BASE_SESSION#ft-}"
-    BASE_SESSION="${BASE_SESSION#bv-}"
+    BASE_SESSION="$(session_option "$CURRENT_SESSION" '@base_session')"
+    [ -n "$BASE_SESSION" ] || {
+      tmux display-message "$CURRENT_SESSION missing base_session metadata"
+      exit 1
+    }
     ;;
 esac
 
