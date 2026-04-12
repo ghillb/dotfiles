@@ -4,6 +4,7 @@ DIRECTION=${1:-next}
 CURRENT_SESSION=$(tmux display-message -p '#{session_name}')
 CURRENT_CLIENT=$(tmux display-message -p '#{client_name}')
 CURRENT_TTY=$(tmux display-message -p '#{client_tty}')
+MANAGED_SESSION_RE='^(bv-|ft-|git-|nvim-)'
 session_option() {
   local session_name="$1"
   local option_name="$2"
@@ -136,6 +137,15 @@ case "$DIRECTION" in
     ;;
   swarm)
     show_swarm_popup
+    exit 0
+    ;;
+  kill)
+    tmux list-sessions -F '#{session_name}' \
+      | grep -E "$MANAGED_SESSION_RE" \
+      | while IFS= read -r session; do
+          [ -n "$session" ] || continue
+          tmux kill-session -t "$session"
+        done
     exit 0
     ;;
 esac
