@@ -1,5 +1,6 @@
 #!/bin/bash
-# Toggle a floating terminal popup, keyed per base pane.
+# Toggle a floating terminal popup.
+# `ft` is keyed per base session; other prefixes remain keyed per base pane.
 #
 # Usage:
 #   tmux_toggle_term.sh <prefix> [command] [toggle-size] [prefill]
@@ -123,7 +124,11 @@ if [ -n "$FLOAT_PREFIX" ]; then
     tmux detach-client
 fi
 
-TARGET_SESSION="${PREFIX}-${BASE_PANE#%}"
+TARGET_KEY="${BASE_PANE#%}"
+if [ "$PREFIX" = "ft" ]; then
+    TARGET_KEY="$BASE_SESSION"
+fi
+TARGET_SESSION="${PREFIX}-${TARGET_KEY}"
 STATE_FILE="/tmp/tmux_float_${PREFIX}_maximized"
 
 # Determine popup size
