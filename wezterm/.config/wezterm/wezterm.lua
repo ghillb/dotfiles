@@ -1,6 +1,12 @@
 local wezterm = require("wezterm")
 local config = {}
 
+config.term = 'wezterm'
+config.max_fps = 60
+config.animation_fps = 1
+config.cursor_blink_rate = 0
+config.text_blink_rate = 0
+config.text_blink_rate_rapid = 0
 config.font = wezterm.font_with_fallback {
   'Cascadia Code',
   'JetBrains Mono',
@@ -9,6 +15,8 @@ config.font_size = 12
 -- config.color_scheme = "Bamboo"
 config.color_scheme = 'GruvboxDarkHard'
 if wezterm.target_triple:find("windows") then
+  config.front_end = 'OpenGL'
+  config.prefer_egl = true
   config.default_prog = {"powershell.exe", "-NoLogo"}
 end
 config.hide_tab_bar_if_only_one_tab = true

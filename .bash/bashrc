@@ -11,7 +11,9 @@ if [ -t 0 ]; then
 fi
 set bell-style audible
 
-export TERM=xterm-256color
+if [[ -z "${TERM:-}" || "$TERM" == "dumb" ]]; then
+  export TERM=xterm-256color
+fi
 
 if [ -f /etc/redhat-release ]; then
   export "PKG_MANAGER=dnf"
