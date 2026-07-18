@@ -57,6 +57,8 @@ bindings = [
   { key = 34, mods = "Control | Alt", chars = "\u001b\u0007" },
   { key = 49, mods = "Control | Alt", chars = "\u001b\u000e" },
   { key = 21, mods = "Control | Alt", chars = "\u001b\u0019" },
+  # This must precede the Ctrl+Alt+S physical-key binding below.
+  { key = 31, mods = "Control | Alt | Shift", chars = "\u001b[994~" },
   { key = 31, mods = "Control | Alt", chars = "\u001b\u0013" },
   { key = 48, mods = "Control | Alt", chars = "\u001b\u0002" },
   { key = 16, mods = "Control | Alt", chars = "\u001b\u0011" },
@@ -69,5 +71,6 @@ bindings = [
   { key = "V", mods = "Control", action = "Paste" },
   { key = 26, mods = "Control | Alt", chars = "\u001b[991~" },
   { key = 27, mods = "Control | Alt", chars = "\u001b[992~" },
+  { key = "S", mods = "Control | Shift", chars = "\u001b[993~" },
   { key = "Enter", mods = "Shift", chars = "\u001b\r" },
 ]

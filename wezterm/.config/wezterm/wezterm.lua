@@ -55,10 +55,12 @@ config.keys = {
   {
     key = 's',
     mods = 'CTRL|SHIFT',
-    action = wezterm.action.SpawnCommandInNewTab {
-      args = { 'wsl.exe', 'bash', '-c', 'SKIP_AUTO_TMUX=1 exec bash -ic sshsel' },
-      domain = { DomainName = 'local' },
-    },
+    action = wezterm.action { SendString = '\x1b[993~' },
+  },
+  {
+    key = 's',
+    mods = 'CTRL|ALT|SHIFT',
+    action = wezterm.action { SendString = '\x1b[994~' },
   },
   {
     key = '[',
