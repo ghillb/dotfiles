@@ -8,7 +8,7 @@ config.cursor_blink_rate = 0
 config.text_blink_rate = 0
 config.text_blink_rate_rapid = 0
 config.font = wezterm.font_with_fallback {
-  'Cascadia Code',
+  { family = 'FiraCode Nerd Font', weight = 450 },
   'JetBrains Mono',
 }
 config.font_size = 12
