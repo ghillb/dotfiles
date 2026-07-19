@@ -17,6 +17,13 @@ style = "Retina"
 shape = "Block"
 blinking = "Never"
 
+[mouse]
+hide_when_typing = true
+bindings = [
+  { mouse = "WheelUp", mods = "Control | Shift", action = "IncreaseFontSize" },
+  { mouse = "WheelDown", mods = "Control | Shift", action = "DecreaseFontSize" },
+]
+
 [terminal]
 shell = { program = "wsl.exe", args = ["--cd", "~"] }
 
