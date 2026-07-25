@@ -52,7 +52,6 @@ vim.opt.title                               = true
 vim.opt.foldlevel                           = 2
 vim.opt.foldlevelstart                      = 2
 vim.opt.undofile                            = true
-vim.opt.undodir                             = vim.env.NVIM_CONFIG .. '/undodir'
 vim.opt.wildmenu                            = true
 vim.opt.wildoptions                         = 'pum'
 vim.opt.wildmode                            = 'list:longest,full'
@@ -129,4 +128,3 @@ vim.api.nvim_create_user_command('Format', function()
   
   print("Formatted: removed ^M, trailing whitespace, and trailing blank lines")
 end, { desc = "Format file: remove ^M, trailing whitespace, and trailing blank lines" })
-

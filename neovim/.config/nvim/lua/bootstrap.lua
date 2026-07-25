@@ -2,6 +2,11 @@
 
 local M = {}
 
+local function config_source_path()
+  local init_path = vim.fn.stdpath("config") .. "/init.lua"
+  return vim.fn.fnamemodify(vim.fn.resolve(init_path), ":h")
+end
+
 local function ensure_directories()
   local config_path = vim.fn.stdpath("config")
 
@@ -28,7 +33,9 @@ function M.setup()
 
   -- Load all plugin specs from lua/plugins/*.lua
   if vim.fn.has("unix") == 1 then
-    require("lazy").setup("plugins")
+    require("lazy").setup("plugins", {
+      lockfile = config_source_path() .. "/lazy-lock.json",
+    })
   end
 end
 
