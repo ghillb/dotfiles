@@ -10,9 +10,9 @@ iploc() {
 
 tx() {
   if [ -z "$*" ] ; then
-    tmux -2 attach -t $USER || tmux -2 new -s $USER;
+    tmux -T 256,sync attach -t $USER || tmux -T 256,sync new -s $USER;
   else
-    tmux -2 "$1";
+    tmux -T 256,sync "$1";
   fi
 }
 
