@@ -7,7 +7,7 @@
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
   "live-preview.nvim": { "branch": "main", "commit": "a30e54e51e7480d7060c8c8185f2a963ad3518b4" },
   "lualine.nvim": { "branch": "master", "commit": "221ce6b2d999187044529f49da6554a92f740a96" },
-  "neogit": { "branch": "master", "commit": "8cdf050f8037456c58f32a8917d705c5ce35a938" },
+  "neogit": { "branch": "master", "commit": "57c9f8ee784bcd07141bf7fa958b5c5bb1420de8" },
   "nvim-dap": { "branch": "master", "commit": "9e848e09a697ee95302a3ef2dd43fd6eb709e570" },
   "nvim-dap-view": { "branch": "main", "commit": "b8c8aa91f42055d7f69012587cde4f1d99f2a701" },
   "nvim-dap-virtual-text": { "branch": "master", "commit": "fbdb48c2ed45f4a8293d0d483f7730d24467ccb6" },
