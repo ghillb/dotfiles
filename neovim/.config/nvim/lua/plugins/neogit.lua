@@ -16,8 +16,7 @@ return {
       local spinner_msg = "Generating commit message and committing..."
       local notify_opts = { title = "Commit", timeout = false }
       local notification_id = vim.notify(spinner_frames[spinner_idx] .. " " .. spinner_msg, vim.log.levels.INFO, notify_opts)
-      local uv = vim.uv or vim.loop
-      local spinner_timer = uv and uv.new_timer() or nil
+      local spinner_timer = vim.uv.new_timer()
 
       if spinner_timer then
         spinner_timer:start(100, 100, vim.schedule_wrap(function()
