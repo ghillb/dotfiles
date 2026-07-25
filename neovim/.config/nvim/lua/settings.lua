@@ -65,7 +65,7 @@ vim.opt.grepprg                             = "rg --vimgrep $* /dev/null"
 vim.opt.grepformat                          = "%f:%l:%c:%m"
 -- fold settings
 vim.opt.foldmethod                          = "expr"
-vim.opt.foldexpr                            = "nvim_treesitter#foldexpr()"
+vim.opt.foldexpr                            = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldtext                            = [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)']]
 vim.opt.foldnestmax                         = 3
 vim.opt.foldminlines                        = 1
@@ -103,14 +103,6 @@ for type, icon in pairs(_G.DiagnosticSigns) do
   local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
-
--- Disable treesitter highlighting for lua files to avoid query errors
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "lua",
-  callback = function()
-    vim.treesitter.stop()
-  end,
-})
 
 -- Format command to clean up files
 vim.api.nvim_create_user_command('Format', function()
