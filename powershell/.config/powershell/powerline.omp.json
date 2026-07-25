@@ -1,0 +1,79 @@
+{
+  "async": true,
+  "blocks": [
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "background": "p:accent",
+          "foreground": "p:background",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "template": " {{ if .SSHSession }}SSH \u00b7 {{ end }}{{ .UserName }} ",
+          "type": "session"
+        },
+        {
+          "background": "p:surface",
+          "foreground": "p:foreground",
+          "properties": {
+            "folder_icon": "\uf07b ",
+            "folder_separator_icon": " \ue0b1 ",
+            "home_icon": "~",
+            "style": "agnoster_short"
+          },
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "template": " {{ .Path }} ",
+          "type": "path"
+        },
+        {
+          "background": "p:git",
+          "foreground": "p:background",
+          "properties": {
+            "branch_icon": "\ue0a0 ",
+            "fetch_stash_count": true,
+            "fetch_status": true,
+            "fetch_upstream_icon": true
+          },
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "template": " {{ .UpstreamIcon }}{{ .HEAD }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} \u00b7{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }} ",
+          "type": "git"
+        },
+        {
+          "background": "p:success",
+          "background_templates": [
+            "{{ if gt .Code 0 }}p:alert{{ end }}"
+          ],
+          "foreground": "p:background",
+          "properties": {
+            "always_enabled": true
+          },
+          "style": "diamond",
+          "template": " {{ if gt .Code 0 }}\uf00d {{ .Code }}{{ else }}\uf00c{{ end }} ",
+          "trailing_diamond": "\ue0b0",
+          "type": "status"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "console_title_template": "{{ .Folder }} \u00b7 {{ .Shell }}",
+  "final_space": true,
+  "palette": {
+    "accent": "#d7af00",
+    "alert": "#ff5f87",
+    "background": "#3a3a3a",
+    "foreground": "#ffd7af",
+    "git": "#ff8700",
+    "muted": "#949494",
+    "success": "#bcbcbc",
+    "surface": "#4e4e4e"
+  },
+  "transient_prompt": {
+    "background": "transparent",
+    "foreground": "p:accent",
+    "template": "\ue285 "
+  },
+  "version": 2
+}
