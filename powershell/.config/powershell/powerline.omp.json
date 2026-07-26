@@ -23,7 +23,7 @@
           },
           "style": "powerline",
           "powerline_symbol": "\ue0b0",
-          "template": " {{ .Path }} ",
+          "template": " {{ .Path }}{{ if and (not (.Segments.Contains \"Git\")) (.Segments.Contains \"Duration\") }} \ue0b1 \uf252 {{ .Segments.Duration.FormattedMs }}{{ end }} ",
           "type": "path"
         },
         {
@@ -37,8 +37,18 @@
           },
           "style": "powerline",
           "powerline_symbol": "\ue0b0",
-          "template": " {{ .UpstreamIcon }}{{ .HEAD }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} \u00b7{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }} ",
+          "template": " {{ .UpstreamIcon }} {{ .HEAD }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} \u00b7{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }}{{ with .Segments.Duration }} \ue0b1 \uf252 {{ .FormattedMs }}{{ end }} ",
           "type": "git"
+        },
+        {
+          "alias": "Duration",
+          "properties": {
+            "style": "austin",
+            "threshold": 100
+          },
+          "style": "plain",
+          "template": "{{ \"\" }}",
+          "type": "executiontime"
         },
         {
           "background": "p:success",
@@ -73,7 +83,7 @@
   "transient_prompt": {
     "background": "transparent",
     "foreground": "p:accent",
-    "template": "\ue285 "
+    "template": "{{ .Folder }} \ue285 "
   },
   "version": 2
 }
