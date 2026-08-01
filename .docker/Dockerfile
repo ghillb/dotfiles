@@ -12,4 +12,4 @@ USER dv
 ENV USER=dv
 WORKDIR /home/dv
 COPY --chown=dv:dv . /home/dv/.files
-RUN cd /home/dv/.files && chmod +x deploy.sh && ./deploy.sh
+RUN /home/dv/.files/.agents/skills/setup-dotfiles/scripts/deploy.sh
