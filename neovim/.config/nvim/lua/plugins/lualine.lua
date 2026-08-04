@@ -41,13 +41,6 @@ return {
       lualine_a = { "mode" },
       lualine_b = { "branch" },
       lualine_c = {
-        function()
-          local ok, project_module = pcall(require, "project_nvim.project")
-          if not ok then
-            return ""
-          end
-          return project_module.get_project_root() or ""
-        end,
         { "filename", path = 1, newfile_status = true },
       },
       lualine_x = { "diff", "diagnostics" },

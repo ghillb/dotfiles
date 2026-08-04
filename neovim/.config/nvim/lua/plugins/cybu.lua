@@ -56,7 +56,6 @@ return {
       },
       display_time = 750,
       exclude = {
-        "fugitive",
         "terminal",
         "qf",
       },

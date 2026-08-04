@@ -11,9 +11,7 @@ return {
         "regex",
       },
       delay = 100,
-      filetypes_denylist = {
-        "fugitive",
-      },
+      filetypes_denylist = {},
       filetypes_allowlist = {},
       modes_denylist = {},
       modes_allowlist = {},

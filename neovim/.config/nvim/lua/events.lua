@@ -52,13 +52,22 @@ aucmd("DirChanged", {
   group = augrp("DirChangedGroup", { clear = true }),
 })
 
-aucmd({ "TextChanged", "TextChangedI" }, {
-  callback = function()
-    if user.fn.filereadable(vim.api.nvim_buf_get_name(0)) and not vim.o.readonly then
-      vim.cmd("silent write")
+aucmd({ "BufLeave", "FocusLost" }, {
+  callback = function(args)
+    local buffer = args.buf
+    if
+      vim.api.nvim_buf_is_valid(buffer)
+      and vim.bo[buffer].modified
+      and vim.bo[buffer].buftype == ""
+      and not vim.bo[buffer].readonly
+      and vim.api.nvim_buf_get_name(buffer) ~= ""
+    then
+      vim.api.nvim_buf_call(buffer, function()
+        vim.cmd("silent update")
+      end)
     end
   end,
-  group = augrp("TextChangedGroup", { clear = true }),
+  group = augrp("AutoSaveGroup", { clear = true }),
 })
 
 aucmd("TextYankPost", {
@@ -70,8 +79,7 @@ aucmd("TextYankPost", {
 
 aucmd("BufWritePre", {
   callback = function()
-    -- vim.lsp.buf.formatting_seq_sync(nil, 2000)
-    vim.lsp.buf.format({ async = true })
+    vim.lsp.buf.format({ async = false, timeout_ms = 2000 })
   end,
   group = augrp("BufWritePreGroup", { clear = true }),
 })
