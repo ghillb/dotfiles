@@ -44,12 +44,6 @@ nvim_project_picker() {
   eval "nvim -c \"call timer_start(5, { tid -> execute('Telescope project display_type=full')})\""
 }
 
-fzf_project_picker () {
-  cd $(find $HOME/code -name .git -type d -prune | fzf)/..
-  include .envrc
-  eval "nvim -c \"call timer_start(5, { tid -> execute('Telescope find_files')})\""
-}
-
 diary() {
   eval "nvim +VimwikiMakeDiaryNote +'cd %:h'"
 }
