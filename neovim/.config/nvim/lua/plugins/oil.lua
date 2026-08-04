@@ -98,8 +98,6 @@ return {
       end
     end
 
-    _G.oil_toggle = oil_toggle
-
     vim.keymap.set("n", "<a-e>", function()
       oil_toggle(false, false)
     end, { desc = "Toggle oil fullbuffer (simple)" })

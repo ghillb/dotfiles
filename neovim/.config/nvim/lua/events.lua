@@ -77,13 +77,6 @@ aucmd("TextYankPost", {
   group = augrp("TextYankPostGroup", { clear = true }),
 })
 
-aucmd("BufWritePre", {
-  callback = function()
-    vim.lsp.buf.format({ async = false, timeout_ms = 2000 })
-  end,
-  group = augrp("BufWritePreGroup", { clear = true }),
-})
-
 aucmd(
   "BufWritePost",
   { pattern = "init.lua", command = "source $MYVIMRC", group = augrp("BufWritePostGroup", { clear = true }) }
