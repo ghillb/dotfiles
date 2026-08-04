@@ -1,19 +1,15 @@
-#!/usr/bin/env -S docker-compose -f
----
-version: '3'
 services:
-  ubu-dev:
-    image: ghillb/devcon:latest
+  dev:
+    build:
+      context: ..
+      dockerfile: .docker/Dockerfile
+    image: dotfiles-dev:local
     container_name: devcon
     hostname: dc
+    stdin_open: true
     tty: true
-    network_mode: host
+    working_dir: /home/dv/code
     volumes:
-      - home:/home/dv
-      - $HOME/code:/home/dv/code
-      - /:/home/host
-      - /var/run/docker.sock:/var/run/docker.sock
-    extra_hosts:
-      - dc:127.0.0.1
-volumes:
-  home:
+      - type: bind
+        source: ${HOME}/code
+        target: /home/dv/code

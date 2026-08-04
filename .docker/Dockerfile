@@ -1,15 +1,16 @@
 FROM ubuntu:24.04
-USER root
-ENV DEBIAN_FRONTEND="noninteractive" TZ="Europe/Berlin"
-ENV CI=true
-RUN apt-get update && apt-get upgrade -y && \
-    apt-get install -y tzdata sudo git curl wget gnupg lsb-release stow
-RUN useradd --create-home --shell /bin/bash dv
-RUN adduser dv sudo
-RUN echo 'dv:changeme' | chpasswd
-RUN echo "dv ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update \
+    && apt-get install --yes --no-install-recommends git stow \
+    && rm -rf /var/lib/apt/lists/* \
+    && useradd --create-home --shell /bin/bash --uid 1000 dv
+
 USER dv
 ENV USER=dv
 WORKDIR /home/dv
 COPY --chown=dv:dv . /home/dv/.files
 RUN /home/dv/.files/.agents/skills/setup-dotfiles/scripts/deploy.sh
+
+CMD ["/bin/bash"]
