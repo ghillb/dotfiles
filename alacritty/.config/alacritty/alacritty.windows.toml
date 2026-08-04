@@ -1,4 +1,6 @@
 [general]
+# Windows deploys this entry point as alacritty.toml and links the shared
+# alacritty.toml beside it under this distinct name to avoid a self-import.
 import = ["alacritty.shared.toml"]
 
 [terminal]
