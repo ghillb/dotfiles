@@ -1,0 +1,5 @@
+[general]
+import = ["alacritty.toml"]
+
+[terminal]
+shell = { program = "wsl.exe", args = ["--cd", "~"] }

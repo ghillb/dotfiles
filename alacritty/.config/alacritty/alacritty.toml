@@ -24,9 +24,6 @@ bindings = [
   { mouse = "WheelDown", mods = "Control | Shift", action = "DecreaseFontSize" },
 ]
 
-[terminal]
-shell = { program = "wsl.exe", args = ["--cd", "~"] }
-
 [colors.primary]
 background = "#1d2021"
 foreground = "#ebdbb2"
