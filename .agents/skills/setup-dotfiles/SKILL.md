@@ -20,3 +20,9 @@ bash "$HOME/.files/.agents/skills/setup-dotfiles/scripts/deploy.sh" tmux starshi
 Stop on conflicts. Never adopt or unstow first. Integrate `.bash/bashrc` manually
 only when explicitly requested. Validate by rerunning the sidecar and checking
 representative targets with `readlink -f`.
+
+For repository-wide development checks, run:
+
+```bash
+bash "$HOME/.files/.agents/skills/setup-dotfiles/scripts/verify.sh"
+```

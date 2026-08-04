@@ -1,8 +1,8 @@
 local M = {}
 
-local CACHE_TTL = 5000    
-local DEBOUNCE_DELAY = 150 
-local GIT_CMD = {"git", "status", "--porcelain=v1", "-z"}
+local CACHE_TTL = 5000
+local DEBOUNCE_DELAY = 150
+local GIT_CMD = { "git", "status", "--porcelain=v1", "-z" }
 
 local Cache = {
   git_roots = {},
@@ -14,20 +14,20 @@ function Cache:get_git_root(path)
   if self.git_roots[path] then
     return self.git_roots[path]
   end
-  
-  local git_path = vim.fs.find('.git', {
+
+  local git_path = vim.fs.find(".git", {
     path = path,
-    upward = true
+    upward = true,
   })[1]
-  
+
   local git_root = nil
   if git_path then
     local stat = vim.uv.fs_stat(git_path)
-    if stat and (stat.type == 'directory' or stat.type == 'file') then
+    if stat and (stat.type == "directory" or stat.type == "file") then
       git_root = vim.fs.dirname(git_path)
     end
   end
-  
+
   self.git_roots[path] = git_root
   return git_root
 end
@@ -37,38 +37,38 @@ function Cache:get_status(git_root)
   if not cached or type(cached) ~= "table" then
     return nil
   end
-  
+
   if not cached.data or not cached.timestamp or type(cached.timestamp) ~= "number" then
     return nil
   end
-  
-  local current_time = vim.uv.hrtime() 
+
+  local current_time = vim.uv.hrtime()
   if not current_time or type(current_time) ~= "number" then
     return nil
   end
-  
+
   current_time = current_time / 1000000
   if type(current_time) ~= "number" then
     return nil
   end
-  
+
   local timestamp = cached.timestamp
   if not timestamp or type(timestamp) ~= "number" then
     return nil
   end
-  
+
   local age = current_time - timestamp
   if type(age) == "number" and age < CACHE_TTL then
     return cached.data
   end
-  
+
   return nil
 end
 
 function Cache:set_status(git_root, status)
   self.git_status[git_root] = {
     data = status,
-    timestamp = vim.uv.hrtime() / 1000000
+    timestamp = vim.uv.hrtime() / 1000000,
   }
 end
 
@@ -86,7 +86,7 @@ end
 function Cache:clear()
   self.git_roots = {}
   self.git_status = {}
-  
+
   for _, timer in pairs(self.debounce_timers) do
     if timer then
       timer:stop()
@@ -101,15 +101,15 @@ function Cache:debounce(git_root, callback)
     self.debounce_timers[git_root]:stop()
     self.debounce_timers[git_root]:close()
   end
-  
+
   local timer = vim.uv.new_timer()
   self.debounce_timers[git_root] = timer
-  
+
   timer:start(DEBOUNCE_DELAY, 0, function()
     timer:stop()
     timer:close()
     self.debounce_timers[git_root] = nil
-    
+
     vim.schedule(function()
       self:invalidate(git_root)
       callback()
@@ -141,22 +141,24 @@ local function get_git_root(path)
 end
 
 local function parse_git_status_line(line)
-  if #line < 3 then return nil end
-  
+  if #line < 3 then
+    return nil
+  end
+
   local status_code = line:sub(1, 2)
   local filepath = line:sub(4)
-  
+
   if status_code:sub(1, 1) == "R" then
     local arrow_pos = filepath:find(" %-> ")
     if arrow_pos then
       filepath = filepath:sub(arrow_pos + 4)
     end
   end
-  
+
   if filepath:sub(1, 2) == "./" then
     filepath = filepath:sub(3)
   end
-  
+
   return status_code, filepath
 end
 
@@ -176,7 +178,7 @@ end
 local function get_git_status_async(git_root, callback)
   vim.system(GIT_CMD, {
     cwd = git_root,
-    text = true
+    text = true,
   }, function(result)
     vim.schedule(function()
       if result.code ~= 0 then
@@ -201,19 +203,21 @@ local function get_git_status(dir)
   if cached_status then
     return cached_status
   end
-  
-  local result = vim.system(GIT_CMD, {
-    cwd = git_root,
-    text = true
-  }):wait()
-  
+
+  local result = vim
+    .system(GIT_CMD, {
+      cwd = git_root,
+      text = true,
+    })
+    :wait()
+
   if result.code ~= 0 then
     return {}
   end
 
   local status = parse_git_output(result.stdout, git_root)
   Cache:set_status(git_root, status)
-  
+
   return status
 end
 
@@ -223,7 +227,7 @@ local sign_lookup = {
   [" M"] = "OilGitModified",
   [" D"] = "OilGitDeleted",
   ["A "] = "OilGitStaged",
-  ["M "] = "OilGitStaged", 
+  ["M "] = "OilGitStaged",
   ["R "] = "OilGitRenamed",
   ["D "] = "OilGitStaged",
   ["MM"] = "OilGitModified",
@@ -279,9 +283,9 @@ local function apply_git_signs()
   if not ok then
     return
   end
-  
+
   local current_dir = oil.get_current_dir()
-  
+
   if not current_dir then
     clear_signs()
     return
@@ -301,53 +305,50 @@ local function apply_git_signs()
 
   local bufnr = vim.api.nvim_get_current_buf()
   local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
-  
+
   clear_signs()
 
   local rel_current = calculate_relative_path(current_dir, git_root)
-  
+
   for i, line in ipairs(lines) do
     local entry = oil.get_entry_on_line(bufnr, i)
-    if not entry then goto continue end
-    
-    local sign_name
-    
-    if entry.type == "file" or entry.type == "link" then
-      local rel_filepath = (rel_current == "" and "" or rel_current .. "/") .. entry.name
-      local abs_filepath = git_root .. "/" .. rel_filepath
-      local status_code = git_status[rel_filepath] or git_status[abs_filepath] or git_status[entry.name]
-      
-      if not status_code then
-        local rel_dir = rel_current == "" and "" or rel_current .. "/"
-        local parent_dir_with_slash = rel_dir
-        if git_status[parent_dir_with_slash] == "??" then
-          status_code = "??"
+    if entry then
+      local sign_name
+
+      if entry.type == "file" or entry.type == "link" then
+        local rel_filepath = (rel_current == "" and "" or rel_current .. "/") .. entry.name
+        local abs_filepath = git_root .. "/" .. rel_filepath
+        local status_code = git_status[rel_filepath] or git_status[abs_filepath] or git_status[entry.name]
+
+        if not status_code then
+          local rel_dir = rel_current == "" and "" or rel_current .. "/"
+          local parent_dir_with_slash = rel_dir
+          if git_status[parent_dir_with_slash] == "??" then
+            status_code = "??"
+          end
+        end
+
+        sign_name = get_sign_name(status_code)
+      elseif entry.type == "directory" then
+        local rel_dir = (rel_current == "" and "" or rel_current .. "/") .. entry.name .. "/"
+        local abs_dir = git_root .. "/" .. rel_dir
+        local status_code = git_status[rel_dir] or git_status[abs_dir]
+
+        if status_code == "??" then
+          sign_name = "OilGitUntracked"
+        elseif status_code == "!!" then
+          sign_name = "OilGitIgnored"
+        else
+          sign_name = get_directory_status(git_status, git_root, rel_dir)
         end
       end
-      
-      sign_name = get_sign_name(status_code)
-      
-    elseif entry.type == "directory" then
-      local rel_dir = (rel_current == "" and "" or rel_current .. "/") .. entry.name .. "/"
-      local abs_dir = git_root .. "/" .. rel_dir
-      local status_code = git_status[rel_dir] or git_status[abs_dir]
-      
-      if status_code == "??" then
-        sign_name = "OilGitUntracked"
-      elseif status_code == "!!" then
-        sign_name = "OilGitIgnored"
-      else
-        sign_name = get_directory_status(git_status, git_root, rel_dir)
+
+      if sign_name then
+        vim.fn.sign_place(0, "oil_git_group", sign_name, bufnr, { lnum = i })
       end
     end
-    
-    if sign_name then
-      vim.fn.sign_place(0, "oil_git_group", sign_name, bufnr, { lnum = i })
-    end
-    
-    ::continue::
   end
-  
+
   local cached = Cache.git_status[git_root]
   if cached and cached.timestamp and (vim.uv.hrtime() / 1000000 - cached.timestamp) > (CACHE_TTL * 0.7) then
     get_git_status_async(git_root, function(status)
@@ -383,7 +384,7 @@ local function setup_autocmds()
     end,
   })
 
-  vim.api.nvim_create_autocmd({"FocusGained", "WinEnter", "BufWinEnter"}, {
+  vim.api.nvim_create_autocmd({ "FocusGained", "WinEnter", "BufWinEnter" }, {
     group = group,
     pattern = "oil://*",
     callback = function()
@@ -399,17 +400,21 @@ end
 
 function M.refresh()
   local ok, oil = pcall(require, "oil")
-  if not ok then return end
-  
-  local current_dir = oil.get_current_dir()
-  if not current_dir then return end
-  
-  local git_root = get_git_root(current_dir)
-  if not git_root then 
-    apply_git_signs()
-    return 
+  if not ok then
+    return
   end
-  
+
+  local current_dir = oil.get_current_dir()
+  if not current_dir then
+    return
+  end
+
+  local git_root = get_git_root(current_dir)
+  if not git_root then
+    apply_git_signs()
+    return
+  end
+
   debounced_refresh(git_root, function()
     apply_git_signs()
   end)
@@ -430,37 +435,44 @@ end
 function M.toggle_stage_current_file()
   local ok, oil = pcall(require, "oil")
   if not ok then
-    vim.api.nvim_echo({{"Oil not available", "ErrorMsg"}}, false, {})
+    vim.api.nvim_echo({ { "Oil not available", "ErrorMsg" } }, false, {})
     return false
   end
-  
+
   local entry = oil.get_cursor_entry()
   if not entry or (entry.type ~= "file" and entry.type ~= "link") then
-    vim.api.nvim_echo({{"Please select a file to stage/unstage", "WarningMsg"}}, false, {})
+    vim.api.nvim_echo({ { "Please select a file to stage/unstage", "WarningMsg" } }, false, {})
     return false
   end
-  
+
   local current_dir = oil.get_current_dir()
   local git_root = Cache:get_git_root(current_dir)
-  
+
   if not git_root then
-    vim.api.nvim_echo({{"Not in a git repository", "WarningMsg"}}, false, {})
+    vim.api.nvim_echo({ { "Not in a git repository", "WarningMsg" } }, false, {})
     return false
   end
-  
+
   local file_path = current_dir .. entry.name
-  local git_status_result = vim.system({"git", "status", "--porcelain=v1"}, {cwd = git_root}):wait()
+  local git_status_result = vim.system({ "git", "status", "--porcelain=v1" }, { cwd = git_root }):wait()
   local is_staged = false
   local has_conflicts = false
-  
+
   if git_status_result.code == 0 and git_status_result.stdout then
     local rel_path = file_path:gsub("^" .. vim.pesc(git_root) .. "/", "")
     for line in git_status_result.stdout:gmatch("[^\n]+") do
       local status_code = line:sub(1, 2)
       local filepath = line:sub(4)
       if filepath == rel_path then
-        if status_code == "UU" or status_code == "AA" or status_code == "DD" or 
-           status_code == "AU" or status_code == "UA" or status_code == "UD" or status_code == "DU" then
+        if
+          status_code == "UU"
+          or status_code == "AA"
+          or status_code == "DD"
+          or status_code == "AU"
+          or status_code == "UA"
+          or status_code == "UD"
+          or status_code == "DU"
+        then
           has_conflicts = true
         elseif status_code:sub(1, 1) ~= " " and status_code:sub(1, 1) ~= "?" then
           is_staged = true
@@ -469,15 +481,15 @@ function M.toggle_stage_current_file()
       end
     end
   end
-  
+
   if has_conflicts then
-    vim.api.nvim_echo({{"Cannot stage file with merge conflicts. Resolve conflicts first.", "ErrorMsg"}}, false, {})
+    vim.api.nvim_echo({ { "Cannot stage file with merge conflicts. Resolve conflicts first.", "ErrorMsg" } }, false, {})
     return false
   end
-  
-  local cmd = is_staged and {"git", "restore", "--staged", file_path} or {"git", "add", "-f", file_path}
-  local result = vim.system(cmd, {cwd = git_root}):wait()
-  
+
+  local cmd = is_staged and { "git", "restore", "--staged", file_path } or { "git", "add", "-f", file_path }
+  local result = vim.system(cmd, { cwd = git_root }):wait()
+
   if result.code == 0 then
     Cache:invalidate(git_root)
     M.refresh()
@@ -485,13 +497,16 @@ function M.toggle_stage_current_file()
   else
     local error_msg = result.stderr or "Unknown error"
     if error_msg:match("needs merge") or error_msg:match("conflict") then
-      vim.api.nvim_echo({{"Cannot stage file with merge conflicts. Resolve conflicts first.", "ErrorMsg"}}, false, {})
+      vim.api.nvim_echo(
+        { { "Cannot stage file with merge conflicts. Resolve conflicts first.", "ErrorMsg" } },
+        false,
+        {}
+      )
     else
-      vim.api.nvim_echo({{"Failed to toggle staging: " .. error_msg, "ErrorMsg"}}, false, {})
+      vim.api.nvim_echo({ { "Failed to toggle staging: " .. error_msg, "ErrorMsg" } }, false, {})
     end
     return false
   end
 end
 
 return M
-

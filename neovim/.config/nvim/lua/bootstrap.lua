@@ -1,5 +1,3 @@
-
-
 local M = {}
 
 local function config_source_path()

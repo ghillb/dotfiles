@@ -119,6 +119,3 @@ aucmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
   end,
   group = augrp("CheckFileChanges", { clear = true }),
 })
-
-
-

@@ -15,15 +15,21 @@ return {
       local spinner_idx = 1
       local spinner_msg = "Generating commit message and committing..."
       local notify_opts = { title = "Commit", timeout = false }
-      local notification_id = vim.notify(spinner_frames[spinner_idx] .. " " .. spinner_msg, vim.log.levels.INFO, notify_opts)
+      local notification_id =
+        vim.notify(spinner_frames[spinner_idx] .. " " .. spinner_msg, vim.log.levels.INFO, notify_opts)
       local spinner_timer = vim.uv.new_timer()
 
       if spinner_timer then
-        spinner_timer:start(100, 100, vim.schedule_wrap(function()
-          spinner_idx = (spinner_idx % #spinner_frames) + 1
-          notify_opts.id = notification_id
-          notification_id = vim.notify(spinner_frames[spinner_idx] .. " " .. spinner_msg, vim.log.levels.INFO, notify_opts)
-        end))
+        spinner_timer:start(
+          100,
+          100,
+          vim.schedule_wrap(function()
+            spinner_idx = (spinner_idx % #spinner_frames) + 1
+            notify_opts.id = notification_id
+            notification_id =
+              vim.notify(spinner_frames[spinner_idx] .. " " .. spinner_msg, vim.log.levels.INFO, notify_opts)
+          end)
+        )
       end
 
       return function(msg, level)
@@ -65,31 +71,31 @@ return {
       sections = {
         untracked = {
           folded = false,
-          hidden = false
+          hidden = false,
         },
         unstaged = {
           folded = false,
-          hidden = false
+          hidden = false,
         },
         staged = {
           folded = false,
-          hidden = false
+          hidden = false,
         },
         stashes = {
           folded = true,
-          hidden = false
+          hidden = false,
         },
         unpulled = {
           folded = true,
-          hidden = false
+          hidden = false,
         },
         unmerged = {
           folded = false,
-          hidden = false
+          hidden = false,
         },
         recent = {
           folded = true,
-          hidden = false
+          hidden = false,
         },
       },
     })
@@ -117,8 +123,8 @@ return {
               end
 
               finish_notification("Committed successfully!", vim.log.levels.INFO)
-              require('neogit').refresh()
-            end
+              require("neogit").refresh()
+            end,
           })
         end, { buffer = true, desc = "Generate AI commit message and commit staged changes" })
       end,

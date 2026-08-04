@@ -2,12 +2,12 @@ _G.P = vim.pretty_print
 
 _G.user = { indicators = {}, fn = {} }
 
-local git = require('utils.git')
-local navigation = require('utils.navigation')
-local ui = require('utils.ui')
-local general = require('utils.general')
+local git = require("utils.git")
+local navigation = require("utils.navigation")
+local ui = require("utils.ui")
+local general = require("utils.general")
 
-require('utils.table')
+require("utils.table")
 
 user.fn.close_view = ui.close_view
 user.fn.populate_info = ui.populate_info
@@ -32,5 +32,5 @@ return {
   git = git,
   navigation = navigation,
   ui = ui,
-  general = general
+  general = general,
 }

@@ -72,7 +72,7 @@ local function set_global_theme()
   set_hl("NeogitHunkHeaderHighlight", { fg = "#ffffff", bg = "#3a3a3a" })
   set_hl("NeogitChangeDeleted", { fg = palette.muted_red, bold = true, italic = true })
 
-  -- Snacks highlight groups 
+  -- Snacks highlight groups
   set_hl("SnacksNotifierMinimal", { bg = palette.darkgray })
   set_hl("SnacksNotifierInfo", { bg = palette.darkgray })
   set_hl("SnacksNotifierWarn", { bg = palette.darkgray })
@@ -96,5 +96,5 @@ vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
     -- Apply theme overrides after everything is loaded
     set_global_theme()
-  end
+  end,
 })

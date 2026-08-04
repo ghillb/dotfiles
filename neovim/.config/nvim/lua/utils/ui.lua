@@ -1,6 +1,5 @@
 local M = {}
 
-
 function M.close_view()
   if vim.bo.filetype == "oil" then
     if vim.bo.modified then
@@ -20,7 +19,7 @@ function M.populate_info()
 end
 
 function M.set_title_string()
-  local git = require('utils.git')
+  local git = require("utils.git")
   local titlestring
   if git.is_git_work_tree() then
     titlestring = vim.fn.fnamemodify(git.get_git_work_tree_path(), ":t")

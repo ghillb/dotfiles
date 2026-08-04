@@ -24,8 +24,8 @@ function M.set_root(...)
     return
   end
   local target, echo = ...
-  
-  local git = require('utils.git')
+
+  local git = require("utils.git")
 
   if target == "git_worktree" then
     if git.is_git_work_tree() then

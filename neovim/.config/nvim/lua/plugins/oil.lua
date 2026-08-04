@@ -101,8 +101,12 @@ return {
 
     _G.oil_toggle = oil_toggle
 
-    vim.keymap.set("n", "<a-e>", function() oil_toggle(false, false) end, { desc = "Toggle oil fullbuffer (simple)" })
-    vim.keymap.set("n", "<a-E>", function() oil_toggle(true, false) end, { desc = "Toggle oil fullbuffer (detailed)" })
+    vim.keymap.set("n", "<a-e>", function()
+      oil_toggle(false, false)
+    end, { desc = "Toggle oil fullbuffer (simple)" })
+    vim.keymap.set("n", "<a-E>", function()
+      oil_toggle(true, false)
+    end, { desc = "Toggle oil fullbuffer (detailed)" })
 
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "oil",
@@ -122,7 +126,12 @@ return {
         vim.keymap.set("n", "<Up>", "k", { buffer = args.buf, remap = true })
         vim.keymap.set("n", "<Down>", "j", { buffer = args.buf, remap = true })
 
-        vim.keymap.set("n", "s", require("utils.oil_git").toggle_stage_current_file, { buffer = args.buf, desc = "Toggle stage/unstage file" })
+        vim.keymap.set(
+          "n",
+          "s",
+          require("utils.oil_git").toggle_stage_current_file,
+          { buffer = args.buf, desc = "Toggle stage/unstage file" }
+        )
 
         vim.keymap.set("v", "<C-v>", "<C-v>", { buffer = args.buf, desc = "Visual block selection" })
       end,

@@ -124,7 +124,7 @@ return {
       builtin.find_files({
         prompt_title = "Find Files (All)",
         no_ignore = true,
-        hidden = true
+        hidden = true,
       })
     end, { desc = "Find all files (including git-ignored)" })
   end,

@@ -34,13 +34,58 @@ return {
     },
   },
   keys = {
-    { "<leader>n", function() require("snacks").notifier.show_history() end, desc = "Notification History" },
-    { "<leader>gb", function() require("snacks").git.blame_line() end, desc = "Git Blame Line" },
-    { "<leader>gB", function() require("snacks").gitbrowse() end, desc = "Git Browse" },
-    { "<leader>un", function() require("snacks").notifier.hide() end, desc = "Dismiss All Notifications" },
-    { "]]", function() require("snacks").words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
-    { "[[", function() require("snacks").words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },
-    { "<C-\\>", function() require("snacks").terminal.toggle() end, desc = "Toggle Terminal", mode = { "n", "t" } },
+    {
+      "<leader>n",
+      function()
+        require("snacks").notifier.show_history()
+      end,
+      desc = "Notification History",
+    },
+    {
+      "<leader>gb",
+      function()
+        require("snacks").git.blame_line()
+      end,
+      desc = "Git Blame Line",
+    },
+    {
+      "<leader>gB",
+      function()
+        require("snacks").gitbrowse()
+      end,
+      desc = "Git Browse",
+    },
+    {
+      "<leader>un",
+      function()
+        require("snacks").notifier.hide()
+      end,
+      desc = "Dismiss All Notifications",
+    },
+    {
+      "]]",
+      function()
+        require("snacks").words.jump(vim.v.count1)
+      end,
+      desc = "Next Reference",
+      mode = { "n", "t" },
+    },
+    {
+      "[[",
+      function()
+        require("snacks").words.jump(-vim.v.count1)
+      end,
+      desc = "Prev Reference",
+      mode = { "n", "t" },
+    },
+    {
+      "<C-\\>",
+      function()
+        require("snacks").terminal.toggle()
+      end,
+      desc = "Toggle Terminal",
+      mode = { "n", "t" },
+    },
   },
   init = function()
     vim.api.nvim_create_autocmd("User", {
