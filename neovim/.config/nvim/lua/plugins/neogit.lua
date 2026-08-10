@@ -10,34 +10,12 @@ return {
   },
   config = function()
     local neogit = require("neogit")
-    local function start_commit_spinner()
-      local spinner_frames = { "◜", "◠", "◝", "◞", "◡", "◟" }
-      local spinner_idx = 1
-      local spinner_msg = "Generating commit message and committing..."
+    local function start_commit_notification()
       local notify_opts = { title = "Commit", timeout = false }
       local notification_id =
-        vim.notify(spinner_frames[spinner_idx] .. " " .. spinner_msg, vim.log.levels.INFO, notify_opts)
-      local spinner_timer = vim.uv.new_timer()
-
-      if spinner_timer then
-        spinner_timer:start(
-          100,
-          100,
-          vim.schedule_wrap(function()
-            spinner_idx = (spinner_idx % #spinner_frames) + 1
-            notify_opts.id = notification_id
-            notification_id =
-              vim.notify(spinner_frames[spinner_idx] .. " " .. spinner_msg, vim.log.levels.INFO, notify_opts)
-          end)
-        )
-      end
+        vim.notify("Generating commit message and committing...", vim.log.levels.INFO, notify_opts)
 
       return function(msg, level)
-        if spinner_timer then
-          spinner_timer:stop()
-          spinner_timer:close()
-          spinner_timer = nil
-        end
         notify_opts.id = notification_id
         notify_opts.timeout = 3000
         vim.notify(msg, level, notify_opts)
@@ -108,7 +86,7 @@ return {
         vim.keymap.set("n", "<C-q>", "<cmd>qa<cr>", { buffer = true, desc = "Quit Neovim" })
 
         vim.keymap.set("n", "C", function()
-          local finish_notification = start_commit_spinner()
+          local finish_notification = start_commit_notification()
 
           user.fn.generate_commit_msg({
             commit = true,
