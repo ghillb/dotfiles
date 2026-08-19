@@ -13,6 +13,7 @@ user.fn.toggle_gutter = ui.toggle_gutter
 user.fn.is_git_work_tree = git.is_git_work_tree
 user.fn.get_git_work_tree_path = git.get_git_work_tree_path
 user.fn.generate_commit_msg = git.generate_commit_msg
+user.fn.review_changes = git.review_changes
 
 user.fn.tmux_switch_pane = navigation.tmux_switch_pane
 user.fn.create_or_go_to_file = navigation.create_or_go_to_file

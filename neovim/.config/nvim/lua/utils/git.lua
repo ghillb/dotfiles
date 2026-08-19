@@ -13,6 +13,32 @@ function M.get_git_work_tree_path()
   return ""
 end
 
+function M.review_changes()
+  local git_root = vim.fs.root(0, ".git")
+  if not git_root then
+    vim.notify("Current file is not in a Git repository", vim.log.levels.WARN, { title = "Difit" })
+    return
+  end
+
+  vim.system({ "difit", ".", "--include-untracked" }, {
+    cwd = git_root,
+    detach = true,
+    text = true,
+  }, function(result)
+    if result.code == 0 then
+      return
+    end
+
+    local message = vim.trim(result.stderr or "")
+    if message == "" then
+      message = ("Difit exited with code %d"):format(result.code)
+    end
+    vim.schedule(function()
+      vim.notify(message, vim.log.levels.ERROR, { title = "Difit" })
+    end)
+  end)
+end
+
 local VALID_TYPES =
   { feat = 1, fix = 1, refactor = 1, perf = 1, docs = 1, style = 1, test = 1, build = 1, ci = 1, chore = 1 }
 
