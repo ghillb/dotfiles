@@ -1,5 +1,6 @@
 return {
-  "NeogitOrg/neogit",
+  "ghillb/neogit",
+  branch = "fix/active-item-extmark-leak", -- Revert after NeogitOrg/neogit#2005 merges.
   cmd = "Neogit",
   keys = {
     { "<a-g>", "<cmd>Neogit<cr>", desc = "Neogit status" },
