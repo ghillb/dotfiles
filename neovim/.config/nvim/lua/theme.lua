@@ -43,10 +43,11 @@ local function set_global_theme()
   set_hl("Folded", { bg = "none" })
 
   -- Fix diff colors for better readability
-  set_hl("DiffAdd", { fg = "#ffffff", bg = "#50a050" })
-  set_hl("DiffChange", { fg = "#ffffff", bg = "#808020" })
-  set_hl("DiffDelete", { fg = "#ffffff", bg = "#a05050" })
-  set_hl("DiffText", { fg = "#ffffff", bg = "#a0a020" })
+  -- Added: green; Changed: cool git-diff blue (gruvbox soft blue); Deleted: red
+  set_hl("DiffAdd", { fg = "#c7e8c7", bg = "#2b5230" })
+  set_hl("DiffChange", { fg = "#c7d8e8", bg = "#2b3f52" })
+  set_hl("DiffDelete", { fg = "#e8c7c7", bg = "#52302b" })
+  set_hl("DiffText", { fg = "#eaf2fa", bg = "#3d6a94", bold = true })
 
   local treesitter_headings = {
     "@markup.heading",
@@ -62,15 +63,19 @@ local function set_global_theme()
   end
 
   -- Neogit specific highlight groups (aligned with habamax)
-  set_hl("NeogitDiffAdd", { fg = "#bcbcbc", bg = "#2d3d2d" })
-  set_hl("NeogitDiffDelete", { fg = "#bcbcbc", bg = "#3d2d2d" })
+  set_hl("NeogitDiffAdd", { fg = "#9cc79c", bg = "#263a29" })
+  set_hl("NeogitDiffDelete", { fg = "#c79c9c", bg = "#3a2926" })
   set_hl("NeogitDiffContext", { fg = "#767676", bg = "none" })
-  set_hl("NeogitDiffAddHighlight", { fg = "#ffffff", bg = "#3d4d3d" })
-  set_hl("NeogitDiffDeleteHighlight", { fg = "#ffffff", bg = "#4d3d3d" })
+  set_hl("NeogitDiffAddHighlight", { fg = "#c7e8c7", bg = "#2b5230" })
+  set_hl("NeogitDiffDeleteHighlight", { fg = "#e8c7c7", bg = "#52302b" })
+  -- Changed lines: cool git blue
+  set_hl("NeogitDiffChange", { fg = "#83a598", bg = "#26333d" })
+  set_hl("NeogitDiffChangeHighlight", { fg = "#c7d8e8", bg = "#2b3f52" })
   set_hl("NeogitDiffContextHighlight", { fg = "#bcbcbc", bg = "#262626" })
   set_hl("NeogitHunkHeader", { fg = "#af87af", bg = "#2a2a2a" })
   set_hl("NeogitHunkHeaderHighlight", { fg = "#ffffff", bg = "#3a3a3a" })
   set_hl("NeogitChangeDeleted", { fg = palette.muted_red, bold = true, italic = true })
+  set_hl("NeogitChangeModified", { fg = "#83a598", bold = true, italic = true })
 
   -- Snacks highlight groups
   set_hl("SnacksNotifierMinimal", { bg = palette.darkgray })
