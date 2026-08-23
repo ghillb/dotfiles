@@ -171,38 +171,38 @@ test_session_picker_filters_internal_sessions() {
 test_session_picker_filters_internal_sessions
 printf 'PASS: session picker filters internal mode sessions\n'
 
-test_alt_drag_selects_rectangle() {
+test_control_drag_selects_rectangle() {
   local mouse_bindings
   mouse_bindings=$(
     local validation_socket="tmux-toggle-test-$$-$RANDOM"
     trap 'tmux -L "$validation_socket" kill-server 2>/dev/null || true' EXIT
     tmux -L "$validation_socket" -f /dev/null new-session -d -s validation
     tmux -L "$validation_socket" source-file "$CONFIG"
-    tmux -L "$validation_socket" list-keys -T copy-mode-vi | grep 'M-MouseDrag' || true
+    tmux -L "$validation_socket" list-keys -T copy-mode-vi | grep 'C-MouseDrag' || true
   )
 
-  [[ $mouse_bindings == *'M-MouseDrag1Pane'*'begin-selection'*'rectangle-on'* ]] ||
-    fail 'Alt+drag does not begin rectangular selection'
-  [[ $mouse_bindings == *'M-MouseDragEnd1Pane'*'copy-pipe-and-cancel'* ]] ||
-    fail 'Alt+drag release does not copy and exit'
+  [[ $mouse_bindings == *'C-MouseDrag1Pane'*'begin-selection'*'rectangle-on'* ]] ||
+    fail 'Ctrl+drag does not begin rectangular selection'
+  [[ $mouse_bindings == *'C-MouseDragEnd1Pane'*'copy-pipe-and-cancel'* ]] ||
+    fail 'Ctrl+drag release does not copy and exit'
 }
 
-test_alt_drag_selects_rectangle
-printf 'PASS: Alt+drag selects a rectangle\n'
+test_control_drag_selects_rectangle
+printf 'PASS: Ctrl+drag selects a rectangle\n'
 
-test_alt_drag_enters_rectangle_from_live_pane() {
+test_control_drag_enters_rectangle_from_live_pane() {
   local mouse_binding
   mouse_binding=$(
     local validation_socket="tmux-toggle-test-$$-$RANDOM"
     trap 'tmux -L "$validation_socket" kill-server 2>/dev/null || true' EXIT
     tmux -L "$validation_socket" -f /dev/null new-session -d -s validation
     tmux -L "$validation_socket" source-file "$CONFIG"
-    tmux -L "$validation_socket" list-keys -T root | grep 'M-MouseDrag1Pane' || true
+    tmux -L "$validation_socket" list-keys -T root | grep 'C-MouseDrag1Pane' || true
   )
 
   [[ $mouse_binding == *'copy-mode -M'*'rectangle-on'* ]] ||
-    fail 'Alt+drag from a live pane does not enter rectangular copy mode'
+    fail 'Ctrl+drag from a live pane does not enter rectangular copy mode'
 }
 
-test_alt_drag_enters_rectangle_from_live_pane
-printf 'PASS: Alt+drag enters rectangular copy mode from a live pane\n'
+test_control_drag_enters_rectangle_from_live_pane
+printf 'PASS: Ctrl+drag enters rectangular copy mode from a live pane\n'
