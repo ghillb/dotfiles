@@ -11,6 +11,22 @@ return {
   },
   config = function()
     local neogit = require("neogit")
+    local function open_diffview()
+      local status = neogit.status.instance()
+      local selection = status.buffer.ui:get_selection()
+      local section = selection.section
+      local item = status.buffer.ui:get_yankable_under_cursor()
+      local diffview = require("neogit.integrations.diffview")
+
+      if section and item then
+        diffview.open(section.name, item, { only = true })
+      elseif section then
+        diffview.open(section.name, nil, { only = true })
+      elseif item then
+        diffview.open("range", item .. "..HEAD")
+      end
+    end
+
     local function start_commit_notification()
       local notify_opts = { title = "Commit", timeout = false }
       local notification_id =
@@ -46,6 +62,11 @@ return {
       },
       integrations = {
         diffview = true,
+      },
+      mappings = {
+        status = {
+          ["D"] = open_diffview,
+        },
       },
       sections = {
         untracked = {

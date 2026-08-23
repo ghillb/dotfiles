@@ -15,6 +15,7 @@ return {
         },
         file_panel = {
           { "n", "q", close_diffview, { desc = "Close Diffview" } },
+          { "n", "<tab>", actions.select_entry, { desc = "Toggle fold on folder, open diff on file" } },
           { "n", "<C-d>", actions.scroll_view(0.5), { desc = "Scroll the diff down half a page" } },
           { "n", "<C-u>", actions.scroll_view(-0.5), { desc = "Scroll the diff up half a page" } },
         },
