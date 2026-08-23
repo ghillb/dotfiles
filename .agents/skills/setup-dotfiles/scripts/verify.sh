@@ -50,6 +50,7 @@ shellcheck --severity=warning \
 shellcheck --shell=bash --severity=error "$repo/.bash/aliases.sh" "$repo/.bash/bashrc" "$repo/.bash/functions.sh"
 
 stylua --check "$repo/neovim/.config/nvim"
+DOTFILES_REPO="$repo" nvim --headless -u NONE -i NONE -l "$repo/tests/neovim/git.lua"
 
 python3 - "$repo/tmux/.config/tmux/git_info.py" <<'PY'
 import ast

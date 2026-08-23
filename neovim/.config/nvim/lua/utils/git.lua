@@ -41,68 +41,33 @@ end
 
 local VALID_TYPES =
   { feat = 1, fix = 1, refactor = 1, perf = 1, docs = 1, style = 1, test = 1, build = 1, ci = 1, chore = 1 }
+local INVALID_COMMIT_RESPONSE = "response must be exactly one Conventional Commit subject"
+local COMMIT_SCOPE = "%([a-z0-9._/%-]+%)"
+local COMMIT_PATTERNS = {
+  "^([a-z]+)" .. COMMIT_SCOPE .. "!: %S[^%c]*$",
+  "^([a-z]+)" .. COMMIT_SCOPE .. ": %S[^%c]*$",
+  "^([a-z]+)!: %S[^%c]*$",
+  "^([a-z]+): %S[^%c]*$",
+}
 
 local function extract_commit_msg(raw_output)
-  if not raw_output or raw_output:match("^%s*$") then
-    return nil, "empty response"
+  if type(raw_output) ~= "string" then
+    return nil, INVALID_COMMIT_RESPONSE
   end
 
-  local function try_extract(text)
-    local msg_type, scope, desc
+  local commit_msg = vim.trim(raw_output)
+  if commit_msg == "" or commit_msg:find("\n", 1, true) or #commit_msg >= 50 or commit_msg:sub(-1) == "." then
+    return nil, INVALID_COMMIT_RESPONSE
+  end
 
-    msg_type, scope, desc = text:match("(%w+)(%b())!:%s*([^\n]+)")
+  for _, pattern in ipairs(COMMIT_PATTERNS) do
+    local msg_type = commit_msg:match(pattern)
     if msg_type and VALID_TYPES[msg_type] then
-      return msg_type .. scope .. "!: " .. vim.trim(desc)
-    end
-
-    msg_type, scope, desc = text:match("(%w+)(%b()):%s*([^\n]+)")
-    if msg_type and VALID_TYPES[msg_type] then
-      return msg_type .. scope .. ": " .. vim.trim(desc)
-    end
-
-    msg_type, desc = text:match("(%w+)!:%s*([^\n]+)")
-    if msg_type and VALID_TYPES[msg_type] then
-      return msg_type .. "!: " .. vim.trim(desc)
-    end
-
-    msg_type, desc = text:match("(%w+):%s*([^\n]+)")
-    if msg_type and VALID_TYPES[msg_type] then
-      return msg_type .. ": " .. vim.trim(desc)
-    end
-
-    return nil
-  end
-
-  for block in raw_output:gmatch("```[^\n]*\n(.-)```") do
-    local msg = try_extract(block)
-    if msg then
-      return msg
+      return commit_msg
     end
   end
 
-  for inline in raw_output:gmatch("`([^`]+)`") do
-    local msg = try_extract(inline)
-    if msg then
-      return msg
-    end
-  end
-
-  for line in raw_output:gmatch("[^\n]+") do
-    local msg = try_extract(line)
-    if msg then
-      return msg
-    end
-  end
-
-  local trimmed = vim.trim(raw_output)
-  if not trimmed:match("\n") then
-    local msg = try_extract(trimmed)
-    if msg then
-      return msg
-    end
-  end
-
-  return nil, "no valid commit message found in: " .. raw_output:sub(1, 100)
+  return nil, INVALID_COMMIT_RESPONSE
 end
 
 local function truncate_diff_simple(diff, max_total_chars)
@@ -276,44 +241,66 @@ function M.generate_commit_msg(opts)
   local MAX_DIFF_CHARS = 15000
   local processed_diff = truncate_diff_simple(diff, MAX_DIFF_CHARS)
 
-  local prompt = "Generate a conventional commit message for these changes.\n\n"
+  local prompt = "Generate one Conventional Commit subject for the staged changes.\n\n"
     .. "RULES:\n"
+    .. "- Describe the primary behavior change across the entire diff\n"
+    .. "- Treat tests and verification as supporting changes unless they are the only changes\n"
     .. "- Format: type(scope): description OR type: description\n"
     .. "- Types: feat|fix|refactor|perf|docs|style|test|build|ci|chore\n"
-    .. "- Lowercase, imperative tense, no period, under 50 chars\n\n"
+    .. "- Use an imperative, lowercase description with no trailing period\n"
+    .. "- Keep the complete subject under 50 characters\n"
+    .. "- Reply with exactly one subject line and no Markdown\n\n"
     .. "DIFF:\n"
     .. processed_diff
-    .. "\n\n"
-    .. "Reply with ONLY the commit message, nothing else."
 
-  local cmd = {}
-  local copilot_env = { COPILOT_MODEL = "gpt-5-mini" }
-  local copilot_config_dir = ""
+  local fx_env = {
+    FX_MAX_AGENT_STEPS = "1",
+    FX_MODEL = "gpt-5.6-luna",
+    FX_PERMISSION_MODE = "ask",
+  }
 
-  if vim.fn.executable("copilot") == 1 then
-    copilot_config_dir = vim.trim(vim.fn.system({ "mktemp", "-d", "/dev/shm/copilot.XXXXXX" }))
-    cmd = { "copilot", "--config-dir", copilot_config_dir, "-s", "-p", prompt }
-  else
+  if vim.fn.executable("fx") ~= 1 then
     if opts.callback then
       opts.callback(false, "Agent executable not found.")
     end
     return
   end
 
-  vim.system(cmd, { text = true, timeout = 60000, env = copilot_env }, function(result)
-    vim.schedule(function()
-      if copilot_config_dir ~= "" then
-        pcall(vim.fn.delete, copilot_config_dir, "rf")
-      end
+  local cmd = { "fx", "ask", "--json", "--no-save", prompt }
 
-      if result.code ~= 0 then
+  vim.system(cmd, { text = true, timeout = 60000, env = fx_env }, function(result)
+    vim.schedule(function()
+      local decoded_ok, response = pcall(vim.json.decode, result.stdout)
+
+      if result.code ~= 0 or (decoded_ok and type(response) == "table" and response.exit_code ~= 0) then
+        local detail = decoded_ok and type(response) == "table" and response.error or nil
+        if type(detail) ~= "string" or detail:match("^%s*$") then
+          detail = vim.trim(result.stderr or "")
+        end
+
         if opts.callback then
-          opts.callback(false, "Failed to generate commit message. Make sure AI is available.")
+          local message = "Failed to generate commit message. Make sure AI is available."
+          if detail ~= "" then
+            message = "Failed to generate commit message: " .. detail
+          end
+          opts.callback(false, message)
         end
         return
       end
 
-      local commit_msg, err = extract_commit_msg(result.stdout)
+      if
+        not decoded_ok
+        or type(response) ~= "table"
+        or response.exit_code ~= 0
+        or type(response.output) ~= "string"
+      then
+        if opts.callback then
+          opts.callback(false, "Failed to decode the agent response.")
+        end
+        return
+      end
+
+      local commit_msg, err = extract_commit_msg(response.output)
       if not commit_msg then
         if opts.callback then
           opts.callback(false, "Failed to extract commit message: " .. (err or "unknown error"))
