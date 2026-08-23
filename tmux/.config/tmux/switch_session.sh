@@ -4,14 +4,14 @@ DIRECTION=${1:-next}
 CURRENT_SESSION=$(tmux display-message -p '#{session_name}')
 CURRENT_CLIENT=$(tmux display-message -p '#{client_name}')
 CURRENT_TTY=$(tmux display-message -p '#{client_tty}')
-MANAGED_SESSION_RE='^(bv-|ft-|git-|nvim-)'
+MANAGED_SESSION_RE='^(ft-|git-|nvim-)'
 session_option() {
   local session_name="$1"
   local option_name="$2"
   tmux show-options -t "$session_name" -v "$option_name" 2>/dev/null || true
 }
 
-SESSION_FILTER='#{&&:#{&&:#{&&:#{!=:#{m:ft-*,#{session_name}},1},#{!=:#{m:git-*,#{session_name}},1}},#{!=:#{m:nvim-*,#{session_name}},1}},#{!=:#{m:bv-*,#{session_name}},1}}'
+SESSION_FILTER='#{&&:#{&&:#{!=:#{m:ft-*,#{session_name}},1},#{!=:#{m:git-*,#{session_name}},1}},#{!=:#{m:nvim-*,#{session_name}},1}}'
 WORKSPACE_FORMAT='#{session_name} | #{?session_attached,ATTACHED,DETACHED} | #{?#{==:#{session_path},},-,#{b:session_path}} | win #{session_windows} | last #{t/p:session_activity}'
 
 show_workspaces_popup() {
@@ -89,7 +89,7 @@ esac
 IS_FLOAT=false
 BASE_SESSION="$CURRENT_SESSION"
 case "$CURRENT_SESSION" in
-  git-*|ft-*|nvim-*|bv-*)
+  git-*|ft-*|nvim-*)
     IS_FLOAT=true
     BASE_SESSION="$(session_option "$CURRENT_SESSION" '@base_session')"
     [ -n "$BASE_SESSION" ] || {
@@ -101,7 +101,7 @@ esac
 
 mapfile -t SESSIONS < <(
   tmux list-sessions \
-    -f '#{&&:#{&&:#{&&:#{!=:#{m:ft-*,#{session_name}},1},#{!=:#{m:git-*,#{session_name}},1}},#{!=:#{m:nvim-*,#{session_name}},1}},#{!=:#{m:bv-*,#{session_name}},1}}' \
+    -f '#{&&:#{&&:#{!=:#{m:ft-*,#{session_name}},1},#{!=:#{m:git-*,#{session_name}},1}},#{!=:#{m:nvim-*,#{session_name}},1}}' \
     -F '#{session_name}'
 )
 

@@ -1,6 +1,7 @@
 #!/bin/bash
-# Toggle a floating terminal popup.
-# `ft` is keyed per base session; other prefixes remain keyed per base pane.
+# Switch persistent tool sessions or toggle a floating terminal popup.
+# `ft` is a per-base-session popup; git and nvim switch the outer client
+# to a persistent session keyed by the original base pane.
 #
 # Usage:
 #   tmux_toggle_term.sh <prefix> [command] [toggle-size] [prefill]
@@ -8,8 +9,8 @@
 # Examples:
 #   tmux_toggle_term.sh ft                    # plain floating term
 #   tmux_toggle_term.sh ft "" toggle-size     # toggle size of floating term
-#   tmux_toggle_term.sh git "" "" "gg "       # prefill "gg " in prompt (no auto-execute)
-#   tmux_toggle_term.sh bv "" "" "bv "        # prefill "bv " in prompt (no auto-execute)
+#   tmux_toggle_term.sh git "bash -ic 'gg; exec bash -i'"
+#   tmux_toggle_term.sh nvim nvim
 
 PREFIX="${1:?usage: tmux_toggle_term.sh <prefix> [command] [toggle-size] [prefill]}"
 COMMAND="$2"
@@ -18,35 +19,13 @@ PREFILL="$4"
 
 CURRENT_SESSION="$(tmux display-message -p -F '#{session_name}')"
 CURRENT_CLIENT="$(tmux display-message -p -F '#{client_name}')"
-CURRENT_TTY="$(tmux display-message -p -F '#{client_tty}')"
 CURRENT_PANE="$(tmux display-message -p -F '#{pane_id}')"
 CURRENT_PATH="$(tmux display-message -p -F '#{pane_current_path}')"
-POPUP_CLIENT=""
-FLOAT_PREFIX=""
+DIRECT_CLIENT=""
+CURRENT_MODE=""
 BASE_SESSION="$CURRENT_SESSION"
 BASE_PANE="$CURRENT_PANE"
-
-resolve_base_client() {
-    local base_session="$1"
-    local fallback_client=""
-    local client_name client_tty client_session
-
-    while IFS=$'\t' read -r client_name client_tty client_session; do
-        [ "$client_name" = "$CURRENT_CLIENT" ] && continue
-        [ "$client_session" = "$base_session" ] || continue
-
-        if [ "$client_tty" = "$CURRENT_TTY" ]; then
-            printf '%s\n' "$client_name"
-            return
-        fi
-
-        if [ -z "$fallback_client" ]; then
-            fallback_client="$client_name"
-        fi
-    done < <(tmux list-clients -F '#{client_name}\t#{client_tty}\t#{session_name}')
-
-    [ -n "$fallback_client" ] && printf '%s\n' "$fallback_client"
-}
+PARENT_CLIENT=""
 
 session_option() {
     local session_name="$1"
@@ -67,61 +46,58 @@ pane_is_alive() {
     tmux display-message -p -t "$pane_id" '#{pane_id}' >/dev/null 2>&1
 }
 
+is_direct_mode() {
+    case "$1" in
+        git|nvim) return 0 ;;
+        *) return 1 ;;
+    esac
+}
+
 case "$CURRENT_SESSION" in
-    git-*)
-        FLOAT_PREFIX="git"
+    git-*|nvim-*|ft-*)
+        CURRENT_MODE="${CURRENT_SESSION%%-*}"
         BASE_SESSION="$(session_option "$CURRENT_SESSION" '@base_session')"
         BASE_PANE="$(session_option "$CURRENT_SESSION" '@base_pane')"
-        ;;
-    nvim-*)
-        FLOAT_PREFIX="nvim"
-        BASE_SESSION="$(session_option "$CURRENT_SESSION" '@base_session')"
-        BASE_PANE="$(session_option "$CURRENT_SESSION" '@base_pane')"
-        ;;
-    bv-*)
-        FLOAT_PREFIX="bv"
-        BASE_SESSION="$(session_option "$CURRENT_SESSION" '@base_session')"
-        BASE_PANE="$(session_option "$CURRENT_SESSION" '@base_pane')"
-        ;;
-    ft-*)
-        FLOAT_PREFIX="ft"
-        BASE_SESSION="$(session_option "$CURRENT_SESSION" '@base_session')"
-        BASE_PANE="$(session_option "$CURRENT_SESSION" '@base_pane')"
+        if [ "$CURRENT_MODE" = "ft" ]; then
+            PARENT_CLIENT="$(session_option "$CURRENT_SESSION" '@parent_client')"
+        fi
         ;;
 esac
 
-if [ -n "$FLOAT_PREFIX" ] && { [ -z "$BASE_SESSION" ] || [ -z "$BASE_PANE" ]; }; then
-    tmux display-message "$FLOAT_PREFIX layer missing base_session/base_pane metadata"
+if [ -n "$CURRENT_MODE" ] && { [ -z "$BASE_SESSION" ] || [ -z "$BASE_PANE" ]; }; then
+    tmux display-message "$CURRENT_MODE layer missing base_session/base_pane metadata"
     exit 1
 fi
 
-# If already inside a session with this prefix, detach
-if [ "$FLOAT_PREFIX" = "$PREFIX" ]; then
-    BASE_CLIENT="$(resolve_base_client "$BASE_SESSION")"
-    if [ -n "$BASE_CLIENT" ] && pane_is_alive "$BASE_PANE"; then
-        tmux switch-client -c "$BASE_CLIENT" -t "$BASE_PANE"
-    elif [ -n "$BASE_CLIENT" ] && [ -n "$BASE_SESSION" ]; then
-        tmux switch-client -c "$BASE_CLIENT" -t "$BASE_SESSION"
-    fi
-
-    tmux detach-client
-    exit 0
-fi
-
-if [ -n "$FLOAT_PREFIX" ]; then
-    BASE_CLIENT="$(resolve_base_client "$BASE_SESSION")"
-    if [ -n "$BASE_CLIENT" ]; then
-        POPUP_CLIENT="$BASE_CLIENT"
+# The same shortcut returns from a direct mode or closes the popup.
+if [ "$CURRENT_MODE" = "$PREFIX" ]; then
+    if [ "$PREFIX" = "ft" ]; then
+        tmux detach-client
+        exit 0
     fi
 
     if pane_is_alive "$BASE_PANE"; then
+        tmux switch-client -t "$BASE_PANE"
+    elif tmux has-session -t "$BASE_SESSION" 2>/dev/null; then
+        tmux switch-client -t "$BASE_SESSION"
+    else
+        tmux display-message "Base session is no longer available"
+    fi
+    exit 0
+fi
+
+if [ -n "$CURRENT_MODE" ]; then
+    if pane_is_alive "$BASE_PANE"; then
         CURRENT_PATH="$(tmux display-message -p -t "$BASE_PANE" -F '#{pane_current_path}')"
-    elif [ -n "$BASE_CLIENT" ]; then
-        CURRENT_PATH="$(tmux display-message -c "$BASE_CLIENT" -p -F '#{pane_current_path}')"
     fi
 
-    # Minimize current float before opening the other float.
-    tmux detach-client
+    if [ "$CURRENT_MODE" = "ft" ] && is_direct_mode "$PREFIX"; then
+        DIRECT_CLIENT="$PARENT_CLIENT"
+        if [ -z "$DIRECT_CLIENT" ]; then
+            tmux display-message "ft layer missing parent_client metadata"
+            exit 1
+        fi
+    fi
 fi
 
 TARGET_KEY="${BASE_PANE#%}"
@@ -130,22 +106,6 @@ if [ "$PREFIX" = "ft" ]; then
 fi
 TARGET_SESSION="${PREFIX}-${TARGET_KEY}"
 STATE_FILE="/tmp/tmux_float_${PREFIX}_maximized"
-
-# Determine popup size
-if [ "$ACTION" = "toggle-size" ]; then
-    if [ -f "$STATE_FILE" ]; then
-        rm "$STATE_FILE"
-        SIZE_W="80%"; SIZE_H="80%"; BORDER=""
-    else
-        touch "$STATE_FILE"
-        SIZE_W="100%"; SIZE_H="100%"; BORDER="-B"
-    fi
-elif [ -n "$COMMAND" ] || [ -n "$PREFILL" ] || [ -f "$STATE_FILE" ]; then
-    # Sessions with a command or prefill start maximized; plain ft respects state
-    SIZE_W="100%"; SIZE_H="100%"; BORDER="-B"
-else
-    SIZE_W="80%"; SIZE_H="80%"; BORDER=""
-fi
 
 if ! tmux has-session -t "$TARGET_SESSION" 2>/dev/null; then
     if [ -n "$COMMAND" ]; then
@@ -162,11 +122,34 @@ fi
 session_set_option "$TARGET_SESSION" @base_session "$BASE_SESSION"
 session_set_option "$TARGET_SESSION" @base_pane "$BASE_PANE"
 
+if is_direct_mode "$PREFIX"; then
+    if [ -n "$DIRECT_CLIENT" ]; then
+        tmux switch-client -c "$DIRECT_CLIENT" -t "$TARGET_SESSION"
+        tmux detach-client
+    else
+        tmux switch-client -t "$TARGET_SESSION"
+    fi
+    exit 0
+fi
+
+session_set_option "$TARGET_SESSION" @parent_client "$CURRENT_CLIENT"
+
+# Determine popup size.
+if [ "$ACTION" = "toggle-size" ]; then
+    if [ -f "$STATE_FILE" ]; then
+        rm "$STATE_FILE"
+        SIZE_W="80%"; SIZE_H="80%"; BORDER=""
+    else
+        touch "$STATE_FILE"
+        SIZE_W="100%"; SIZE_H="100%"; BORDER="-B"
+    fi
+elif [ -n "$COMMAND" ] || [ -n "$PREFILL" ] || [ -f "$STATE_FILE" ]; then
+    SIZE_W="100%"; SIZE_H="100%"; BORDER="-B"
+else
+    SIZE_W="80%"; SIZE_H="80%"; BORDER=""
+fi
+
 SESSION_CMD="tmux attach-session -t '${TARGET_SESSION}'"
 
 # shellcheck disable=SC2086
-if [ -n "$POPUP_CLIENT" ]; then
-    tmux popup -c "$POPUP_CLIENT" -d "$CURRENT_PATH" -w "$SIZE_W" -h "$SIZE_H" $BORDER -E "$SESSION_CMD"
-else
-    tmux popup -d "$CURRENT_PATH" -w "$SIZE_W" -h "$SIZE_H" $BORDER -E "$SESSION_CMD"
-fi
+tmux popup -d "$CURRENT_PATH" -w "$SIZE_W" -h "$SIZE_H" $BORDER -E "$SESSION_CMD"
