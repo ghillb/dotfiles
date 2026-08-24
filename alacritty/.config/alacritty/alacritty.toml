@@ -56,6 +56,7 @@ bindings = [
   { key = "Backspace", mods = "Control", chars = "\u0017" },
   { key = "Space", mods = "Control", chars = "\u0000" },
   { key = "Space", mods = "Control | Alt", chars = "\u001b\u0000" },
+  { key = 18, mods = "Control | Alt", chars = "\u001b\u0005" },
   { key = 20, mods = "Control | Alt", chars = "\u001b\u0014" },
   { key = 35, mods = "Control | Alt", chars = "\u001b\u0008" },
   { key = 36, mods = "Control | Alt", chars = "\u001b\u000a" },
