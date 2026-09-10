@@ -18,24 +18,18 @@ shell_quote() {
   printf "'%s'" "${value//\'/\'\"\'\"\'}"
 }
 
-resume_local_session() {
+connect_remote() {
   local host=$1
   local remote_session=$2
-  local local_socket=$3
-  local local_session=$4
-  local local_term=$5
   local remote_command
 
-  export TERM="$local_term"
   remote_command="exec env LC_ALL=C.UTF-8 tmux new-session -A -s $(shell_quote "$remote_session")"
-  ssh -F "$ssh_config" -tt -- "$host" "$remote_command" || true
-
-  exec env -u TMUX tmux -S "$local_socket" attach-session -t "=$local_session"
+  exec ssh -F "$ssh_config" -tt -- "$host" "$remote_command"
 }
 
-if [[ ${1:-} == --resume ]]; then
-  [[ $# -eq 6 ]] || usage
-  resume_local_session "$2" "$3" "$4" "$5" "$6"
+if [[ ${1:-} == --connect ]]; then
+  [[ $# -eq 3 ]] || usage
+  connect_remote "$2" "$3"
 fi
 
 [[ $# -ge 1 && $# -le 2 ]] || usage
@@ -55,23 +49,54 @@ fi
 [[ "$remote_session" =~ ^[[:alnum:]_-]+$ ]] ||
   die "invalid tmux session: $remote_session"
 
-remote_command="exec env LC_ALL=C.UTF-8 tmux new-session -A -s $(shell_quote "$remote_session")"
-
 if [[ -z ${TMUX:-} ]]; then
-  exec ssh -F "$ssh_config" -tt -- "$host" "$remote_command"
+  connect_remote "$host" "$remote_session"
 fi
 
-local_socket=${TMUX%%,*}
-local_session=$(tmux display-message -p '#{session_name}')
-local_client=$(tmux display-message -p '#{client_tty}')
-local_term=$(tmux display-message -p '#{client_termname}')
+local_client=${TMUX_HOP_CLIENT:-}
+if [[ -z "$local_client" ]]; then
+  [[ -n ${TMUX_PANE:-} ]] || die 'could not identify the current tmux pane'
+  local_session=$(tmux display-message -p -t "$TMUX_PANE" '#{session_name}')
+  mapfile -t local_clients < <(
+    tmux list-clients -t "=$local_session" -F '#{client_name}'
+  )
+  (( ${#local_clients[@]} == 1 )) ||
+    die 'could not identify one originating tmux client'
+  local_client=${local_clients[0]}
+fi
+
+while IFS=$'\t' read -r session_name hop_host hop_session; do
+  if [[ "$hop_host" == "$host" && "$hop_session" == "$remote_session" ]]; then
+    exec tmux switch-client -c "$local_client" -t "=$session_name"
+  fi
+done < <(tmux list-sessions -F $'#{session_name}\t#{@hop_host}\t#{@hop_session}')
+
+slug=${host//[^[:alnum:]_-]/-}
+slug=${slug:0:40}
+[[ -n "$slug" ]] || slug=remote
+base_session="hop-$slug-$remote_session"
+managed_session=$base_session
+suffix=2
+while tmux has-session -t "=$managed_session" 2>/dev/null; do
+  managed_session="$base_session-$suffix"
+  ((suffix += 1))
+done
+
+tmux new-session -d -s "$managed_session" -n ssh 'sleep 86400'
+tmux set-option -t "$managed_session" @hop_host "$host"
+tmux set-option -t "$managed_session" @hop_session "$remote_session"
+tmux set-option -t "$managed_session" status off
+tmux set-option -t "$managed_session" prefix None
+tmux set-option -t "$managed_session" prefix2 None
+tmux set-option -t "$managed_session" key-table hop
+tmux set-option -t "$managed_session" mouse off
+tmux set-option -t "$managed_session" detach-on-destroy off
+
 self=${BASH_SOURCE[0]}
+connect_command="exec env SSH_CONFIG=$(shell_quote "$ssh_config")"
+connect_command+=" $(shell_quote "$self") --connect"
+connect_command+=" $(shell_quote "$host")"
+connect_command+=" $(shell_quote "$remote_session")"
 
-resume_command="$(shell_quote "$self") --resume"
-resume_command+=" $(shell_quote "$host")"
-resume_command+=" $(shell_quote "$remote_session")"
-resume_command+=" $(shell_quote "$local_socket")"
-resume_command+=" $(shell_quote "$local_session")"
-resume_command+=" $(shell_quote "$local_term")"
-
-exec tmux detach-client -t "$local_client" -E "$resume_command"
+tmux switch-client -c "$local_client" -t "=$managed_session"
+tmux respawn-pane -k -t "$managed_session:1.1" "$connect_command"
