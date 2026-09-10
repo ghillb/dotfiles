@@ -125,6 +125,14 @@ mapfile -t ssh_args <"$test_tmp/ssh.log"
 /usr/bin/tmux -L "$tmux_socket" \
   -f "$repo/tmux/.config/tmux/tmux.conf" \
   new-session -d -s verify 'sleep 30'
+/usr/bin/tmux -L "$tmux_socket" \
+  new-session -d -e SSH_CONNECTION='client 1 server 22' -s verify-ssh 'sleep 30'
+local_status=$(/usr/bin/tmux -L "$tmux_socket" display-message -p -t verify:1.1 '#{E:status-right}')
+ssh_status=$(/usr/bin/tmux -L "$tmux_socket" display-message -p -t verify-ssh:1.1 '#{E:status-right}')
+grep -Fq '#[bg=colour239]#[fg=colour246] verify@' <<<"$local_status" ||
+  fail 'local status location does not retain its muted style'
+grep -Fq '#[bg=colour239]#[fg=] verify-ssh@' <<<"$ssh_status" ||
+  fail 'SSH status location text does not use the SSH accent color'
 hop_keys=$(/usr/bin/tmux -L "$tmux_socket" list-keys -T hop)
 grep -Fq 'C-M-Up' <<<"$hop_keys" || fail 'hop sessions cannot select the previous workspace'
 grep -Fq 'C-M-Down' <<<"$hop_keys" || fail 'hop sessions cannot select the next workspace'
