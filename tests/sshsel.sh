@@ -46,9 +46,12 @@ EOF
 
 cat >"$test_tmp/bin/fzf" <<'EOF'
 #!/usr/bin/env bash
+for arg in "$@"; do
+  [[ "$arg" != --expect=* ]] || exit 64
+done
 input=$(cat)
 printf '%s\n' "$input" >"$SSHSEL_TEST_CHOICES"
-printf '%s\n%s\n' "${SSHSEL_TEST_KEY:-}" "$(printf '%s\n' "$input" | head -n 1)"
+printf '%s\n' "$input" | head -n 1
 EOF
 
 cat >"$test_tmp/bin/ssh" <<'EOF'
@@ -86,13 +89,13 @@ mapfile -t ssh_args <"$test_tmp/ssh.log"
 
 SSH_CONFIG="$test_tmp/ssh-config" \
   SSHSEL_TEST_CHOICES="$test_tmp/choices.log" \
-  SSHSEL_TEST_KEY=ctrl-t \
+  SSHSEL_MODE=tmux-hop \
   SSHSEL_TEST_TMUX_HOP_LOG="$test_tmp/tmux-hop.log" \
   PATH="$test_tmp/bin:$PATH" \
   "$picker"
 
 mapfile -t tmux_hop_args <"$test_tmp/tmux-hop.log"
 [[ "${tmux_hop_args[*]}" == usable ]] ||
-  fail "Ctrl-T did not launch tmux-hop: ${tmux_hop_args[*]}"
+  fail "Enter in hop mode did not launch tmux-hop: ${tmux_hop_args[*]}"
 
 printf 'sshsel tests passed.\n'

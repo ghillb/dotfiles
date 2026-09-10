@@ -138,5 +138,13 @@ grep 'User2' <<<"$root_keys" | grep -Fq 'TMUX_HOP_CLIENT' ||
   fail 'session-based picker does not preserve the originating client'
 grep 'User3' <<<"$root_keys" | grep -Fq 'TMUX_HOP_CLIENT' ||
   fail 'window-based picker does not preserve the originating client'
+grep 'User2' <<<"$root_keys" | grep -Fq 'SSHSEL_MODE=tmux-hop' ||
+  fail 'session-based picker does not default Enter to tmux-hop'
+grep 'User3' <<<"$root_keys" | grep -Fq 'SSHSEL_MODE=ssh' ||
+  fail 'window-based picker does not default Enter to plain SSH'
+grep 'User2' <<<"$hop_keys" | grep -Fq 'SSHSEL_MODE=tmux-hop' ||
+  fail 'nested session picker does not default Enter to tmux-hop'
+grep 'User3' <<<"$hop_keys" | grep -Fq 'SSHSEL_MODE=ssh' ||
+  fail 'nested window picker does not default Enter to plain SSH'
 
 printf 'tmux-hop tests passed.\n'

@@ -2,6 +2,7 @@
 set -euo pipefail
 
 readonly ssh_config=${SSH_CONFIG:-$HOME/.ssh/config}
+readonly connect_mode=${SSHSEL_MODE:-ssh}
 declare -a entries=()
 declare -a rows=()
 max_host_width=0
@@ -10,6 +11,14 @@ max_host_width=0
   printf 'error: SSH config is not readable: %s\n' "$ssh_config" >&2
   exit 1
 }
+
+case "$connect_mode" in
+  ssh | tmux-hop) ;;
+  *)
+    printf 'error: invalid SSH picker mode: %s\n' "$connect_mode" >&2
+    exit 2
+    ;;
+esac
 
 while IFS= read -r host; do
   resolved=$(ssh -F "$ssh_config" -G "$host" 2>/dev/null) || continue
@@ -53,21 +62,19 @@ done
 mapfile -t selection < <(
   printf '%s\n' "${rows[@]}" |
     fzf \
-      --expect=ctrl-t \
       --delimiter=$'\t' \
       --with-nth=2 \
       --prompt='SSH > ' \
       --height=40% \
       --reverse \
-      --header='enter: SSH | ctrl-t: tmux hop'
+      --header='enter: connect'
 )
 
-(( ${#selection[@]} >= 2 )) || exit 0
+(( ${#selection[@]} >= 1 )) || exit 0
 
-key=${selection[0]}
-host=${selection[1]%%$'\t'*}
+host=${selection[0]%%$'\t'*}
 
-case "$key" in
-  '') exec ssh -F "$ssh_config" -- "$host" ;;
-  ctrl-t) exec tmux-hop "$host" ;;
+case "$connect_mode" in
+  ssh) exec ssh -F "$ssh_config" -- "$host" ;;
+  tmux-hop) exec tmux-hop "$host" ;;
 esac
