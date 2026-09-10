@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+readonly ssh_config=${SSH_CONFIG:-$HOME/.ssh/config}
+
+die() {
+  printf 'error: %s\n' "$*" >&2
+  exit 1
+}
+
+usage() {
+  printf 'usage: tmux-hop HOST [SESSION]\n' >&2
+  exit 2
+}
+
+shell_quote() {
+  local value=$1
+  printf "'%s'" "${value//\'/\'\"\'\"\'}"
+}
+
+resume_local_session() {
+  local host=$1
+  local remote_session=$2
+  local local_socket=$3
+  local local_session=$4
+  local local_term=$5
+  local remote_command
+
+  export TERM="$local_term"
+  remote_command="exec env LC_ALL=C.UTF-8 tmux new-session -A -s $(shell_quote "$remote_session")"
+  ssh -F "$ssh_config" -tt -- "$host" "$remote_command" || true
+
+  exec env -u TMUX tmux -S "$local_socket" attach-session -t "=$local_session"
+}
+
+if [[ ${1:-} == --resume ]]; then
+  [[ $# -eq 6 ]] || usage
+  resume_local_session "$2" "$3" "$4" "$5" "$6"
+fi
+
+[[ $# -ge 1 && $# -le 2 ]] || usage
+
+host=$1
+remote_session=${2:-}
+
+[[ -n "$host" && "$host" != -* && "$host" != *[[:space:]]* ]] ||
+  die "invalid SSH host: $host"
+
+if [[ -z "$remote_session" ]]; then
+  resolved=$(ssh -F "$ssh_config" -G "$host" 2>/dev/null) ||
+    die "could not resolve SSH host: $host"
+  remote_session=$(awk '$1 == "user" { print $2; exit }' <<<"$resolved")
+fi
+
+[[ "$remote_session" =~ ^[[:alnum:]_-]+$ ]] ||
+  die "invalid tmux session: $remote_session"
+
+remote_command="exec env LC_ALL=C.UTF-8 tmux new-session -A -s $(shell_quote "$remote_session")"
+
+if [[ -z ${TMUX:-} ]]; then
+  exec ssh -F "$ssh_config" -tt -- "$host" "$remote_command"
+fi
+
+local_socket=${TMUX%%,*}
+local_session=$(tmux display-message -p '#{session_name}')
+local_client=$(tmux display-message -p '#{client_tty}')
+local_term=$(tmux display-message -p '#{client_termname}')
+self=${BASH_SOURCE[0]}
+
+resume_command="$(shell_quote "$self") --resume"
+resume_command+=" $(shell_quote "$host")"
+resume_command+=" $(shell_quote "$remote_session")"
+resume_command+=" $(shell_quote "$local_socket")"
+resume_command+=" $(shell_quote "$local_session")"
+resume_command+=" $(shell_quote "$local_term")"
+
+exec tmux detach-client -t "$local_client" -E "$resume_command"

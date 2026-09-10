@@ -16,14 +16,6 @@ tx() {
   fi
 }
 
-sshsel() {
-  local server
-  server=$(grep -E '^Host ' ~/.ssh/config | awk '{print $2}' | grep -v '\*' | tac | fzf --prompt="SSH > " --height=40% --reverse)
-  if [[ -n $server ]]; then
-    ssh $server
-  fi
-}
-
 include () {
   [[ -f "$1" ]] && source "$1"
 }

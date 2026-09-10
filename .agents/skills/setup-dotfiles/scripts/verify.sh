@@ -30,6 +30,10 @@ readonly -a bash_files=(
   .bash/functions.sh
   bin/.local/bin/cx-switch
   bin/.local/bin/paste-image
+  bin/.local/bin/sshsel
+  bin/.local/bin/tmux-hop
+  tests/sshsel.sh
+  tests/tmux-hop.sh
   tmux/.config/tmux/scolor.sh
   tmux/.config/tmux/switch_session.sh
   tmux/.config/tmux/tmux_toggle_term.sh
@@ -44,6 +48,10 @@ shellcheck --severity=warning \
   "$repo/.agents/skills/setup-dotfiles/scripts/verify.sh" \
   "$repo/bin/.local/bin/cx-switch" \
   "$repo/bin/.local/bin/paste-image" \
+  "$repo/bin/.local/bin/sshsel" \
+  "$repo/bin/.local/bin/tmux-hop" \
+  "$repo/tests/sshsel.sh" \
+  "$repo/tests/tmux-hop.sh" \
   "$repo/tmux/.config/tmux/scolor.sh" \
   "$repo/tmux/.config/tmux/switch_session.sh" \
   "$repo/tmux/.config/tmux/tmux_toggle_term.sh"
@@ -51,6 +59,8 @@ shellcheck --shell=bash --severity=error "$repo/.bash/aliases.sh" "$repo/.bash/b
 
 stylua --check "$repo/neovim/.config/nvim"
 DOTFILES_REPO="$repo" nvim --headless -u NONE -i NONE -l "$repo/tests/neovim/git.lua"
+bash "$repo/tests/sshsel.sh"
+bash "$repo/tests/tmux-hop.sh"
 
 python3 - "$repo/tmux/.config/tmux/git_info.py" <<'PY'
 import ast

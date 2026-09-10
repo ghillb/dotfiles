@@ -1,0 +1,73 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+readonly ssh_config=${SSH_CONFIG:-$HOME/.ssh/config}
+declare -a entries=()
+declare -a rows=()
+max_host_width=0
+
+[[ -r "$ssh_config" ]] || {
+  printf 'error: SSH config is not readable: %s\n' "$ssh_config" >&2
+  exit 1
+}
+
+while IFS= read -r host; do
+  resolved=$(ssh -F "$ssh_config" -G "$host" 2>/dev/null) || continue
+
+  if grep -Eq '^(sessiontype none|dynamicforward |remoteforward )' <<<"$resolved"; then
+    continue
+  fi
+
+  user=$(awk '$1 == "user" { print $2; exit }' <<<"$resolved")
+  [[ "$user" != git ]] || continue
+
+  hostname=$(awk '$1 == "hostname" { print $2; exit }' <<<"$resolved")
+  port=$(awk '$1 == "port" { print $2; exit }' <<<"$resolved")
+  entries+=("$host"$'\t'"$user@$hostname:$port")
+  (( ${#host} > max_host_width )) && max_host_width=${#host}
+done < <(
+  awk '
+    $1 == "Host" {
+      for (field = 2; field <= NF; field++) {
+        if ($field !~ /[*?!]/) {
+          print $field
+          break
+        }
+      }
+    }
+  ' "$ssh_config"
+)
+
+(( ${#entries[@]} > 0 )) || {
+  printf 'error: no interactive SSH hosts found in %s\n' "$ssh_config" >&2
+  exit 1
+}
+
+for entry in "${entries[@]}"; do
+  host=${entry%%$'\t'*}
+  destination=${entry#*$'\t'}
+  printf -v row '%s\t%-*s  %s' "$host" "$max_host_width" "$host" "$destination"
+  rows+=("$row")
+done
+
+mapfile -t selection < <(
+  printf '%s\n' "${rows[@]}" |
+    fzf \
+      --expect=ctrl-t \
+      --delimiter=$'\t' \
+      --with-nth=2 \
+      --prompt='SSH > ' \
+      --height=40% \
+      --reverse \
+      --header='enter: SSH | ctrl-t: tmux hop'
+)
+
+(( ${#selection[@]} >= 2 )) || exit 0
+
+key=${selection[0]}
+host=${selection[1]%%$'\t'*}
+
+case "$key" in
+  '') exec ssh -F "$ssh_config" -- "$host" ;;
+  ctrl-t) exec tmux-hop "$host" ;;
+esac
