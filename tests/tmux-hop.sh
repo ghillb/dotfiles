@@ -24,6 +24,10 @@ cat >"$test_tmp/ssh-config" <<'EOF'
 Host server
   HostName server.example
   User remote-user
+
+Host other
+  HostName other.example
+  User other-user
 EOF
 
 cat >"$test_tmp/bin/ssh" <<'EOF'
@@ -35,6 +39,9 @@ for arg in "$@"; do
 done
 printf '%s\n' "$@" >"$TMUX_HOP_TEST_LOG"
 printf '%s\n' "${TERM:-}" >"${TMUX_HOP_TEST_TERM_LOG:-/dev/null}"
+if [[ ${TMUX_HOP_TEST_WAIT:-} == true ]]; then
+  exec sleep 60
+fi
 exit "${TMUX_HOP_TEST_SSH_STATUS:-0}"
 EOF
 chmod +x "$test_tmp/bin/ssh"
@@ -47,71 +54,6 @@ TMUX_HOP_TEST_LOG="$test_tmp/ssh.log" \
 mapfile -t ssh_args <"$test_tmp/ssh.log"
 [[ "${ssh_args[*]}" == "-F $test_tmp/ssh-config -tt -- server exec env LC_ALL=C.UTF-8 tmux new-session -A -s 'remote-user'" ]] ||
   fail "unexpected SSH invocation: ${ssh_args[*]}"
-
-cat >"$test_tmp/bin/tmux" <<'EOF'
-#!/usr/bin/env bash
-case "$1" in
-  display-message)
-    case "$3" in
-      '#{client_name}') printf '%s\n' '/dev/pts/9' ;;
-      *) exit 64 ;;
-    esac
-    ;;
-  list-sessions)
-    if [[ ${TMUX_HOP_TEST_EXISTING:-} == true &&
-      ${3:-} == $'#{session_name}\t#{@hop_host}\t#{@hop_session}' ]]; then
-      printf 'hop-existing\tserver\tremote-work\n'
-    fi
-    ;;
-  has-session) exit 1 ;;
-  *)
-    printf '%s' "$1" >>"$TMUX_HOP_TEST_TMUX_LOG"
-    shift
-    printf '\t%s' "$@" >>"$TMUX_HOP_TEST_TMUX_LOG"
-    printf '\n' >>"$TMUX_HOP_TEST_TMUX_LOG"
-    ;;
-esac
-EOF
-chmod +x "$test_tmp/bin/tmux"
-
-: >"$test_tmp/tmux.log"
-TMUX_HOP_TEST_TMUX_LOG="$test_tmp/tmux.log" \
-  TMUX_HOP_CLIENT=/dev/pts/9 \
-  SSH_CONFIG="$test_tmp/ssh-config" \
-  PATH="$test_tmp/bin:$PATH" \
-  TMUX="$test_tmp/tmux-socket,123,0" \
-  "$helper" server remote-work
-
-tmux_calls=$(<"$test_tmp/tmux.log")
-grep -Fq $'new-session\t-d\t-s\thop-server-remote-work\t-n\tssh' <<<"$tmux_calls" ||
-  fail 'a managed hop session was not created'
-grep -Fq $'set-option\t-t\thop-server-remote-work\tstatus\toff' <<<"$tmux_calls" ||
-  fail 'the outer status line was not disabled'
-grep -Fq $'set-option\t-t\thop-server-remote-work\tprefix\tNone' <<<"$tmux_calls" ||
-  fail 'the outer prefix was not disabled'
-grep -Fq $'set-option\t-t\thop-server-remote-work\tkey-table\thop' <<<"$tmux_calls" ||
-  fail 'the hop key table was not selected'
-grep -Fq $'set-option\t-t\thop-server-remote-work\tmouse\toff' <<<"$tmux_calls" ||
-  fail 'outer mouse handling was not disabled'
-grep -Fq $'set-option\t-t\thop-server-remote-work\tdetach-on-destroy\toff' <<<"$tmux_calls" ||
-  fail 'the originating client would detach when the hop exits'
-grep -Fq $'switch-client\t-c\t/dev/pts/9\t-t\t=hop-server-remote-work' <<<"$tmux_calls" ||
-  fail 'the originating client was not switched to the hop session'
-grep -Fq $'respawn-pane\t-k\t-t\thop-server-remote-work:1.1' <<<"$tmux_calls" ||
-  fail 'the remote tmux connection was not started in the hop session'
-
-: >"$test_tmp/tmux.log"
-TMUX_HOP_TEST_TMUX_LOG="$test_tmp/tmux.log" \
-  TMUX_HOP_TEST_EXISTING=true \
-  TMUX_HOP_CLIENT=/dev/pts/9 \
-  SSH_CONFIG="$test_tmp/ssh-config" \
-  PATH="$test_tmp/bin:$PATH" \
-  TMUX="$test_tmp/tmux-socket,123,0" \
-  "$helper" server remote-work
-
-tmux_calls=$(<"$test_tmp/tmux.log")
-[[ "$tmux_calls" == $'switch-client\t-c\t/dev/pts/9\t-t\t=hop-existing' ]] ||
-  fail "existing hop session was not reused: $tmux_calls"
 
 TMUX_HOP_TEST_LOG="$test_tmp/ssh.log" \
   SSH_CONFIG="$test_tmp/ssh-config" \
@@ -154,5 +96,142 @@ grep 'User2' <<<"$hop_keys" | grep -Fq 'SSHSEL_MODE=tmux-hop' ||
   fail 'nested session picker does not default Enter to tmux-hop'
 grep 'User3' <<<"$hop_keys" | grep -Fq 'SSHSEL_MODE=ssh' ||
   fail 'nested window picker does not default Enter to plain SSH'
+
+# Exercise the helper and configured picker bindings with a real tmux client.
+cat >"$test_tmp/bin/tmux" <<'EOF'
+#!/bin/bash
+exec /usr/bin/tmux -L "$TMUX_HOP_TEST_SOCKET" "$@"
+EOF
+cat >"$test_tmp/bin/bash" <<'EOF'
+#!/bin/bash
+if [[ ${1:-} == -ic && ${2:-} == sshsel ]]; then
+  exec "$TMUX_HOP_TEST_PICKER"
+fi
+exec /bin/bash "$@"
+EOF
+cat >"$test_tmp/bin/fzf" <<'EOF'
+#!/bin/bash
+host=$(cat "$TMUX_HOP_TEST_CHOICE")
+awk -v host="$host" '$1 == host { print; exit }'
+EOF
+chmod +x "$test_tmp/bin/tmux" "$test_tmp/bin/bash" "$test_tmp/bin/fzf"
+
+python3 - "$repo" "$test_tmp" "$tmux_socket" <<'PYTEST'
+import os
+from pathlib import Path
+import subprocess
+import sys
+import time
+
+repo, temporary, socket = sys.argv[1:]
+env = dict(os.environ, PATH=f"{temporary}/bin:{os.environ['PATH']}",
+           TMUX_HOP_TEST_SOCKET=socket, TMUX_HOP_TEST_WAIT="true",
+           TMUX_HOP_TEST_LOG=f"{temporary}/ssh.log",
+           TMUX_HOP_TEST_CHOICE=f"{temporary}/choice",
+           TMUX_HOP_TEST_PICKER=f"{repo}/bin/.local/bin/sshsel",
+           SSH_CONFIG=f"{temporary}/ssh-config")
+Path(env["TMUX_HOP_TEST_CHOICE"]).write_text("server")
+env.pop("TMUX", None)
+env.pop("TMUX_HOP_CLIENT", None)
+env.pop("TMUX_HOP_ORIGIN", None)
+
+
+def tmux(*args):
+    return subprocess.check_output(
+        ["/usr/bin/tmux", "-L", socket, *args], env=env, text=True).strip()
+
+
+def wait_for(predicate, message):
+    deadline = time.monotonic() + 5
+    while time.monotonic() < deadline:
+        if predicate():
+            return
+        time.sleep(0.02)
+    print(tmux("list-panes", "-a", "-F", "#{session_name}:#{pane_id}:#{pane_current_command}"))
+    print(tmux("capture-pane", "-p"))
+    print(tmux("list-clients", "-F", "#{client_name}:#{session_name}:#{client_key_table}"))
+    print(tmux("list-sessions", "-F", "#{session_name}:#{@hop_origin}:#{@hop_pane}"))
+    raise AssertionError(message)
+
+
+for key in ("PATH", "TMUX_HOP_TEST_SOCKET", "TMUX_HOP_TEST_WAIT",
+            "TMUX_HOP_TEST_LOG", "TMUX_HOP_TEST_PICKER", "TMUX_HOP_TEST_CHOICE", "SSH_CONFIG"):
+    tmux("set-environment", "-g", key, env[key])
+
+client_process = subprocess.Popen(
+    ["/usr/bin/tmux", "-L", socket, "-C", "attach-session", "-t", "verify"],
+    env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+    text=True)
+try:
+    wait_for(lambda: tmux("list-clients", "-F", "#{client_name}"), "client did not attach")
+    client = tmux("list-clients", "-F", "#{client_name}")
+    origin = tmux("display-message", "-p", "-t", "verify", "#{session_id}")
+
+    def current(format):
+        return tmux("display-message", "-p", "-c", client, format)
+
+    # Root User2 creates an ephemeral picker; its parent must survive that picker.
+    tmux("send-keys", "-K", "-c", client, "User2")
+    wait_for(lambda: current("#{session_name}:#{client_key_table}") == "hop-server-remote-user:hop",
+             "session picker did not create a hop")
+    hop = current("#{session_id}")
+    connection = current("#{pane_id}")
+    # Renaming the origin must not strand the window picker.
+    tmux("rename-session", "-t", origin, "renamed-local")
+    Path(env["TMUX_HOP_TEST_CHOICE"]).write_text("other")
+    tmux("send-keys", "-K", "-c", client, "User3")
+    wait_for(lambda: current("#{session_id}") == origin,
+             "plain SSH picker stayed inside the hop")
+    wait_for(lambda: Path(env["TMUX_HOP_TEST_LOG"]).read_text().splitlines()
+             == ["-F", env["SSH_CONFIG"], "--", "other"],
+             "plain SSH picker did not connect to the second host")
+    assert tmux("show-options", "-v", "-t", hop, "@hop_origin") == origin
+    assert tmux("show-options", "-v", "-t", hop, "@hop_pane") == connection
+    assert current("#{window_name}") == "ssh", "plain SSH window was not selected"
+    assert current("#{key-table}") == "root", "plain SSH window has hop key handling"
+    assert tmux("list-windows", "-t", hop, "-F", "#{window_id}").count("\n") == 0
+
+    for option, expected in {"status": "off", "prefix": "None", "prefix2": "None",
+                             "key-table": "hop", "mouse": "off",
+                             "detach-on-destroy": "off"}.items():
+        actual = tmux("show-options", "-v", "-t", hop, option)
+        assert actual == expected, (option, actual)
+
+    helper_env = dict(env, TMUX=current("#{socket_path},#{pid},0"), TMUX_HOP_CLIENT=client)
+
+    def connect():
+        subprocess.run([f"{repo}/bin/.local/bin/tmux-hop", "server", "remote-user"],
+                       env=helper_env, check=True)
+
+    # Even after a manual window/pane change, reuse must restore the connection.
+    tmux("move-window", "-s", connection, "-t", f"{hop}:7")
+    tmux("split-window", "-d", "-t", connection, "sleep 60")
+    tmux("select-pane", "-t", f"{hop}:7.2")
+    other_window = tmux("new-window", "-P", "-F", "#{window_id}", "-t", f"{hop}:", "sleep 60")
+    connect()
+    assert current("#{pane_id}") == connection, "reuse selected another connection"
+    tmux("kill-window", "-t", other_window)
+
+    # Opening the nested session picker must retain the same local origin.
+    Path(env["TMUX_HOP_TEST_CHOICE"]).write_text("other")
+    tmux("send-keys", "-K", "-c", client, "User2")
+    wait_for(lambda: current("#{session_name}:#{client_key_table}") == "hop-other-other-user:hop",
+             "nested picker did not create the second hop")
+    assert current("#{@hop_origin}") == origin, "nested hop lost the local origin"
+    connect()
+    wait_for(lambda: current("#{pane_id}:#{client_key_table}") == f"{connection}:hop",
+             "reuse did not restore the original connection")
+
+    tmux("kill-session", "-t", origin)
+    windows = tmux("list-windows", "-t", hop, "-F", "#{window_id}")
+    tmux("send-keys", "-K", "-c", client, "User3")
+    wait_for(lambda: "Originating local workspace is unavailable"
+             in tmux("show-messages", "-t", client),
+             "missing origin did not report a recovery message")
+    assert current("#{session_id}") == hop, "missing origin switched to an unrelated session"
+    assert tmux("list-windows", "-t", hop, "-F", "#{window_id}") == windows
+finally:
+    client_process.communicate("detach-client\n", timeout=5)
+PYTEST
 
 printf 'tmux-hop tests passed.\n'

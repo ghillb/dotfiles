@@ -65,11 +65,20 @@ if [[ -z "$local_client" ]]; then
   local_client=${local_clients[0]}
 fi
 
-while IFS=$'\t' read -r session_name hop_host hop_session; do
+while IFS=$'\t' read -r session_name hop_host hop_session hop_pane; do
   if [[ "$hop_host" == "$host" && "$hop_session" == "$remote_session" ]]; then
-    exec tmux switch-client -c "$local_client" -t "=$session_name"
+    [[ "$hop_pane" =~ ^%[0-9]+$ ]] ||
+      die "$session_name has no connection pane metadata; close it and reconnect"
+    exec tmux switch-client -c "$local_client" -t "$hop_pane"
   fi
-done < <(tmux list-sessions -F $'#{session_name}\t#{@hop_host}\t#{@hop_session}')
+done < <(tmux list-sessions -F $'#{session_name}\t#{@hop_host}\t#{@hop_session}\t#{@hop_pane}')
+
+origin=${TMUX_HOP_ORIGIN:-}
+if [[ -z "$origin" ]]; then
+  origin=$(tmux display-message -p -c "$local_client" '#{?@hop_origin,#{@hop_origin},#{session_id}}')
+fi
+[[ "$origin" =~ ^\$[0-9]+$ ]] && tmux has-session -t "$origin" 2>/dev/null ||
+  die 'originating local workspace is unavailable; reconnect from a local workspace'
 
 slug=${host//[^[:alnum:]_-]/-}
 slug=${slug:0:40}
@@ -82,9 +91,11 @@ while tmux has-session -t "=$managed_session" 2>/dev/null; do
   ((suffix += 1))
 done
 
-tmux new-session -d -s "$managed_session" -n ssh 'sleep 86400'
+hop_pane=$(tmux new-session -d -P -F '#{pane_id}' -s "$managed_session" -n ssh 'sleep 86400')
 tmux set-option -t "$managed_session" @hop_host "$host"
 tmux set-option -t "$managed_session" @hop_session "$remote_session"
+tmux set-option -t "$managed_session" @hop_origin "$origin"
+tmux set-option -t "$managed_session" @hop_pane "$hop_pane"
 tmux set-option -t "$managed_session" status off
 tmux set-option -t "$managed_session" prefix None
 tmux set-option -t "$managed_session" prefix2 None
@@ -98,5 +109,5 @@ connect_command+=" $(shell_quote "$self") --connect"
 connect_command+=" $(shell_quote "$host")"
 connect_command+=" $(shell_quote "$remote_session")"
 
-tmux switch-client -c "$local_client" -t "=$managed_session"
-tmux respawn-pane -k -t "$managed_session:1.1" "$connect_command"
+tmux switch-client -c "$local_client" -t "$hop_pane"
+tmux respawn-pane -k -t "$hop_pane" "$connect_command"
