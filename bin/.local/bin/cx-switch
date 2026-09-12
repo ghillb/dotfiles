@@ -34,6 +34,50 @@ validate_profile_name() {
   esac
 }
 
+require_no_codex_processes() {
+  if ! command -v pgrep >/dev/null 2>&1; then
+    echo "cx-switch: pgrep is required to verify that Codex is stopped" >&2
+    exit 1
+  fi
+  if pgrep -x codex >/dev/null 2>&1 || pgrep -x codex-cli >/dev/null 2>&1; then
+    echo "cx-switch: Codex is running; exit all Codex sessions first" >&2
+    exit 1
+  fi
+}
+
+auth_email() {
+  local path="$1"
+
+  jq -er '
+    .tokens.id_token
+    | split(".")[1]
+    | gsub("-"; "+")
+    | gsub("_"; "/")
+    | @base64d
+    | fromjson
+    | .email
+  ' "$path" 2>/dev/null
+}
+
+require_auth_matches_profile() {
+  local name="$1"
+  local path="$2"
+  local email
+
+  case "$name" in
+    *@*)
+      if ! email="$(auth_email "$path")"; then
+        echo "cx-switch: cannot verify account identity in $path" >&2
+        exit 1
+      fi
+      if [ "${email,,}" != "${name,,}" ]; then
+        echo "cx-switch: profile $name contains authentication for $email" >&2
+        exit 1
+      fi
+      ;;
+  esac
+}
+
 get_current_profile() {
   if [ -f "$current_file" ]; then
     tr -d '[:space:]' < "$current_file"
@@ -41,6 +85,45 @@ get_current_profile() {
   else
     echo "unset"
   fi
+}
+
+copy_auth() {
+  local source="$1"
+  local destination="$2"
+  local destination_dir temporary_auth
+
+  destination_dir="$(dirname "$destination")"
+  mkdir -p "$destination_dir"
+  temporary_auth="$(mktemp "${destination_dir}/.cx-switch-auth.XXXXXX")"
+  if ! cp -- "$source" "$temporary_auth" ||
+    ! chmod 600 "$temporary_auth" ||
+    ! mv -f -- "$temporary_auth" "$destination"; then
+    rm -f -- "$temporary_auth"
+    return 1
+  fi
+}
+
+persist_current_profile() {
+  local name profile_auth current_email saved_email
+
+  if [ ! -f "$current_file" ] || [ ! -f "$shared_auth" ]; then
+    return
+  fi
+  name="$(get_current_profile)"
+  if [ "$name" = "unset" ] || [ -z "$name" ]; then
+    return
+  fi
+  validate_profile_name "$name"
+  profile_auth="${auth_profiles_dir}/${name}.json"
+  require_auth_matches_profile "$name" "$shared_auth"
+  if [ -f "$profile_auth" ]; then
+    if current_email="$(auth_email "$shared_auth")" && saved_email="$(auth_email "$profile_auth")" &&
+      [ "$current_email" != "$saved_email" ]; then
+      echo "cx-switch: active authentication does not match profile $name" >&2
+      exit 1
+    fi
+  fi
+  copy_auth "$shared_auth" "$profile_auth"
 }
 
 format_reset_at() {
@@ -74,7 +157,7 @@ window_label() {
 fetch_limits_json() {
   local name="$1"
   local profile_auth="${auth_profiles_dir}/${name}.json"
-  local tmp_home result line maybe
+  local tmp_home temporary_auth source_auth current_profile result line maybe
 
   if [ ! -f "$profile_auth" ]; then
     echo "cx-switch: no auth stored yet for profile $name" >&2
@@ -90,13 +173,26 @@ fetch_limits_json() {
   fi
 
   tmp_home="$(mktemp -d "${auth_profiles_dir}/.cx-switch-home.XXXXXX")"
-  mkdir -p "${tmp_home}/.codex"
-  ln -s "$profile_auth" "${tmp_home}/.codex/auth.json"
+  temporary_auth="${tmp_home}/.codex/auth.json"
+  source_auth="$profile_auth"
+  current_profile="$(get_current_profile)"
+  if [ "$current_profile" = "$name" ] && [ -f "$shared_auth" ]; then
+    source_auth="$shared_auth"
+  fi
+  require_auth_matches_profile "$name" "$source_auth"
+  copy_auth "$source_auth" "$temporary_auth"
 
   cleanup_limits() {
     if [ -n "${APP_PID:-}" ]; then
       kill "$APP_PID" 2>/dev/null || true
       wait "$APP_PID" 2>/dev/null || true
+      unset APP_PID
+    fi
+    if [ -f "$temporary_auth" ]; then
+      copy_auth "$temporary_auth" "$profile_auth"
+      if [ "$current_profile" = "$name" ]; then
+        copy_auth "$temporary_auth" "$shared_auth"
+      fi
     fi
     rm -rf "$tmp_home"
   }
@@ -123,11 +219,13 @@ fetch_limits_json() {
     fi
   done
 
+  cleanup_limits
+  trap - RETURN
+
   if [ -z "$result" ]; then
     echo "cx-switch: failed to read limits for profile $name" >&2
-    exit 1
+    return 1
   fi
-
   printf '%s\n' "$result"
 }
 
@@ -143,6 +241,7 @@ save_profile() {
   fi
 
   mkdir -p "$auth_profiles_dir" "$shared_home"
+  require_auth_matches_profile "$name" "$shared_auth"
 
   tmp_auth="$(mktemp "${auth_profiles_dir}/.${name}.XXXXXX")"
   cleanup_save() {
@@ -159,6 +258,7 @@ save_profile() {
 }
 
 clear_profile() {
+  persist_current_profile
   rm -f "$shared_auth" "$current_file"
   echo "cleared active profile"
   echo "auth: ${shared_home}/auth.json"
@@ -265,9 +365,11 @@ case "$cmd" in
     usage
     ;;
   clear)
+    require_no_codex_processes
     clear_profile
     ;;
   delete)
+    require_no_codex_processes
     name="${2:-}"
     if [ -z "$name" ]; then
       usage >&2
@@ -277,6 +379,7 @@ case "$cmd" in
     delete_profile "$name"
     ;;
   save)
+    require_no_codex_processes
     name="${2:-}"
     if [ -z "$name" ]; then
       usage >&2
@@ -286,6 +389,7 @@ case "$cmd" in
     save_profile "$name"
     ;;
   use)
+    require_no_codex_processes
     name="${2:-}"
     if [ -z "$name" ]; then
       usage >&2
@@ -299,8 +403,10 @@ case "$cmd" in
       echo "run: cx login, then cx-switch save $name" >&2
       exit 1
     fi
+    require_auth_matches_profile "$name" "$profile_auth"
+    persist_current_profile
+    copy_auth "$profile_auth" "$shared_auth"
     printf '%s\n' "$name" > "$current_file"
-    ln -sfn "$profile_auth" "$shared_auth"
     echo "active profile: $name"
     echo "auth: $profile_auth"
     ;;
@@ -345,6 +451,7 @@ case "$cmd" in
     fi
     ;;
   limits)
+    require_no_codex_processes
     name="${2:-}"
     if [ "$name" = "--all" ]; then
       print_all_limits
