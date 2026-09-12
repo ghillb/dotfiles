@@ -8,15 +8,19 @@ shared_auth="${shared_home}/auth.json"
 
 usage() {
   cat <<'EOF'
-Usage:
-  cx-switch clear
-  cx-switch delete <name>
-  cx-switch save <name>
-  cx-switch use <name>
-  cx-switch current
-  cx-switch list
-  cx-switch status
-  cx-switch limits [name]
+Usage: cx-switch <command> [arguments]
+
+Commands:
+  clear          Clear the active profile
+  delete <name>  Delete a saved profile
+  save <name>    Save current authentication as a profile
+  use <name>     Activate a saved profile
+  current        Print the active profile name
+  list           List saved profiles
+  status         Show active profile details
+  limits [<name>|--all]
+                 Show usage limits for one or all profiles
+  help           Show this help
 EOF
 }
 
@@ -233,9 +237,33 @@ print_limits() {
   fi
 }
 
+print_all_limits() {
+  local path name
+  local found=0
+
+  for path in "$auth_profiles_dir"/*.json; do
+    if [ ! -f "$path" ]; then
+      continue
+    fi
+    if [ "$found" -eq 1 ]; then
+      printf '\n'
+    fi
+    found=1
+    name="$(basename "$path" .json)"
+    print_limits "$name"
+  done
+
+  if [ "$found" -eq 0 ]; then
+    echo "no profiles"
+  fi
+}
+
 cmd="${1:-status}"
 
 case "$cmd" in
+  help | -h | --help)
+    usage
+    ;;
   clear)
     clear_profile
     ;;
@@ -318,15 +346,19 @@ case "$cmd" in
     ;;
   limits)
     name="${2:-}"
-    if [ -z "$name" ]; then
+    if [ "$name" = "--all" ]; then
+      print_all_limits
+    elif [ -z "$name" ]; then
       name="$(get_current_profile)"
       if [ "$name" = "unset" ]; then
         echo "cx-switch: no active profile" >&2
         exit 1
       fi
+      print_limits "$name"
+    else
+      validate_profile_name "$name"
+      print_limits "$name"
     fi
-    validate_profile_name "$name"
-    print_limits "$name"
     ;;
   *)
     usage >&2
