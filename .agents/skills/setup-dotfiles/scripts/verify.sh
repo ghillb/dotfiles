@@ -32,6 +32,7 @@ readonly -a bash_files=(
   bin/.local/bin/paste-image
   bin/.local/bin/sshsel
   bin/.local/bin/tmux-hop
+  tests/cx-switch.sh
   tests/sshsel.sh
   tests/tmux-hop.sh
   tmux/.config/tmux/scolor.sh
@@ -50,6 +51,7 @@ shellcheck --severity=warning \
   "$repo/bin/.local/bin/paste-image" \
   "$repo/bin/.local/bin/sshsel" \
   "$repo/bin/.local/bin/tmux-hop" \
+  "$repo/tests/cx-switch.sh" \
   "$repo/tests/sshsel.sh" \
   "$repo/tests/tmux-hop.sh" \
   "$repo/tmux/.config/tmux/scolor.sh" \
@@ -59,6 +61,7 @@ shellcheck --shell=bash --severity=error "$repo/.bash/aliases.sh" "$repo/.bash/b
 
 stylua --check "$repo/neovim/.config/nvim"
 DOTFILES_REPO="$repo" nvim --headless -u NONE -i NONE -l "$repo/tests/neovim/git.lua"
+bash "$repo/tests/cx-switch.sh"
 bash "$repo/tests/sshsel.sh"
 bash "$repo/tests/tmux-hop.sh"
 
