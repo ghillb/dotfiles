@@ -60,8 +60,8 @@ test_direct_mode_switches_outer_client() {
 
   PATH=$TEST_TMP:$PATH "$SUBJECT" git "bash -ic 'gg; exec bash -i'"
 
-  assert_logged '^new-session .*git-1'
-  assert_logged '^switch-client -t git-1 '
+  assert_logged '^new-session .*git-gh'
+  assert_logged '^switch-client -t git-gh '
   assert_not_logged '^popup '
 }
 
@@ -140,7 +140,7 @@ test_direct_mode_from_float_switches_parent_client() {
 
   PATH=$TEST_TMP:$PATH "$SUBJECT" git "bash -ic 'gg; exec bash -i'"
 
-  assert_logged '^switch-client -c outer -t git-1 '
+  assert_logged '^switch-client -c outer -t git-gh '
   assert_logged '^detach-client '
   assert_not_logged '^popup '
 }

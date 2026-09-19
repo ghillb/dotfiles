@@ -1,7 +1,7 @@
 #!/bin/bash
 # Switch persistent tool sessions or toggle a floating terminal popup.
-# `ft` is a per-base-session popup; git and nvim switch the outer client
-# to a persistent session keyed by the original base pane.
+# `ft` and `git` are keyed by the base session; nvim remains keyed by the
+# original base pane. Git and nvim switch the outer client.
 #
 # Usage:
 #   tmux_toggle_term.sh <prefix> [command] [toggle-size] [prefill]
@@ -101,7 +101,7 @@ if [ -n "$CURRENT_MODE" ]; then
 fi
 
 TARGET_KEY="${BASE_PANE#%}"
-if [ "$PREFIX" = "ft" ]; then
+if [ "$PREFIX" = "ft" ] || [ "$PREFIX" = "git" ]; then
     TARGET_KEY="$BASE_SESSION"
 fi
 TARGET_SESSION="${PREFIX}-${TARGET_KEY}"
