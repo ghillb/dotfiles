@@ -53,6 +53,10 @@ local function prepare_workspace(name, fx_output, exit_code)
     [[  *"Treat tests and verification as supporting changes unless they are the only changes"*) ;;]],
     [[  *) exit 17 ;;]],
     [[esac]],
+    [[case "$4" in]],
+    [[  *"staged change"*) ;;]],
+    [[  *) exit 18 ;;]],
+    [[esac]],
     ("printf '%%s\\n' '%s'"):format(fx_output),
     ("exit %d"):format(exit_code),
   }, fx)
@@ -63,25 +67,38 @@ local function prepare_workspace(name, fx_output, exit_code)
   vim.fn.writefile({ "staged change" }, workspace .. "/change.txt")
   run({ "git", "add", "change.txt" }, workspace)
   vim.fn.chdir(workspace)
+  return workspace
 end
 
-local function generate_commit_message()
+local function generate_commit_message(opts)
+  opts = opts or {}
   local finished = false
   local success
   local message
 
-  git.generate_commit_msg({
-    callback = function(callback_success, callback_message)
-      success = callback_success
-      message = callback_message
-      finished = true
-    end,
-  })
+  opts.callback = function(callback_success, callback_message)
+    success = callback_success
+    message = callback_message
+    finished = true
+  end
+  git.generate_commit_msg(opts)
 
   assert(vim.wait(5000, function()
     return finished
   end), "commit message generation timed out")
   return success, message
+end
+
+local function test_generates_amended_message_without_staged_changes()
+  local workspace = prepare_workspace("amend", fx_response("fix(test): amend message", 0), 0)
+  run({ "git", "-c", "user.name=Test", "-c", "user.email=test@example.com", "commit", "-m", "base" }, workspace)
+  vim.fn.writefile({ "staged change updated" }, workspace .. "/change.txt")
+  run({ "git", "add", "change.txt" }, workspace)
+  run({ "git", "-c", "user.name=Test", "-c", "user.email=test@example.com", "commit", "-m", "old message" }, workspace)
+
+  local success, message = generate_commit_message({ amend = true })
+  assert_equal(success, true, "amend should generate a message from the existing commit")
+  assert_equal(message, "fix(test): amend message", "fx output should become the amended message")
 end
 
 local function test_generates_message_with_fx()
@@ -112,10 +129,36 @@ local function test_rejects_explanatory_fx_output()
   )
 end
 
+local function test_cli_writes_message_to_stdout()
+  prepare_workspace("cli", fx_response("fix(test): print cli message", 0), 0)
+
+  local result = vim
+    .system({
+      vim.v.progpath,
+      "--headless",
+      "-u",
+      "NONE",
+      "-i",
+      "NONE",
+      "--cmd",
+      "set runtimepath^=" .. repo .. "/neovim/.config/nvim",
+      "-c",
+      "luafile " .. repo .. "/neovim/.config/nvim/lua/commands.lua",
+      "-c",
+      "CommitMsgCLI",
+    }, { cwd = vim.fn.getcwd(), text = true })
+    :wait()
+
+  assert_equal(result.code, 0, "CommitMsgCLI should succeed")
+  assert_equal(vim.trim(result.stdout), "fix(test): print cli message", "CommitMsgCLI should write to stdout")
+end
+
 local function run_tests()
   test_generates_message_with_fx()
   test_reports_fx_failure()
   test_rejects_explanatory_fx_output()
+  test_cli_writes_message_to_stdout()
+  test_generates_amended_message_without_staged_changes()
 end
 
 local ok, err = xpcall(run_tests, debug.traceback)

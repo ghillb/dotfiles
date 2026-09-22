@@ -159,7 +159,21 @@ gitignore() {
 }
 
 _git_commit_with_msg() {
-    nvim --headless -c "CommitMsgCLI"
-    READLINE_LINE='git commit -m ""'
-    READLINE_POINT=$((${#READLINE_LINE} - 1))
+  local cli_command="CommitMsgCLI" commit_msg quoted_msg
+  local -a commit_args=(commit)
+
+  if [[ "${1:-}" == "--amend" ]]; then
+    cli_command="CommitMsgCLI!"
+    commit_args+=(--amend)
+  fi
+
+  commit_msg="$(nvim --headless -c "$cli_command")" || return
+
+  if [[ -v READLINE_LINE ]]; then
+    printf -v quoted_msg '%q' "$commit_msg"
+    READLINE_LINE="git commit -m $quoted_msg"
+    READLINE_POINT=${#READLINE_LINE}
+  else
+    git "${commit_args[@]}" -m "$commit_msg"
+  fi
 }

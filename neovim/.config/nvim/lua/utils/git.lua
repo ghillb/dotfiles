@@ -142,9 +142,13 @@ function M.generate_commit_msg(opts)
   end
 
   git_root = vim.trim(git_root_result.stdout)
+  local diff_command = { "git", "diff", "--staged", "--no-color" }
+  if opts.amend then
+    table.insert(diff_command, "HEAD^")
+  end
 
   local diff_result = vim
-    .system({ "git", "diff", "--staged", "--no-color" }, {
+    .system(diff_command, {
       cwd = git_root,
       text = true,
       timeout = 30000,
@@ -221,7 +225,7 @@ function M.generate_commit_msg(opts)
       end
 
       diff_result = vim
-        .system({ "git", "diff", "--staged", "--no-color" }, {
+        .system(diff_command, {
           cwd = git_root,
           text = true,
           timeout = 30000,
@@ -241,7 +245,8 @@ function M.generate_commit_msg(opts)
   local MAX_DIFF_CHARS = 15000
   local processed_diff = truncate_diff_simple(diff, MAX_DIFF_CHARS)
 
-  local prompt = "Generate one Conventional Commit subject for the staged changes.\n\n"
+  local target = opts.amend and "the complete commit being amended" or "the staged changes"
+  local prompt = "Generate one Conventional Commit subject for " .. target .. ".\n\n"
     .. "RULES:\n"
     .. "- Describe the primary behavior change across the entire diff\n"
     .. "- Treat tests and verification as supporting changes unless they are the only changes\n"
